@@ -16,6 +16,11 @@
 
 
 
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -525,9 +530,9 @@
         .it-ts-hero {
           background-color: var(--c-bg-dark);
           color: var(--c-text-light);
-          padding: 100px 0;
+          padding: 200px 0;
           /* Placeholder for dark server room background image */
-          background-image: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.4)), url('https://placehold.co/1600x900/1a1a1a/1a1a1a?text=Server+Room+Background');
+          background-image: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.4)), url('https://images.pexels.com/photos/14171333/pexels-photo-14171333.jpeg');
           background-size: cover;
           background-position: center;
           border-bottom-left-radius: 20px;
@@ -684,7 +689,7 @@
           <div class="it-ts-container">
             <h2>Optimized solutions for scalability and management</h2>
             <div class="it-ts-ui-mockup">
-              <img src="https://placehold.co/1200x600/FFFFFF/E5E5E5?text=Enterprise+Dashboard+UI+Mockup" alt="Dashboard UI" class="it-ts-ui-img-placeholder">
+              <img src="https://images.pexels.com/photos/14171333/pexels-photo-14171333.jpeg" alt="Dashboard UI" class="it-ts-ui-img-placeholder">
             </div>
           </div>
         </section>
@@ -803,6 +808,438 @@
 </script>
 
 <it-tech-solutions></it-tech-solutions>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="it-ads-component-wrapper">
+  <style>
+    /* Scoped styles for the component to prevent conflicts */
+    .it-ads-component-wrapper {
+      --it-ads-bg-main: #0a1128;
+      --it-ads-bg-card: #121a38;
+      --it-ads-bg-banner: #1c2445;
+      --it-ads-text-white: #ffffff;
+      --it-ads-text-muted: #a0a8c0;
+      --it-ads-accent-blue: #0082fa;
+      --it-ads-border-blue: #0082fa;
+      --it-ads-font-family: 'Inter', sans-serif;
+
+      font-family: var(--it-ads-font-family);
+      background-color: var(--it-ads-bg-main);
+      color: var(--it-ads-text-white);
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    .it-ads-component-wrapper *,
+    .it-ads-component-wrapper *::before,
+    .it-ads-component-wrapper *::after {
+      box-sizing: inherit;
+    }
+
+    /* Utility Classes */
+    .it-ads-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .it-ads-text-center { text-align: center; }
+    .it-ads-text-muted { color: var(--it-ads-text-muted); }
+
+    .it-ads-btn {
+      display: inline-block;
+      padding: 12px 24px;
+      border-radius: 4px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .it-ads-btn-outline {
+      background-color: transparent;
+      border: 2px solid var(--it-ads-border-blue);
+      color: var(--it-ads-text-white);
+    }
+    .it-ads-btn-outline:hover {
+      background-color: var(--it-ads-border-blue);
+    }
+
+    .it-ads-btn-solid {
+      background-color: var(--it-ads-accent-blue);
+      border: 2px solid var(--it-ads-accent-blue);
+      color: var(--it-ads-text-white);
+    }
+    .it-ads-btn-solid:hover {
+      background-color: #006add;
+      border-color: #006add;
+    }
+
+    /* Header Section */
+    .it-ads-header {
+      padding: 60px 0 40px;
+    }
+    
+    .it-ads-logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 30px;
+        font-weight: 700;
+        font-size: 1.1rem;
+    }
+
+    .it-ads-logo-icon {
+        width: 24px;
+        height: 24px;
+        margin-right: 10px;
+        background-color: var(--it-ads-accent-blue); /* Placeholder for logo icon */
+        border-radius: 50%;
+    }
+
+    .it-ads-headline {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .it-ads-subheadline {
+      font-size: 1.25rem;
+      margin-bottom: 40px;
+    }
+
+    .it-ads-header-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 60px;
+    }
+
+    /* Hero Video Section */
+    .it-ads-hero-video-container {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto 80px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .it-ads-hero-video {
+      width: 100%;
+      display: block;
+      /* Placeholder for video poster */
+      background: #1a1a2e url('https://via.placeholder.com/800x450?text=Video+Placeholder') center/cover no-repeat;
+    }
+
+    /* Features Row */
+    .it-ads-features-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 100px;
+      text-align: left;
+    }
+
+    .it-ads-feature-item {
+      flex: 1;
+      padding: 0 15px;
+      max-width: 25%;
+    }
+
+    .it-ads-feature-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .it-ads-feature-desc {
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    /* Large Banner Section */
+    .it-ads-banner {
+      position: relative;
+      padding: 80px;
+      border-radius: 30px;
+      overflow: hidden;
+      margin-bottom: 100px;
+      /* Placeholder for banner background image */
+      background: var(--it-ads-bg-banner) url('https://via.placeholder.com/1200x400?text=Large+Banner+Background') center/cover no-repeat;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      min-height: 400px;
+    }
+    
+    /* Dark overlay for better text readability over placeholder */
+    .it-ads-banner::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: linear-gradient(to right, rgba(10, 17, 40, 0.8) 30%, rgba(10, 17, 40, 0));
+        z-index: 1;
+    }
+
+    .it-ads-banner-content {
+      position: relative;
+      z-index: 2;
+      max-width: 500px;
+    }
+
+    .it-ads-banner-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .it-ads-banner-text {
+      font-size: 1.1rem;
+      margin-bottom: 40px;
+      line-height: 1.4;
+    }
+
+    .it-ads-banner-btn-container {
+        position: relative;
+        z-index: 2;
+        align-self: flex-end;
+    }
+
+    /* 2x2 Feature Grid */
+    .it-ads-grid-section {
+      margin-bottom: 100px;
+    }
+
+    .it-ads-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+    }
+
+    .it-ads-grid-card {
+      background-color: var(--it-ads-bg-card);
+      border-radius: 24px;
+      padding: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .it-ads-grid-content {
+      flex: 1;
+      z-index: 2;
+    }
+
+    .it-ads-grid-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .it-ads-grid-desc {
+      margin-bottom: 30px;
+      line-height: 1.5;
+      max-width: 80%;
+    }
+
+    .it-ads-grid-image {
+      flex: 1;
+      max-width: 200px;
+      height: auto;
+      z-index: 1;
+      /* Placeholder for grid item images */
+      content: url('https://via.placeholder.com/200x200?text=Feature+Icon');
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .it-ads-headline { font-size: 2.8rem; }
+      .it-ads-features-row { flex-wrap: wrap; }
+      .it-ads-feature-item { max-width: 50%; margin-bottom: 40px; }
+      .it-ads-banner { padding: 50px; flex-direction: column; justify-content: center; }
+      .it-ads-banner::before { background: rgba(10, 17, 40, 0.6); }
+      .it-ads-banner-btn-container { align-self: flex-start; margin-top: 30px; }
+      .it-ads-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .it-ads-headline { font-size: 2rem; }
+      .it-ads-subheadline { font-size: 1rem; }
+      .it-ads-header-buttons { flex-direction: column; align-items: center; }
+      .it-ads-feature-item { max-width: 100%; }
+      .it-ads-grid-card { flex-direction: column; text-align: center; }
+      .it-ads-grid-desc { max-width: 100%; }
+      .it-ads-grid-image { margin-top: 30px; }
+    }
+  </style>
+
+  <div class="it-ads-container">
+    <header class="it-ads-header it-ads-text-center">
+      <div class="it-ads-logo">
+          <div class="it-ads-logo-icon"></div>
+          <span>IT Ads Pro</span>
+      </div>
+      <h1 class="it-ads-headline">Your tech brand's reach starts here</h1>
+      <p class="it-ads-subheadline it-ads-text-muted">Advertise with precision and the lowest acquisition costs</p>
+      <div class="it-ads-header-buttons">
+        <a href="#" class="it-ads-btn it-ads-btn-outline">Create Campaign &rarr;</a>
+        <a href="#" class="it-ads-btn it-ads-btn-outline">View Media Kit</a>
+      </div>
+    </header>
+
+    <div class="it-ads-hero-video-container">
+      <video class="it-ads-hero-video" autoplay loop muted playsinline poster="https://via.placeholder.com/800x450?text=Video+Poster">
+        <source src="https://via.placeholder.com/800x450.mp4?text=Placeholder+Video" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <section class="it-ads-features-row">
+      <div class="it-ads-feature-item">
+        <h3 class="it-ads-feature-title">SaaS, Cloud, AI, and 400+ niches</h3>
+        <p class="it-ads-feature-desc it-ads-text-muted">Target highly specific B2B and B2C tech audiences across the globe.</p>
+      </div>
+      <div class="it-ads-feature-item">
+        <h3 class="it-ads-feature-title">Bot & Fraud Protection Programme</h3>
+        <p class="it-ads-feature-desc it-ads-text-muted">Up to $250,000 coverage against invalid traffic and click fraud.</p>
+      </div>
+      <div class="it-ads-feature-item">
+        <h3 class="it-ads-feature-title">Performance-based Pricing</h3>
+        <p class="it-ads-feature-desc it-ads-text-muted">Only pay for genuine engagement with flexible CPC and CPA models.</p>
+      </div>
+      <div class="it-ads-feature-item">
+        <h3 class="it-ads-feature-title">Secure by design</h3>
+        <p class="it-ads-feature-desc it-ads-text-muted">Leading the industry in GDPR and privacy compliance certifications.</p>
+      </div>
+    </section>
+
+    <section class="it-ads-banner">
+      <div class="it-ads-banner-content">
+        <h2 class="it-ads-banner-title">Premium Ad Placements</h2>
+        <p class="it-ads-banner-text">Get up to 5x ROI on targeted campaigns with exclusive inventory on top-tier tech publications and platforms.</p>
+      </div>
+      <div class="it-ads-banner-btn-container">
+          <a href="#" class="it-ads-btn it-ads-btn-outline">View Ad Formats &rarr;</a>
+      </div>
+    </section>
+
+    <section class="it-ads-grid-section">
+      <div class="it-ads-grid">
+        <div class="it-ads-grid-card">
+          <div class="it-ads-grid-content">
+            <h3 class="it-ads-grid-title">Audience Segments</h3>
+            <p class="it-ads-grid-desc it-ads-text-muted">Pre-built segments to instantly target decision-makers by intent, role, and tech stack.</p>
+            <a href="#" class="it-ads-btn it-ads-btn-solid">Browse Segments</a>
+          </div>
+          <img class="it-ads-grid-image" alt="Audience Segments">
+        </div>
+        <div class="it-ads-grid-card">
+          <div class="it-ads-grid-content">
+            <h3 class="it-ads-grid-title">Analytics</h3>
+            <p class="it-ads-grid-desc it-ads-text-muted">Generate actionable insights from real-time campaign performance data.</p>
+            <a href="#" class="it-ads-btn it-ads-btn-solid">View Dashboard</a>
+          </div>
+          <img class="it-ads-grid-image" alt="Analytics">
+        </div>
+        <div class="it-ads-grid-card">
+          <div class="it-ads-grid-content">
+            <h3 class="it-ads-grid-title">Retargeting</h3>
+            <p class="it-ads-grid-desc it-ads-text-muted">Cross-channel retargeting brings back high-intent prospects to convert.</p>
+            <a href="#" class="it-ads-btn it-ads-btn-solid">Start Retargeting</a>
+          </div>
+          <img class="it-ads-grid-image" alt="Retargeting">
+        </div>
+        <div class="it-ads-grid-card">
+          <div class="it-ads-grid-content">
+            <h3 class="it-ads-grid-title">Reporting</h3>
+            <p class="it-ads-grid-desc it-ads-text-muted">Automated reporting is easy with custom scheduling for stakeholders.</p>
+            <a href="#" class="it-ads-btn it-ads-btn-solid">Explore Reports</a>
+          </div>
+          <img class="it-ads-grid-image" alt="Reporting">
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -3954,3 +4391,751 @@
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechNova IT Solutions</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        @font-face {
+            font-family: 'Circular Std';
+            src: url('fonts/CircularStd-Book.ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        /* Circular Std - Medium (500) */
+        @font-face {
+            font-family: 'Circular Std';
+            src: url('fonts/CircularStd.ttf') format('truetype');
+            font-weight: 500;
+            font-style: normal;
+        }
+
+        /* Circular Std - Bold (700) */
+        @font-face {
+            font-family: 'Circular Std';
+            src: url('fonts/CircularStd-Bold.ttf') format('truetype');
+            font-weight: 600;
+            font-style: normal;
+        }
+        :root {
+            --itsvc-bg: #F5F7FA;
+            --itsvc-text-dark: #0F172A; 
+            --itsvc-text-body: #475467; 
+            --itsvc-text-muted: #CBD5E1; 
+            --itsvc-accent: #1F61EB; 
+            --itsvc-border: #E2E8F0;
+            --itsvc-font: 'Circular Std', sans-serif;
+            --itsvc-anim-speed: 5s;
+        }
+
+        .itsvc-wrapper * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        .itsvc-wrapper {
+            font-family: var(--itsvc-font);
+            background-color: var(--itsvc-bg);
+            padding: 80px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* --- Header: 1000px --- */
+        .itsvc-header-section {
+            width: 100%;
+            max-width: 900px;
+            text-align: left;
+            margin-bottom: 80px;
+        }
+
+        .itsvc-eyebrow {
+            color: var(--itsvc-accent);
+            font-weight: 600;
+            font-size: 16px;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .itsvc-h1 {
+            font-size: 48px;
+            line-height: 1.1;
+            font-weight: 700;
+            color: var(--itsvc-text-dark);
+            letter-spacing: -1.5px;
+            margin-bottom: 30px;
+        }
+
+        /* --- Main Content: 1200px --- */
+        .itsvc-main-section {
+            width: 100%;
+            max-width: 1200px;
+            display: flex; /* Using Flex for equal height stretching */
+            gap: 80px;
+            align-items: stretch; /* This makes left and right equal height */
+        }
+
+        /* Left Column: The Image */
+        .itsvc-image-col {
+            flex: 1;
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            min-height: 500px; /* Base height for mobile/empty states */
+        }
+
+        .itsvc-img {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .itsvc-img.active { opacity: 1; z-index: 2; }
+
+        /* Right Column: The Content */
+        .itsvc-content-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        /* Tabs */
+        .itsvc-tabs-stack {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 40px;
+        }
+
+        .itsvc-tab-item {
+            position: relative;
+            cursor: pointer;
+            margin-bottom: 30px;
+            display: inline-block; /* Crucial for progress bar width */
+            width: fit-content;
+        }
+
+        .itsvc-tab-title {
+            font-size: 52px;
+            font-weight: 500;
+            color: var(--itsvc-text-muted);
+            transition: color 0.3s ease;
+            line-height: 1.2;
+        }
+
+        .itsvc-tab-item.active .itsvc-tab-title {
+            color: var(--itsvc-text-dark);
+        }
+
+        /* Progress Bar: Width of the Tab Title */
+        .itsvc-progress-bg {
+            height: 3px;
+            width: 100%;
+            background-color: transparent;
+            margin-top: 8px;
+        }
+
+        .itsvc-tab-item.active .itsvc-progress-bg {
+            background-color: var(--itsvc-border);
+        }
+
+        .itsvc-progress-fill {
+            height: 3px;
+            width: 0%;
+            background-color: var(--itsvc-text-dark);
+        }
+
+        .itsvc-animating {
+            animation: itsvc-fill var(--itsvc-anim-speed) linear forwards;
+        }
+
+        @keyframes itsvc-fill { from { width: 0%; } to { width: 100%; } }
+
+        /* Description & Button Section */
+        .itsvc-description-area {
+            position: relative;
+            margin-top: auto; /* Pushes content to the bottom of the column if needed */
+        }
+
+        .itsvc-desc-content {
+            display: none;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        .itsvc-desc-content.active { display: block; }
+
+        .itsvc-body-text {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            color: var(--itsvc-text-body);
+        }
+
+        .itsvc-btn {
+            display: inline-block;
+            background-color: var(--itsvc-accent);
+            color: #fff;
+            padding: 16px 40px;
+            font-weight: 500;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- Responsive --- */
+        @media (max-width: 1024px) {
+            .itsvc-main-section { flex-direction: column; }
+            .itsvc-image-col { order: 2; height: 400px; min-height: 400px; }
+            .itsvc-content-col { order: 1; }
+            .itsvc-h1 { font-size: 34px; }
+            .itsvc-tab-title { font-size: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="itsvc-wrapper">
+    <header class="itsvc-header-section">
+        <span class="itsvc-eyebrow">(WHO WE ARE)</span>
+        <h1 class="itsvc-h1">Licensed, background-checked pros delivering clean, on-time digital solutions across USA, with honest pricing—no surprises.</h1>
+        <p style="font-size: 18px; color: var(--itsvc-text-body); max-width: 800px;">
+            TechNova™ provides reliable service with a commitment to quality. Trusted by customers nationwide, we're proud to set the standard in the IT industry.
+        </p>
+    </header>
+
+    <section class="itsvc-main-section">
+        <div class="itsvc-image-col">
+            <img src="https://images.pexels.com/photos/31650357/pexels-photo-31650357.jpeg" class="itsvc-img active" data-id="0">
+            <img src="https://images.pexels.com/photos/31401980/pexels-photo-31401980.png" class="itsvc-img" data-id="1">
+        </div>
+
+        <div class="itsvc-content-col">
+            <span class="itsvc-eyebrow">(HOW WE CAN HELP)</span>
+            
+            <div class="itsvc-tabs-stack">
+                <div class="itsvc-tab-item active" data-id="0">
+                    <div class="itsvc-tab-title">Enterprise</div>
+                    <div class="itsvc-progress-bg">
+                        <div class="itsvc-progress-fill itsvc-animating"></div>
+                    </div>
+                </div>
+
+                <div class="itsvc-tab-item" data-id="1">
+                    <div class="itsvc-tab-title">Startups</div>
+                    <div class="itsvc-progress-bg">
+                        <div class="itsvc-progress-fill"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="itsvc-description-area">
+                <div class="itsvc-desc-content active" data-id="0">
+                    <p class="itsvc-body-text">
+                        From system architecture to full-scale cloud migrations—fast, clean, and reliable engineering for your infrastructure. We cover security, scalability, and 24/7 maintenance.
+                    </p>
+                    <a href="#" class="itsvc-btn">View Enterprise Details</a>
+                </div>
+
+                <div class="itsvc-desc-content" data-id="1">
+                    <p class="itsvc-body-text">
+                        Rapid MVP development to launch your vision. We build high-performance web and mobile applications designed to scale alongside your user base and business goals.
+                    </p>
+                    <a href="#" class="itsvc-btn">View Startup Details</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script>
+    const tabs = document.querySelectorAll('.itsvc-tab-item');
+    const images = document.querySelectorAll('.itsvc-img');
+    const contents = document.querySelectorAll('.itsvc-desc-content');
+    let currentIndex = 0;
+    let timer;
+
+    function switchStep(index) {
+        currentIndex = index % tabs.length;
+
+        tabs.forEach((tab, i) => {
+            const isActive = i === currentIndex;
+            tab.classList.toggle('active', isActive);
+            
+            const bar = tab.querySelector('.itsvc-progress-fill');
+            bar.classList.remove('itsvc-animating');
+            if (isActive) {
+                void bar.offsetWidth; // Trigger reflow
+                bar.classList.add('itsvc-animating');
+            }
+        });
+
+        images.forEach((img, i) => img.classList.toggle('active', i === currentIndex));
+        contents.forEach((desc, i) => desc.classList.toggle('active', i === currentIndex));
+
+        resetTimer();
+    }
+
+    function resetTimer() {
+        clearInterval(timer);
+        timer = setInterval(() => switchStep(currentIndex + 1), 5000);
+    }
+
+    tabs.forEach((tab, i) => {
+        tab.addEventListener('click', () => switchStep(i));
+    });
+
+    resetTimer();
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+  @font-face {
+            font-family: 'Circular Std';
+            src: url('fonts/CircularStd-Book.ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        /* Circular Std - Medium (500) */
+        @font-face {
+            font-family: 'Circular Std';
+            src: url('fonts/CircularStd.ttf') format('truetype');
+            font-weight: 500;
+            font-style: normal;
+        }
+
+        /* Circular Std - Bold (700) */
+        @font-face {
+            font-family: 'Circular Std';
+            src: url('fonts/CircularStd-Bold.ttf') format('truetype');
+            font-weight: 600;
+            font-style: normal;
+        }
+
+  .it-global-section {
+    --max-width: 1200px;
+    --accent-color: #1a1a1a;
+    --text-muted: #757575;
+    --card-bg: #f5f5f5;
+    --transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    
+    background-color: #EAEAEA;
+    padding: 100px 0;
+    font-family: 'Circular Std', 'Inter', sans-serif;
+    overflow-x: hidden; /* Prevents horizontal scroll on the body */
+  }
+
+  /* Headline Layout - Centered 1200px */
+  .it-global-header {
+    max-width: var(--max-width);
+    margin: 0 auto 60px auto;
+    padding: 0 20px;
+  }
+
+  .it-global-label {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .it-global-h1 {
+    font-size: clamp(40px, 6vw, 72px);
+    line-height: 1.1;
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    margin: 0;
+  }
+
+  .it-global-h1 span {
+    display: block;
+    color: var(--text-muted);
+  }
+
+  .it-global-h1 strong {
+    display: block;
+    color: var(--accent-color);
+  }
+
+  /* Card Slider - Bleeds to Right */
+  .it-global-slider-container {
+    /* Aligns start of cards with the 1200px margin */
+    padding-left: calc((100vw - var(--max-width)) / 2 + 20px);
+  }
+
+  /* Fallback for very wide screens */
+  @media (max-width: 1200px) {
+    .it-global-slider-container { padding-left: 20px; }
+  }
+
+  .it-global-track {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none; /* Firefox */
+    padding-right: 100px; /* Space at the end */
+  }
+
+  .it-global-track::-webkit-scrollbar { display: none; }
+
+  /* Card Design */
+  .it-global-card {
+    flex: 0 0 420px;
+    height: 420px;
+    background-color: var(--card-bg);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    cursor: pointer;
+    transition: var(--transition);
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  /* Background Image Layer (Hover) */
+  .it-global-card-img {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transform: scale(1.05);
+    transition: var(--transition);
+    z-index: 1;
+  }
+
+  .it-global-card-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.6));
+    opacity: 0;
+    transition: var(--transition);
+    z-index: 2;
+  }
+
+  .it-global-card-content {
+    position: relative;
+    z-index: 3;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: var(--transition);
+  }
+
+  .it-global-card:hover {
+    color: #ffffff;
+  }
+
+  .it-global-card:hover .it-global-card-img {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .it-global-card:hover .it-global-card-overlay {
+    opacity: 1;
+  }
+
+  .it-global-card:hover .it-global-meta {
+    color: rgba(255,255,255,0.8);
+  }
+
+  .it-global-tag {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .it-global-card-title {
+    font-size: 32px;
+    line-height: 1.2;
+    font-weight: 500;
+    margin: 0;
+  }
+
+  .it-global-footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+  }
+
+  .it-global-meta {
+    color: var(--text-muted);
+    transition: var(--transition);
+  }
+
+  /* Navigation */
+  .it-global-nav {
+    max-width: var(--max-width);
+    margin: 40px auto 0 auto;
+    padding: 0 20px;
+    display: flex;
+    gap: 12px;
+  }
+
+  .it-global-btn {
+    width: 56px;
+    height: 56px;
+    border-radius: 4px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    background: transparent;
+  }
+
+  .it-global-btn-prev { background: #dcdcdc; }
+  .it-global-btn-next { background: #1a1a1a; color: white; }
+
+  .it-global-btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+  }
+
+  /* Mobile Fixes */
+  @media (max-width: 768px) {
+    .it-global-card { flex: 0 0 85vw; height: 450px; }
+    .it-global-h1 { font-size: 36px; }
+  }
+</style>
+
+<section class="it-global-section">
+  <header class="it-global-header">
+    <div class="it-global-label">+ Newsroom</div>
+    <h1 class="it-global-h1">
+      <span style="color: #000;">Updates that move</span>
+      <span>the world forward</span>
+    </h1>
+  </header>
+
+  <div class="it-global-slider-container">
+    <div class="it-global-track" id="itTrack">
+      
+      <div class="it-global-card">
+        <div class="it-global-card-img" style="background-image: url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80');"></div>
+        <div class="it-global-card-overlay"></div>
+        <div class="it-global-card-content">
+          <div>
+            <span class="it-global-tag">NEWS</span>
+            <h3 class="it-global-card-title">Global IT infrastructure expands across South Africa</h3>
+          </div>
+          <div class="it-global-footer">
+            <span class="it-global-meta">February 13, 2026</span>
+            <span class="it-global-meta">4 min read</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="it-global-card">
+        <div class="it-global-card-img" style="background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80');"></div>
+        <div class="it-global-card-overlay"></div>
+        <div class="it-global-card-content">
+          <div>
+            <span class="it-global-tag">NEWS</span>
+            <h3 class="it-global-card-title">Hybrid cloud solutions reaching 100+ active enterprise clients</h3>
+          </div>
+          <div class="it-global-footer">
+            <span class="it-global-meta">February 10, 2026</span>
+            <span class="it-global-meta">6 min read</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="it-global-card">
+        <div class="it-global-card-img" style="background-image: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80');"></div>
+        <div class="it-global-card-overlay"></div>
+        <div class="it-global-card-content">
+          <div>
+            <span class="it-global-tag">TECH</span>
+            <h3 class="it-global-card-title">Next-gen cybersecurity corridor connects London & Johannesburg</h3>
+          </div>
+          <div class="it-global-footer">
+            <span class="it-global-meta">February 05, 2026</span>
+            <span class="it-global-meta">5 min read</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="it-global-card">
+        <div class="it-global-card-img" style="background-image: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80');"></div>
+        <div class="it-global-card-overlay"></div>
+        <div class="it-global-card-content">
+          <div>
+            <span class="it-global-tag">AI</span>
+            <h3 class="it-global-card-title">Automating multipurpose IT workflows for global scale</h3>
+          </div>
+          <div class="it-global-footer">
+            <span class="it-global-meta">January 28, 2026</span>
+            <span class="it-global-meta">8 min read</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="it-global-nav">
+    <button class="it-global-btn it-global-btn-prev" onclick="scrollSlider(-444)">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+    </button>
+    <button class="it-global-btn it-global-btn-next" onclick="scrollSlider(444)">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+    </button>
+  </div>
+</section>
+
+<script>
+  function scrollSlider(amount) {
+    const track = document.getElementById('itTrack');
+    track.scrollBy({ left: amount, behavior: 'smooth' });
+  }
+</script>
+
+
