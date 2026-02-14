@@ -5139,3 +5139,275 @@
 </script>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Grid - IT Company</title>
+    <style>
+        /* CSS Variables for easy maintenance */
+        :root {
+            --itc-main-width: 1200px;
+            --itc-border-radius: 32px;
+            --itc-bg-color: #e4e4e4;
+            --itc-text-dark: #000000;
+            --itc-text-light: #ffffff;
+            --itc-accent-gray: #e8e8e8;
+            /* Font Stack - Assuming Circular Std is loaded via your system/hosting */
+            --itc-font-family: 'Circular Std', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        .itc-section-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 80px 0;
+            background-color: var(--itc-bg-color);
+            font-family: var(--itc-font-family);
+        }
+
+        .itc-container {
+            width: var(--itc-main-width);
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        /* Header Section */
+        .itc-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .itc-title {
+            font-size: 64px;
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -2px;
+            margin: 0;
+            color: var(--itc-text-dark);
+        }
+
+        .itc-badge {
+            background-color: var(--itc-accent-gray);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #444;
+        }
+
+        /* Grid Layout */
+        .itc-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .itc-card {
+            position: relative;
+            height: 480px;
+            border-radius: var(--itc-border-radius);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 32px;
+            transition: transform 0.3s ease;
+            border: 5px solid #fff;
+            cursor: pointer;
+        }
+
+        .itc-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Background Images/Overlays */
+        .itc-card-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .itc-card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.85) 100%);
+            z-index: 2;
+        }
+
+        /* Content inside card */
+        .itc-card-content {
+            position: relative;
+            z-index: 3;
+            color: var(--itc-text-light);
+        }
+
+        .itc-card-tag {
+            font-size: 13px;
+            font-weight: 400;
+            opacity: 0.8;
+            margin-bottom: 8px;
+            text-transform: capitalize;
+        }
+
+        .itc-card-headline {
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0 0 12px 0;
+            line-height: 1.2;
+        }
+
+        .itc-card-description {
+            font-size: 16px;
+            line-height: 1.5;
+            opacity: 0.9;
+            margin: 0;
+            font-weight: 400;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 1240px) {
+            .itc-container { width: 95%; }
+            .itc-title { font-size: 48px; }
+        }
+
+        @media (max-width: 991px) {
+            .itc-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 767px) {
+            .itc-grid { grid-template-columns: 1fr; }
+            .itc-header { flex-direction: column; gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="itc-section-wrapper">
+        <div class="itc-container">
+            
+            <header class="itc-header">
+                <h1 class="itc-title">You’ll love<br>this course</h1>
+                <div class="itc-badge">Our Approach</div>
+            </header>
+
+            <div class="itc-grid">
+                
+                <div class="itc-card">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=600" alt="Growth" class="itc-card-bg">
+                    <div class="itc-card-overlay"></div>
+                    <div class="itc-card-content">
+                        <div class="itc-card-tag">Real momentum</div>
+                        <h2 class="itc-card-headline">Growth that pops</h2>
+                        <p class="itc-card-description">Learn how to push your content further and spark growth you can actually see.</p>
+                    </div>
+                </div>
+
+                <div class="itc-card">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=600" alt="Posting" class="itc-card-bg">
+                    <div class="itc-card-overlay"></div>
+                    <div class="itc-card-content">
+                        <div class="itc-card-tag">No more falling off</div>
+                        <h2 class="itc-card-headline">Posting on lock</h2>
+                        <p class="itc-card-description">Build a simple posting flow that keeps you showing up without overthinking it.</p>
+                    </div>
+                </div>
+
+                <div class="itc-card">
+                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=600" alt="Content" class="itc-card-bg">
+                    <div class="itc-card-overlay"></div>
+                    <div class="itc-card-content">
+                        <div class="itc-card-tag">Never stuck again</div>
+                        <h2 class="itc-card-headline">Content on repeat</h2>
+                        <p class="itc-card-description">Use proven frameworks that tell you exactly what to post — again and again.</p>
+                    </div>
+                </div>
+
+                <div class="itc-card">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=600" alt="Views" class="itc-card-bg">
+                    <div class="itc-card-overlay"></div>
+                    <div class="itc-card-content">
+                        <div class="itc-card-tag">Growth with profit</div>
+                        <h2 class="itc-card-headline">Monetized views</h2>
+                        <p class="itc-card-description">Learn how to turn attention into real opportunities, not just empty numbers.</p>
+                    </div>
+                </div>
+
+                <div class="itc-card">
+                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=600" alt="Engagement" class="itc-card-bg">
+                    <div class="itc-card-overlay"></div>
+                    <div class="itc-card-content">
+                        <div class="itc-card-tag">Likes, comments, shares</div>
+                        <h2 class="itc-card-headline">Real engagement</h2>
+                        <p class="itc-card-description">Create posts people actually stop for, react to, and share across platforms.</p>
+                    </div>
+                </div>
+
+                <div class="itc-card">
+                    <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&q=80&w=600" alt="Energy" class="itc-card-bg">
+                    <div class="itc-card-overlay"></div>
+                    <div class="itc-card-content">
+                        <div class="itc-card-tag">You're ready now</div>
+                        <h2 class="itc-card-headline">Level-up energy</h2>
+                        <p class="itc-card-description">Know what works, why it works, and how to repeat it with confidence.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
