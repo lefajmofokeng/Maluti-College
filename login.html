@@ -12,25 +12,29 @@
             font-family: 'Alvarado';
             font-style: normal;
             font-weight: 300;
-            src: local('Alvarado Regular'), url('fonts/Alvarado-Light.woff') format('woff');
+            src: url('fonts/Alvarado-Light.otf') format('opentype'),
+                 url('fonts/Alvarado-Light.woff') format('woff');
         }
         @font-face {
             font-family: 'Alvarado';
             font-style: normal;
             font-weight: 400;
-            src: local('Alvarado Regular Italic'), url('fonts/Alvarado-Regular.woff') format('woff');
+            src: url('fonts/Alvarado-Regular.otf') format('opentype'),
+                 url('fonts/Alvarado-Regular.woff') format('woff');
         }
         @font-face {
             font-family: 'Alvarado';
             font-style: normal;
             font-weight: 500;
-            src: local('Alvarado Light'), url('fonts/Alvarado-Medium.woff') format('woff');
+            src: url('fonts/Alvarado-Medium.otf') format('opentype'),
+                 url('fonts/Alvarado-Medium.woff') format('woff');
         }
         @font-face {
             font-family: 'Alvarado';
             font-style: normal;
             font-weight: 600;
-            src: local('Alvarado Light Italic'), url('fonts/Alvarado-Bold.woff') format('woff');
+            src: url('fonts/Alvarado-Bold.otf') format('opentype'),
+                 url('fonts/Alvarado-Bold.woff') format('woff');
         }
 
         :root {
@@ -46,12 +50,22 @@
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        * {
+        *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Alvarado', -apple-system, BlinkMacSystemFont, sans-serif;
             line-height: 1.5;
+        }
+
+        /* Explicitly enumerate every element type that the browser UA stylesheet
+           may assign its own font-family to (headings in particular get overridden
+           even when * sets font-family, because UA rules have higher specificity
+           for certain elements in some browsers). */
+        html, body,
+        h1, h2, h3, h4, h5, h6,
+        p, a, span, label, input, button,
+        select, textarea, div, li, ul, ol {
+            font-family: 'Alvarado', sans-serif;
         }
 
         body {
@@ -60,7 +74,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden; font-family: 'Alvarado', -apple-system, BlinkMacSystemFont, sans-serif;
+            overflow: hidden;
         }
 
         .login-container {
@@ -71,12 +85,34 @@
             position: relative;
         }
 
+        /* --- Back to Home Button --- */
+        .back-home-btn {
+            position: absolute;
+            top: 40px;
+            left: 80px;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-white);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .back-home-btn:hover {
+            opacity: 1;
+            transform: translateX(-4px);
+        }
+
         /* --- Visual Side --- */
         .login-visual {
             flex: 1.2;
             position: relative;
             /* Premium academic/library imagery */
-            background: url('https://images.unsplash.com/photo-1566840021279-9713abd97c05?q=80&w=1333&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover no-repeat;
+            background: url('https://images.unsplash.com/photo-1687817990057-2a8c0fec99c4?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover no-repeat;
             display: flex;
             align-items: flex-end;
             padding: 80px;
@@ -103,7 +139,7 @@
 
         .visual-content h1 {
             font-size: 48px;
-            font-weight: 600;
+            font-weight: 500;
             margin-bottom: 16px;
             letter-spacing: -0.5px;
             line-height: 1.1;
@@ -130,7 +166,7 @@
 
         .form-wrapper {
             width: 100%;
-            max-width: 420px;
+            max-width: 350px;
         }
 
         .mobile-logo {
@@ -145,10 +181,10 @@
 
         .form-header h2 {
             font-size: 32px;
-            font-weight: 600;
+            font-weight: 500;
             color: var(--bg-dark);
             margin-bottom: 8px;
-            letter-spacing: -0.5px; font-family: 'Alvarado', -apple-system, BlinkMacSystemFont, sans-serif;
+            letter-spacing: -0.5px;
         }
 
         .form-header p {
@@ -175,11 +211,9 @@
         }
 
         .input-group label {
-            font-size: 13px;
-            font-weight: 600;
+            font-size: 15px;
+            font-weight: 500;
             color: var(--text-main);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
         .input-group input {
@@ -374,16 +408,33 @@
             .mobile-logo { display: block; }
             .login-form-side { padding: 40px 24px; }
             .form-wrapper { max-width: 100%; padding: 0 16px; }
+            
+            /* Adapt back button color for mobile white background */
+            .back-home-btn {
+                color: var(--bg-dark);
+                top: 24px;
+                left: 24px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="login-container">
+        
+        <!-- --- Back to Home Button --- -->
+        <a href="index.html" class="back-home-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 12H5"></path>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            Back to Home
+        </a>
+
         <div class="login-visual">
             <div class="visual-overlay"></div>
             <div class="visual-content">
                 <img src="images/logo-white.png" alt="Hyperion Logo" class="login-logo" onerror="this.style.display='none'">
-                <h1 style="font-family: 'Alvarado', -apple-system, BlinkMacSystemFont, sans-serif;">Secure Student Access</h1>
+                <h1>Secure Student Access</h1>
                 <p>Access your academic dashboard, institutional resources, and personalized collegiate workspace.</p>
             </div>
         </div>
@@ -392,7 +443,7 @@
             <div class="form-wrapper">
                 <div class="form-header">
                     <img src="images/logo.png" alt="Hyperion Logo" class="mobile-logo" onerror="this.style.display='none'">
-                    <h2 style="font-family: 'Alvarado', -apple-system, BlinkMacSystemFont, sans-serif;">Welcome Back</h2>
+                    <h2>Welcome Back</h2>
                     <p>Enter your institutional credentials to continue.</p>
                 </div>
 
