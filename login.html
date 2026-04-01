@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Login | Hyperion</title>
+    <style>
+        /* =============================================
+            HYPERION - PREMIUM STUDENT PORTAL STYLES
+           ============================================= */
+        @font-face {
+            font-family: 'Alvarado';
+            font-style: normal;
+            font-weight: 300;
+            src: local('Alvarado Regular'), url('fonts/Alvarado-Light.woff') format('woff');
+        }
+        @font-face {
+            font-family: 'Alvarado';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Alvarado Regular Italic'), url('fonts/Alvarado-Regular.woff') format('woff');
+        }
+        @font-face {
+            font-family: 'Alvarado';
+            font-style: normal;
+            font-weight: 500;
+            src: local('Alvarado Light'), url('fonts/Alvarado-Medium.woff') format('woff');
+        }
+        @font-face {
+            font-family: 'Alvarado';
+            font-style: normal;
+            font-weight: 600;
+            src: local('Alvarado Light Italic'), url('fonts/Alvarado-Bold.woff') format('woff');
+        }
+
+        :root {
+            --bg-dark: #0a0a3c;
+            --accent: #0077cc;
+            --text-main: #1e293b;
+            --text-white: #ffffff;
+            --text-muted: #64748b;
+            --form-bg: #ffffff;
+            --input-bg: #f8fafc;
+            --input-border: #e2e8f0;
+            --radius: 50px; /* Sophisticated modern radius */
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Alvarado', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.5;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden; font-family: 'Alvarado', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        .login-container {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            background: var(--form-bg);
+            position: relative;
+        }
+
+        /* --- Visual Side --- */
+        .login-visual {
+            flex: 1.2;
+            position: relative;
+            /* Premium academic/library imagery */
+            background: url('https://images.unsplash.com/photo-1566840021279-9713abd97c05?q=80&w=1333&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover no-repeat;
+            display: flex;
+            align-items: flex-end;
+            padding: 80px;
+            color: var(--text-white);
+        }
+
+        .visual-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(180deg, rgba(10, 10, 60, 0.1) 0%, rgba(10, 10, 60, 0.85) 100%);
+        }
+
+        .visual-content {
+            position: relative;
+            z-index: 2;
+            max-width: 540px;
+        }
+
+        .login-logo {
+            height: 48px;
+            margin-bottom: 48px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+
+        .visual-content h1 {
+            font-size: 48px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+            line-height: 1.1;
+        }
+
+        .visual-content p {
+            font-size: 18px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.6;
+            max-width: 90%;
+        }
+
+        /* --- Form Side --- */
+        .login-form-side {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            background: var(--form-bg);
+        }
+
+        .form-wrapper {
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .mobile-logo {
+            display: none;
+            height: 36px;
+            margin-bottom: 32px;
+        }
+
+        .form-header {
+            margin-bottom: 40px;
+        }
+
+        .form-header h2 {
+            font-size: 32px;
+            font-weight: 600;
+            color: var(--bg-dark);
+            margin-bottom: 8px;
+            letter-spacing: -0.5px; font-family: 'Alvarado', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        .form-header p {
+            font-size: 15px;
+            color: var(--text-muted);
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .label-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .input-group label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .input-group input {
+            padding: 8px 16px;
+            background-color: var(--input-bg);
+            border: 2px solid var(--input-border);
+            border-radius: var(--radius);
+            font-size: 15px;
+            color: var(--text-main);
+            transition: var(--transition);
+            outline: none;
+        }
+
+        .input-group input::placeholder {
+            color: #94a3b8;
+            font-weight: 300;
+        }
+
+        .input-group input:hover {
+            background-color: #fff;
+            border-color: #cbd5e1;
+        }
+
+        .input-group input:focus {
+            background-color: #fff;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(0, 119, 204, 0.1);
+        }
+
+        .password-wrapper {
+            position: relative;
+            display: flex;
+        }
+
+        .password-wrapper input {
+            width: 100%;
+            padding-right: 48px;
+        }
+
+        .toggle-btn {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #94a3b8;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .toggle-btn:hover {
+            color: var(--bg-dark);
+        }
+
+        .forgot-link, .form-footer a {
+            font-size: 13px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .forgot-link:hover, .form-footer a:hover { 
+            color: var(--bg-dark);
+        }
+
+        .options-row {
+            margin-top: -4px;
+        }
+
+        /* Premium custom checkbox */
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: var(--text-muted);
+            cursor: pointer;
+            user-select: none;
+            position: relative;
+            padding-left: 28px;
+        }
+
+        .checkbox-container input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+        .checkmark {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            height: 18px;
+            width: 18px;
+            background-color: var(--input-bg);
+            border: 2px solid var(--input-border);
+            border-radius: 50px;
+            transition: var(--transition);
+        }
+
+        .checkbox-container:hover input ~ .checkmark {
+            border-color: var(--accent);
+        }
+
+        .checkbox-container input:checked ~ .checkmark {
+            background-color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+            left: 6px;
+            top: 2px;
+            width: 4px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
+        .checkbox-container input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        .submit-btn {
+            background: var(--bg-dark);
+            color: #fff;
+            padding: 16px;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 15px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 8px;
+        }
+
+        .submit-btn:hover {
+            background: var(--accent);
+        }
+        
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .form-footer {
+            margin-top: 48px;
+            text-align: center;
+        }
+
+        .form-footer p {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .support-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            font-size: 13px;
+        }
+
+        .support-links a {
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+        
+        .support-links a:hover {
+            color: var(--accent);
+        }
+
+        .sep { 
+            color: #cbd5e1; 
+            font-size: 10px;
+        }
+
+        /* --- Responsiveness --- */
+        @media (max-width: 1024px) {
+            .login-visual { display: none; }
+            .mobile-logo { display: block; }
+            .login-form-side { padding: 40px 24px; }
+            .form-wrapper { max-width: 100%; padding: 0 16px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-visual">
+            <div class="visual-overlay"></div>
+            <div class="visual-content">
+                <img src="images/logo-white.png" alt="Hyperion Logo" class="login-logo" onerror="this.style.display='none'">
+                <h1 style="font-family: 'Alvarado', -apple-system, BlinkMacSystemFont, sans-serif;">Secure Student Access</h1>
+                <p>Access your academic dashboard, institutional resources, and personalized collegiate workspace.</p>
+            </div>
+        </div>
+
+        <div class="login-form-side">
+            <div class="form-wrapper">
+                <div class="form-header">
+                    <img src="images/logo.png" alt="Hyperion Logo" class="mobile-logo" onerror="this.style.display='none'">
+                    <h2 style="font-family: 'Alvarado', -apple-system, BlinkMacSystemFont, sans-serif;">Welcome Back</h2>
+                    <p>Enter your institutional credentials to continue.</p>
+                </div>
+
+                <form id="studentLoginForm" class="login-form">
+                    <div class="input-group">
+                        <label for="studentId">Student ID / Email</label>
+                        <input type="text" id="studentId" placeholder="e.g. 2024001" required>
+                    </div>
+
+                    <div class="input-group">
+                        <div class="label-row">
+                            <label for="password">Password</label>
+                            <a href="#" class="forgot-link">Forgot Password?</a>
+                        </div>
+                        <div class="password-wrapper">
+                            <input type="password" id="password" placeholder="••••••••" required>
+                            <button type="button" id="togglePassword" class="toggle-btn" aria-label="Toggle password visibility">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="options-row">
+                        <label class="checkbox-container">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Remember my credentials
+                        </label>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Authorize Access</button>
+                </form>
+
+                <div class="form-footer">
+                    <p>New admission? <a href="apply.html">Register here</a></p>
+                    <div class="support-links">
+                        <a href="#">IT Support</a>
+                        <span class="sep">●</span>
+                        <a href="#">Privacy Policy</a>
+                        <span class="sep">●</span>
+                        <a href="#">Terms</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const loginForm = document.getElementById('studentLoginForm');
+            const togglePassword = document.getElementById('togglePassword');
+            const passwordInput = document.getElementById('password');
+
+            // Toggle Password Visibility
+            togglePassword.addEventListener('click', () => {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                
+                // Change icon color when active for premium visual feedback
+                togglePassword.style.color = type === 'text' ? 'var(--accent)' : '#94a3b8';
+            });
+
+            // Form Submission Logic
+            loginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const submitBtn = loginForm.querySelector('.submit-btn');
+                const originalText = submitBtn.innerText;
+                
+                // Premium Loading State
+                submitBtn.disabled = true;
+                submitBtn.innerText = 'Authenticating...';
+                submitBtn.style.opacity = '0.8';
+                submitBtn.style.cursor = 'wait';
+
+                // Simulate API call
+                setTimeout(() => {
+                    alert('Security clearance granted. Redirecting to Student Dashboard...');
+                    // Reset button for demo purposes
+                    submitBtn.disabled = false;
+                    submitBtn.innerText = originalText;
+                    submitBtn.style.opacity = '1';
+                    submitBtn.style.cursor = 'pointer';
+                    // window.location.href = 'portal.html';
+                }, 1500);
+            });
+        });
+    </script>
+</body>
+</html>
