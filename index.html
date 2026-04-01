@@ -7,25 +7,25 @@
     font-family: 'Alvarado';
     font-style: normal;
     font-weight: 300;
-    src: local('Alvarado Regular'), url('fonts/Alvarado-Light.otf') format('woff');
+    src: local('Alvarado Regular'), url('fonts/Alvarado-Light.woff') format('woff');
     }
     @font-face {
     font-family: 'Alvarado';
     font-style: normal;
     font-weight: 400;
-    src: local('Alvarado Regular Italic'), url('fonts/Alvarado-Regular.otf') format('woff');
+    src: local('Alvarado Regular Italic'), url('fonts/Alvarado-Regular.woff') format('woff');
     }
     @font-face {
     font-family: 'Alvarado';
     font-style: normal;
     font-weight: 500;
-    src: local('Alvarado Light'), url('fonts/Alvarado-Medium.otf') format('woff');
+    src: local('Alvarado Light'), url('fonts/Alvarado-Medium.woff') format('woff');
     }
     @font-face {
     font-family: 'Alvarado';
     font-style: normal;
     font-weight: 600;
-    src: local('Alvarado Light Italic'), url('fonts/Alvarado-Bold.otf') format('woff');
+    src: local('Alvarado Light Italic'), url('fonts/Alvarado-Bold.woff') format('woff');
     }
 
     * {
@@ -186,7 +186,7 @@
     .hyperion-custom-nav-link {
         text-decoration: none;
         color: var(--hyperion-color-text-light);
-        font-weight: 500; padding: 10px 0;
+        font-weight: 400; padding: 10px 0;
         display: flex; font-size: 14px; align-items: center;
         transition: color 0.2s;
     }
@@ -204,7 +204,7 @@
     .hyperion-header-action-btn {
         background: var(--hyperion-color-accent); color: var(--hyperion-color-text-light);
         border: none; padding: 10px 18px; border-radius: 50px;
-        font-weight: 500; font-size: 14px; cursor: pointer;
+        font-weight: 400; font-size: 14px; cursor: pointer;
         transition: background-color 0.2s ease;
         text-decoration: none; font-family: inherit;
     }
@@ -214,7 +214,7 @@
     .hyperion-header-secondary-btn {
         background-color: transparent; color: var(--hyperion-color-text-light);
         border: 1px solid rgba(255,255,255,0.2); padding: 9px 17px; border-radius: 50px;
-        font-weight: 500; font-size: 14px; cursor: pointer;
+        font-weight: 400; font-size: 14px; cursor: pointer;
         transition: background-color 0.2s ease, border-color 0.2s ease;
         text-decoration: none; font-family: inherit;
     }
@@ -249,7 +249,6 @@
         background-color: var(--hyperion-color-menu-bg);
         border-top: 1px solid rgba(255,255,255,0.07);
         border-bottom: 1px solid rgba(255,255,255,0.07);
-        box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         visibility: hidden; opacity: 0; transform: translateY(-8px);
         transition: visibility 0s linear 0.15s, opacity 0.15s ease, transform 0.15s ease;
         pointer-events: none;
@@ -263,7 +262,7 @@
     .hyperion-mega-menu-panel {
         display: none;
         max-width: var(--hyperion-content-max-width-fg);
-        width: 100%; margin: 0 auto; padding: 32px 40px 48px;
+        width: 100%; margin: 0 auto; padding: 10px 40px 48px;
     }
     .hyperion-mega-menu-panel.active { display: block; }
 
@@ -278,7 +277,7 @@
     }
 
     .hyperion-menu-group-card h3 {
-        font-size: 13px; font-weight: 500; margin-bottom: 20px;
+        font-size: 13px; font-weight: 400; margin-bottom: 20px;
         text-transform: none; cursor: default;
         display: flex; align-items: center; color: var(--hyperion-color-text-muted);
     }
@@ -293,7 +292,7 @@
     }
 
     .hyperion-menu-group-tagline {
-        font-size: 12px; font-weight: 400;
+        font-size: 13px; font-weight: 300;
         color: var(--hyperion-color-text-muted); margin-top: 4px; display: block;
     }
 
@@ -302,7 +301,7 @@
     .hyperion-mega-menu-group-list a {
         display: block; border-radius: 0; transition: color 0.2s;
         position: relative; margin: 7px 0; padding: 2px 0;
-        font-size: 15px; font-weight: 400;
+        font-size: 16px; font-weight: 400;
         color: #f1f1f1; text-decoration: none; border-bottom: none;
     }
     .hyperion-mega-menu-link-title { font-size: inherit; font-weight: inherit; color: inherit; margin-bottom: 0; }
@@ -421,11 +420,11 @@
                                             <img src="images/engineering.png" alt="Dev Icon" class="hyperion-menu-group-img-icon">
                                             <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 500; font-size: 14px;">
                                                 School of Engineering
-                                                <span class="hyperion-menu-group-tagline">Build your custom vision</span>
+                                                <span class="hyperion-menu-group-tagline">For aspirated engineers</span>
                                             </span>
                                         </h3>
-                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 1px; margin-bottom: 16px; font-weight: 500; font-size: 13px; cursor:pointer;">
-                                            <a style="text-decoration: none; border-bottom: none; color: #fff;" href="index.html">Start Project</a>
+                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 500; font-size: 14px; cursor:pointer;">
+                                            <a style="text-decoration: none; border-bottom: none; color: #fff;" href="index.html">Learn about engineering</a>
                                         </button>
                                         <ul class="hyperion-mega-menu-group-list">
                                             <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Higher Cert. in Electrical Engineering</span></a></li>
@@ -442,11 +441,11 @@
                                             <img src="images/it.png" alt="IT Icon" class="hyperion-menu-group-img-icon">
                                             <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 500; font-size: 14px;">
                                                 School of Design &amp; Technology
-                                                <span class="hyperion-menu-group-tagline">Power your business</span>
+                                                <span class="hyperion-menu-group-tagline">For tech-driven</span>
                                             </span>
                                         </h3>
-                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 1px; margin-bottom: 16px; font-weight: 500; font-size: 13px; cursor:pointer;">
-                                            <a style="text-decoration: none; border-bottom: none; color: #fff; border-radius: 50px;" href="index.html">Learn About IT</a>
+                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 500; font-size: 14px; cursor:pointer;">
+                                            <a style="text-decoration: none; border-bottom: none; color: #fff; border-radius: 50px;" href="index.html">Learn about IT</a>
                                         </button>
                                         <ul class="hyperion-mega-menu-group-list">
                                             <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Higher Cert. in Information Technology</span></a></li>
@@ -459,11 +458,11 @@
                                             <img src="images/hosp.png" alt="Hospitality Icon" class="hyperion-menu-group-img-icon">
                                             <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 500; font-size: 14px;">
                                                 School of Hospitality &amp; Tourism
-                                                <span class="hyperion-menu-group-tagline">Grow your audience</span>
+                                                <span class="hyperion-menu-group-tagline">Excel in hospitality</span>
                                             </span>
                                         </h3>
-                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 1px; margin-bottom: 16px; font-weight: 500; font-size: 13px; cursor:pointer;">
-                                            <a style="text-decoration: none; border-bottom: none; color: #fff;" href="index.html">Excel in Hospitality</a>
+                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 500; font-size: 14px; cursor:pointer;">
+                                            <a style="text-decoration: none; border-bottom: none; color: #fff;" href="index.html">Learn about hospitality</a>
                                         </button>
                                         <ul class="hyperion-mega-menu-group-list">
                                             <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Higher Cert. in Hospitality Management</span></a></li>
@@ -480,7 +479,7 @@
                                                 <span class="hyperion-menu-group-tagline">Grow your audience</span>
                                             </span>
                                         </h3>
-                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 1px; margin-bottom: 16px; font-weight: 500; font-size: 13px; cursor:pointer;">
+                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 500; font-size: 14px; cursor:pointer;">
                                             <a style="text-decoration: none; border-bottom: none; color: #fff;" href="index.html">Lead in Business</a>
                                         </button>
                                         <ul class="hyperion-mega-menu-group-list">
@@ -499,8 +498,8 @@
                                                 <span class="hyperion-menu-group-tagline">For career-driven</span>
                                             </span>
                                         </h3>
-                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 1px; margin-bottom: 16px; font-weight: 500; font-size: 13px; cursor:pointer;">
-                                            <a style="text-decoration: none; border-bottom: none; color: #fff;" href="index.html">Explore Courses</a>
+                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 500; font-size: 14px; cursor:pointer;">
+                                            <a style="text-decoration: none; border-bottom: none; color: #fff;" href="index.html">Advance your skills</a>
                                         </button>
                                         <ul class="hyperion-mega-menu-group-list">
                                             <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Motor Mechanics</span></a></li>
@@ -527,15 +526,15 @@
                             <div class="hyperion-mega-menu-panel" data-hyperion-megamenu-panel="discover">
                                 <div class="hyperion-megamenu-3-column-grid">
                                     <div class="hyperion-menu-group-card">
-                                        <h3>Hyperion</h3>
+                                        <h3>Maluti</h3>
                                         <ul class="hyperion-mega-menu-group-list">
                                             <li><a href="page.html"><span class="hyperion-mega-menu-link-title">About Us</span></a></li>
                                             <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Roadmap</span></a></li>
                                             <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Innovations</span></a></li>
-                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Product News</span></a></li>
-                                            <li><a href="careers.html"><span class="hyperion-mega-menu-link-title">Careers</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Events</span></a></li>
+                                            <li><a href="careers.html"><span class="hyperion-mega-menu-link-title">Job Opportunities</span></a></li>
                                             <li><a href="partners.html"><span class="hyperion-mega-menu-link-title">Partners</span></a></li>
-                                            <li><a href="licenses-and-registrations.html"><span class="hyperion-mega-menu-link-title">Licenses &amp; Registrations</span></a></li>
+                                            <li><a href="licenses-and-registrations.html"><span class="hyperion-mega-menu-link-title">Executive Leadership</span></a></li>
                                         </ul>
                                     </div>
                                     <div class="hyperion-menu-group-card">
@@ -866,7 +865,7 @@
         border-radius: 60px;
         font-family: 'Alvarado', sans-serif;
         font-size: 1rem;
-        font-weight: 500;
+        font-weight: 400;
         cursor: pointer;
         text-decoration: none;
         transition: all 0.2s ease;
@@ -877,7 +876,7 @@
     /* Primary — Enroll Now */
     .it-btn-primary {
         background: #ffffff;
-        color: #000000;
+        color: #000000; 
     }
     .it-btn-primary:hover {
         background: #e8e8e8;
@@ -886,7 +885,7 @@
     /* Secondary — Download Prospectus */
     .it-btn-secondary {
         background: transparent;
-        color: #ffffff;
+        color: #ffffff; font-weight: 400;
         border: 1px solid rgb(255, 255, 255);
     }
     .it-btn-secondary:hover {
@@ -931,7 +930,7 @@
             </a>
 
             <!-- DOWNLOAD PROSPECTUS — replace href with your document path -->
-            <a href="maluti-rospectus-2027.pdf" download class="it-btn it-btn-secondary">
+            <a href="maluti-prospectus-2027.pdf" download class="it-btn it-btn-secondary">
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                     <path d="M7 2V9M7 9L4.5 6.5M7 9L9.5 6.5M2.5 11.5H11.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
@@ -1583,9 +1582,9 @@
   /* --- Typography --- */
   .kw-special-title {
     font-size: 32px;
-    font-weight: 500;
+    font-weight: 400;
     margin-bottom: 20px;
-    line-height: 1.2;
+    line-height: 1.2; font-family: 'Alvarado', serif;
   }
 
   .kw-special-text {
@@ -1603,7 +1602,7 @@
     color: white;
     text-decoration: none;
     border-radius: 30px;
-    font-weight: 500;
+    font-weight: 400;
     transition: background-color 0.3s;
     border: none;
     cursor: pointer;
@@ -1935,7 +1934,7 @@
             letter-spacing: 0.02em;
             background: transparent;
             transition: all 0.3s ease;
-            margin-top: 10px;
+            margin-top: 10px; font-family: 'Alvarado', sans-serif;
         }
 
         .ft-btn:hover {
@@ -2112,10 +2111,10 @@
         */
 
         :root {
-            --ra-font-family: 'Inter', sans-serif;
+            --ra-font-family: 'Alvarado', sans-serif;
             --ra-color-text-main: #111111;
             --ra-color-text-secondary: #666666;
-            --ra-color-bg-tag: #F3F4F6;
+            --ra-color-bg-tag: #dedede;
             --ra-color-border-btn: #111111;
             --ra-spacing-unit: 8px;
         }
@@ -2133,7 +2132,7 @@
             max-width: 1200px;
             margin: 40px auto;
             padding: 90px 20px;
-            background-color: #fff; /* Ensure white background as per image */
+            background-color: transparent; /* Ensure white background as per image */
         }
 
         /* Header Section */
@@ -2146,7 +2145,7 @@
 
         .ra-main-title {
             font-size: 40px;
-            font-weight: 500;
+            font-weight: 400;
             letter-spacing: -1.5px;
             line-height: 1;
         }
@@ -2154,7 +2153,7 @@
         .ra-browse-btn {
             font-family: var(--ra-font-family);
             font-size: 16px;
-            font-weight: 500;
+            font-weight: 400;
             text-decoration: none;
             color: var(--ra-color-text-main);
             background: transparent;
@@ -2226,14 +2225,14 @@
             gap: 16px;
             margin-bottom: 12px;
             font-size: 14px;
-            font-weight: 500;
+            font-weight: 400;
         }
 
         .ra-tag {
             background-color: var(--ra-color-bg-tag);
             padding: 6px 14px;
             border-radius: 999px;
-            font-weight: 500;
+            font-weight: 400;
         }
 
         .ra-date {
@@ -2242,7 +2241,7 @@
 
         .ra-card-title {
             font-size: 22px;
-            font-weight: 500;
+            font-weight: 400;
             line-height: 1.3;
             margin-bottom: 12px; color: #232d3f;
             letter-spacing: -0.5px;
