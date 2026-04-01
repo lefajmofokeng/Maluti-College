@@ -186,8 +186,26 @@
             align-items: center;
             justify-content: center;
             padding: 48px;
-            background: var(--surface);
+            position: relative;
+            background:
+                linear-gradient(to bottom, rgba(10, 10, 60, 0) 0%, rgba(10,10,60,0.45) 40%, rgba(10,10,60,0.85) 100%),
+                url('https://images.unsplash.com/photo-1687817994377-645a82293c3a?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover no-repeat;
         }
+
+        .back-home {
+            position: absolute;
+            top: 36px;
+            left: 40px;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            color: rgba(255,255,255,0.7);
+            font-size: 13px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color .2s;
+        }
+        .back-home:hover { color: #fff; }
 
         .lp-form-box {
             width: 100%;
@@ -743,7 +761,15 @@
 
     <!-- Right form panel -->
     <div class="lp-right">
-        <div class="lp-form-box">
+
+        <a href="index.html" class="back-home">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/>
+            </svg>
+            Back to Home
+        </a>
+
+        <div class="lp-form-box" style="background:rgba(255,255,255,0.97); border-radius:20px; padding:44px; box-shadow:0 24px 60px rgba(0,0,0,0.35);">
             <h2>Staff Sign In</h2>
             <p class="subtitle">Enter your institutional credentials to access the vault.</p>
 
