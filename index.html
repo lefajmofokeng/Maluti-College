@@ -1042,25 +1042,11 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <style>
         :root {
             --bot-navy: #000c2d;
@@ -1068,39 +1054,55 @@
             --bot-radius: 12px;
         }
 
+        * { box-sizing: border-box; }
+
         body {
-            font-family: 'Alvarado', sans-serif;
             margin: 0;
             padding: 0;
-            
+            font-family: 'Segoe UI', sans-serif;
         }
 
-        /* --- Chat Trigger (Floating Button) --- */
+        /* ── SCROLLBAR ── */
+        .maluti-chat-body::-webkit-scrollbar { width: 6px; }
+        .maluti-chat-body::-webkit-scrollbar-track { background: #f1f1f1; }
+        .maluti-chat-body::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }
+        .maluti-chat-body::-webkit-scrollbar-thumb:hover { background: var(--bot-blue); }
+
+        /* ── TRIGGER PILL (desktop + mobile) ── */
         .maluti-chat-trigger {
             position: fixed;
             bottom: 30px;
             right: 30px;
-            width: 60px;
-            height: 60px;
+            padding: 6px 16px 6px 6px;
             background-color: white;
-            border-radius: 50%;
+            border-radius: 50px;
             display: flex;
             align-items: center;
-            justify-content: center;
+            gap: 12px;
             color: #020035;
-            box-shadow: 0 10px 25px rgba(8, 0, 97, 0.593);
+            box-shadow: 0 10px 25px rgba(8, 0, 97, 0.3);
             cursor: pointer;
-            z-index: 10001; /* Ensure it stays on top of everything */
-            transition: transform 0.2s ease, background-color 0.2s;
+            z-index: 10001;
+            transition: transform 0.2s ease;
+        }
+        .maluti-chat-trigger:hover { transform: scale(1.05); }
+
+        .maluti-trigger-img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--bot-blue);
         }
 
-        .maluti-chat-trigger:hover {
-            transform: scale(1.05);
-            background-color: #020035;
-            color: #fff;
+        .maluti-trigger-text {
+            font-size: 13px;
+            font-weight: 600;
+            max-width: 150px;
+            line-height: 1.2;
         }
 
-        /* --- Chat Window --- */
+        /* ── CHAT WINDOW — DESKTOP DEFAULT ── */
         .maluti-chat-window {
             position: fixed;
             bottom: 100px;
@@ -1110,66 +1112,107 @@
             max-height: 80vh;
             background: #ffffff;
             border-radius: var(--bot-radius);
-            display: none; /* Hidden by default */
+            display: none;
             flex-direction: column;
             overflow: hidden;
             z-index: 10000;
-            border: 1px solid rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
-        .maluti-chat-active {
-            display: flex !important;
-            animation: slideUp 0.3s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-        }
+        .maluti-chat-active { display: flex !important; animation: slideUp 0.3s ease forwards; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- Header --- */
+        /* ── HEADER ── */
         .maluti-chat-header {
             background-color: var(--bot-navy);
             padding: 15px 20px;
             color: white;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
         }
 
-        .maluti-header-info h4 { margin: 0; font-size: 16px; font-weight: 600; }
-        .maluti-header-info span { font-size: 11px; opacity: 0.8; display: block; margin-top: 4px; }
-        
-        /* Close Button (Visible on all devices now) */
+        .maluti-header-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--bot-blue);
+            flex-shrink: 0;
+        }
+
+        .maluti-header-info { flex: 1; }
+        .maluti-header-info h4 { margin: 0; font-size: 14px; font-weight: 700; }
+        .maluti-header-info span { font-size: 11px; opacity: 0.75; display: block; margin-top: 3px; }
+
+        .maluti-online-dot {
+            width: 7px;
+            height: 7px;
+            background: #2ecc71;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 5px;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
+
         .maluti-close-btn {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255,255,255,0.12);
             border: none;
             color: white;
-            width: 40px;
-            height: 35px;
-            border-radius: 50px;
-            font-size: 30px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 20px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
+            line-height: 1;
             transition: background 0.2s;
         }
+        .maluti-close-btn:hover { background: rgba(255,255,255,0.25); }
 
-        .maluti-close-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-        }
-
+        /* ── DISCLAIMER ── */
         .maluti-bot-disclaimer {
             background: #fff3cd;
             color: #856404;
             font-size: 11px;
-            padding: 8px 15px;
+            padding: 7px 15px;
             text-align: center;
             border-bottom: 1px solid #ffeeba;
+            flex-shrink: 0;
         }
 
-        /* --- Chat Body --- */
+        /* ── QUICK CHIPS ── */
+        .maluti-quick-chips {
+            display: flex;
+            gap: 8px;
+            padding: 10px 15px 6px;
+            overflow-x: auto;
+            flex-shrink: 0;
+            background: #f4f7f9;
+            scrollbar-width: none;
+        }
+        .maluti-quick-chips::-webkit-scrollbar { display: none; }
+        .chip {
+            white-space: nowrap;
+            background: white;
+            border: 1.5px solid var(--bot-blue);
+            color: var(--bot-blue);
+            border-radius: 20px;
+            padding: 5px 13px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+        .chip:hover, .chip:active { background: var(--bot-blue); color: white; }
+
+        /* ── CHAT BODY ── */
         .maluti-chat-body {
             flex: 1;
             padding: 15px;
@@ -1178,86 +1221,70 @@
             display: flex;
             flex-direction: column;
             gap: 12px;
-            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior: contain;
         }
 
-        /* --- Message Bubbles --- */
+        /* ── MESSAGES ── */
         .maluti-chat-msg {
-            max-width: 80%;
+            max-width: 85%;
             padding: 12px 16px;
-            border-radius: 12px;
+            border-radius: 16px;
             font-size: 14px;
-            line-height: 1.5;
-            word-wrap: break-word;
+            line-height: 1.6;
         }
-
         .maluti-chat-msg.bot {
             background: white;
             color: var(--bot-navy);
             align-self: flex-start;
-            border-bottom-left-radius: 2px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-bottom-left-radius: 3px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
         }
-
         .maluti-chat-msg.user {
             background: var(--bot-blue);
             color: white;
             align-self: flex-end;
-            border-bottom-right-radius: 2px;
-            box-shadow: 0 2px 10px rgba(0, 145, 255, 0.2);
+            border-bottom-right-radius: 3px;
         }
-
-        /* --- Typing Indicator (Bouncing Dots) --- */
-        .maluti-typing {
-            align-self: flex-start;
-            background: white;
-            padding: 12px 16px;
-            border-radius: 12px;
-            border-bottom-left-radius: 2px;
-            display: none;
-            align-items: center;
-            gap: 5px;
-            width: fit-content;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        .maluti-chat-msg.bot b {
+            color: var(--bot-navy);
+            display: block;
+            margin-top: 6px;
+            margin-bottom: 2px;
         }
+        .maluti-chat-msg.bot b:first-child { margin-top: 0; }
+        .maluti-chat-msg.bot ul { margin: 6px 0 4px 0; padding-left: 18px; }
+        .maluti-chat-msg.bot ul li { margin-bottom: 4px; }
 
-        .dot {
-            width: 6px;
-            height: 6px;
-            background-color: #bbb;
-            border-radius: 50%;
-            animation: bounce 1.4s infinite ease-in-out both;
+        .msg-time {
+            font-size: 10px;
+            opacity: 0.5;
+            margin-top: 4px;
+            display: block;
+            text-align: right;
         }
+        .maluti-chat-msg.bot .msg-time { text-align: left; }
 
-        .dot:nth-child(1) { animation-delay: -0.32s; }
-        .dot:nth-child(2) { animation-delay: -0.16s; }
-
-        @keyframes bounce {
-            0%, 80%, 100% { transform: scale(0); }
-            40% { transform: scale(1); }
-        }
-
-        /* --- Footer --- */
+        /* ── FOOTER ── */
         .maluti-chat-footer {
             padding: 10px 15px;
             background: white;
             display: flex;
             gap: 10px;
             border-top: 1px solid #eee;
+            flex-shrink: 0;
+            align-items: center;
         }
-
         .maluti-chat-input {
             flex: 1;
             border: 2px solid #e0e0e0;
-            padding: 12px;
+            padding: 11px 16px;
             border-radius: 25px;
             outline: none;
             font-size: 14px;
-            font-family: inherit;
+            transition: border-color 0.2s;
         }
-
         .maluti-chat-input:focus { border-color: var(--bot-blue); }
-
         .maluti-chat-send {
             background: var(--bot-navy);
             color: white;
@@ -1269,123 +1296,411 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
             transition: background 0.2s;
         }
-        
-        .maluti-chat-send:active { transform: scale(0.95); }
+        .maluti-chat-send:hover { background: var(--bot-blue); }
 
-        /* --- MOBILE RESPONSIVENESS --- */
+        /* ── TYPING ── */
+        .maluti-typing {
+            display: none;
+            align-items: center;
+            gap: 5px;
+            padding: 12px 16px;
+            background: white;
+            border-radius: 16px;
+            border-bottom-left-radius: 3px;
+            width: fit-content;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+        }
+        .dot { width: 7px; height: 7px; background: #bbb; border-radius: 50%; animation: bounce 1.4s infinite; }
+        .dot:nth-child(2) { animation-delay: 0.2s; }
+        .dot:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes bounce { 0%,80%,100%{transform:scale(0.3);opacity:0.4;} 40%{transform:scale(1);opacity:1;} }
+
+        .date-badge { text-align: center; font-size: 11px; color: #999; margin: 4px 0; }
+        .date-badge span { background: #e8edf2; padding: 3px 10px; border-radius: 10px; }
+
+        /* ════════════════════════════════════════════
+           MOBILE OVERRIDES — phones only (≤ 480px)
+           ════════════════════════════════════════════ */
         @media screen and (max-width: 480px) {
+
+            /* Hide the trigger pill — chat is always open on mobile */
+            .maluti-chat-trigger {
+                display: none !important;
+            }
+
+            /* Window fills the entire screen */
             .maluti-chat-window {
+                display: flex !important;   /* always visible */
                 width: 100% !important;
                 height: 100% !important;
+                height: 100dvh !important;
                 max-height: 100% !important;
                 bottom: 0 !important;
                 right: 0 !important;
+                left: 0 !important;
+                top: 0 !important;
                 border-radius: 0 !important;
-                box-shadow: none;
-                border: none;
+                animation: none !important;
             }
 
+            /* Safe area — notch & home bar */
             .maluti-chat-header {
-                padding-top: 15px;
+                padding-top: calc(15px + env(safe-area-inset-top));
+            }
+            .maluti-chat-footer {
+                padding-bottom: calc(10px + env(safe-area-inset-bottom));
             }
 
-            /* Move trigger above content but below chat window overlay if open */
-            .maluti-chat-trigger {
-                bottom: 20px;
-                right: 20px;
-                z-index: 9999; /* Below the chat window (10000) so it doesn't float over the chat text on mobile */
+            /* Hide close button on mobile (nowhere to go — chat IS the page) */
+            .maluti-close-btn {
+                display: none !important;
             }
         }
     </style>
 </head>
 <body>
 
+    <!-- TRIGGER PILL (desktop only) -->
     <div class="maluti-chat-trigger" id="chatTrigger" onclick="toggleChat()">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg> 
+        <img src="https://i.pravatar.cc/100?img=47" alt="Assistant" class="maluti-trigger-img">
+        <span class="maluti-trigger-text">Talk to Maluti digital assistant for quick help</span>
     </div>
 
+    <!-- CHAT WINDOW -->
     <div class="maluti-chat-window" id="malutiChatWindow">
-        
+
         <div class="maluti-chat-header">
+            <img src="https://i.pravatar.cc/100?img=47" alt="Assistant" class="maluti-header-avatar">
             <div class="maluti-header-info">
-                <h4>Maluti TVET Automated Information System</h4>
-                <span id="realTimeClock">Loading...</span>
+                <h4>Maluti TVET Assistant</h4>
+                <span><span id="realTimeClock">Loading...</span></span>
             </div>
-            <button class="maluti-close-btn" onclick="toggleChat()" title="Close Chat">
-                &times;
-            </button>
+            <!-- Close button — visible on desktop only -->
+            <button class="maluti-close-btn" onclick="toggleChat()" title="Close">&times;</button>
         </div>
-        
+
         <div class="maluti-bot-disclaimer">
-            Automated responses may not always be accurate. Please verify critical info with the campus.
+            Responses are automated. Always verify important details directly with the campus.
+        </div>
+
+        <div class="maluti-quick-chips">
+            <div class="chip" onclick="chipSend('Admissions & Applications')">Admissions</div>
+            <div class="chip" onclick="chipSend('NSFAS Funding')">NSFAS</div>
+            <div class="chip" onclick="chipSend('IT & Computer Courses')">IT Courses</div>
+            <div class="chip" onclick="chipSend('Business Studies')">Business</div>
+            <div class="chip" onclick="chipSend('Campus Locations')">Campuses</div>
+            <div class="chip" onclick="chipSend('Engineering Courses')">Engineering</div>
+            <div class="chip" onclick="chipSend('Contact Details')">Contact</div>
+            <div class="chip" onclick="chipSend('Academic Calendar')">Calendar</div>
+            <div class="chip" onclick="chipSend('Entry Requirements')">Requirements</div>
         </div>
 
         <div class="maluti-chat-body" id="chatBody">
+            <div class="date-badge"><span id="todayBadge"></span></div>
             <div class="maluti-chat-msg bot">
-                Welcome to the Maluti TVET College digital assistant. How can I help you with Admissions, Courses, or Financial Aid today?
+                <b>Welcome to Maluti TVET College!</b>
+                I'm your digital assistant. I can help you with admissions, courses, NSFAS funding, campus info, and more.<br><br>
+                Tap a topic above or type your question below to get started.
+                <span class="msg-time" id="welcomeTime"></span>
             </div>
-            
             <div id="typingIndicator" class="maluti-typing">
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
+                <div class="dot"></div><div class="dot"></div><div class="dot"></div>
             </div>
         </div>
 
         <div class="maluti-chat-footer">
-            <input type="text" id="userInput" class="maluti-chat-input" placeholder="Type a message..." onkeypress="handleKeyPress(event)">
+            <input type="text" id="userInput" class="maluti-chat-input" placeholder="Ask me anything..." onkeypress="if(event.key==='Enter') sendMessage()">
             <button class="maluti-chat-send" onclick="sendMessage()">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
             </button>
         </div>
     </div>
 
     <script>
-        // --- 1. Knowledge Base ---
-        const knowledgeBase = {
-            "admission": "Admissions for 2026 are open via the online portal. You need a certified ID, latest results, and proof of residence.",
-            "it": "The IT NCV programme (Lere La Tshepe Campus) covers Systems Development & Networking (Level 2-4).",
-            "business": "Business Studies (NATED N4-N6) covers Accounting, Entrepreneurship, and Management. Diploma awarded after 18mo theory + 18mo practicals.",
-            "hospitality": "Hospitality Management includes Professional Cookery and Nutrition. Practical training in industrial kitchens is mandatory.",
-            "nsfas": "NSFAS funding is available for South African citizens meeting income criteria. Apply via the NSFAS student portal.",
-            "requirement": "NCV Level 2 requires Grade 9. NATED N4 requires Grade 12 (NSC).",
-            "location": "Campuses include Lere La Tshepe, Kwetlisong, and Bonamelo. Verify your faculty location before applying.",
-            "contact": "Central Office: +27 58 713 6100. Visit the admin block at your relevant campus for details."
-        };
+        const knowledgeBase = [
+            {
+                keywords: ["admission", "apply", "register", "enroll", "enrolment", "closing", "application", "portal", "open", "how to apply", "documents", "requirements", "2025", "2026"],
+                response: `<b>Admissions at Maluti TVET College</b>
+Admissions for the 2026 academic year are currently open through our online application portal.
 
-        // --- 2. Toggle Function (Modified) ---
-        const chatWindow = document.getElementById('malutiChatWindow');
+<b>Documents you will need:</b>
+<ul>
+<li>Certified copy of your South African ID</li>
+<li>Certified copy of your latest school results (Grade 9, 11, or Matric depending on the programme)</li>
+<li>Proof of residential address (not older than 3 months)</li>
+<li>Your NSFAS application reference number (if applying for funding)</li>
+</ul>
+
+<b>How to apply:</b>
+Visit the Maluti TVET College website and go to the Admissions portal to apply online. You can also walk into any campus and apply in person at the Student Services office during office hours (Mon–Fri, 08:00–16:00).
+
+<b>Tip:</b> Apply early — spaces in popular programmes like IT and Business fill up quickly. Make sure all your documents are certified before submitting.`
+            },
+            {
+                keywords: ["it", "computer", "system", "networking", "information technology", "coding", "software", "ncv", "systems development", "network", "hardware", "programming", "it courses"],
+                response: `<b>IT & Computing Programmes</b>
+Maluti TVET College offers the IT NCV (National Certificate Vocational) programme, primarily at Lere La Tshepe Campus.
+
+<b>What you will study:</b>
+<ul>
+<li>Systems Development — coding, databases, and application design</li>
+<li>Network Infrastructure — routers, servers, LAN and WAN networking</li>
+<li>IT Systems — hardware, operating systems, and troubleshooting</li>
+<li>End User Computing — practical computer skills</li>
+</ul>
+
+<b>Levels offered:</b> NCV Level 2, 3, and 4 (equivalent to Grade 10, 11, and 12).
+
+<b>Entry requirement:</b> A Grade 9 pass is sufficient to start at Level 2.
+
+<b>Duration:</b> Each level takes one year — completing all three levels takes 3 years in total.
+
+<b>Career paths after graduating:</b> Software Developer, Network Administrator, IT Support Technician, Database Administrator, or Systems Analyst.`
+            },
+            {
+                keywords: ["business", "management", "accounting", "entrepreneurship", "hr", "human resource", "nated", "n4", "n5", "n6", "diploma", "office", "management assistant", "business studies"],
+                response: `<b>Business Studies — NATED Programmes</b>
+The Business Studies NATED programme runs from N4 to N6 and leads to a nationally recognised National Diploma.
+
+<b>Subjects available include:</b>
+<ul>
+<li>Financial Accounting and Management Accounting</li>
+<li>Entrepreneurship and Business Management</li>
+<li>Human Resource Management</li>
+<li>Marketing Management</li>
+<li>Management Assistant (Office Administration)</li>
+</ul>
+
+<b>How the qualification works:</b>
+<ul>
+<li>N4 to N6: 18 months of theory and coursework at the college</li>
+<li>Followed by 18 months of approved workplace experience (internship or employment)</li>
+<li>Completing both phases earns you a full National Diploma</li>
+</ul>
+
+<b>Entry requirement:</b> Matric / Grade 12 certificate.
+
+<b>Career paths:</b> Accountant, HR Officer, Office Manager, Entrepreneur, Marketing Officer, or Financial Analyst.`
+            },
+            {
+                keywords: ["engineering", "electrical", "civil", "mechanical", "fitting", "turning", "plumbing", "boilermaking", "welding", "motor", "automotive", "ncv engineering", "engineering courses"],
+                response: `<b>Engineering & Technical Programmes</b>
+Maluti TVET College offers both NCV and NATED (N1 to N6) engineering programmes for students interested in technical trades.
+
+<b>Popular engineering fields offered:</b>
+<ul>
+<li>Electrical Infrastructure Construction</li>
+<li>Civil and Construction Engineering</li>
+<li>Mechanical Engineering — Fitting and Turning, Boilermaking</li>
+<li>Automotive Repair and Maintenance</li>
+<li>Plumbing and Pipefitting</li>
+</ul>
+
+<b>NATED Engineering (N1–N6):</b> Theory-based programme that leads to a National Diploma after completing N6 plus 18 months of verified work experience.
+
+<b>NCV Engineering (Level 2–4):</b> Combines practical skills and theory, takes 3 years to complete all three levels.
+
+<b>Entry requirements:</b>
+<ul>
+<li>Grade 9 pass for NCV Level 2</li>
+<li>Matric or N3 equivalent for NATED programmes</li>
+</ul>
+
+<b>Note:</b> Specific trades may only be available at certain campuses. Contact the admissions office to confirm current availability.`
+            },
+            {
+                keywords: ["nsfas", "bursary", "funding", "financial aid", "fees", "money", "pay", "allowance", "afford", "cost", "free", "poor", "scholarship", "grant", "sassa", "nsfas funding"],
+                response: `<b>NSFAS Financial Aid</b>
+NSFAS (National Student Financial Aid Scheme) is a government bursary that covers your studies so you can focus on learning, not fees.
+
+<b>Who qualifies?</b>
+<ul>
+<li>South African citizens only</li>
+<li>Combined household income of R350,000 or less per year</li>
+<li>SASSA grant recipients qualify automatically</li>
+</ul>
+
+<b>What NSFAS covers for TVET students:</b>
+<ul>
+<li>Full tuition fees — paid directly to the college</li>
+<li>Accommodation allowance (if you live away from home)</li>
+<li>Transport allowance</li>
+<li>Meals allowance</li>
+<li>Learning material allowance (books and stationery)</li>
+</ul>
+
+<b>How to apply for NSFAS:</b>
+<ul>
+<li>Go to www.nsfas.org.za and click "Apply"</li>
+<li>Create a myNSFAS student account</li>
+<li>Fill in the online form with your ID and household income details</li>
+<li>Submit supporting documents as requested</li>
+</ul>
+
+<b>Important:</b> Apply for NSFAS at the same time as your college application. Late applications may not be processed. You must be registered or accepted at a TVET college to complete the process.`
+            },
+            {
+                keywords: ["location", "where", "campus", "address", "find", "situated", "campuses", "kwetlisong", "lere", "bonamelo", "directions", "map", "which campus", "head office", "campus locations"],
+                response: `<b>Maluti TVET College Campuses</b>
+Maluti TVET College operates multiple campuses across the Free State and Lesotho border region, each offering different programmes.
+
+<b>Main campuses include:</b>
+<ul>
+<li><b>Lere La Tshepe Campus</b> — IT, Business, and various NCV programmes</li>
+<li><b>Kwetlisong Campus</b> — Engineering and technical programmes</li>
+<li><b>Bonamelo Campus</b> — Mixed programmes including Business and Engineering</li>
+</ul>
+
+<b>Before you visit:</b> Contact the college first to confirm which campus runs your specific programme. Not all courses are available at every campus.
+
+<b>Getting there:</b> Search "Maluti TVET College [Campus Name]" on Google Maps for directions from your location.
+
+<b>Office hours:</b> Monday to Friday, 08:00 to 16:00. Arrive early to avoid long queues during registration periods.`
+            },
+            {
+                keywords: ["contact", "phone", "email", "call", "reach", "number", "helpdesk", "office", "enquiry", "enquire", "website", "contact details"],
+                response: `<b>Contact Maluti TVET College</b>
+
+<b>General enquiries:</b>
+<ul>
+<li>Official website: <b>www.malutitvet.edu.za</b></li>
+<li>Call the main switchboard at any campus (Mon–Fri, 08:00–16:00)</li>
+<li>Walk into the Student Services office at your nearest campus</li>
+</ul>
+
+<b>Who to contact for specific queries:</b>
+<ul>
+<li><b>Admissions Office</b> — application status, registration, and enrolment</li>
+<li><b>Financial Aid Office</b> — NSFAS, bursaries, and fee payment queries</li>
+<li><b>Academic Department</b> — subject choices, timetables, and academic records</li>
+<li><b>Student Support Services</b> — counselling, disability support, and welfare</li>
+</ul>
+
+<b>Tip:</b> Always have your student number or ID number ready when calling or visiting. This speeds up the process significantly.`
+            },
+            {
+                keywords: ["calendar", "date", "term", "holiday", "semester", "timetable", "exam", "exams", "when", "start", "begin", "reopen", "close", "schedule", "academic calendar"],
+                response: `<b>Academic Calendar</b>
+The South African TVET academic year is divided into four terms and two semesters.
+
+<b>General term structure:</b>
+<ul>
+<li>Term 1 — Late January to late March</li>
+<li>Term 2 — April to late June (mid-year exams in June)</li>
+<li>Term 3 — July to late September</li>
+<li>Term 4 — October to November (final exams in November)</li>
+</ul>
+
+<b>Registration windows:</b>
+<ul>
+<li>Semester 1 registration — typically opens in January</li>
+<li>Semester 2 registration — typically opens in July</li>
+</ul>
+
+<b>Exams:</b> NATED exams are set nationally by DHET (Department of Higher Education and Training). Exam dates are published on the DHET website.
+
+<b>Important:</b> Exact dates change every year. Always confirm the current year's calendar with the campus or download it from the official website.`
+            },
+            {
+                keywords: ["matric", "grade 12", "certificate", "qualify", "requirements", "minimum", "entry", "grade 9", "school", "entry requirements"],
+                response: `<b>Entry Requirements</b>
+
+<b>NCV Programmes (Levels 2 to 4):</b>
+<ul>
+<li>Minimum: Grade 9 pass to enter at Level 2</li>
+<li>Grade 11 pass may allow direct entry into Level 3</li>
+<li>NCV Level 2–4 is equivalent to completing Grade 10–12</li>
+</ul>
+
+<b>NATED Programmes (N4 to N6):</b>
+<ul>
+<li>Minimum: Matric (Grade 12) certificate</li>
+<li>Some engineering NATED programmes may accept N3 as an alternative to Matric</li>
+</ul>
+
+<b>Skills and Short Courses:</b>
+<ul>
+<li>Entry requirements vary — some have no formal academic requirement</li>
+</ul>
+
+<b>Encouragement:</b> Even if you did not pass Matric, the NCV pathway gives you a second chance to earn a recognised national qualification. Many successful professionals started through the TVET route — do not give up on your future.`
+            },
+            {
+                keywords: ["healthcare", "nursing", "educare", "early childhood", "hospitality", "tourism", "hair", "beauty", "cosmetology", "catering"],
+                response: `<b>Health, Community & Lifestyle Programmes</b>
+Beyond IT, Business, and Engineering, Maluti TVET also offers programmes in community services and lifestyle fields.
+
+<b>Programme areas that may be available:</b>
+<ul>
+<li>Early Childhood Development (ECD) and Educare</li>
+<li>Hospitality and Professional Cookery (Catering)</li>
+<li>Tourism</li>
+<li>Beauty Therapy and Cosmetology</li>
+</ul>
+
+These are offered through NCV or NATED qualifications depending on the field.
+
+<b>Important:</b> Programme availability changes from year to year and varies by campus. Contact the admissions office directly to confirm which programmes are currently active.`
+            }
+        ];
+
+        function getResponse(userInput) {
+            const input = userInput.toLowerCase();
+            const words = input.split(/\s+/);
+            let bestMatch = null;
+            let highestScore = 0;
+
+            knowledgeBase.forEach(item => {
+                let score = 0;
+                item.keywords.forEach(kw => {
+                    if (input === kw) score += 10;
+                    else if (input.includes(kw)) score += (kw.length > 4 ? 5 : 2);
+                    else if (words.some(w => w === kw)) score += 4;
+                });
+                if (score > highestScore) { highestScore = score; bestMatch = item.response; }
+            });
+
+            if (highestScore > 0) return bestMatch;
+
+            if (/^(hi|hello|hey|good morning|good afternoon|howzit|hola|sawubona)/i.test(input)) {
+                return `<b>Hello! Welcome to Maluti TVET College.</b><br><br>I can help you with:<br><ul>
+<li>Admissions and how to apply</li>
+<li>NSFAS financial aid and bursaries</li>
+<li>IT, Business, and Engineering courses</li>
+<li>Campus locations and directions</li>
+<li>Entry requirements</li>
+<li>Academic calendar and exam dates</li>
+<li>Contact details</li>
+</ul>What would you like to know today?`;
+            }
+
+            if (/thank|thanks|thx|dankie|ngiyabonga/i.test(input)) {
+                return `You are welcome! If you have any more questions about Maluti TVET College — courses, applications, funding, or anything else — feel free to ask anytime. Good luck with your studies!`;
+            }
+
+            return `I do not have specific information on that just yet. Try asking about:<br><br><ul>
+<li><b>Admissions</b> — how to apply and documents needed</li>
+<li><b>NSFAS</b> — financial aid, bursaries, and allowances</li>
+<li><b>Courses</b> — IT, Business, Engineering, and more</li>
+<li><b>Campuses</b> — locations and which campus offers what</li>
+<li><b>Entry Requirements</b> — what qualifications you need</li>
+<li><b>Contact</b> — how to reach the college directly</li>
+</ul>Or tap one of the quick-topic buttons at the top!`;
+        }
 
         function toggleChat() {
-            // Toggle the class that shows/hides the window
-            chatWindow.classList.toggle('maluti-chat-active');
-            
-            const isOpen = chatWindow.classList.contains('maluti-chat-active');
-            
-            // Manage body scroll on mobile
-            if (window.innerWidth <= 480) {
-                document.body.style.overflow = isOpen ? 'hidden' : 'auto';
-            }
+            document.getElementById('malutiChatWindow').classList.toggle('maluti-chat-active');
         }
 
-        // --- 3. Real-Time Clock ---
-        function updateTime() {
-            const clockElement = document.getElementById('realTimeClock');
-            const now = new Date();
-            const options = { weekday: 'short', day: 'numeric', month: 'short' };
-            const dateStr = now.toLocaleDateString('en-ZA', options);
-            const timeStr = now.toLocaleTimeString('en-ZA', { hour: '2-digit', minute: '2-digit' });
-            
-            clockElement.innerText = `${dateStr} | ${timeStr}`;
-        }
-        setInterval(updateTime, 1000);
-        updateTime();
-
-        // --- 4. Messaging Logic ---
-        function handleKeyPress(e) {
-            if (e.key === 'Enter') sendMessage();
+        function chipSend(text) {
+            document.getElementById('userInput').value = text;
+            sendMessage();
         }
 
         function sendMessage() {
@@ -1393,63 +1708,52 @@
             const chatBody = document.getElementById('chatBody');
             const typingIndicator = document.getElementById('typingIndicator');
             const userText = inputField.value.trim();
+            if (!userText) return;
 
-            if (userText === "") return;
-
-            // 1. Add User Message
             const userDiv = document.createElement('div');
             userDiv.className = 'maluti-chat-msg user';
-            userDiv.innerText = userText;
+            userDiv.innerHTML = userText + `<span class="msg-time">${getTime()}</span>`;
             chatBody.insertBefore(userDiv, typingIndicator);
-
             inputField.value = "";
-            chatBody.scrollTop = chatBody.scrollHeight;
+            scrollDown();
 
-            // 2. Show Loading Animation
             typingIndicator.style.display = "flex";
-            chatBody.scrollTop = chatBody.scrollHeight;
+            scrollDown();
 
-            // 3. Simulate Bot Response
             setTimeout(() => {
                 typingIndicator.style.display = "none";
-                
                 const botDiv = document.createElement('div');
                 botDiv.className = 'maluti-chat-msg bot';
-                
-                let response = "I'm not sure about that. Try specifically asking about 'Admissions', 'Courses', 'NSFAS', or 'Requirements'.";
-                const lowerInput = userText.toLowerCase();
-
-                for (let key in knowledgeBase) {
-                    if (lowerInput.includes(key)) {
-                        response = knowledgeBase[key];
-                        break;
-                    }
-                }
-
-                botDiv.innerText = response;
+                botDiv.innerHTML = getResponse(userText) + `<span class="msg-time">${getTime()}</span>`;
                 chatBody.insertBefore(botDiv, typingIndicator);
-                chatBody.scrollTop = chatBody.scrollHeight;
-            }, 1500);
+                scrollDown();
+            }, 900 + Math.random() * 600);
         }
+
+        function scrollDown() {
+            const cb = document.getElementById('chatBody');
+            setTimeout(() => { cb.scrollTop = cb.scrollHeight; }, 50);
+        }
+
+        function getTime() {
+            return new Date().toLocaleTimeString('en-ZA', { hour: '2-digit', minute: '2-digit' });
+        }
+
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('realTimeClock').innerText =
+                now.toLocaleDateString('en-ZA', { weekday: 'short', day: 'numeric', month: 'short' }) +
+                ' · ' + now.toLocaleTimeString('en-ZA', { hour: '2-digit', minute: '2-digit' });
+        }
+
+        setInterval(updateTime, 1000);
+        updateTime();
+        document.getElementById('todayBadge').innerText =
+            new Date().toLocaleDateString('en-ZA', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+        document.getElementById('welcomeTime').innerText = getTime();
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -2317,13 +2621,6 @@
 
 
 
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -2335,219 +2632,335 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
-    /* --- Unique Namespace Styling (kw-footer-) --- */
 
-    /* Footer Container & Reset */
+    /* ── Footer (unchanged) ── */
     .kw-footer-container {
-        background-color: #050533; /* Deep Blue sampled from image */
+        background-color: #050533;
         color: #ffffff;
         font-family: 'Inter', sans-serif;
         width: 100%;
     }
-
-    /* Reset inside the footer namespace */
-    .kw-footer-container * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
-
-    .kw-footer-content-wrapper {
-        max-width: 1450px;
-        margin: 0 auto;
-        padding: 0 20px;
-    }
-
-    .kw-footer-container a {
-        text-decoration: none;
-        color: inherit;
-        transition: opacity 0.3s, background-color 0.3s, color 0.3s;
-    }
-
-    .kw-footer-container ul {
-        list-style: none;
-    }
-
-    /* --- Top Bar Section --- */
-    .kw-footer-top-bar {
-        padding: 35px 0;
-        border-bottom: 1px solid rgba(255,255,255,0.15);
-    }
-
-    .kw-footer-top-flex {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .kw-footer-cta-text {
-        font-size: 26px;
-        font-weight: 500;
-        letter-spacing: -0.5px;
-    }
-
-    .kw-footer-cta-buttons {
-        display: flex;
-        gap: 20px;
-    }
-
-    /* Outline Button Style */
+    .kw-footer-container * { box-sizing: border-box; margin: 0; padding: 0; }
+    .kw-footer-content-wrapper { max-width: 1450px; margin: 0 auto; padding: 0 20px; }
+    .kw-footer-container a { text-decoration: none; color: inherit; transition: opacity 0.3s, background-color 0.3s, color 0.3s; }
+    .kw-footer-container ul { list-style: none; }
+    .kw-footer-top-bar { padding: 35px 0; border-bottom: 1px solid rgba(255,255,255,0.15); }
+    .kw-footer-top-flex { display: flex; justify-content: space-between; align-items: center; }
+    .kw-footer-cta-text { font-size: 26px; font-weight: 500; letter-spacing: -0.5px; }
+    .kw-footer-cta-buttons { display: flex; gap: 20px; }
     .kw-footer-btn-outline {
-        display: inline-block;
-        padding: 12px 32px;
-        background-color: transparent;
-        color: #ffffff;
-        border: 1px solid #ffffff;
-        border-radius: 50px;
-        font-weight: 500;
-        font-size: 15px;
-        text-align: center;
-        white-space: nowrap;
+        display: inline-block; padding: 12px 32px;
+        background-color: transparent; color: #ffffff;
+        border: 1px solid #ffffff; border-radius: 50px;
+        font-weight: 500; font-size: 15px; text-align: center; white-space: nowrap;
+    }
+    .kw-footer-btn-outline:hover { background-color: #ffffff; color: #050533; }
+    .kw-footer-main { padding: 70px 0 30px; }
+    .kw-footer-grid { display: grid; grid-template-columns: 2.5fr 1fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 80px; align-items: start; }
+    .kw-footer-logo-block { display: flex; flex-direction: column; align-items: flex-start; margin-bottom: 30px; }
+    .kw-footer-crest { width: 55px; height: auto; margin-bottom: 15px; filter: brightness(0) invert(1); }
+    .kw-footer-logo-text { font-size: 22px; font-weight: 400; }
+    .kw-footer-address { font-style: normal; line-height: 1.5; margin-bottom: 30px; font-size: 16px; }
+    .kw-footer-directions-btn { padding: 12px 40px; margin-bottom: 35px; }
+    .kw-footer-socials { display: flex; gap: 20px; align-items: center; }
+    .kw-footer-social-icon { display: flex; align-items: center; justify-content: center; }
+    .kw-footer-social-icon svg { width: 18px; height: 18px; fill: currentColor; }
+    .kw-footer-social-icon:hover { opacity: 0.7; }
+    .kw-footer-link-list li { margin-bottom: 18px; }
+    .kw-footer-link-list a { font-size: 16px; font-weight: 500; }
+    .kw-footer-link-list a:hover { opacity: 0.7; }
+    .kw-footer-bottom { text-align: right; }
+    .kw-footer-designer { font-size: 14px; font-weight: 500; }
+    @media (max-width: 1024px) {
+        .kw-footer-grid { grid-template-columns: 1fr 1fr; gap: 50px 30px; }
+        .kw-footer-col-info { grid-column: 1 / -1; }
+    }
+    @media (max-width: 768px) {
+        .kw-footer-top-flex { flex-direction: column; text-align: center; gap: 25px; }
+        .kw-footer-cta-text { font-size: 22px; }
+        .kw-footer-bottom { text-align: center; }
+    }
+    @media (max-width: 550px) {
+        .kw-footer-grid { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+        .kw-footer-logo-block { align-items: center; }
+        .kw-footer-socials { justify-content: center; }
+        .kw-footer-cta-buttons { flex-direction: column; width: 100%; }
+        .kw-footer-btn-outline { width: 100%; }
     }
 
-    .kw-footer-btn-outline:hover {
-         background-color: #ffffff;
-         color: #050533;
+    /* ── Visit Modal ── */
+
+    /* Sharp text rendering — fix blur from transform/filter */
+    .vm-overlay,
+    .vm-modal,
+    .vm-modal * {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+        /* prevent subpixel blur from translateY animations */
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
     }
 
-    /* --- Main Footer Content --- */
-    .kw-footer-main {
-        padding: 70px 0 30px;
+    .vm-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        /* no backdrop-filter — causes font blur */
     }
+    .vm-overlay.vm-open { display: flex; }
 
-    .kw-footer-grid {
-        display: grid;
-        /* Column ratios adjusted to match image: wider first column */
-        grid-template-columns: 2.5fr 1fr 1fr 1fr 1fr;
-        gap: 40px;
-        margin-bottom: 80px;
-        align-items: start;
-    }
-
-    /* Column 1: Logo & Info */
-    .kw-footer-logo-block {
+    .vm-modal {
+        background: #fff;
+        border-radius: 16px;
+        width: 100%;
+        max-width: 1080px;
+        height: 90vh;
+        max-height: 720px;
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
-        margin-bottom: 30px;
+        overflow: hidden;
+      
+        font-family: 'Inter', sans-serif;
+        /* Use opacity-only animation — no transform to avoid subpixel blur */
+        animation: vm-fadein .18s ease;
+        /* Promote to own compositor layer cleanly */
+        will-change: auto;
+        transform: translateZ(0);
+    }
+    @keyframes vm-fadein {
+        from { opacity: 0; }
+        to   { opacity: 1; }
     }
 
-    .kw-footer-crest {
-        width: 55px;
-        height: auto;
-        margin-bottom: 15px;
-        /* Ensure crest is white */
-        filter: brightness(0) invert(1);
-    }
-
-    .kw-footer-logo-text {
-        font-size: 22px;
-        font-weight: 400;
-    }
-
-    .kw-footer-address {
-        font-style: normal;
-        line-height: 1.5;
-        margin-bottom: 30px;
-        font-size: 16px;
-    }
-
-    .kw-footer-directions-btn {
-        /* Overriding standard size for this specific button */
-        padding: 12px 40px;
-        margin-bottom: 35px;
-    }
-
-    .kw-footer-socials {
+    /* Header */
+    .vm-header {
         display: flex;
-        gap: 20px;
         align-items: center;
+        justify-content: space-between;
+        padding: 18px 24px 0;
+        flex-shrink: 0;
     }
-
-    .kw-footer-social-icon {
+    .vm-header-text h2 {
+        font-size: 15px;
+        font-weight: 500;
+        color: #111;
+        letter-spacing: -0.1px;
+        /* prevent any inherited blurriness */
+        transform: none;
+    }
+    .vm-header-text p {
+        font-size: 12px;
+        color: #999;
+        margin-top: 2px;
+    }
+    .vm-close {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        border: none;
+        background: #f0f0f0;
+        color: #555;
+        cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
+        flex-shrink: 0;
+        font-family: inherit;
+        /* no transition — keeps text crisp */
+    }
+    .vm-close:hover { background: #e4e4e4; color: #111; }
+
+    /* Tab nav row */
+    .vm-nav {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        padding: 14px 24px 0;
+        flex-shrink: 0;
+        flex-wrap: wrap;
+        row-gap: 6px;
     }
 
-    .kw-footer-social-icon svg {
-        width: 18px;
-        height: 18px;
-        fill: currentColor;
+    .vm-nav-sep {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: .09em;
+        text-transform: uppercase;
+        color: #ccc;
+        padding: 4px 8px 4px 6px;
+        white-space: nowrap;
+        user-select: none;
+    }
+    /* small divider line between groups */
+    .vm-nav-divider {
+        width: 1px;
+        height: 16px;
+        background: #e8e8e8;
+        margin: 0 6px;
+        flex-shrink: 0;
     }
 
-    .kw-footer-social-icon:hover {
-        opacity: 0.7;
+    .vm-tab {
+        background: none;
+        border: none;
+        padding: 9px 15px;
+        border-radius: 60px;
+        font-size: 13px;
+        font-weight: 400;
+        color: #555;
+        cursor: pointer;
+        font-family: 'Alvarado', sans-serif;
+        white-space: nowrap;
+        /* no transition on color — avoids subpixel repaint blur */
+    }
+    .vm-tab:hover { background: #f5f5f5; color: #111; }
+    .vm-tab.vm-active {
+        background: #050533;
+        color: #fff;
+        font-weight: 500;
     }
 
-    /* Columns 2, 3, 4: Link Lists */
-    .kw-footer-link-list li {
-        margin-bottom: 18px;
+    /* Divider between nav and map */
+    .vm-divider {
+        height: 1px;
+        background: #ececec;
+        margin: 14px 0 0;
+        flex-shrink: 0;
     }
 
-    .kw-footer-link-list a {
+    /* Map wrapper — inset with padding and border-radius */
+    .vm-map-wrap {
+        flex: 1;
+        overflow: hidden;
+        padding: 16px;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* The rounded container that holds the map */
+    .vm-map-inner {
+        flex: 1;
+        border-radius: 20px;
+        overflow: hidden;
+        position: relative;
+        min-height: 0;
+        background: #f2f2f2;
+    }
+
+    /* Empty state */
+    .vm-empty {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        pointer-events: none;
+    }
+    .vm-empty-ring {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: 1px solid #ddd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ccc;
         font-size: 16px;
-        font-weight: 500;
     }
-    .kw-footer-link-list a:hover {
-        opacity: 0.7;
-    }
-
-    /* --- Bottom Section --- */
-    .kw-footer-bottom {
-        text-align: right;
+    .vm-empty p {
+        font-size: 13px;
+        color: #bbb;
+        text-align: center;
+        line-height: 1.5;
     }
 
-    .kw-footer-designer {
-        font-size: 14px;
-        font-weight: 500;
+    /* Spinner */
+    .vm-spinner-wrap {
+        display: none;
+        position: absolute;
+        inset: 0;
+        align-items: center;
+        justify-content: center;
+        background: #f2f2f2;
+        border-radius: 20px;
+    }
+    .vm-spinner-wrap.show { display: flex; }
+    .vm-spin {
+        width: 22px;
+        height: 22px;
+        border: 2px solid #e0e0e0;
+        border-top-color: #050533;
+        border-radius: 50%;
+        animation: vm-spin .65s linear infinite;
+    }
+    @keyframes vm-spin { to { transform: rotate(360deg); } }
+
+    /* Location label inside map, bottom-left */
+    .vm-map-label {
+        display: none;
+        position: absolute;
+        bottom: 12px;
+        left: 12px;
+        z-index: 2;
+        background: rgba(255, 255, 255, 0.94);
+        border-radius: 8px;
+        padding: 8px 12px;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+        pointer-events: none;
+    }
+    .vm-map-label.show { display: block; }
+    .vm-map-label h3 {
+        font-size: 12.5px;
+        font-weight: 600;
+        color: #111;
+        white-space: nowrap;
+    }
+    .vm-map-label p {
+        font-size: 11px;
+        color: #777;
+        margin-top: 1px;
+        white-space: nowrap;
     }
 
-
-    /* --- Responsive Design --- */
-    @media (max-width: 1024px) {
-        .kw-footer-grid {
-            grid-template-columns: 1fr 1fr;
-             gap: 50px 30px;
-        }
-        .kw-footer-col-info {
-             grid-column: 1 / -1;
-        }
+    /* iframe fills map inner */
+    .vm-iframe-box {
+        display: none;
+        position: absolute;
+        inset: 0;
+    }
+    .vm-iframe-box.show { display: block; }
+    .vm-iframe-box iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        display: block;
     }
 
-    @media (max-width: 768px) {
-        .kw-footer-top-flex {
-            flex-direction: column;
-            text-align: center;
-            gap: 25px;
+    /* ── Mobile ── */
+    @media (max-width: 640px) {
+        .vm-overlay { padding: 0; align-items: flex-end; }
+        .vm-modal {
+            max-width: 100%;
+            height: 92vh;
+            max-height: none;
+            border-radius: 16px 16px 0 0;
         }
-        .kw-footer-cta-text {
-            font-size: 22px;
-        }
-        .kw-footer-bottom {
-            text-align: center;
-        }
-    }
-
-    @media (max-width: 550px) {
-        .kw-footer-grid {
-            grid-template-columns: 1fr;
-            text-align: center;
-            gap: 40px;
-        }
-        .kw-footer-logo-block {
-            align-items: center;
-        }
-        .kw-footer-socials {
-            justify-content: center;
-        }
-        .kw-footer-cta-buttons {
-            flex-direction: column;
-            width: 100%;
-        }
-        .kw-footer-btn-outline {
-            width: 100%;
-        }
+        .vm-nav { padding: 12px 16px 0; gap: 4px; }
+        .vm-nav-sep { display: none; }
+        .vm-nav-divider { display: none; }
+        .vm-tab { font-size: 12.5px; padding: 5px 11px; border-radius: 50px; border: 1px solid #e8e8e8; background: #f7f7f7; }
+        .vm-tab.vm-active { background: #050533; border-color: #050533; color: #fff; }
+        .vm-map-wrap { padding: 12px; }
+        .vm-header { padding: 16px 16px 0; }
     }
 </style>
 </head>
@@ -2558,7 +2971,7 @@
         <div class="kw-footer-content-wrapper kw-footer-top-flex">
             <h2 class="kw-footer-cta-text">We look forward to welcoming you to Maluti College.</h2>
             <div class="kw-footer-cta-buttons">
-                <a href="#" class="kw-footer-btn-outline">Visit</a>
+                <a href="#" class="kw-footer-btn-outline" id="kw-visit-btn">Visit</a>
                 <a href="#" class="kw-footer-btn-outline">Enquire</a>
                 <a href="#" class="kw-footer-btn-outline">Apply</a>
             </div>
@@ -2577,13 +2990,12 @@
                     (058) 085 1234<br>
                 </address>
                 <a href="#" class="kw-footer-btn-outline kw-footer-directions-btn">Get Directions</a>
-                
                 <div class="kw-footer-socials">
                     <a href="#" class="kw-footer-social-icon" aria-label="Facebook">
                         <svg viewBox="0 0 24 24"><path d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.15 5.96C15.21 5.96 16.12 6.04 16.12 6.04V8.51H15.01C13.77 8.51 13.38 9.28 13.38 10.07V12.06H16.15L15.71 14.96H13.38V21.96C18.16 21.21 21.82 17.06 21.82 12.06C21.82 6.53 17.32 2.04 12 2.04Z"/></svg>
                     </a>
                     <a href="#" class="kw-footer-social-icon" aria-label="Instagram">
-                         <svg viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/></svg>
                     </a>
                     <a href="#" class="kw-footer-social-icon" aria-label="TikTok">
                         <svg viewBox="0 0 24 24"><path d="M12.5,2C12.5,2 12.5,4.46 12.5,5.73C14.32,6.03 15.94,7.18 16.79,8.9H19.68C18.64,6.14 16.1,4 13.04,3.5V2H12.5M16.33,11.04C16.33,11.04 16.33,11.04 16.33,11.04C15.12,11.04 13.96,10.53 13.1,9.68C13.39,10.74 13.54,11.86 13.54,13C13.54,17.42 9.96,21 5.54,21C3.41,21 1.5,20.17 0.05,18.76L2.17,16.64C3.06,17.47 4.24,18 5.54,18C8.3,18 10.54,15.76 10.54,13C10.54,11.26 9.65,9.7 8.26,8.82L10.38,6.7C12.35,8.06 13.54,10.38 13.54,13H16.33V11.04Z"/></svg>
@@ -2593,7 +3005,6 @@
                     </a>
                 </div>
             </div>
-
             <div class="kw-footer-col-links">
                 <ul class="kw-footer-link-list">
                     <li><a href="#">Cookie Policy</a></li>
@@ -2601,7 +3012,6 @@
                     <li><a href="#">Policies</a></li>
                 </ul>
             </div>
-
             <div class="kw-footer-col-links">
                 <ul class="kw-footer-link-list">
                     <li><a href="#">Academic Year</a></li>
@@ -2611,7 +3021,6 @@
                     <li><a href="#">FAQs</a></li>
                 </ul>
             </div>
-
             <div class="kw-footer-col-links">
                 <ul class="kw-footer-link-list">
                     <li><a href="#">Term Dates</a></li>
@@ -2619,39 +3028,167 @@
                     <li><a href="#">Admissions</a></li>
                     <li><a href="#">Careers</a></li>
                     <li><a href="#">Support Services</a></li>
-
                 </ul>
             </div>
-
-             <div class="kw-footer-col-links">
+            <div class="kw-footer-col-links">
                 <ul class="kw-footer-link-list">
                     <li><a href="#">Maluti Alumnus</a></li>
                     <li><a href="#">Coltech</a></li>
                 </ul>
             </div>
         </div>
-        
         <div class="kw-footer-content-wrapper kw-footer-bottom">
             <span class="kw-footer-designer">Copyright &copy; 2024 Maluti TVET College. All rights reserved.</span>
         </div>
     </div>
 </footer>
 
+<!-- ── Visit Modal ── -->
+<div class="vm-overlay" id="vm-overlay" role="dialog" aria-modal="true" aria-label="Our Locations">
+    <div class="vm-modal">
+
+        <!-- Header -->
+        <div class="vm-header">
+            <div class="vm-header-text">
+                <h2>Our Locations</h2>
+                <p>Select a campus or office to view on the map</p>
+            </div>
+            <button class="vm-close" id="vm-close" aria-label="Close">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Tab nav -->
+        <div class="vm-nav" id="vm-nav">
+            <span class="vm-nav-sep">Campuses</span>
+            <button class="vm-tab" data-key="main">Main Campus</button>
+            <button class="vm-tab" data-key="lere">Lere La Tshepe</button>
+            <button class="vm-tab" data-key="sefikeng">Sefikeng</button>
+            <button class="vm-tab" data-key="bonamelo">Bonamelo</button>
+            <button class="vm-tab" data-key="harrismith">Harrismith</button>
+            <button class="vm-tab" data-key="bethlehem">Bethlehem</button>
+            <button class="vm-tab" data-key="kwetlisong">Kwetlisong</button>
+            <button class="vm-tab" data-key="itemoheleng">Itemoheleng</button>
+            <div class="vm-nav-divider"></div>
+            <span class="vm-nav-sep">Offices</span>
+            <button class="vm-tab" data-key="central">Central Office</button>
+            <button class="vm-tab" data-key="corporate">Corporate Office</button>
+        </div>
+
+        <div class="vm-divider"></div>
+
+        <!-- Map -->
+        <div class="vm-map-wrap">
+            <div class="vm-map-inner">
+
+                <!-- Empty state -->
+                <div class="vm-empty" id="vm-empty">
+                    <div class="vm-empty-ring">◎</div>
+                    <p>Select a location above</p>
+                </div>
+
+                <!-- Spinner -->
+                <div class="vm-spinner-wrap" id="vm-spinner">
+                    <div class="vm-spin"></div>
+                </div>
+
+                <!-- iframe -->
+                <div class="vm-iframe-box" id="vm-iframe-box">
+                    <iframe id="vm-iframe" src="" allowfullscreen title="Campus map"></iframe>
+                </div>
+
+                <!-- Floating label -->
+                <div class="vm-map-label" id="vm-map-label">
+                    <h3 id="vm-label-name"></h3>
+                    <p id="vm-label-addr"></p>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+(function () {
+    var DATA = {
+        main:        { name: 'Main Campus',        addr: 'Phuthaditjhaba, QwaQwa, Free State',      lat: -28.5333, lng: 28.9333 },
+        lere:        { name: 'Lere La Tshepe',      addr: 'Phuthaditjhaba, QwaQwa, Free State',      lat: -28.5360, lng: 28.9300 },
+        sefikeng:    { name: 'Sefikeng Campus',     addr: 'Phuthaditjhaba, Free State',              lat: -28.5290, lng: 28.9380 },
+        bonamelo:    { name: 'Bonamelo Campus',     addr: 'Bonamelo, Free State',                    lat: -28.3700, lng: 27.4800 },
+        harrismith:  { name: 'Harrismith Campus',   addr: 'Harrismith, Free State',                  lat: -28.2742, lng: 29.1225 },
+        bethlehem:   { name: 'Bethlehem Campus',    addr: 'Bethlehem, Free State',                   lat: -28.2292, lng: 28.3081 },
+        kwetlisong:  { name: 'Kwetlisong Campus',   addr: 'Phuthaditjhaba, Free State',              lat: -28.5410, lng: 28.9260 },
+        itemoheleng: { name: 'Itemoheleng Campus',  addr: 'Witsieshoek, QwaQwa, Free State',         lat: -28.5700, lng: 28.8900 },
+        central:     { name: 'Central Office',      addr: 'Phuthaditjhaba, Free State',              lat: -28.5310, lng: 28.9355 },
+        corporate:   { name: 'Corporate Office',    addr: 'Wessels Street, Bethlehem, Free State',   lat: -28.2305, lng: 28.3095 }
+    };
+
+    var overlay    = document.getElementById('vm-overlay');
+    var closeBtn   = document.getElementById('vm-close');
+    var visitBtn   = document.getElementById('kw-visit-btn');
+    var tabs       = document.querySelectorAll('.vm-tab');
+    var empty      = document.getElementById('vm-empty');
+    var spinner    = document.getElementById('vm-spinner');
+    var iframeBox  = document.getElementById('vm-iframe-box');
+    var iframe     = document.getElementById('vm-iframe');
+    var mapLabel   = document.getElementById('vm-map-label');
+    var labelName  = document.getElementById('vm-label-name');
+    var labelAddr  = document.getElementById('vm-label-addr');
+    var fallbackTimer;
+
+    function openModal()  { overlay.classList.add('vm-open');    document.body.style.overflow = 'hidden'; }
+    function closeModal() { overlay.classList.remove('vm-open'); document.body.style.overflow = ''; }
+
+    visitBtn.addEventListener('click', function (e) { e.preventDefault(); openModal(); });
+    closeBtn.addEventListener('click', closeModal);
+    overlay.addEventListener('click', function (e) { if (e.target === overlay) closeModal(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
+
+    function showMap() {
+        clearTimeout(fallbackTimer);
+        spinner.classList.remove('show');
+        iframeBox.classList.add('show');
+        mapLabel.classList.add('show');
+    }
+
+    tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+            tabs.forEach(function (t) { t.classList.remove('vm-active'); });
+            tab.classList.add('vm-active');
+
+            var d = DATA[tab.dataset.key];
+            if (!d) return;
+
+            empty.style.display = 'none';
+            iframeBox.classList.remove('show');
+            mapLabel.classList.remove('show');
+            spinner.classList.add('show');
+
+            labelName.textContent = d.name;
+            labelAddr.textContent = d.addr;
+
+            var pad = 0.012;
+            var src = 'https://www.openstreetmap.org/export/embed.html'
+                    + '?bbox='   + (d.lng - pad)         + '%2C' + (d.lat - pad * 0.75)
+                    + '%2C'      + (d.lng + pad)         + '%2C' + (d.lat + pad * 0.75)
+                    + '&layer=mapnik'
+                    + '&marker=' + d.lat + '%2C' + d.lng;
+
+            iframe.onload = showMap;
+            clearTimeout(fallbackTimer);
+            fallbackTimer = setTimeout(showMap, 5000);
+
+            iframe.src = src;
+        });
+    });
+})();
+</script>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -1,0 +1,461 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <style>
+        :root {
+            --bot-navy: #000c2d;
+            --bot-blue: #0091ff;
+            --bot-radius: 12px;
+        }
+
+        body {
+            font-family: 'Alvarado', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Enforce strict box sizing for the chat components */
+        .maluti-chat-window * {
+            box-sizing: border-box;
+        }
+
+        /* --- Chat Trigger (Floating Button) --- */
+        .maluti-chat-trigger {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #020035;
+            box-shadow: 0 10px 25px rgba(8, 0, 97, 0.593);
+            cursor: pointer;
+            z-index: 10001; 
+            transition: transform 0.2s ease, background-color 0.2s;
+        }
+
+        .maluti-chat-trigger:hover {
+            transform: scale(1.05);
+            background-color: #020035;
+            color: #fff;
+        }
+
+        /* --- Chat Window --- */
+        .maluti-chat-window {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 380px;
+            height: 600px;
+            max-height: 80vh;
+            background: #ffffff;
+            border-radius: var(--bot-radius);
+            display: none; 
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 10000;
+          
+        }
+
+        .maluti-chat-active {
+            display: flex !important;
+            animation: slideUp 0.3s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Header --- */
+        .maluti-chat-header {
+            background-color: var(--bot-navy);
+            padding: 15px 20px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0; 
+        }
+
+        .maluti-header-info h4 { margin: 0; font-size: 16px; font-weight: 600; }
+        .maluti-header-info span { font-size: 11px; opacity: 0.8; display: block; margin-top: 4px; }
+        
+        /* Close Button */
+        .maluti-close-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 35px;
+            border-radius: 50px;
+            font-size: 30px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .maluti-close-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .maluti-bot-disclaimer {
+            background: #fff3cd;
+            color: #856404;
+            font-size: 11px;
+            padding: 8px 15px;
+            text-align: center;
+            border-bottom: 1px solid #ffeeba;
+            flex-shrink: 0; 
+        }
+
+        /* --- Chat Body --- */
+        .maluti-chat-body {
+            flex: 1 1 auto; 
+            padding: 15px;
+            background-color: #f4f7f9;
+            overflow-y: auto; 
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            scroll-behavior: smooth;
+            height: 0; 
+        }
+
+        /* --- Message Bubbles --- */
+        .maluti-chat-msg {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 14px;
+            line-height: 1.5;
+            word-wrap: break-word;
+        }
+
+        .maluti-chat-msg.bot {
+            background: white;
+            color: var(--bot-navy);
+            align-self: flex-start;
+            border-bottom-left-radius: 2px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .maluti-chat-msg.user {
+            background: var(--bot-blue);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 2px;
+            box-shadow: 0 2px 10px rgba(0, 145, 255, 0.2);
+        }
+
+        /* --- Typing Indicator --- */
+        .maluti-typing {
+            align-self: flex-start;
+            background: white;
+            padding: 12px 16px;
+            border-radius: 12px;
+            border-bottom-left-radius: 2px;
+            display: none;
+            align-items: center;
+            gap: 5px;
+            width: fit-content;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            background-color: #bbb;
+            border-radius: 50%;
+            animation: bounce 1.4s infinite ease-in-out both;
+        }
+
+        .dot:nth-child(1) { animation-delay: -0.32s; }
+        .dot:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes bounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+
+        /* --- Footer --- */
+        .maluti-chat-footer {
+            padding: 10px 15px;
+            padding-bottom: calc(10px + env(safe-area-inset-bottom)); 
+            background: white;
+            display: flex;
+            gap: 10px;
+            border-top: 1px solid #eee;
+            flex-shrink: 0; 
+        }
+
+        .maluti-chat-input {
+            flex: 1;
+            border: 2px solid #e0e0e0;
+            padding: 12px;
+            border-radius: 25px;
+            outline: none;
+            font-size: 14px;
+            font-family: inherit;
+        }
+
+        .maluti-chat-input:focus { border-color: var(--bot-blue); }
+
+        .maluti-chat-send {
+            background: var(--bot-navy);
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+            flex-shrink: 0;
+        }
+        
+        .maluti-chat-send:active { transform: scale(0.95); }
+
+        /* --- MOBILE RESPONSIVENESS --- */
+        @media screen and (max-width: 480px) {
+            .maluti-chat-window {
+                width: 100% !important;
+                height: 100dvh !important; 
+                max-height: 100dvh !important;
+                top: 0 !important;
+                bottom: 0 !important;
+                right: 0 !important;
+                left: 0 !important;
+                border-radius: 0 !important;
+                box-shadow: none;
+                border: none;
+            }
+
+            .maluti-chat-header {
+                padding-top: calc(15px + env(safe-area-inset-top)); 
+            }
+
+            .maluti-chat-trigger {
+                bottom: 20px;
+                right: 20px;
+                z-index: 9999; 
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="maluti-chat-trigger" id="chatTrigger" onclick="toggleChat()">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="10" rx="2"></rect>
+            <circle cx="12" cy="5" r="2"></circle>
+            <path d="M12 7v4"></path>
+            <line x1="8" y1="16" x2="8" y2="16"></line>
+            <line x1="16" y1="16" x2="16" y2="16"></line>
+        </svg> 
+    </div>
+
+    <div class="maluti-chat-window" id="malutiChatWindow">
+        
+        <div class="maluti-chat-header">
+            <div class="maluti-header-info">
+                <h4>Maluti TVET AI Assistant</h4>
+                <span id="realTimeClock">Loading...</span>
+            </div>
+            <button class="maluti-close-btn" onclick="toggleChat()" title="Close Chat">
+                &times;
+            </button>
+        </div>
+        
+        <div class="maluti-bot-disclaimer">
+            Automated responses may not always be accurate. Please verify critical info with the campus.
+        </div>
+
+        <div class="maluti-chat-body" id="chatBody">
+            <div class="maluti-chat-msg bot">
+                Welcome to the Maluti TVET College digital assistant. How can I help you with Admissions, Courses, or Financial Aid today?
+            </div>
+            
+            <div id="typingIndicator" class="maluti-typing">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+
+        <div class="maluti-chat-footer">
+            <input type="text" id="userInput" class="maluti-chat-input" placeholder="Ask me anything..." onkeypress="handleKeyPress(event)">
+            <button class="maluti-chat-send" onclick="sendMessage()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // --- 1. UPDATED Smarter Knowledge Base (Intent Matching System) ---
+        const knowledgeBase = [
+            {
+                keywords: ["admission", "admissions", "apply", "register", "enroll", "closing date", "open", "application"],
+                response: "Admissions for 2026 are open via our online portal. You'll need a certified copy of your ID, your latest academic results, and proof of residence to apply."
+            },
+            {
+                keywords: ["it", "computer", "system", "networking", "information technology", "coding", "software"],
+                response: "The IT NCV programme (offered at Lere La Tshepe Campus) covers Systems Development & Networking from Level 2 through Level 4."
+            },
+            {
+                keywords: ["business", "management", "accounting", "entrepreneurship", "hr", "human resource"],
+                response: "Business Studies (NATED N4-N6) covers Accounting, Entrepreneurship, and Management. A National Diploma is awarded after 18 months of theory and 18 months of practical experience."
+            },
+            {
+                keywords: ["hospitality", "cookery", "cooking", "chef", "tourism", "food", "kitchen"],
+                response: "Hospitality Management includes courses in Professional Cookery and Nutrition. Practical training in our industrial kitchens is mandatory."
+            },
+            {
+                keywords: ["nsfas", "bursary", "funding", "money", "pay", "allowance", "financial aid", "fees"],
+                response: "NSFAS funding is available for South African citizens who meet the financial income criteria. You can apply directly via the NSFAS student portal."
+            },
+            {
+                keywords: ["requirement", "qualify", "grade", "pass", "marks", "matric", "results"],
+                response: "To qualify: NCV Level 2 requires a minimum of Grade 9. NATED N4 requires a Grade 12 (NSC) certificate."
+            },
+            {
+                keywords: ["location", "where", "campus", "address", "find", "situated", "campuses"],
+                response: "Our campuses include Lere La Tshepe, Kwetlisong, and Bonamelo. Please verify which campus offers your desired faculty before applying."
+            },
+            {
+                keywords: ["contact", "number", "phone", "email", "call", "reach", "help desk"],
+                response: "You can reach the Central Office at +27 58 713 6100. For specific inquiries, visit the administration block at your relevant campus."
+            },
+            {
+                keywords: ["hello", "hi", "hey", "greetings", "good morning", "good afternoon", "morning"],
+                response: "Hello there! I am the Maluti TVET AI Assistant. What can I help you with today?"
+            },
+            {
+                keywords: ["thank", "thanks", "appreciate", "helpful", "goodbye", "bye"],
+                response: "You're very welcome! Feel free to ask if you need anything else. Good luck with your studies!"
+            }
+        ];
+
+        // --- 2. Toggle Function ---
+        const chatWindow = document.getElementById('malutiChatWindow');
+
+        function toggleChat() {
+            chatWindow.classList.toggle('maluti-chat-active');
+            const isOpen = chatWindow.classList.contains('maluti-chat-active');
+            
+            if (window.innerWidth <= 480) {
+                if (isOpen) {
+                    document.body.style.overflow = 'hidden';
+                    document.body.style.position = 'fixed';
+                    document.body.style.width = '100%';
+                } else {
+                    document.body.style.overflow = '';
+                    document.body.style.position = '';
+                    document.body.style.width = '';
+                }
+            }
+        }
+
+        // --- 3. Real-Time Clock ---
+        function updateTime() {
+            const clockElement = document.getElementById('realTimeClock');
+            const now = new Date();
+            const options = { weekday: 'short', day: 'numeric', month: 'short' };
+            const dateStr = now.toLocaleDateString('en-ZA', options);
+            const timeStr = now.toLocaleTimeString('en-ZA', { hour: '2-digit', minute: '2-digit' });
+            
+            clockElement.innerText = `${dateStr} | ${timeStr}`;
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        // --- 4. Messaging Logic ---
+        function handleKeyPress(e) {
+            if (e.key === 'Enter') sendMessage();
+        }
+
+        // UPDATED: Function to determine the best response based on keyword matching
+        function generateBotResponse(userInput) {
+            let lowerInput = userInput.toLowerCase();
+            let bestMatch = null;
+            let highestScore = 0;
+
+            for (let intent of knowledgeBase) {
+                let currentScore = 0;
+                
+                for (let keyword of intent.keywords) {
+                    // Check if the user's input contains any of the keywords
+                    if (lowerInput.includes(keyword)) {
+                        currentScore++;
+                    }
+                }
+
+                // If this intent scored higher than previous ones, save it as the best match
+                if (currentScore > highestScore) {
+                    highestScore = currentScore;
+                    bestMatch = intent.response;
+                }
+            }
+
+            // Return the best match if a keyword was found, otherwise return a default fallback
+            if (highestScore > 0) {
+                return bestMatch;
+            } else {
+                return "I'm not exactly sure about that. Try asking about specific topics like 'Admissions', 'Courses', 'NSFAS funding', or 'Requirements'.";
+            }
+        }
+
+        function sendMessage() {
+            const inputField = document.getElementById('userInput');
+            const chatBody = document.getElementById('chatBody');
+            const typingIndicator = document.getElementById('typingIndicator');
+            const userText = inputField.value.trim();
+
+            if (userText === "") return;
+
+            // 1. Add User Message
+            const userDiv = document.createElement('div');
+            userDiv.className = 'maluti-chat-msg user';
+            userDiv.innerText = userText;
+            chatBody.insertBefore(userDiv, typingIndicator);
+
+            inputField.value = "";
+            
+            // Force scroll to bottom
+            setTimeout(() => {
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }, 10);
+
+            // 2. Show Loading Animation
+            typingIndicator.style.display = "flex";
+            chatBody.scrollTop = chatBody.scrollHeight;
+
+            // 3. Simulate Bot Response
+            setTimeout(() => {
+                typingIndicator.style.display = "none";
+                
+                const botDiv = document.createElement('div');
+                botDiv.className = 'maluti-chat-msg bot';
+                
+                // Get the smart response
+                botDiv.innerText = generateBotResponse(userText);
+                
+                chatBody.insertBefore(botDiv, typingIndicator);
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }, 1200); // Slightly faster response time for a snappier feel
+        }
+    </script>
+</body>
+</html>
+
