@@ -1,66 +1,3 @@
-<!-- HYPERION-HEADER START -->
-<style>
-    /* ── Alvarado Font ───────────────────────────────────── */
-        @font-face {
-            font-family: 'Alvarado';
-            font-weight: 300;
-            src: url('fonts/Alvarado-Light.otf') format('opentype'),
-                 url('fonts/Alvarado-Light.woff') format('woff');
-        }
-        @font-face {
-            font-family: 'Alvarado';
-            font-weight: 400;
-            src: url('fonts/Alvarado-Regular.otf') format('opentype'),
-                 url('fonts/Alvarado-Regular.woff') format('woff');
-        }
-        @font-face {
-            font-family: 'Alvarado';
-            font-weight: 500;
-            src: url('fonts/Alvarado-Medium.otf') format('opentype'),
-                 url('fonts/Alvarado-Medium.woff') format('woff');
-        }
-        @font-face {
-            font-family: 'Alvarado';
-            font-weight: 600;
-            src: url('fonts/Alvarado-Bold.otf') format('opentype'),
-                 url('fonts/Alvarado-Bold.woff') format('woff');
-        }
-
-    * {
-        font-family: 'Alvarado', sans-serif;
-        line-height: 1.2;
-    }
-</style>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -525,7 +462,7 @@
                                             <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Innovations</span></a></li>
                                             <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Events</span></a></li>
                                             <li><a href="careers.html"><span class="hyperion-mega-menu-link-title">Job Opportunities</span></a></li>
-                                            <li><a href="merchandise.html"><span class="hyperion-mega-menu-link-title">Maluti Merchandise</span></a></li>
+                                            <li><a href="partners.html"><span class="hyperion-mega-menu-link-title">Maluti Merchandise</span></a></li>
                                             <li><a href="licenses-and-registrations.html"><span class="hyperion-mega-menu-link-title">Executive Leadership</span></a></li>
                                         </ul>
                                     </div>
@@ -755,1601 +692,500 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hero Section</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-</head>
-<body style="margin:0;padding:0;">
+    <title>Maluti TVET College | Official Merchandise</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<style>
-    .it-hero-wrapper {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Inter', sans-serif;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        min-height: 700px;
-        width: 100%;
-        background: linear-gradient(to right, rgba(0,0,0,0.8) 20%, rgba(0,0,0,0.1) 100%), 
-                    url('https://images.unsplash.com/photo-1525921429624-479b6a26d84d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-        background-size: cover;
-        background-position: center;
-        color: #ffffff;
-        padding-left: 10%;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .it-hero-content {
-        max-width: 700px;
-        z-index: 2;
-    }
-
-    .it-hero-headline {
-        font-size: 3.5rem;
-        line-height: 1.1;
-        font-weight: 400;
-        margin-bottom: 1.8rem;
-        letter-spacing: -0.03em;
-    }
-
-    .it-hero-buttons {
-        display: flex;
-        gap: 12px;
-        flex-wrap: wrap;
-    }
-
-    .it-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 0.7rem 1.5rem;
-        border-radius: 60px;
-        font-family: 'Alvarado', sans-serif;
-        font-size: 1rem;
-        font-weight: 400;
-        cursor: pointer;
-        text-decoration: none;
-        transition: all 0.2s ease;
-        white-space: nowrap;
-        border: none;
-    }
-
-    /* Primary — Enroll Now */
-    .it-btn-primary {
-        background: #ffffff;
-        color: #000000; 
-    }
-    .it-btn-primary:hover {
-        background: #e8e8e8;
-    }
-
-    /* Secondary — Download Prospectus */
-    .it-btn-secondary {
-        background: transparent;
-        color: #ffffff; font-weight: 400;
-        border: 1px solid rgb(255, 255, 255);
-    }
-    .it-btn-secondary:hover {
-        background: rgba(255,255,255,0.1);
-        border-color: #ffffff;
-    }
-
-    .it-btn svg {
-        flex-shrink: 0;
-    }
-
-    .it-hero-footer-note {
-        font-size: 1rem;
-        font-weight: 500;
-        color: #ffffff;
-        margin-top: 1.4rem;
-    }
-
-    @media (max-width: 768px) {
-        .it-hero-headline { font-size: 2.5rem; }
-        .it-hero-wrapper { padding-left: 5%; padding-right: 5%; }
-        .it-hero-buttons { flex-direction: column; align-items: flex-start; }
-    }
-</style>
-
-<section class="it-hero-wrapper">
-    <div class="it-hero-content">
-
-        <h1 class="it-hero-headline">
-            Innovate your future.<br>
-            Build it when you're right.
-        </h1>
-
-        <div class="it-hero-buttons">
-
-            <!-- ENROLL NOW -->
-            <a href="enroll.html" class="it-btn it-btn-primary">
-                Enroll Now
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <path d="M3 7H11M11 7L7.5 3.5M11 7L7.5 10.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </a>
-
-            <!-- DOWNLOAD PROSPECTUS — replace href with your document path -->
-            <a href="maluti-prospectus-2027.pdf" download class="it-btn it-btn-secondary">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <path d="M7 2V9M7 9L4.5 6.5M7 9L9.5 6.5M2.5 11.5H11.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                Download 2027 Prospectus
-            </a>
-
-        </div>
-
-        <p class="it-hero-footer-note">Applications open for the 2027 academic year.</p>
-
-    </div>
-</section>
-
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<style>
-    .info-section {
-        background-color: #E9E9F5; /* The pale lavender from your image */
-        padding: 90px 20px;
-        text-align: center;
-        width: 100%;
-        box-sizing: border-box;
-    }
-
-    .info-text {
-        /* Using a Serif font stack for that academic look */
-        font-family: 'Alvarado', Times, serif;
-        color: #000051; /* Deep navy blue */
-        font-size: 2rem;
-        line-height: 1.4;
-        max-width: 600px;
-        margin: 0 auto;
-        font-weight: 400;
-    }
-
-    /* Responsive adjustment for mobile */
-    @media (max-width: 600px) {
-        .info-text {
-            font-size: 1.3rem;
-        }
-    }
-</style>
-
-<div class="info-section">
-    <p class="info-text">
-        Maluti TVET College, your gateway to a successful career through industry-aligned vocational education and hands-on training.
-    </p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <style>
-        :root {
-            --bot-navy: #000c2d;
-            --bot-blue: #0077cc;
-            --bot-radius: 12px;
+        /* ── Custom Font ───────────────────────────────────── */
+        @font-face {
+            font-family: 'Alvarado';
+            font-weight: 300;
+            src: url('fonts/Alvarado-Light.otf') format('opentype'),
+                 url('fonts/Alvarado-Light.woff') format('woff');
+        }
+        @font-face {
+            font-family: 'Alvarado';
+            font-weight: 400;
+            src: url('fonts/Alvarado-Regular.otf') format('opentype'),
+                 url('fonts/Alvarado-Regular.woff') format('woff');
+        }
+        @font-face {
+            font-family: 'Alvarado';
+            font-weight: 500;
+            src: url('fonts/Alvarado-Medium.otf') format('opentype'),
+                 url('fonts/Alvarado-Medium.woff') format('woff');
+        }
+        @font-face {
+            font-family: 'Alvarado';
+            font-weight: 600;
+            src: url('fonts/Alvarado-Bold.otf') format('opentype'),
+                 url('fonts/Alvarado-Bold.woff') format('woff');
         }
 
-        * { box-sizing: border-box; }
-
-        body {
+        /* ── Global Resets ───────────────────────────────────── */
+        * {
             margin: 0;
             padding: 0;
-            font-family: 'Alvarado', sans-serif;
-        }
-
-        /* ── SCROLLBAR ── */
-        .maluti-chat-body::-webkit-scrollbar { width: 6px; }
-        .maluti-chat-body::-webkit-scrollbar-track { background: #f1f1f1; }
-        .maluti-chat-body::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }
-        .maluti-chat-body::-webkit-scrollbar-thumb:hover { background: var(--bot-blue); }
-
-        /* ── TRIGGER PILL ── */
-        .maluti-chat-trigger {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            padding: 6px 16px 6px 6px;
-            background-color: white;
-            border-radius: 50px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: #020035;
-            box-shadow: 0 10px 25px rgba(8, 0, 97, 0.3);
-            cursor: pointer;
-            z-index: 997;
-            transition: transform 0.2s ease;
-        }
-        .maluti-chat-trigger:hover { transform: scale(1.05); }
-
-        /* HIDE TRIGGER WHEN CHAT IS OPEN */
-        body.maluti-chat-open .maluti-chat-trigger {
-            display: none !important;
-        }
-
-        .maluti-trigger-img {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid var(--bot-blue);
-        }
-
-        .maluti-trigger-text {
-            font-size: 13px;
-            font-weight: 400;
-            max-width: 150px;
+            box-sizing: border-box;
+            font-family: 'Alvarado', 'Inter', sans-serif;
             line-height: 1.2;
         }
 
-        /* ── CHAT WINDOW — DESKTOP DEFAULT ── */
-        .maluti-chat-window {
-            position: fixed;
-            bottom: 100px;
-            right: 30px;
-            width: 380px;
-            height: 600px;
-            max-height: 80vh;
-            background: #ffffff;
-            border-radius: var(--bot-radius);
-            display: none;
-            flex-direction: column;
-            overflow: hidden;
-            z-index: 10000;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        body {
+            background-color: #f5f5f5;
+            -webkit-font-smoothing: antialiased;
         }
 
-        .maluti-chat-active { display: flex !important; animation: slideUp 0.3s ease forwards; }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* ── HEADER ── */
-        .maluti-chat-header {
-            background-color: var(--bot-navy);
-            padding: 15px 20px;
-            color: white;
+        /* ── Hero Product Section (Hoodie) ───────────────────── */
+        .nf-prod-unique-wrapper {
+            background-color: #0a0a3c; 
+            color: #ffffff;
+            padding: 130px 20px;
             display: flex;
-            align-items: center;
-            gap: 12px;
-            flex-shrink: 0;
-        }
-
-        .maluti-header-avatar {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid var(--bot-blue);
-            flex-shrink: 0;
-        }
-
-        .maluti-header-info { flex: 1; }
-        .maluti-header-info h4 { margin: 0; font-size: 14px; font-weight: 700; }
-        .maluti-header-info span { font-size: 11px; opacity: 0.75; display: block; margin-top: 3px; }
-
-        .maluti-close-btn {
-            background: rgba(255,255,255,0.12);
-            border: none;
-            color: white;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            font-size: 20px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
             justify-content: center;
-            flex-shrink: 0;
-            line-height: 1;
-            transition: background 0.2s;
-        }
-        .maluti-close-btn:hover { background: rgba(255,255,255,0.25); }
-
-        /* ── DISCLAIMER / CHIPS / BODY / FOOTER Styles remain identical to original... */
-        .maluti-bot-disclaimer {
-            background: #fff3cd;
-            color: #856404;
-            font-size: 11px;
-            padding: 7px 15px;
-            text-align: center;
-            border-bottom: 1px solid #ffeeba;
-            flex-shrink: 0;
-        }
-
-        .maluti-quick-chips {
-            display: flex;
-            gap: 8px;
-            padding: 10px 15px 6px;
-            overflow-x: auto;
-            flex-shrink: 0;
-            background: #f4f7f9;
-            scrollbar-width: none;
-        }
-        .maluti-quick-chips::-webkit-scrollbar { display: none; }
-        .chip {
-            white-space: nowrap;
-            background: white;
-            border: 1.5px solid var(--bot-blue);
-            color: var(--bot-blue);
-            border-radius: 20px;
-            padding: 5px 13px;
-            font-size: 12px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
-            flex-shrink: 0;
-        }
-        .chip:hover, .chip:active { background: var(--bot-blue); color: white; }
-
-        .maluti-chat-body {
-            flex: 1;
-            padding: 15px;
-            background-color: #f4f7f9;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            -webkit-overflow-scrolling: touch;
-            overscroll-behavior: contain;
-        }
-
-        .maluti-chat-msg {
-            max-width: 85%;
-            padding: 12px 16px;
-            border-radius: 16px;
-            font-size: 14px;
-            line-height: 1.6;
-        }
-        .maluti-chat-msg.bot {
-            background: white;
-            color: var(--bot-navy);
-            align-self: flex-start;
-            border-bottom-left-radius: 3px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-        }
-        .maluti-chat-msg.user {
-            background: var(--bot-blue);
-            color: white;
-            align-self: flex-end;
-            border-bottom-right-radius: 3px;
-        }
-
-        .msg-time { font-size: 10px; opacity: 0.5; margin-top: 4px; display: block; text-align: right; }
-        .maluti-chat-msg.bot .msg-time { text-align: left; }
-
-        .maluti-chat-footer {
-            padding: 10px 15px;
-            background: white;
-            display: flex;
-            gap: 10px;
-            border-top: 1px solid #eee;
-            flex-shrink: 0;
             align-items: center;
-        }
-        .maluti-chat-input {
-            flex: 1;
-            border: 2px solid #e0e0e0;
-            padding: 11px 16px;
-            border-radius: 25px;
-            outline: none;
-            font-size: 14px;
-            transition: border-color 0.2s;
-        }
-        .maluti-chat-input:focus { border-color: var(--bot-blue); }
-        .maluti-chat-send {
-            background: var(--bot-navy);
-            color: white;
-            border: none;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            transition: background 0.2s;
-        }
-
-        .maluti-typing {
-            display: none;
-            align-items: center;
-            gap: 5px;
-            padding: 12px 16px;
-            background: white;
-            border-radius: 16px;
-            border-bottom-left-radius: 3px;
-            width: fit-content;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-        }
-        .dot { width: 7px; height: 7px; background: #bbb; border-radius: 50%; animation: bounce 1.4s infinite; }
-        @keyframes bounce { 0%,80%,100%{transform:scale(0.3);opacity:0.4;} 40%{transform:scale(1);opacity:1;} }
-        .date-badge { text-align: center; font-size: 11px; color: #999; margin: 4px 0; }
-        .date-badge span { background: #e8edf2; padding: 3px 10px; border-radius: 10px; }
-
-        /* ════════════════════════════════════════════
-           MOBILE OVERRIDES
-           ════════════════════════════════════════════ */
-        @media screen and (max-width: 480px) {
-            .maluti-chat-window.maluti-chat-active {
-                display: flex !important;
-                width: 100% !important;
-                height: 100% !important;
-                height: 100dvh !important;
-                max-height: 100% !important;
-                bottom: 0 !important;
-                right: 0 !important;
-                left: 0 !important;
-                top: 0 !important;
-                border-radius: 0 !important;
-                animation: none !important;
-            }
-
-            .maluti-chat-header { padding-top: calc(15px + env(safe-area-inset-top)); }
-            .maluti-chat-footer { padding-bottom: calc(10px + env(safe-area-inset-bottom)); }
-
-            /* Close button is now visible on mobile */
-            .maluti-close-btn { display: flex !important; }
-        }
-    </style>
-</head>
-<body id="malutiBody">
-
-    <div class="maluti-chat-trigger" id="chatTrigger" onclick="toggleChat()">
-        <img src="https://images.pexels.com/photos/8566472/pexels-photo-8566472.jpeg" alt="Assistant" class="maluti-trigger-img">
-        <span class="maluti-trigger-text">Talk to Maluti digital assistant for quick help</span>
-    </div>
-
-    <div class="maluti-chat-window" id="malutiChatWindow">
-        <div class="maluti-chat-header">
-            <img src="https://images.pexels.com/photos/8566472/pexels-photo-8566472.jpeg" alt="Assistant" class="maluti-header-avatar">
-            <div class="maluti-header-info">
-                <h4>Maluti TVET Assistant</h4>
-                <span><span id="realTimeClock">Loading...</span></span>
-            </div>
-            <button class="maluti-close-btn" onclick="toggleChat()" title="Close">&times;</button>
-        </div>
-
-        <div class="maluti-bot-disclaimer">Responses are automated. Always verify important details directly with the campus.</div>
-
-        <div class="maluti-quick-chips">
-            <div class="chip" onclick="chipSend('Admissions & Applications')">Admissions</div>
-            <div class="chip" onclick="chipSend('NSFAS Funding')">NSFAS</div>
-            <div class="chip" onclick="chipSend('IT & Computer Courses')">IT Courses</div>
-            <div class="chip" onclick="chipSend('Business Studies')">Business</div>
-            <div class="chip" onclick="chipSend('Campus Locations')">Campuses</div>
-            <div class="chip" onclick="chipSend('Engineering Courses')">Engineering</div>
-            <div class="chip" onclick="chipSend('Contact Details')">Contact</div>
-            <div class="chip" onclick="chipSend('Academic Calendar')">Calendar</div>
-            <div class="chip" onclick="chipSend('Entry Requirements')">Requirements</div>
-        </div>
-
-        <div class="maluti-chat-body" id="chatBody">
-            <div class="date-badge"><span id="todayBadge"></span></div>
-            <div class="maluti-chat-msg bot">
-                <b>Welcome to Maluti TVET College!</b>
-                I'm your digital assistant. I can help you with admissions, courses, NSFAS funding, campus info, and more.<br><br>
-                Tap a topic above or type your question below to get started.
-                <span class="msg-time" id="welcomeTime"></span>
-            </div>
-            <div id="typingIndicator" class="maluti-typing">
-                <div class="dot"></div><div class="dot"></div><div class="dot"></div>
-            </div>
-        </div>
-
-        <div class="maluti-chat-footer">
-            <input type="text" id="userInput" class="maluti-chat-input" placeholder="Ask me anything..." onkeypress="if(event.key==='Enter') sendMessage()">
-            <button class="maluti-chat-send" onclick="sendMessage()">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="22" y1="2" x2="11" y2="13"></line>
-                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                </svg>
-            </button>
-        </div>
-    </div>
-
-    <script>
-        /* ALL ORIGINAL KNOWLEDGEBASE DATA RESTORED */
-        const knowledgeBase = [
-            {
-                keywords: ["admission", "apply", "register", "enroll", "enrolment", "closing", "application", "portal", "open", "how to apply", "documents", "requirements", "2025", "2026"],
-                response: `<b>Admissions at Maluti TVET College</b>\nAdmissions for the 2026 academic year are currently open through our online application portal.\n\n<b>Documents you will need:</b>\n<ul>\n<li>Certified copy of your South African ID</li>\n<li>Certified copy of your latest school results (Grade 9, 11, or Matric depending on the programme)</li>\n<li>Proof of residential address (not older than 3 months)</li>\n<li>Your NSFAS application reference number (if applying for funding)</li>\n</ul>\n\n<b>How to apply:</b>\nVisit the Maluti TVET College website and go to the Admissions portal to apply online. You can also walk into any campus and apply in person at the Student Services office during office hours (Mon–Fri, 08:00–16:00).\n\n<b>Tip:</b> Apply early — spaces in popular programmes like IT and Business fill up quickly. Make sure all your documents are certified before submitting.`
-            },
-            {
-                keywords: ["it", "computer", "system", "networking", "information technology", "coding", "software", "ncv", "systems development", "network", "hardware", "programming", "it courses"],
-                response: `<b>IT & Computing Programmes</b>\nMaluti TVET College offers the IT NCV (National Certificate Vocational) programme, primarily at Lere La Tshepe Campus.\n\n<b>What you will study:</b>\n<ul>\n<li>Systems Development — coding, databases, and application design</li>\n<li>Network Infrastructure — routers, servers, LAN and WAN networking</li>\n<li>IT Systems — hardware, operating systems, and troubleshooting</li>\n<li>End User Computing — practical computer skills</li>\n</ul>\n\n<b>Levels offered:</b> NCV Level 2, 3, and 4 (equivalent to Grade 10, 11, and 12).\n\n<b>Entry requirement:</b> A Grade 9 pass is sufficient to start at Level 2.\n\n<b>Duration:</b> Each level takes one year — completing all three levels takes 3 years in total.\n\n<b>Career paths after graduating:</b> Software Developer, Network Administrator, IT Support Technician, Database Administrator, or Systems Analyst.`
-            },
-            {
-                keywords: ["business", "management", "accounting", "entrepreneurship", "hr", "human resource", "nated", "n4", "n5", "n6", "diploma", "office", "management assistant", "business studies"],
-                response: `<b>Business Studies — NATED Programmes</b>\nThe Business Studies NATED programme runs from N4 to N6 and leads to a nationally recognised National Diploma.\n\n<b>Subjects available include:</b>\n<ul>\n<li>Financial Accounting and Management Accounting</li>\n<li>Entrepreneurship and Business Management</li>\n<li>Human Resource Management</li>\n<li>Marketing Management</li>\n<li>Management Assistant (Office Administration)</li>\n</ul>\n\n<b>How the qualification works:</b>\n<ul>\n<li>N4 to N6: 18 months of theory and coursework at the college</li>\n<li>Followed by 18 months of approved workplace experience (internship or employment)</li>\n<li>Completing both phases earns you a full National Diploma</li>\n</ul>\n\n<b>Entry requirement:</b> Matric / Grade 12 certificate.\n\n<b>Career paths:</b> Accountant, HR Officer, Office Manager, Entrepreneur, Marketing Officer, or Financial Analyst.`
-            },
-            {
-                keywords: ["engineering", "electrical", "civil", "mechanical", "fitting", "turning", "plumbing", "boilermaking", "welding", "motor", "automotive", "ncv engineering", "engineering courses"],
-                response: `<b>Engineering & Technical Programmes</b>\nMaluti TVET College offers both NCV and NATED (N1 to N6) engineering programmes for students interested in technical trades.\n\n<b>Popular engineering fields offered:</b>\n<ul>\n<li>Electrical Infrastructure Construction</li>\n<li>Civil and Construction Engineering</li>\n<li>Mechanical Engineering — Fitting and Turning, Boilermaking</li>\n<li>Automotive Repair and Maintenance</li>\n<li>Plumbing and Pipefitting</li>\n</ul>\n\n<b>NATED Engineering (N1–N6):</b> Theory-based programme that leads to a National Diploma after completing N6 plus 18 months of verified work experience.\n\n<b>NCV Engineering (Level 2–4):</b> Combines practical skills and theory, takes 3 years to complete all three levels.\n\n<b>Entry requirements:</b>\n<ul>\n<li>Grade 9 pass for NCV Level 2</li>\n<li>Matric or N3 equivalent for NATED programmes</li>\n</ul>\n\n<b>Note:</b> Specific trades may only be available at certain campuses. Contact the admissions office to confirm current availability.`
-            },
-            {
-                keywords: ["nsfas", "bursary", "funding", "financial aid", "fees", "money", "pay", "allowance", "afford", "cost", "free", "poor", "scholarship", "grant", "sassa", "nsfas funding"],
-                response: `<b>NSFAS Financial Aid</b>\nNSFAS (National Student Financial Aid Scheme) is a government bursary that covers your studies so you can focus on learning, not fees.\n\n<b>Who qualifies?</b>\n<ul>\n<li>South African citizens only</li>\n<li>Combined household income of R350,000 or less per year</li>\n<li>SASSA grant recipients qualify automatically</li>\n</ul>\n\n<b>What NSFAS covers for TVET students:</b>\n<ul>\n<li>Full tuition fees — paid directly to the college</li>\n<li>Accommodation allowance (if you live away from home)</li>\n<li>Transport allowance</li>\n<li>Meals allowance</li>\n<li>Learning material allowance (books and stationery)</li>\n</ul>\n\n<b>How to apply for NSFAS:</b>\n<ul>\n<li>Go to www.nsfas.org.za and click "Apply"</li>\n<li>Create a myNSFAS student account</li>\n<li>Fill in the online form with your ID and household income details</li>\n<li>Submit supporting documents as requested</li>\n</ul>\n\n<b>Important:</b> Apply for NSFAS at the same time as your college application. Late applications may not be processed. You must be registered or accepted at a TVET college to complete the process.`
-            },
-            {
-                keywords: ["location", "where", "campus", "address", "find", "situated", "campuses", "kwetlisong", "lere", "bonamelo", "directions", "map", "which campus", "head office", "campus locations"],
-                response: `<b>Maluti TVET College Campuses</b>\nMaluti TVET College operates multiple campuses across the Free State and Lesotho border region, each offering different programmes.\n\n<b>Main campuses include:</b>\n<ul>\n<li><b>Lere La Tshepe Campus</b> — IT, Business, and various NCV programmes</li>\n<li><b>Kwetlisong Campus</b> — Engineering and technical programmes</li>\n<li><b>Bonamelo Campus</b> — Mixed programmes including Business and Engineering</li>\n</ul>\n\n<b>Before you visit:</b> Contact the college first to confirm which campus runs your specific programme. Not all courses are available at every campus.\n\n<b>Getting there:</b> Search "Maluti TVET College [Campus Name]" on Google Maps for directions from your location.\n\n<b>Office hours:</b> Monday to Friday, 08:00 to 16:00. Arrive early to avoid long queues during registration periods.`
-            },
-            {
-                keywords: ["contact", "phone", "email", "call", "reach", "number", "helpdesk", "office", "enquiry", "enquire", "website", "contact details"],
-                response: `<b>Contact Maluti TVET College</b>\n\n<b>General enquiries:</b>\n<ul>\n<li>Official website: <b>www.malutitvet.edu.za</b></li>\n<li>Call the main switchboard at any campus (Mon–Fri, 08:00–16:00)</li>\n<li>Walk into the Student Services office at your nearest campus</li>\n</ul>\n\n<b>Who to contact for specific queries:</b>\n<ul>\n<li><b>Admissions Office</b> — application status, registration, and enrolment</li>\n<li><b>Financial Aid Office</b> — NSFAS, bursaries, and fee payment queries</li>\n<li><b>Academic Department</b> — subject choices, timetables, and academic records</li>\n<li><b>Student Support Services</b> — counselling, disability support, and welfare</li>\n</ul>\n\n<b>Tip:</b> Always have your student number or ID number ready when calling or visiting. This speeds up the process significantly.`
-            },
-            {
-                keywords: ["calendar", "date", "term", "holiday", "semester", "timetable", "exam", "exams", "when", "start", "begin", "reopen", "close", "schedule", "academic calendar"],
-                response: `<b>Academic Calendar</b>\nThe South African TVET academic year is divided into four terms and two semesters.\n\n<b>General term structure:</b>\n<ul>\n<li>Term 1 — Late January to late March</li>\n<li>Term 2 — April to late June (mid-year exams in June)</li>\n<li>Term 3 — July to late September</li>\n<li>Term 4 — October to November (final exams in November)</li>\n</ul>\n\n<b>Registration windows:</b>\n<ul>\n<li>Semester 1 registration — typically opens in January</li>\n<li>Semester 2 registration — typically opens in July</li>\n</ul>\n\n<b>Exams:</b> NATED exams are set nationally by DHET (Department of Higher Education and Training). Exam dates are published on the DHET website.\n\n<b>Important:</b> Exact dates change every year. Always confirm the current year's calendar with the campus or download it from the official website.`
-            },
-            {
-                keywords: ["matric", "grade 12", "certificate", "qualify", "requirements", "minimum", "entry", "grade 9", "school", "entry requirements"],
-                response: `<b>Entry Requirements</b>\n\n<b>NCV Programmes (Levels 2 to 4):</b>\n<ul>\n<li>Minimum: Grade 9 pass to enter at Level 2</li>\n<li>Grade 11 pass may allow direct entry into Level 3</li>\n<li>NCV Level 2–4 is equivalent to completing Grade 10–12</li>\n</ul>\n\n<b>NATED Programmes (N4 to N6):</b>\n<ul>\n<li>Minimum: Matric (Grade 12) certificate</li>\n<li>Some engineering NATED programmes may accept N3 as an alternative to Matric</li>\n</ul>\n\n<b>Skills and Short Courses:</b>\n<ul>\n<li>Entry requirements vary — some have no formal academic requirement</li>\n</ul>\n\n<b>Encouragement:</b> Even if you did not pass Matric, the NCV pathway gives you a second chance to earn a recognised national qualification. Many successful professionals started through the TVET route — do not give up on your future.`
-            },
-            {
-                keywords: ["healthcare", "nursing", "educare", "early childhood", "hospitality", "tourism", "hair", "beauty", "cosmetology", "catering"],
-                response: `<b>Health, Community & Lifestyle Programmes</b>\nBeyond IT, Business, and Engineering, Maluti TVET also offers programmes in community services and lifestyle fields.\n\n<b>Programme areas that may be available:</b>\n<ul>\n<li>Early Childhood Development (ECD) and Educare</li>\n<li>Hospitality and Professional Cookery (Catering)</li>\n<li>Tourism</li>\n<li>Beauty Therapy and Cosmetology</li>\n</ul>\n\nThese are offered through NCV or NATED qualifications depending on the field.\n\n<b>Important:</b> Programme availability changes from year to year and varies by campus. Contact the admissions office directly to confirm which programmes are currently active.`
-            }
-        ];
-
-        /* ORIGINAL REPLY LOGIC RESTORED */
-        function getResponse(userInput) {
-            const input = userInput.toLowerCase();
-            const words = input.split(/\s+/);
-            let bestMatch = null;
-            let highestScore = 0;
-
-            knowledgeBase.forEach(item => {
-                let score = 0;
-                item.keywords.forEach(kw => {
-                    if (input === kw) score += 10;
-                    else if (input.includes(kw)) score += (kw.length > 4 ? 5 : 2);
-                    else if (words.some(w => w === kw)) score += 4;
-                });
-                if (score > highestScore) { highestScore = score; bestMatch = item.response; }
-            });
-
-            if (highestScore > 0) return bestMatch;
-
-            if (/^(hi|hello|hey|good morning|good afternoon|howzit|hola|sawubona)/i.test(input)) {
-                return `<b>Hello! Welcome to Maluti TVET College.</b><br><br>I can help you with:<br><ul><li>Admissions and how to apply</li><li>NSFAS financial aid and bursaries</li><li>IT, Business, and Engineering courses</li><li>Campus locations and directions</li><li>Entry requirements</li><li>Academic calendar and exam dates</li><li>Contact details</li></ul>What would you like to know today?`;
-            }
-
-            if (/thank|thanks|thx|dankie|ngiyabonga/i.test(input)) {
-                return `You are welcome! If you have any more questions about Maluti TVET College — courses, applications, funding, or anything else — feel free to ask anytime. Good luck with your studies!`;
-            }
-
-            return `I do not have specific information on that just yet. Try asking about:<br><br><ul><li><b>Admissions</b> — how to apply and documents needed</li><li><b>NSFAS</b> — financial aid, bursaries, and allowances</li><li><b>Courses</b> — IT, Business, Engineering, and more</li><li><b>Campuses</b> — locations and which campus offers what</li><li><b>Entry Requirements</b> — what qualifications you need</li><li><b>Contact</b> — how to reach the college directly</li></ul>Or tap one of the quick-topic buttons at the top!`;
-        }
-
-        /* TOGGLE LOGIC (WITH TRIGGER HIDE) */
-        function toggleChat() {
-            const chatWin = document.getElementById('malutiChatWindow');
-            const body = document.getElementById('malutiBody');
-            
-            chatWin.classList.toggle('maluti-chat-active');
-            
-            if (chatWin.classList.contains('maluti-chat-active')) {
-                body.classList.add('maluti-chat-open');
-            } else {
-                body.classList.remove('maluti-chat-open');
-            }
-        }
-
-        /* ORIGINAL SEND LOGIC */
-        function chipSend(text) {
-            document.getElementById('userInput').value = text;
-            sendMessage();
-        }
-
-        function sendMessage() {
-            const inputField = document.getElementById('userInput');
-            const chatBody = document.getElementById('chatBody');
-            const typingIndicator = document.getElementById('typingIndicator');
-            const userText = inputField.value.trim();
-            if (!userText) return;
-
-            const userDiv = document.createElement('div');
-            userDiv.className = 'maluti-chat-msg user';
-            userDiv.innerHTML = userText + `<span class="msg-time">${getTime()}</span>`;
-            chatBody.insertBefore(userDiv, typingIndicator);
-            inputField.value = "";
-            scrollDown();
-
-            typingIndicator.style.display = "flex";
-            scrollDown();
-
-            setTimeout(() => {
-                typingIndicator.style.display = "none";
-                const botDiv = document.createElement('div');
-                botDiv.className = 'maluti-chat-msg bot';
-                botDiv.innerHTML = getResponse(userText) + `<span class="msg-time">${getTime()}</span>`;
-                chatBody.insertBefore(botDiv, typingIndicator);
-                scrollDown();
-            }, 900 + Math.random() * 600);
-        }
-
-        function scrollDown() {
-            const cb = document.getElementById('chatBody');
-            setTimeout(() => { cb.scrollTop = cb.scrollHeight; }, 50);
-        }
-
-        function getTime() {
-            return new Date().toLocaleTimeString('en-ZA', { hour: '2-digit', minute: '2-digit' });
-        }
-
-        function updateTime() {
-            const now = new Date();
-            document.getElementById('realTimeClock').innerText =
-                now.toLocaleDateString('en-ZA', { weekday: 'short', day: 'numeric', month: 'short' }) +
-                ' · ' + now.toLocaleTimeString('en-ZA', { hour: '2-digit', minute: '2-digit' });
-        }
-
-        setInterval(updateTime, 1000);
-        updateTime();
-        document.getElementById('todayBadge').innerText = new Date().toLocaleDateString('en-ZA', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
-        document.getElementById('welcomeTime').innerText = getTime();
-    </script>
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kentwood Academy Design Recreation</title>
-<style>
-  /* --- Unique Namespace Styling (kw-special-) --- */
-  .kw-special-container * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Alvarado', sans-serif;
-  }
-
-  .kw-special-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 150px 20px;
-    background-color: transparent;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: auto auto;
-    gap: 20px;
-  }
-
-  /* --- General Card Styling --- */
-  .kw-special-card {
-    border-radius: 20px;
-    overflow: hidden;
-    position: relative;
-  }
-
-  .kw-special-dark-bg {
-    background-color: #0a0a3c;
-    color: white;
-  }
-
-  .kw-special-light-bg {
-    background-color: #e9e9f5;
-    color: #0a0a3c;
-  }
-
-  .kw-special-card-content {
-    padding: 40px;
-  }
-
-  /* --- Typography --- */
-  .kw-special-title {
-    font-size: 32px;
-    font-weight: 400;
-    margin-bottom: 20px;
-    line-height: 1.2; font-family: 'Alvarado', serif;
-  }
-
-  .kw-special-text {
-    font-size: 20px;
-    line-height: 1.6;
-    ;
-    margin-bottom: 30px;
-  }
-
-  /* --- Buttons --- */
-  .kw-special-btn {
-    display: inline-block;
-    padding: 12px 30px;
-    background-color: #0a0a3c;
-    color: white;
-    text-decoration: none;
-    border-radius: 30px;
-    font-weight: 400;
-    transition: background-color 0.3s;
-    border: none;
-    cursor: pointer;
-  }
-
-  .kw-special-btn.kw-special-btn-outline {
-    background-color: transparent;
-    border: 2px solid white;
-  }
-
-  .kw-special-btn:hover {
-    background-color: #1a1a5c;
-  }
-  .kw-special-btn.kw-special-btn-outline:hover {
-    background-color: white;
-    color: #0a0a3c;
-  }
-
-  /* --- Grid Cell Specifics --- */
-
-  /* 1. Welcome from Headteacher (Top Left) */
-  .kw-special-welcome-card {
-    grid-column: 1 / 2;
-    grid-row: 1 / 3;
-    position: relative;
-    min-height: 600px;
-  }
-
-  .kw-special-welcome-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 1;
-  }
-
-  .kw-special-welcome-content {
-    position: relative;
-    z-index: 2;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 40px;
-    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 60%);
-    color: white;
-  }
-
-  /* 2. Arrange a Personal Visit (Top Right, Wide) */
-  .kw-special-visit-card {
-    grid-column: 2 / 4;
-    grid-row: 1 / 2;
-  }
-
-  /* 3. Crest (Middle Right, Square) */
-  .kw-special-crest-card {
-    grid-column: 2 / 3;
-    grid-row: 2 / 3;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-  }
-  
-  .kw-special-crest-img {
-      width: 140px;
-      height: auto;
-  }
-
-  /* 4. Admissions (Middle Right, Square) */
-  .kw-special-admissions-card {
-    grid-column: 3 / 4;
-    grid-row: 2 / 3;
-  }
-
-  /* 5. The Ethos and Environment (Bottom Left, Wide) */
-  .kw-special-ethos-card {
-    grid-column: 1 / 3;
-    grid-row: 3 / 4;
-  }
-
-  /* 6. Children Image (Bottom Right, Square) */
-  .kw-special-children-card {
-    grid-column: 3 / 4;
-    grid-row: 3 / 4;
-    position: relative;
-    min-height: 300px;
-  }
-
-  .kw-special-children-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  /* --- Responsive Design for smaller screens --- */
-  @media (max-width: 900px) {
-    .kw-special-container {
-      grid-template-columns: 1fr;
-      grid-template-rows: auto;
-    }
-    .kw-special-welcome-card, .kw-special-visit-card, .kw-special-crest-card, .kw-special-admissions-card, .kw-special-ethos-card, .kw-special-children-card {
-      grid-column: 1 / -1;
-      grid-row: auto;
-    }
-    .kw-special-welcome-card, .kw-special-children-card {
-        min-height: 400px;
-    }
-    .kw-special-crest-card {
-        padding: 40px 0;
-    }
-  }
-</style>
-</head>
-<body>
-
-<div class="kw-special-container">
-
-  <div class="kw-special-card kw-special-welcome-card">
-    <img src="https://images.unsplash.com/photo-1580411363668-4b59002b6962?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Headteacher" class="kw-special-welcome-bg">
-    <div class="kw-special-welcome-content">
-      <h2 class="kw-special-title">Welcome from the Principal</h2>
-      <p class="kw-special-text">At Maluti, our guiding principle is 'Aim High, Be Kind, and Dare to be Different'. This motto, deeply rooted at our core, combined with exceptional teaching sets us apart.</p>
-      <a href="#" class="kw-special-btn" style="width: fit-content;">Read More</a>
-    </div>
-  </div>
-
-  <div class="kw-special-card kw-special-dark-bg kw-special-visit-card">
-    <div class="kw-special-card-content">
-      <h2 class="kw-special-title">Arrange a Personal Visit</h2>
-      <p class="kw-special-text">Experience Maluti TVET College firsthand. Tailored to your child's interests and admission stage, we offer visits year-round, from Nursery to Prep School.</p>
-      <a href="#" class="kw-special-btn kw-special-btn-outline">Arrange a Visit</a>
-    </div>
-  </div>
-
-  <div class="kw-special-card kw-special-dark-bg kw-special-crest-card">
-      <img src="images/logo.png" alt="Kentwood Academy Crest" class="kw-special-crest-img">
-  </div>
-
-  <div class="kw-special-card kw-special-light-bg kw-special-admissions-card">
-    <div class="kw-special-card-content">
-      <h2 class="kw-special-title">Admissions</h2>
-      <p class="kw-special-text">Selecting the ideal educational environment for your child is a significant and profound choice.</p>
-      <a href="#" class="kw-special-btn">Read More</a>
-    </div>
-  </div>
-
-  <div class="kw-special-card kw-special-light-bg kw-special-ethos-card">
-    <div class="kw-special-card-content">
-      <h2 class="kw-special-title">The Ethos and the Environment</h2>
-      <p class="kw-special-text">At Maluti, our ethos goes beyond academia. We believe in nurturing the whole child, promoting resilience, creativity, and global awareness. Set against the backdrop of Kent's natural beauty, our campus offers an environment where students are inspired daily, both by the lessons in the classroom and the serenity outside.</p>
-      <a href="#" class="kw-special-btn">Read More</a>
-    </div>
-  </div>
-
-  <div class="kw-special-card kw-special-children-card">
-    <img src="https://images.unsplash.com/photo-1763673405004-42829575a2df?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Children Waving" class="kw-special-children-bg">
-  </div>
-
-</div>
-
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Features Section</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600&display=swap" rel="stylesheet">
-
-    <style>
-        /* =========================================
-           CSS Isolation: Prefix 'ft-' (Feature) used
-           to prevent conflicts.
-           ========================================= */
-
-        :root {
-            --ft-font-family: 'Inter', sans-serif;
-            --ft-color-bg: #020035; /* Deep Navy Blue matching the screenshot */
-            --ft-color-text: #ffffff;
-            --ft-color-border: #ffffff;
-            --ft-spacing-col: 80px;
-            --ft-spacing-row: 100px;
-        }
-
-        /* Component Reset */
-        .ft-component-wrapper {
-            font-family: var(--ft-font-family);
-            background-color: var(--ft-color-bg);
-            color: var(--ft-color-text);
-            padding: 100px 20px;
-            overflow: hidden;
-        }
-
-        .ft-component-wrapper * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        .ft-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: var(--ft-spacing-row);
-        }
-
-        /* --- Row Layout --- */
-        .ft-row {
-            display: flex;
-            align-items: center;
-            gap: var(--ft-spacing-col);
-        }
-
-        /* Alternating Layout: Even rows flip the order */
-        .ft-row:nth-child(even) {
-            flex-direction: row-reverse;
-        }
-
-        /* --- Image Side --- */
-        .ft-image-col {
-            flex: 1;
             width: 100%;
         }
 
-        .ft-image-wrapper {
-            width: 100%;
-            height: 400px; /* Fixed height for consistency */
-            overflow: hidden;
-            /* No border radius shown in this specific screenshot, keeping sharp edges */
-        }
-
-        .ft-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .ft-image-wrapper:hover .ft-image {
-            transform: scale(1.05); /* Subtle zoom effect */
-        }
-
-        /* --- Text Side --- */
-        .ft-text-col {
-            flex: 1;
+        .nf-prod-layout-container {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start; /* Left align content */
-            gap: 24px;
-        }
-
-        .ft-heading {
-            font-size: 42px;
-            font-weight: 500;
-            line-height: 1.1;
-            letter-spacing: -0.01em;
-        }
-
-        .ft-description {
-            font-size: 16px;
-            line-height: 1.6;
-            color: #eeeeee;
-            max-width: 90%;
-            font-weight: 400;
-        }
-
-        /* --- Button Styling --- */
-        .ft-btn {
-            display: inline-block;
-            padding: 12px 32px;
-            border: 1px solid var(--ft-color-border);
-            border-radius: 100px; /* Pill shape */
-            color: var(--ft-color-text);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            letter-spacing: 0.02em;
-            background: transparent;
-            transition: all 0.3s ease;
-            margin-top: 10px; font-family: 'Alvarado', sans-serif;
-        }
-
-        .ft-btn:hover {
-            background-color: #ffffff;
-            color: var(--ft-color-bg);
-        }
-
-        /* --- Responsiveness --- */
-        @media (max-width: 900px) {
-            .ft-row {
-                flex-direction: column !important; /* Stack everything vertically */
-                gap: 40px;
-            }
-            
-            .ft-heading {
-                font-size: 32px;
-            }
-
-            .ft-description {
-                max-width: 100%;
-            }
-
-            .ft-image-wrapper {
-                height: 300px;
-            }
-        }
-    </style>
-</head>
-<body>
-
-<div class="ft-component-wrapper">
-    <div class="ft-container">
-
-        <div class="ft-row">
-            <div class="ft-image-col">
-                <div class="ft-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1594750852517-f37738fa2384?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Statue in a classic library setting" class="ft-image">
-                </div>
-            </div>
-            
-            <div class="ft-text-col">
-                <h2 class="ft-heading">Academic Excellence</h2>
-                <p class="ft-description">
-                    85% A*-B Grades at A Level. Dynamic instruction fosters intellectual curiosity, autonomy, and self-assurance. At Roedean, we inspire girls and boys to cultivate distinctiveness in character and innovative thought.
-                </p>
-                <a href="#" class="ft-btn">Read More</a>
-            </div>
-        </div>
-
-        <div class="ft-row">
-            <div class="ft-image-col">
-                <div class="ft-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=80&w=1000&auto=format&fit=crop" alt="Students running on athletic track" class="ft-image">
-                </div>
-            </div>
-
-            <div class="ft-text-col">
-                <h2 class="ft-heading">A Happy Learning Environment</h2>
-                <p class="ft-description">
-                    Our mission is to ignite a lifelong passion for learning. By challenging the advanced and uplifting the less assured, we ensure each pupil realizes their unique academic potential.
-                </p>
-                <a href="#" class="ft-btn">Read More</a>
-            </div>
-        </div>
-
-    </div>
-</div>
-
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Related Articles Component</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-
-    <div class="ra-component-wrapper">
-        
-        <header class="ra-header">
-            <h2 class="ra-main-title">Campus news</h2>
-            <a href="#" class="ra-browse-btn">Browse all</a>
-        </header>
-
-        <div class="ra-articles-grid">
-
-            <article class="ra-card">
-                <div class="ra-card-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1563968743333-044cef800494?q=80&w=1058&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Beige bedroom interior" class="ra-card-image">
-                </div>
-                <div class="ra-card-content">
-                    <div class="ra-card-meta">
-                        <span class="ra-tag">Maluti Innovations</span>
-                        <span class="ra-date">Jan 11, 2026</span>
-                    </div>
-                    <h3 class="ra-card-title"><a href="#">Maluti TVET College Launches New Robotics Lab for Engineering Students</a></h3>
-                    <p class="ra-excerpt">In a bid to enhance hands-on learning, Maluti TVET College has unveiled a state-of-the-art robotics lab equipped with advanced tools and software.</p>
-                </div>
-            </article>
-
-            <article class="ra-card">
-                <div class="ra-card-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1647596344186-4f1865b0ea07?q=80&w=1331&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Color palette swatches on wooden table" class="ra-card-image">
-                </div>
-                <div class="ra-card-content">
-                    <div class="ra-card-meta">
-                        <span class="ra-tag">Events</span>
-                        <span class="ra-date">Jan 11, 2026</span>
-                    </div>
-                    <h3 class="ra-card-title"><a href="#">Open Day: Explore Campus Life at Maluti</a></h3>
-                    <p class="ra-excerpt">Join us on March 15, 2026, for our annual Open Day event!</p>
-                </div>
-            </article>
-
-            <article class="ra-card">
-                <div class="ra-card-image-wrapper">
-                    <img src="https://images.pexels.com/photos/35573072/pexels-photo-35573072.jpeg" alt="Paint roller on a beige wall" class="ra-card-image">
-                </div>
-                <div class="ra-card-content">
-                    <div class="ra-card-meta">
-                        <span class="ra-tag">Campus Life</span>
-                        <span class="ra-date">Jan 11, 2026</span>
-                    </div>
-                    <h3 class="ra-card-title"><a href="#">Success Stories: Alumni Spotlight on Hospitality Graduates</a></h3>
-                    <p class="ra-excerpt">Meet three inspiring alumni from our Hospitality Management program who have gone on to manage top hotels in Johannesburg and Cape Town.</p>
-                </div>
-            </article>
-
-        </div>
-    </div>
-
-</body>
-</html>
-
-<style>
-    /* CSS Isolation Strategy:
-           All classes are prefixed with 'ra-' (Related Articles) to prevent 
-           conflicts with existing codebases.
-        */
-
-        :root {
-            --ra-font-family: 'Alvarado', sans-serif;
-            --ra-color-text-main: #111111;
-            --ra-color-text-secondary: #666666;
-            --ra-color-bg-tag: #dedede;
-            --ra-color-border-btn: #111111;
-            --ra-spacing-unit: 8px;
-        }
-
-        /* Reset for component isolation */
-        .ra-component-wrapper * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        .ra-component-wrapper {
-            font-family: var(--ra-font-family);
-            color: var(--ra-color-text-main);
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 90px 20px;
-            background-color: transparent; /* Ensure white background as per image */
-        }
-
-        /* Header Section */
-        .ra-header {
-            display: flex;
+            flex-direction: row;
+            align-items: center;
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: calc(var(--ra-spacing-unit) * 5); /* approx 40px */
-        }
-
-        .ra-main-title {
-            font-size: 40px;
-            font-weight: 400;
-            letter-spacing: -1.5px;
-            line-height: 1;
-        }
-
-        .ra-browse-btn {
-            font-family: var(--ra-font-family);
-            font-size: 16px;
-            font-weight: 400;
-            text-decoration: none;
-            color: var(--ra-color-text-main);
-            background: transparent;
-            border: 1px solid var(--ra-color-border-btn);
-            padding: 10px 24px;
-            border-radius: 999px; /* Pill shape */
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-            white-space: nowrap; font-family: 'Alvarado', sans-serif;
-        }
-
-        .ra-browse-btn:hover {
-            background-color: var(--ra-color-bg-tag);
-        }
-
-        /* Grid Section */
-        .ra-articles-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
-        }
-
-        /* Responsive Switch for smaller screens, though desktop is priority */
-        @media (max-width: 900px) {
-            .ra-articles-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        @media (max-width: 600px) {
-            .ra-articles-grid {
-                grid-template-columns: 1fr;
-            }
-            .ra-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 20px;
-            }
-        }
-
-        /* Article Card */
-        .ra-card {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .ra-card-image-wrapper {
+            max-width: 1160px;
             width: 100%;
-            aspect-ratio: 4 / 3; /* Matches the visual aspect ratio */
-            border-radius: 24px;
-            overflow: hidden;
-            margin-bottom: 20px;
+            gap: 1px;
         }
 
-        .ra-card-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
+        .nf-prod-info-column {
+            flex: 1;
+            max-width: 480px;
+            text-align: left;
         }
 
-        .ra-card-content {
-            display: flex;
-            flex-direction: column;
+        .nf-prod-heading-primary {
+            font-weight: 500;
+            font-size: clamp(2.5rem, 5vw, 3rem); /* Responsive typography */
+            line-height: 1.05;
+            margin-bottom: 32px;
         }
 
-        .ra-card-meta {
+        .nf-prod-description-body {
+            font-weight: 400;
+            font-size: 1rem;
+            line-height: 1.65;
+            color: #c9c9c9;
+            margin-bottom: 40px;
+            padding-right: 20px;
+        }
+
+        .nf-prod-pricing-box {
             display: flex;
             align-items: center;
             gap: 16px;
-            margin-bottom: 12px;
-            font-size: 14px;
-            font-weight: 400;
+            margin-bottom: 48px;
         }
 
-        .ra-tag {
-            background-color: var(--ra-color-bg-tag);
-            padding: 6px 14px;
-            border-radius: 999px;
-            font-weight: 400;
+        .nf-prod-price-current {
+            font-weight: 500;
+            font-size: 2rem;
+            color: #ffffff;
         }
 
-        .ra-date {
-            color: var(--ra-color-text-secondary);
+        .nf-prod-price-original {
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: #5A5A5A;
+            text-decoration: line-through;
+            position: relative;
+            top: 4px;
         }
 
-        .ra-card-title {
-            font-size: 22px;
-            font-weight: 400;
-            line-height: 1.3;
-            margin-bottom: 12px; color: #232d3f;
-            letter-spacing: -0.5px;
-        }
-
-        .ra-card-title:hover {
-           text-decoration: underline;
-        }
-
-        .ra-card-title a {
+        .nf-prod-cta-button {
+            display: inline-flex;
+            align-items: center;
+            background-color: #ffffff;
+            border: none;
+            border-radius: 100px;
+            padding: 5px 28px 5px 5px;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.1s ease;
             text-decoration: none;
-            border-bottom: none;
-            color: #000;
         }
-        .ra-excerpt {
-            font-size: 16px;
-            line-height: 1.5;
-            color: var(--ra-color-text-secondary);
-        }
-</style>
 
+        .nf-prod-cta-button:hover {
+            background-color: #EBEBEB;
+        }
+
+        .nf-prod-cta-button:active {
+            transform: scale(0.98);
+        }
+
+        .nf-prod-cta-icon-svg {
+            display: block;
+            width: 36px;
+            height: 36px;
+            margin-right: 16px;
+        }
+
+        .nf-prod-cta-text {
+            font-weight: 500;
+            font-size: 1rem;
+            color: #0a0a3c;
+        }
+
+        .nf-prod-gallery-column {
+            flex: 1.3;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .nf-prod-img-responsive {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .nf-prod-main-image-frame {
+            width: 100%;
+            aspect-ratio: 8 / 5;
+            border-radius: 24px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            background-color: #1a1a1a;
+            transition: opacity 0.2s ease;
+        }
+
+        .nf-prod-thumb-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .nf-prod-thumb-frame {
+            aspect-ratio: 1 / 1;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border-color 0.3s ease;
+            background-color: #1a1a1a;
+        }
+
+        .nf-prod-thumb-frame:hover {
+             border-color: #5A5A5A;
+        }
+
+        .nf-prod-thumb-active {
+            border-color: #ffffff;
+        }
+
+        /* ── Featured Products Grid ──────────────────────────── */
+        .featured-products-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .section-header {
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem); /* Responsive typography */
+            font-weight: 500;
+            letter-spacing: -0.03em;
+            color: #000;
+            line-height: 1.1;
+        }
+
+        .products-grid {
+            display: grid;
+            /* Auto-fit handles responsiveness without media queries */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.06);
+        }
+
+        .product-image-container {
+            width: 100%;
+            aspect-ratio: 1 / 1; /* More consistent than fixed height */
+            background-color: #e8e8e8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .product-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .product-info {
+            padding: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .product-details {
+            flex: 1;
+        }
+
+        .product-name {
+            font-size: 18px;
+            font-weight: 500;
+            color: #000;
+            letter-spacing: -0.02em;
+            margin-bottom: 6px;
+        }
+
+        .product-price {
+            font-size: 16px;
+            font-weight: 400;
+            color: #666;
+        }
+
+        .product-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .product-link:hover {
+            background-color: #f0f0f0;
+        }
+
+        .arrow-icon {
+            width: 24px;
+            height: 24px;
+            stroke: #000;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        /* ── Media Queries ───────────────────────────────────── */
+        @media screen and (max-width: 768px) {
+            .nf-prod-unique-wrapper {
+                padding: 60px 20px;
+            }
+            
+            .nf-prod-layout-container {
+                flex-direction: column;
+                gap: 48px;
+            }
+
+            .nf-prod-info-column, 
+            .nf-prod-gallery-column {
+                max-width: 100%;
+                flex: auto;
+            }
+
+            .nf-prod-description-body {
+                padding-right: 0;
+            }
+            
+            .nf-prod-main-image-frame {
+                 aspect-ratio: 1 / 1; 
+                 border-radius: 16px;
+            }
+
+            .nf-prod-thumb-grid {
+                gap: 12px;
+            }
+
+            .featured-products-section {
+                padding: 60px 20px;
+            }
+
+            .product-image-container {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="nf-prod-unique-wrapper">
+        <div class="nf-prod-layout-container">
+            
+            <div class="nf-prod-info-column">
+                <h1 class="nf-prod-heading-primary">
+                    Maluti TVET<br>
+                    Oversized<br>
+                    Hoodie
+                </h1>
+                <p class="nf-prod-description-body">
+                    A heavyweight, ultra-soft hoodie designed for campus comfort and style. Featuring a relaxed fit, subtle Maluti TVET embroidered detailing, and a premium wash for everyday wear. Built for students who stand out.
+                </p>
+                
+                <div class="nf-prod-pricing-box">
+                    <span class="nf-prod-price-current">R850</span>
+                    <span class="nf-prod-price-original">R990</span>
+                </div>
+
+                <button class="nf-prod-cta-button">
+                    <svg class="nf-prod-cta-icon-svg" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="16" cy="16" r="16" fill="#121212"/>
+                        <path d="M14 21L19 16L14 11" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="nf-prod-cta-text">Add to Cart</span>
+                </button>
+            </div>
+
+            <div class="nf-prod-gallery-column">
+                <div class="nf-prod-main-image-frame">
+                    <img id="nf-prod-main-img-target" src="https://images.unsplash.com/photo-1657010643636-a584b146642b?q=80&w=687&auto=format&fit=crop" alt="Maluti TVET Oversized Hoodie Main View" class="nf-prod-img-responsive">
+                </div>
+                
+                <div class="nf-prod-thumb-grid">
+                    <div class="nf-prod-thumb-frame" onclick="nfChangeImage(this)">
+                        <img src="https://images.unsplash.com/photo-1680292783974-a9a336c10366?q=80&w=694&auto=format&fit=crop" alt="Thumbnail view 1" class="nf-prod-img-responsive">
+                    </div>
+                    
+                    <div class="nf-prod-thumb-frame nf-prod-thumb-active" onclick="nfChangeImage(this)">
+                        <img src="https://images.unsplash.com/photo-1657010643636-a584b146642b?q=80&w=687&auto=format&fit=crop" alt="Thumbnail view 2" class="nf-prod-img-responsive">
+                    </div>
+                    
+                    <div class="nf-prod-thumb-frame" onclick="nfChangeImage(this)">
+                        <img src="https://images.unsplash.com/photo-1542406775-ade58c52d2e4?q=80&w=687&auto=format&fit=crop" alt="Thumbnail view 3" class="nf-prod-img-responsive">
+                    </div>
+                    
+                    <div class="nf-prod-thumb-frame" onclick="nfChangeImage(this)">
+                        <img src="https://images.unsplash.com/photo-1609873814058-a8928924184a?q=80&w=687&auto=format&fit=crop" alt="Thumbnail view 4" class="nf-prod-img-responsive">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="featured-products-section">
+        <header class="section-header">
+            <h2 class="section-title">Official Campus<br>Essentials</h2>
+        </header>
+
+        <div class="products-grid">
+            <article class="product-card">
+                <div class="product-image-container">
+                    <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&q=80" 
+                         alt="Maluti Premium Backpack" 
+                         class="product-image">
+                </div>
+                <div class="product-info">
+                    <div class="product-details">
+                        <h3 class="product-name">Maluti Premium Backpack</h3>
+                        <p class="product-price">R450.00</p>
+                    </div>
+                    <button class="product-link" aria-label="View product details">
+                        <svg class="arrow-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <div class="product-image-container">
+                    <img src="https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=800&q=80" 
+                         alt="Campus Notebook & Organizer" 
+                         class="product-image">
+                </div>
+                <div class="product-info">
+                    <div class="product-details">
+                        <h3 class="product-name">Campus Leather Organizer</h3>
+                        <p class="product-price">R290.00</p>
+                    </div>
+                    <button class="product-link" aria-label="View product details">
+                        <svg class="arrow-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <div class="product-image-container">
+                    <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=800&q=80" 
+                         alt="Maluti TVET Cap" 
+                         class="product-image">
+                </div>
+                <div class="product-info">
+                    <div class="product-details">
+                        <h3 class="product-name">Signature Dad Cap</h3>
+                        <p class="product-price">R150.00</p>
+                    </div>
+                    <button class="product-link" aria-label="View product details">
+                        <svg class="arrow-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <script>
+        // Hero Image Gallery Swapper
+        function nfChangeImage(clickedThumb) {
+            const newSrc = clickedThumb.querySelector('img').src;
+            const mainImage = document.getElementById('nf-prod-main-img-target');
+            
+            // Simple fade effect
+            mainImage.style.opacity = '0.5';
+            setTimeout(() => {
+                mainImage.src = newSrc;
+                mainImage.style.opacity = '1';
+            }, 100);
+
+            const allThumbs = document.querySelectorAll('.nf-prod-thumb-frame');
+            allThumbs.forEach(thumb => {
+                thumb.classList.remove('nf-prod-thumb-active');
+            });
+            clickedThumb.classList.add('nf-prod-thumb-active');
+        }
+
+        // Product Grid Interactivity
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                // Navigate if the button was clicked, or if the card itself was clicked
+                console.log(`Navigating to ${this.querySelector('.product-name').innerText} details...`);
+                // window.location.href = '/product-endpoint'; 
+            });
+        });
+    </script>
+</body>
+</html>
 
 
 
@@ -2977,35 +1813,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
