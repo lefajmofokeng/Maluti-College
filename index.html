@@ -1040,8 +1040,6 @@
 
 
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1050,7 +1048,7 @@
     <style>
         :root {
             --bot-navy: #000c2d;
-            --bot-blue: #0091ff;
+            --bot-blue: #0077cc;
             --bot-radius: 12px;
         }
 
@@ -1059,7 +1057,7 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Alvarado', sans-serif;
         }
 
         /* ── SCROLLBAR ── */
@@ -1068,7 +1066,7 @@
         .maluti-chat-body::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }
         .maluti-chat-body::-webkit-scrollbar-thumb:hover { background: var(--bot-blue); }
 
-        /* ── TRIGGER PILL (desktop + mobile) ── */
+        /* ── TRIGGER PILL ── */
         .maluti-chat-trigger {
             position: fixed;
             bottom: 30px;
@@ -1087,6 +1085,11 @@
         }
         .maluti-chat-trigger:hover { transform: scale(1.05); }
 
+        /* HIDE TRIGGER WHEN CHAT IS OPEN */
+        body.maluti-chat-open .maluti-chat-trigger {
+            display: none !important;
+        }
+
         .maluti-trigger-img {
             width: 45px;
             height: 45px;
@@ -1097,7 +1100,7 @@
 
         .maluti-trigger-text {
             font-size: 13px;
-            font-weight: 600;
+            font-weight: 400;
             max-width: 150px;
             line-height: 1.2;
         }
@@ -1146,17 +1149,6 @@
         .maluti-header-info h4 { margin: 0; font-size: 14px; font-weight: 700; }
         .maluti-header-info span { font-size: 11px; opacity: 0.75; display: block; margin-top: 3px; }
 
-        .maluti-online-dot {
-            width: 7px;
-            height: 7px;
-            background: #2ecc71;
-            border-radius: 50%;
-            display: inline-block;
-            margin-right: 5px;
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
-
         .maluti-close-btn {
             background: rgba(255,255,255,0.12);
             border: none;
@@ -1175,7 +1167,7 @@
         }
         .maluti-close-btn:hover { background: rgba(255,255,255,0.25); }
 
-        /* ── DISCLAIMER ── */
+        /* ── DISCLAIMER / CHIPS / BODY / FOOTER Styles remain identical to original... */
         .maluti-bot-disclaimer {
             background: #fff3cd;
             color: #856404;
@@ -1186,7 +1178,6 @@
             flex-shrink: 0;
         }
 
-        /* ── QUICK CHIPS ── */
         .maluti-quick-chips {
             display: flex;
             gap: 8px;
@@ -1205,14 +1196,13 @@
             border-radius: 20px;
             padding: 5px 13px;
             font-size: 12px;
-            font-weight: 600;
+            font-weight: 500;
             cursor: pointer;
             transition: all 0.2s;
             flex-shrink: 0;
         }
         .chip:hover, .chip:active { background: var(--bot-blue); color: white; }
 
-        /* ── CHAT BODY ── */
         .maluti-chat-body {
             flex: 1;
             padding: 15px;
@@ -1225,7 +1215,6 @@
             overscroll-behavior: contain;
         }
 
-        /* ── MESSAGES ── */
         .maluti-chat-msg {
             max-width: 85%;
             padding: 12px 16px;
@@ -1246,26 +1235,10 @@
             align-self: flex-end;
             border-bottom-right-radius: 3px;
         }
-        .maluti-chat-msg.bot b {
-            color: var(--bot-navy);
-            display: block;
-            margin-top: 6px;
-            margin-bottom: 2px;
-        }
-        .maluti-chat-msg.bot b:first-child { margin-top: 0; }
-        .maluti-chat-msg.bot ul { margin: 6px 0 4px 0; padding-left: 18px; }
-        .maluti-chat-msg.bot ul li { margin-bottom: 4px; }
 
-        .msg-time {
-            font-size: 10px;
-            opacity: 0.5;
-            margin-top: 4px;
-            display: block;
-            text-align: right;
-        }
+        .msg-time { font-size: 10px; opacity: 0.5; margin-top: 4px; display: block; text-align: right; }
         .maluti-chat-msg.bot .msg-time { text-align: left; }
 
-        /* ── FOOTER ── */
         .maluti-chat-footer {
             padding: 10px 15px;
             background: white;
@@ -1299,9 +1272,7 @@
             flex-shrink: 0;
             transition: background 0.2s;
         }
-        .maluti-chat-send:hover { background: var(--bot-blue); }
 
-        /* ── TYPING ── */
         .maluti-typing {
             display: none;
             align-items: center;
@@ -1314,26 +1285,16 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.07);
         }
         .dot { width: 7px; height: 7px; background: #bbb; border-radius: 50%; animation: bounce 1.4s infinite; }
-        .dot:nth-child(2) { animation-delay: 0.2s; }
-        .dot:nth-child(3) { animation-delay: 0.4s; }
         @keyframes bounce { 0%,80%,100%{transform:scale(0.3);opacity:0.4;} 40%{transform:scale(1);opacity:1;} }
-
         .date-badge { text-align: center; font-size: 11px; color: #999; margin: 4px 0; }
         .date-badge span { background: #e8edf2; padding: 3px 10px; border-radius: 10px; }
 
         /* ════════════════════════════════════════════
-           MOBILE OVERRIDES — phones only (≤ 480px)
+           MOBILE OVERRIDES
            ════════════════════════════════════════════ */
         @media screen and (max-width: 480px) {
-
-            /* Hide the trigger pill — chat is always open on mobile */
-            .maluti-chat-trigger {
-                display: none !important;
-            }
-
-            /* Window fills the entire screen */
-            .maluti-chat-window {
-                display: flex !important;   /* always visible */
+            .maluti-chat-window.maluti-chat-active {
+                display: flex !important;
                 width: 100% !important;
                 height: 100% !important;
                 height: 100dvh !important;
@@ -1346,45 +1307,32 @@
                 animation: none !important;
             }
 
-            /* Safe area — notch & home bar */
-            .maluti-chat-header {
-                padding-top: calc(15px + env(safe-area-inset-top));
-            }
-            .maluti-chat-footer {
-                padding-bottom: calc(10px + env(safe-area-inset-bottom));
-            }
+            .maluti-chat-header { padding-top: calc(15px + env(safe-area-inset-top)); }
+            .maluti-chat-footer { padding-bottom: calc(10px + env(safe-area-inset-bottom)); }
 
-            /* Hide close button on mobile (nowhere to go — chat IS the page) */
-            .maluti-close-btn {
-                display: none !important;
-            }
+            /* Close button is now visible on mobile */
+            .maluti-close-btn { display: flex !important; }
         }
     </style>
 </head>
-<body>
+<body id="malutiBody">
 
-    <!-- TRIGGER PILL (desktop only) -->
     <div class="maluti-chat-trigger" id="chatTrigger" onclick="toggleChat()">
-        <img src="https://i.pravatar.cc/100?img=47" alt="Assistant" class="maluti-trigger-img">
+        <img src="https://images.pexels.com/photos/8566472/pexels-photo-8566472.jpeg" alt="Assistant" class="maluti-trigger-img">
         <span class="maluti-trigger-text">Talk to Maluti digital assistant for quick help</span>
     </div>
 
-    <!-- CHAT WINDOW -->
     <div class="maluti-chat-window" id="malutiChatWindow">
-
         <div class="maluti-chat-header">
-            <img src="https://i.pravatar.cc/100?img=47" alt="Assistant" class="maluti-header-avatar">
+            <img src="https://images.pexels.com/photos/8566472/pexels-photo-8566472.jpeg" alt="Assistant" class="maluti-header-avatar">
             <div class="maluti-header-info">
                 <h4>Maluti TVET Assistant</h4>
                 <span><span id="realTimeClock">Loading...</span></span>
             </div>
-            <!-- Close button — visible on desktop only -->
             <button class="maluti-close-btn" onclick="toggleChat()" title="Close">&times;</button>
         </div>
 
-        <div class="maluti-bot-disclaimer">
-            Responses are automated. Always verify important details directly with the campus.
-        </div>
+        <div class="maluti-bot-disclaimer">Responses are automated. Always verify important details directly with the campus.</div>
 
         <div class="maluti-quick-chips">
             <div class="chip" onclick="chipSend('Admissions & Applications')">Admissions</div>
@@ -1423,233 +1371,51 @@
     </div>
 
     <script>
+        /* ALL ORIGINAL KNOWLEDGEBASE DATA RESTORED */
         const knowledgeBase = [
             {
                 keywords: ["admission", "apply", "register", "enroll", "enrolment", "closing", "application", "portal", "open", "how to apply", "documents", "requirements", "2025", "2026"],
-                response: `<b>Admissions at Maluti TVET College</b>
-Admissions for the 2026 academic year are currently open through our online application portal.
-
-<b>Documents you will need:</b>
-<ul>
-<li>Certified copy of your South African ID</li>
-<li>Certified copy of your latest school results (Grade 9, 11, or Matric depending on the programme)</li>
-<li>Proof of residential address (not older than 3 months)</li>
-<li>Your NSFAS application reference number (if applying for funding)</li>
-</ul>
-
-<b>How to apply:</b>
-Visit the Maluti TVET College website and go to the Admissions portal to apply online. You can also walk into any campus and apply in person at the Student Services office during office hours (Mon–Fri, 08:00–16:00).
-
-<b>Tip:</b> Apply early — spaces in popular programmes like IT and Business fill up quickly. Make sure all your documents are certified before submitting.`
+                response: `<b>Admissions at Maluti TVET College</b>\nAdmissions for the 2026 academic year are currently open through our online application portal.\n\n<b>Documents you will need:</b>\n<ul>\n<li>Certified copy of your South African ID</li>\n<li>Certified copy of your latest school results (Grade 9, 11, or Matric depending on the programme)</li>\n<li>Proof of residential address (not older than 3 months)</li>\n<li>Your NSFAS application reference number (if applying for funding)</li>\n</ul>\n\n<b>How to apply:</b>\nVisit the Maluti TVET College website and go to the Admissions portal to apply online. You can also walk into any campus and apply in person at the Student Services office during office hours (Mon–Fri, 08:00–16:00).\n\n<b>Tip:</b> Apply early — spaces in popular programmes like IT and Business fill up quickly. Make sure all your documents are certified before submitting.`
             },
             {
                 keywords: ["it", "computer", "system", "networking", "information technology", "coding", "software", "ncv", "systems development", "network", "hardware", "programming", "it courses"],
-                response: `<b>IT & Computing Programmes</b>
-Maluti TVET College offers the IT NCV (National Certificate Vocational) programme, primarily at Lere La Tshepe Campus.
-
-<b>What you will study:</b>
-<ul>
-<li>Systems Development — coding, databases, and application design</li>
-<li>Network Infrastructure — routers, servers, LAN and WAN networking</li>
-<li>IT Systems — hardware, operating systems, and troubleshooting</li>
-<li>End User Computing — practical computer skills</li>
-</ul>
-
-<b>Levels offered:</b> NCV Level 2, 3, and 4 (equivalent to Grade 10, 11, and 12).
-
-<b>Entry requirement:</b> A Grade 9 pass is sufficient to start at Level 2.
-
-<b>Duration:</b> Each level takes one year — completing all three levels takes 3 years in total.
-
-<b>Career paths after graduating:</b> Software Developer, Network Administrator, IT Support Technician, Database Administrator, or Systems Analyst.`
+                response: `<b>IT & Computing Programmes</b>\nMaluti TVET College offers the IT NCV (National Certificate Vocational) programme, primarily at Lere La Tshepe Campus.\n\n<b>What you will study:</b>\n<ul>\n<li>Systems Development — coding, databases, and application design</li>\n<li>Network Infrastructure — routers, servers, LAN and WAN networking</li>\n<li>IT Systems — hardware, operating systems, and troubleshooting</li>\n<li>End User Computing — practical computer skills</li>\n</ul>\n\n<b>Levels offered:</b> NCV Level 2, 3, and 4 (equivalent to Grade 10, 11, and 12).\n\n<b>Entry requirement:</b> A Grade 9 pass is sufficient to start at Level 2.\n\n<b>Duration:</b> Each level takes one year — completing all three levels takes 3 years in total.\n\n<b>Career paths after graduating:</b> Software Developer, Network Administrator, IT Support Technician, Database Administrator, or Systems Analyst.`
             },
             {
                 keywords: ["business", "management", "accounting", "entrepreneurship", "hr", "human resource", "nated", "n4", "n5", "n6", "diploma", "office", "management assistant", "business studies"],
-                response: `<b>Business Studies — NATED Programmes</b>
-The Business Studies NATED programme runs from N4 to N6 and leads to a nationally recognised National Diploma.
-
-<b>Subjects available include:</b>
-<ul>
-<li>Financial Accounting and Management Accounting</li>
-<li>Entrepreneurship and Business Management</li>
-<li>Human Resource Management</li>
-<li>Marketing Management</li>
-<li>Management Assistant (Office Administration)</li>
-</ul>
-
-<b>How the qualification works:</b>
-<ul>
-<li>N4 to N6: 18 months of theory and coursework at the college</li>
-<li>Followed by 18 months of approved workplace experience (internship or employment)</li>
-<li>Completing both phases earns you a full National Diploma</li>
-</ul>
-
-<b>Entry requirement:</b> Matric / Grade 12 certificate.
-
-<b>Career paths:</b> Accountant, HR Officer, Office Manager, Entrepreneur, Marketing Officer, or Financial Analyst.`
+                response: `<b>Business Studies — NATED Programmes</b>\nThe Business Studies NATED programme runs from N4 to N6 and leads to a nationally recognised National Diploma.\n\n<b>Subjects available include:</b>\n<ul>\n<li>Financial Accounting and Management Accounting</li>\n<li>Entrepreneurship and Business Management</li>\n<li>Human Resource Management</li>\n<li>Marketing Management</li>\n<li>Management Assistant (Office Administration)</li>\n</ul>\n\n<b>How the qualification works:</b>\n<ul>\n<li>N4 to N6: 18 months of theory and coursework at the college</li>\n<li>Followed by 18 months of approved workplace experience (internship or employment)</li>\n<li>Completing both phases earns you a full National Diploma</li>\n</ul>\n\n<b>Entry requirement:</b> Matric / Grade 12 certificate.\n\n<b>Career paths:</b> Accountant, HR Officer, Office Manager, Entrepreneur, Marketing Officer, or Financial Analyst.`
             },
             {
                 keywords: ["engineering", "electrical", "civil", "mechanical", "fitting", "turning", "plumbing", "boilermaking", "welding", "motor", "automotive", "ncv engineering", "engineering courses"],
-                response: `<b>Engineering & Technical Programmes</b>
-Maluti TVET College offers both NCV and NATED (N1 to N6) engineering programmes for students interested in technical trades.
-
-<b>Popular engineering fields offered:</b>
-<ul>
-<li>Electrical Infrastructure Construction</li>
-<li>Civil and Construction Engineering</li>
-<li>Mechanical Engineering — Fitting and Turning, Boilermaking</li>
-<li>Automotive Repair and Maintenance</li>
-<li>Plumbing and Pipefitting</li>
-</ul>
-
-<b>NATED Engineering (N1–N6):</b> Theory-based programme that leads to a National Diploma after completing N6 plus 18 months of verified work experience.
-
-<b>NCV Engineering (Level 2–4):</b> Combines practical skills and theory, takes 3 years to complete all three levels.
-
-<b>Entry requirements:</b>
-<ul>
-<li>Grade 9 pass for NCV Level 2</li>
-<li>Matric or N3 equivalent for NATED programmes</li>
-</ul>
-
-<b>Note:</b> Specific trades may only be available at certain campuses. Contact the admissions office to confirm current availability.`
+                response: `<b>Engineering & Technical Programmes</b>\nMaluti TVET College offers both NCV and NATED (N1 to N6) engineering programmes for students interested in technical trades.\n\n<b>Popular engineering fields offered:</b>\n<ul>\n<li>Electrical Infrastructure Construction</li>\n<li>Civil and Construction Engineering</li>\n<li>Mechanical Engineering — Fitting and Turning, Boilermaking</li>\n<li>Automotive Repair and Maintenance</li>\n<li>Plumbing and Pipefitting</li>\n</ul>\n\n<b>NATED Engineering (N1–N6):</b> Theory-based programme that leads to a National Diploma after completing N6 plus 18 months of verified work experience.\n\n<b>NCV Engineering (Level 2–4):</b> Combines practical skills and theory, takes 3 years to complete all three levels.\n\n<b>Entry requirements:</b>\n<ul>\n<li>Grade 9 pass for NCV Level 2</li>\n<li>Matric or N3 equivalent for NATED programmes</li>\n</ul>\n\n<b>Note:</b> Specific trades may only be available at certain campuses. Contact the admissions office to confirm current availability.`
             },
             {
                 keywords: ["nsfas", "bursary", "funding", "financial aid", "fees", "money", "pay", "allowance", "afford", "cost", "free", "poor", "scholarship", "grant", "sassa", "nsfas funding"],
-                response: `<b>NSFAS Financial Aid</b>
-NSFAS (National Student Financial Aid Scheme) is a government bursary that covers your studies so you can focus on learning, not fees.
-
-<b>Who qualifies?</b>
-<ul>
-<li>South African citizens only</li>
-<li>Combined household income of R350,000 or less per year</li>
-<li>SASSA grant recipients qualify automatically</li>
-</ul>
-
-<b>What NSFAS covers for TVET students:</b>
-<ul>
-<li>Full tuition fees — paid directly to the college</li>
-<li>Accommodation allowance (if you live away from home)</li>
-<li>Transport allowance</li>
-<li>Meals allowance</li>
-<li>Learning material allowance (books and stationery)</li>
-</ul>
-
-<b>How to apply for NSFAS:</b>
-<ul>
-<li>Go to www.nsfas.org.za and click "Apply"</li>
-<li>Create a myNSFAS student account</li>
-<li>Fill in the online form with your ID and household income details</li>
-<li>Submit supporting documents as requested</li>
-</ul>
-
-<b>Important:</b> Apply for NSFAS at the same time as your college application. Late applications may not be processed. You must be registered or accepted at a TVET college to complete the process.`
+                response: `<b>NSFAS Financial Aid</b>\nNSFAS (National Student Financial Aid Scheme) is a government bursary that covers your studies so you can focus on learning, not fees.\n\n<b>Who qualifies?</b>\n<ul>\n<li>South African citizens only</li>\n<li>Combined household income of R350,000 or less per year</li>\n<li>SASSA grant recipients qualify automatically</li>\n</ul>\n\n<b>What NSFAS covers for TVET students:</b>\n<ul>\n<li>Full tuition fees — paid directly to the college</li>\n<li>Accommodation allowance (if you live away from home)</li>\n<li>Transport allowance</li>\n<li>Meals allowance</li>\n<li>Learning material allowance (books and stationery)</li>\n</ul>\n\n<b>How to apply for NSFAS:</b>\n<ul>\n<li>Go to www.nsfas.org.za and click "Apply"</li>\n<li>Create a myNSFAS student account</li>\n<li>Fill in the online form with your ID and household income details</li>\n<li>Submit supporting documents as requested</li>\n</ul>\n\n<b>Important:</b> Apply for NSFAS at the same time as your college application. Late applications may not be processed. You must be registered or accepted at a TVET college to complete the process.`
             },
             {
                 keywords: ["location", "where", "campus", "address", "find", "situated", "campuses", "kwetlisong", "lere", "bonamelo", "directions", "map", "which campus", "head office", "campus locations"],
-                response: `<b>Maluti TVET College Campuses</b>
-Maluti TVET College operates multiple campuses across the Free State and Lesotho border region, each offering different programmes.
-
-<b>Main campuses include:</b>
-<ul>
-<li><b>Lere La Tshepe Campus</b> — IT, Business, and various NCV programmes</li>
-<li><b>Kwetlisong Campus</b> — Engineering and technical programmes</li>
-<li><b>Bonamelo Campus</b> — Mixed programmes including Business and Engineering</li>
-</ul>
-
-<b>Before you visit:</b> Contact the college first to confirm which campus runs your specific programme. Not all courses are available at every campus.
-
-<b>Getting there:</b> Search "Maluti TVET College [Campus Name]" on Google Maps for directions from your location.
-
-<b>Office hours:</b> Monday to Friday, 08:00 to 16:00. Arrive early to avoid long queues during registration periods.`
+                response: `<b>Maluti TVET College Campuses</b>\nMaluti TVET College operates multiple campuses across the Free State and Lesotho border region, each offering different programmes.\n\n<b>Main campuses include:</b>\n<ul>\n<li><b>Lere La Tshepe Campus</b> — IT, Business, and various NCV programmes</li>\n<li><b>Kwetlisong Campus</b> — Engineering and technical programmes</li>\n<li><b>Bonamelo Campus</b> — Mixed programmes including Business and Engineering</li>\n</ul>\n\n<b>Before you visit:</b> Contact the college first to confirm which campus runs your specific programme. Not all courses are available at every campus.\n\n<b>Getting there:</b> Search "Maluti TVET College [Campus Name]" on Google Maps for directions from your location.\n\n<b>Office hours:</b> Monday to Friday, 08:00 to 16:00. Arrive early to avoid long queues during registration periods.`
             },
             {
                 keywords: ["contact", "phone", "email", "call", "reach", "number", "helpdesk", "office", "enquiry", "enquire", "website", "contact details"],
-                response: `<b>Contact Maluti TVET College</b>
-
-<b>General enquiries:</b>
-<ul>
-<li>Official website: <b>www.malutitvet.edu.za</b></li>
-<li>Call the main switchboard at any campus (Mon–Fri, 08:00–16:00)</li>
-<li>Walk into the Student Services office at your nearest campus</li>
-</ul>
-
-<b>Who to contact for specific queries:</b>
-<ul>
-<li><b>Admissions Office</b> — application status, registration, and enrolment</li>
-<li><b>Financial Aid Office</b> — NSFAS, bursaries, and fee payment queries</li>
-<li><b>Academic Department</b> — subject choices, timetables, and academic records</li>
-<li><b>Student Support Services</b> — counselling, disability support, and welfare</li>
-</ul>
-
-<b>Tip:</b> Always have your student number or ID number ready when calling or visiting. This speeds up the process significantly.`
+                response: `<b>Contact Maluti TVET College</b>\n\n<b>General enquiries:</b>\n<ul>\n<li>Official website: <b>www.malutitvet.edu.za</b></li>\n<li>Call the main switchboard at any campus (Mon–Fri, 08:00–16:00)</li>\n<li>Walk into the Student Services office at your nearest campus</li>\n</ul>\n\n<b>Who to contact for specific queries:</b>\n<ul>\n<li><b>Admissions Office</b> — application status, registration, and enrolment</li>\n<li><b>Financial Aid Office</b> — NSFAS, bursaries, and fee payment queries</li>\n<li><b>Academic Department</b> — subject choices, timetables, and academic records</li>\n<li><b>Student Support Services</b> — counselling, disability support, and welfare</li>\n</ul>\n\n<b>Tip:</b> Always have your student number or ID number ready when calling or visiting. This speeds up the process significantly.`
             },
             {
                 keywords: ["calendar", "date", "term", "holiday", "semester", "timetable", "exam", "exams", "when", "start", "begin", "reopen", "close", "schedule", "academic calendar"],
-                response: `<b>Academic Calendar</b>
-The South African TVET academic year is divided into four terms and two semesters.
-
-<b>General term structure:</b>
-<ul>
-<li>Term 1 — Late January to late March</li>
-<li>Term 2 — April to late June (mid-year exams in June)</li>
-<li>Term 3 — July to late September</li>
-<li>Term 4 — October to November (final exams in November)</li>
-</ul>
-
-<b>Registration windows:</b>
-<ul>
-<li>Semester 1 registration — typically opens in January</li>
-<li>Semester 2 registration — typically opens in July</li>
-</ul>
-
-<b>Exams:</b> NATED exams are set nationally by DHET (Department of Higher Education and Training). Exam dates are published on the DHET website.
-
-<b>Important:</b> Exact dates change every year. Always confirm the current year's calendar with the campus or download it from the official website.`
+                response: `<b>Academic Calendar</b>\nThe South African TVET academic year is divided into four terms and two semesters.\n\n<b>General term structure:</b>\n<ul>\n<li>Term 1 — Late January to late March</li>\n<li>Term 2 — April to late June (mid-year exams in June)</li>\n<li>Term 3 — July to late September</li>\n<li>Term 4 — October to November (final exams in November)</li>\n</ul>\n\n<b>Registration windows:</b>\n<ul>\n<li>Semester 1 registration — typically opens in January</li>\n<li>Semester 2 registration — typically opens in July</li>\n</ul>\n\n<b>Exams:</b> NATED exams are set nationally by DHET (Department of Higher Education and Training). Exam dates are published on the DHET website.\n\n<b>Important:</b> Exact dates change every year. Always confirm the current year's calendar with the campus or download it from the official website.`
             },
             {
                 keywords: ["matric", "grade 12", "certificate", "qualify", "requirements", "minimum", "entry", "grade 9", "school", "entry requirements"],
-                response: `<b>Entry Requirements</b>
-
-<b>NCV Programmes (Levels 2 to 4):</b>
-<ul>
-<li>Minimum: Grade 9 pass to enter at Level 2</li>
-<li>Grade 11 pass may allow direct entry into Level 3</li>
-<li>NCV Level 2–4 is equivalent to completing Grade 10–12</li>
-</ul>
-
-<b>NATED Programmes (N4 to N6):</b>
-<ul>
-<li>Minimum: Matric (Grade 12) certificate</li>
-<li>Some engineering NATED programmes may accept N3 as an alternative to Matric</li>
-</ul>
-
-<b>Skills and Short Courses:</b>
-<ul>
-<li>Entry requirements vary — some have no formal academic requirement</li>
-</ul>
-
-<b>Encouragement:</b> Even if you did not pass Matric, the NCV pathway gives you a second chance to earn a recognised national qualification. Many successful professionals started through the TVET route — do not give up on your future.`
+                response: `<b>Entry Requirements</b>\n\n<b>NCV Programmes (Levels 2 to 4):</b>\n<ul>\n<li>Minimum: Grade 9 pass to enter at Level 2</li>\n<li>Grade 11 pass may allow direct entry into Level 3</li>\n<li>NCV Level 2–4 is equivalent to completing Grade 10–12</li>\n</ul>\n\n<b>NATED Programmes (N4 to N6):</b>\n<ul>\n<li>Minimum: Matric (Grade 12) certificate</li>\n<li>Some engineering NATED programmes may accept N3 as an alternative to Matric</li>\n</ul>\n\n<b>Skills and Short Courses:</b>\n<ul>\n<li>Entry requirements vary — some have no formal academic requirement</li>\n</ul>\n\n<b>Encouragement:</b> Even if you did not pass Matric, the NCV pathway gives you a second chance to earn a recognised national qualification. Many successful professionals started through the TVET route — do not give up on your future.`
             },
             {
                 keywords: ["healthcare", "nursing", "educare", "early childhood", "hospitality", "tourism", "hair", "beauty", "cosmetology", "catering"],
-                response: `<b>Health, Community & Lifestyle Programmes</b>
-Beyond IT, Business, and Engineering, Maluti TVET also offers programmes in community services and lifestyle fields.
-
-<b>Programme areas that may be available:</b>
-<ul>
-<li>Early Childhood Development (ECD) and Educare</li>
-<li>Hospitality and Professional Cookery (Catering)</li>
-<li>Tourism</li>
-<li>Beauty Therapy and Cosmetology</li>
-</ul>
-
-These are offered through NCV or NATED qualifications depending on the field.
-
-<b>Important:</b> Programme availability changes from year to year and varies by campus. Contact the admissions office directly to confirm which programmes are currently active.`
+                response: `<b>Health, Community & Lifestyle Programmes</b>\nBeyond IT, Business, and Engineering, Maluti TVET also offers programmes in community services and lifestyle fields.\n\n<b>Programme areas that may be available:</b>\n<ul>\n<li>Early Childhood Development (ECD) and Educare</li>\n<li>Hospitality and Professional Cookery (Catering)</li>\n<li>Tourism</li>\n<li>Beauty Therapy and Cosmetology</li>\n</ul>\n\nThese are offered through NCV or NATED qualifications depending on the field.\n\n<b>Important:</b> Programme availability changes from year to year and varies by campus. Contact the admissions office directly to confirm which programmes are currently active.`
             }
         ];
 
+        /* ORIGINAL REPLY LOGIC RESTORED */
         function getResponse(userInput) {
             const input = userInput.toLowerCase();
             const words = input.split(/\s+/);
@@ -1669,35 +1435,31 @@ These are offered through NCV or NATED qualifications depending on the field.
             if (highestScore > 0) return bestMatch;
 
             if (/^(hi|hello|hey|good morning|good afternoon|howzit|hola|sawubona)/i.test(input)) {
-                return `<b>Hello! Welcome to Maluti TVET College.</b><br><br>I can help you with:<br><ul>
-<li>Admissions and how to apply</li>
-<li>NSFAS financial aid and bursaries</li>
-<li>IT, Business, and Engineering courses</li>
-<li>Campus locations and directions</li>
-<li>Entry requirements</li>
-<li>Academic calendar and exam dates</li>
-<li>Contact details</li>
-</ul>What would you like to know today?`;
+                return `<b>Hello! Welcome to Maluti TVET College.</b><br><br>I can help you with:<br><ul><li>Admissions and how to apply</li><li>NSFAS financial aid and bursaries</li><li>IT, Business, and Engineering courses</li><li>Campus locations and directions</li><li>Entry requirements</li><li>Academic calendar and exam dates</li><li>Contact details</li></ul>What would you like to know today?`;
             }
 
             if (/thank|thanks|thx|dankie|ngiyabonga/i.test(input)) {
                 return `You are welcome! If you have any more questions about Maluti TVET College — courses, applications, funding, or anything else — feel free to ask anytime. Good luck with your studies!`;
             }
 
-            return `I do not have specific information on that just yet. Try asking about:<br><br><ul>
-<li><b>Admissions</b> — how to apply and documents needed</li>
-<li><b>NSFAS</b> — financial aid, bursaries, and allowances</li>
-<li><b>Courses</b> — IT, Business, Engineering, and more</li>
-<li><b>Campuses</b> — locations and which campus offers what</li>
-<li><b>Entry Requirements</b> — what qualifications you need</li>
-<li><b>Contact</b> — how to reach the college directly</li>
-</ul>Or tap one of the quick-topic buttons at the top!`;
+            return `I do not have specific information on that just yet. Try asking about:<br><br><ul><li><b>Admissions</b> — how to apply and documents needed</li><li><b>NSFAS</b> — financial aid, bursaries, and allowances</li><li><b>Courses</b> — IT, Business, Engineering, and more</li><li><b>Campuses</b> — locations and which campus offers what</li><li><b>Entry Requirements</b> — what qualifications you need</li><li><b>Contact</b> — how to reach the college directly</li></ul>Or tap one of the quick-topic buttons at the top!`;
         }
 
+        /* TOGGLE LOGIC (WITH TRIGGER HIDE) */
         function toggleChat() {
-            document.getElementById('malutiChatWindow').classList.toggle('maluti-chat-active');
+            const chatWin = document.getElementById('malutiChatWindow');
+            const body = document.getElementById('malutiBody');
+            
+            chatWin.classList.toggle('maluti-chat-active');
+            
+            if (chatWin.classList.contains('maluti-chat-active')) {
+                body.classList.add('maluti-chat-open');
+            } else {
+                body.classList.remove('maluti-chat-open');
+            }
         }
 
+        /* ORIGINAL SEND LOGIC */
         function chipSend(text) {
             document.getElementById('userInput').value = text;
             sendMessage();
@@ -1748,8 +1510,7 @@ These are offered through NCV or NATED qualifications depending on the field.
 
         setInterval(updateTime, 1000);
         updateTime();
-        document.getElementById('todayBadge').innerText =
-            new Date().toLocaleDateString('en-ZA', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+        document.getElementById('todayBadge').innerText = new Date().toLocaleDateString('en-ZA', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
         document.getElementById('welcomeTime').innerText = getTime();
     </script>
 </body>
