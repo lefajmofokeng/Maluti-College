@@ -1063,6 +1063,446 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+    :root {
+        --it-bg: transparent;
+        --it-text-main: #0a0a3c;
+        --it-text-muted: #5b5d62;
+        --it-radius: 20px;
+        --it-accent: #0077cc;
+    }
+
+    .it-scroll-wrapper {
+        background-color: var(--it-bg);
+        color: var(--it-text-main);
+        font-family: 'Inter', sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* Main Container */
+    .it-scroll-container {
+        display: flex;
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    /* --- DESKTOP: LEFT STICKY PANEL --- */
+    .it-sticky-visual {
+        flex: 0 0 50%; /* Half width */
+        height: 100vh;
+        position: sticky;
+        top: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px;
+        /* Hidden on mobile by default via media query below */
+    }
+
+    .it-image-stack {
+        width: 100%;
+        height: 400px; /* Fixed height for consistency */
+        position: relative;
+        border-radius: var(--it-radius);
+        overflow: hidden;
+    }
+
+    .it-image-stack img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0;
+        transition: opacity 0.6s ease;
+    }
+
+    .it-image-stack img.active {
+        opacity: 1;
+    }
+
+    /* --- RIGHT CONTENT PANEL --- */
+    .it-scroll-content {
+        flex: 0 0 50%;
+        padding: 40px;
+    }
+
+    .it-text-step {
+        min-height: 100vh; /* Ensures enough scroll space on desktop */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 40px 0;
+    }
+
+    .it-step-title {
+        font-size: 2.7rem;
+        font-weight: 500;
+        line-height: 1.1;
+        margin-bottom: 1.5rem;
+        letter-spacing: -0.03em;
+    }
+
+    .it-step-desc {
+        font-size: 1.2rem;
+        line-height: 1.6;
+        color: var(--it-text-main);
+        max-width: 450px;
+        font-weight: 500;
+    }
+
+    /* --- MOBILE IMAGE (Hidden on Desktop) --- */
+    .it-mobile-image {
+        display: none; /* Hidden by default */
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        border-radius: var(--it-radius);
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+
+    /* --- RESPONSIVE LOGIC --- */
+    @media (max-width: 900px) {
+        .it-scroll-container {
+            flex-direction: column;
+        }
+
+        /* Hide the sticky desktop panel */
+        .it-sticky-visual {
+            display: none;
+        }
+
+        /* Reset right panel width */
+        .it-scroll-content {
+            flex: 0 0 100%;
+            padding: 20px 20px 40px 20px;
+        }
+
+        /* Reset step height so they stack naturally */
+        .it-text-step {
+            min-height: auto;
+            margin-bottom: 10px;
+            display: block; /* Normal block flow */
+        }
+
+        /* Show the mobile image inside the text block */
+        .it-mobile-image {
+            display: block;
+        }
+
+        .it-step-title {
+            font-size: 2.2rem;
+        }
+    }
+
+    /* --- NEW CLASSES FOR NUMBERING AND LINKS --- */
+    .it-step-number {
+        color: var(--it-accent);
+        font-size: 1.9rem;
+        font-weight: 500;
+        display: block;
+        letter-spacing: 1px;
+    }
+
+    .it-step-link {
+        display: inline-block;
+        margin-top: 20px;
+        color: var(--it-text-main);
+        font-weight: 700;
+        text-decoration: none;
+        border-bottom: 2px solid var(--it-accent);
+        padding-bottom: 4px;
+        transition: opacity 0.3s ease; width: fit-content;
+    }
+
+    .it-step-link:hover {
+        opacity: 0.6;
+    }
+
+
+
+    /* New CTA style: matching image_1.png */
+        .my-it-comp-cta {
+            display: flex;
+            align-items: center;
+            gap: 16px; /* Spacing between circle and text */
+            text-decoration: none;
+            transition: opacity var(--my-it-comp-speed);
+        }
+
+        .my-it-comp-cta:hover { opacity: 0.8; }
+
+        .my-it-comp-cta-circle {
+            width: 48px;
+            height: 48px;
+            background-color: var(--ft-color-bg);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .my-it-comp-cta-circle svg {
+            width: 22px;
+            height: 22px;
+            stroke: #fff;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .my-it-comp-cta-text {
+            color: var(--ft-color-bg);
+            font-size: 17px;
+            font-weight: 500;
+        }
+</style>
+
+<div class="it-scroll-wrapper">
+    <div class="it-scroll-container">
+        
+        <div class="it-sticky-visual">
+            <div class="it-image-stack">
+                <img src="https://images.unsplash.com/photo-1583373834259-46cc92173cb7?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="active" data-id="1" alt="Main Campus">
+                <img src="https://images.unsplash.com/photo-1680084521806-b408d976e3e7?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" data-id="2" alt="Itemoheleng Campus">
+                <img src="https://images.unsplash.com/photo-1591123120675-6f7f1aae0e5b?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" data-id="3" alt="Bethlehem Campus">
+                <img src="https://images.unsplash.com/photo-1576495199011-eb94736d05d6?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" data-id="4" alt="Harrismith Campus">
+                <img src="https://images.unsplash.com/photo-1592280771190-3e2e4d571952?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" data-id="5" alt="Kwetlisong Campus">
+                <img src="https://images.unsplash.com/photo-1622470190232-81df3782484b?q=80&w=759&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" data-id="6" alt="Bonamelo Campus">
+                <img src="https://images.unsplash.com/photo-1607369542452-78f59815692d?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" data-id="7" alt="Sefikeng Campus">
+                <img src="https://images.unsplash.com/photo-1590230946777-9f2ade879639?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" data-id="8" alt="Lere la Tshepe Campus">
+            </div>
+        </div>
+
+        <div class="it-scroll-content">
+            
+            <div class="it-text-step" data-target="1">
+                <span class="it-step-number">01</span>
+                <h2 class="it-step-title">Main Campus</h2>
+                <p class="it-step-desc">
+                    The central hub of Maluti TVET operations. Dedicated to administrative excellence, corporate governance, and advanced Information Technology programs.
+                </p>
+                <a href="#" class="my-it-comp-cta">
+                    <div class="my-it-comp-cta-circle">
+                        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </div>
+                    <span class="my-it-comp-cta-text">See Campus</span>
+                </a>
+                <img class="it-mobile-image" src="https://images.unsplash.com/photo-1583373834259-46cc92173cb7?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Main Campus">
+            </div>
+
+            <div class="it-text-step" data-target="2">
+                <span class="it-step-number">02</span>
+                <h2 class="it-step-title">Itemoheleng Campus</h2>
+                <p class="it-step-desc">
+                    Located in Phuthaditjhaba, this is our premier School of Engineering. Equipped with specialized labs for Civil, Mechanical, and Electrical practicals.
+                </p>
+                <a href="#" class="my-it-comp-cta">
+                    <div class="my-it-comp-cta-circle">
+                        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </div>
+                    <span class="my-it-comp-cta-text">See Campus</span>
+                </a>
+                <img class="it-mobile-image" src="https://images.unsplash.com/photo-1680084521806-b408d976e3e7?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Itemoheleng Campus">
+            </div>
+
+            <div class="it-text-step" data-target="3">
+                <span class="it-step-number">03</span>
+                <h2 class="it-step-title">Bethlehem Campus</h2>
+                <p class="it-step-desc">
+                    Positioned in the commercial heart of the region, focusing on General Studies, Commercial Administration, and Public Management.
+                </p>
+                <a href="#" class="my-it-comp-cta">
+                    <div class="my-it-comp-cta-circle">
+                        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </div>
+                    <span class="my-it-comp-cta-text">See Campus</span>
+                </a>
+                <img class="it-mobile-image" src="https://images.unsplash.com/photo-1591123120675-6f7f1aae0e5b?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Bethlehem Campus">
+            </div>
+
+            <div class="it-text-step" data-target="4">
+                <span class="it-step-number">04</span>
+                <h2 class="it-step-title">Harrismith Campus</h2>
+                <p class="it-step-desc">
+                    Our dedicated School of Business and Management. Fostering future corporate leaders through Human Resources, Marketing, and Financial curriculums.
+                </p>
+                <a href="#" class="my-it-comp-cta">
+                    <div class="my-it-comp-cta-circle">
+                        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </div>
+                    <span class="my-it-comp-cta-text">See Campus</span>
+                </a>
+                <img class="it-mobile-image" src="https://images.unsplash.com/photo-1576495199011-eb94736d05d6?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Harrismith Campus">
+            </div>
+
+            <div class="it-text-step" data-target="5">
+                <span class="it-step-number">05</span>
+                <h2 class="it-step-title">Kwetlisong Campus</h2>
+                <p class="it-step-desc">
+                    A vibrant center for Practical Skills. Specializing in Hospitality, Tourism, Culinary Arts, and comprehensive Artisan development programs.
+                </p>
+                <a href="#" class="my-it-comp-cta">
+                    <div class="my-it-comp-cta-circle">
+                        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </div>
+                    <span class="my-it-comp-cta-text">See Campus</span>
+                </a>
+                <img class="it-mobile-image" src="https://images.unsplash.com/photo-1592280771190-3e2e4d571952?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Kwetlisong Campus">
+            </div>
+
+            <div class="it-text-step" data-target="6">
+                <span class="it-step-number">06</span>
+                <h2 class="it-step-title">Bonamelo Campus</h2>
+                <p class="it-step-desc">
+                    Dedicated entirely to Education and Training. We prepare the next generation of educators and foundational phase teachers for the academic sector.
+                </p>
+                <a href="#" class="my-it-comp-cta">
+                    <div class="my-it-comp-cta-circle">
+                        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </div>
+                    <span class="my-it-comp-cta-text">See Campus</span>
+                </a>
+                <img class="it-mobile-image" src="https://images.unsplash.com/photo-1618050989131-b62b57da4528?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Bonamelo Campus">
+            </div>
+
+            <div class="it-text-step" data-target="7">
+                <span class="it-step-number">07</span>
+                <h2 class="it-step-title">Sefikeng Campus</h2>
+                <p class="it-step-desc">
+                    Focused on targeted Occupational Programs. Providing niche, high-demand skills training designed for immediate integration into the local workforce.
+                </p>
+                <a href="#" class="my-it-comp-cta">
+                    <div class="my-it-comp-cta-circle">
+                        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </div>
+                    <span class="my-it-comp-cta-text">See Campus</span>
+                </a>
+                <img class="it-mobile-image" src="https://images.unsplash.com/photo-1607369542452-78f59815692d?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Sefikeng Campus">
+            </div>
+
+            <div class="it-text-step" data-target="8">
+                <span class="it-step-number">08</span>
+                <h2 class="it-step-title">Lere La Tshepe Campus</h2>
+                <p class="it-step-desc">
+                    A dynamic hybrid campus offering a strategic mix of Vocational Engineering and core Business courses tailored to community development needs.
+                </p>
+                <a href="#" class="my-it-comp-cta">
+                    <div class="my-it-comp-cta-circle">
+                        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </div>
+                    <span class="my-it-comp-cta-text">See Campus</span>
+                </a>
+                <img class="it-mobile-image" src="https://images.unsplash.com/photo-1590230946777-9f2ade879639?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Lere la Tshepe Campus">
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    const stackImages = document.querySelectorAll('.it-image-stack img');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const targetId = entry.target.getAttribute('data-target');
+                
+                stackImages.forEach(img => {
+                    if (img.getAttribute('data-id') === targetId) {
+                        img.classList.add('active');
+                    } else {
+                        img.classList.remove('active');
+                    }
+                });
+            }
+        });
+    }, {
+        root: null,
+        rootMargin: '-40% 0px -40% 0px', 
+        threshold: 0
+    });
+
+    document.querySelectorAll('.it-text-step').forEach(step => {
+        observer.observe(step);
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -2840,6 +3280,7 @@
                 <h1 class="footer-heading">Students</h1>
                 <ul class="kw-footer-link-list">
                     <li><a href="#">Alumni & Friends</a></li>
+                    <li><a href="#">Digital Library</a></li>
                     <li><a href="#">Noticeboard</a></li>
                     <li><a href="#">Students</a></li>
                 </ul>
