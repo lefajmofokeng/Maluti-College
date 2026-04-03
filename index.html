@@ -1668,8 +1668,8 @@
 
   /* --- Typography --- */
   .kw-special-title {
-    font-size: 32px;
-    font-weight: 400;
+    font-size: 35px;
+    font-weight: 500;
     margin-bottom: 20px;
     line-height: 1.2; font-family: 'Alvarado', serif;
   }
@@ -1994,7 +1994,7 @@
         }
 
         .ft-heading {
-            font-size: 42px;
+            font-size: 35px;
             font-weight: 500;
             line-height: 1.1;
             letter-spacing: -0.01em;
@@ -2437,14 +2437,14 @@
     .kw-footer-cta-text { font-size: 26px; font-weight: 500; letter-spacing: -0.5px; }
     .kw-footer-cta-buttons { display: flex; gap: 20px; }
     .kw-footer-btn-outline {
-        display: inline-block; padding: 12px 32px;
+        display: inline-block; padding: 8px 32px;
         background-color: transparent; color: #ffffff;
         border: 1px solid #ffffff; border-radius: 50px;
         font-weight: 500; font-size: 15px; text-align: center; white-space: nowrap;
     }
     .kw-footer-btn-outline:hover { background-color: #ffffff; color: #050533; }
     .kw-footer-main { padding: 70px 0 30px; }
-    .kw-footer-grid { display: grid; grid-template-columns: 2.5fr 1fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 80px; align-items: start; }
+    .kw-footer-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 80px; align-items: start; }
     .kw-footer-logo-block { display: flex; flex-direction: column; align-items: flex-start; margin-bottom: 30px; }
     .kw-footer-crest { width: 55px; height: auto; margin-bottom: 15px; filter: brightness(0) invert(1); }
     .kw-footer-logo-text { font-size: 22px; font-weight: 400; }
@@ -2563,6 +2563,13 @@
         /* no transition — keeps text crisp */
     }
     .vm-close:hover { background: #e4e4e4; color: #111; }
+
+    .footer-heading {
+        font-size: 15px;
+        color: #939ca2;
+        font-weight: 500;
+        margin-bottom: 20px;
+    }
 
     /* Tab nav row */
     .vm-nav {
@@ -2768,65 +2775,78 @@
 
     <div class="kw-footer-main">
         <div class="kw-footer-content-wrapper kw-footer-grid">
-            <div class="kw-footer-col-info">
-                <div class="kw-footer-logo-block">
-                    <img src="images/logo.png" alt="Kentwood Crest" class="kw-footer-crest">
-                    <span class="kw-footer-logo-text">Maluti TVET College</span>
-                </div>
-                <address class="kw-footer-address">
-                    Corporate Office, Bethlehem, Wessels Street, CT12 4YZ<br>
-                    (058) 085 1234<br>
-                </address>
-                <a href="#" class="kw-footer-btn-outline kw-footer-directions-btn">Get Directions</a>
-                <div class="kw-footer-socials">
-                    <a href="#" class="kw-footer-social-icon" aria-label="Facebook">
-                        <svg viewBox="0 0 24 24"><path d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.15 5.96C15.21 5.96 16.12 6.04 16.12 6.04V8.51H15.01C13.77 8.51 13.38 9.28 13.38 10.07V12.06H16.15L15.71 14.96H13.38V21.96C18.16 21.21 21.82 17.06 21.82 12.06C21.82 6.53 17.32 2.04 12 2.04Z"/></svg>
-                    </a>
-                    <a href="#" class="kw-footer-social-icon" aria-label="Instagram">
-                        <svg viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/></svg>
-                    </a>
-                    <a href="#" class="kw-footer-social-icon" aria-label="TikTok">
-                        <svg viewBox="0 0 24 24"><path d="M12.5,2C12.5,2 12.5,4.46 12.5,5.73C14.32,6.03 15.94,7.18 16.79,8.9H19.68C18.64,6.14 16.1,4 13.04,3.5V2H12.5M16.33,11.04C16.33,11.04 16.33,11.04 16.33,11.04C15.12,11.04 13.96,10.53 13.1,9.68C13.39,10.74 13.54,11.86 13.54,13C13.54,17.42 9.96,21 5.54,21C3.41,21 1.5,20.17 0.05,18.76L2.17,16.64C3.06,17.47 4.24,18 5.54,18C8.3,18 10.54,15.76 10.54,13C10.54,11.26 9.65,9.7 8.26,8.82L10.38,6.7C12.35,8.06 13.54,10.38 13.54,13H16.33V11.04Z"/></svg>
-                    </a>
-                    <a href="#" class="kw-footer-social-icon" aria-label="Tumblr">
-                        <svg viewBox="0 0 24 24"><path d="M14.84,15.87C14.06,16.09 13.5,16.57 13.24,17.42C13.13,18.16 13.36,21.97 13.36,21.97H9.34V16.59C9.34,15.84 9.36,13.58 9.36,13.58H6.93V10.4H8.94C8.94,10.4 8.83,7.97 9,6.4C9.38,3.93 11.74,2 14.57,2V5.33C14.57,5.33 13.36,5.38 13.05,5.8C12.74,6.22 12.77,7.5 12.77,8.36V10.38H15.63V13.56H12.82C12.82,13.56 12.82,14.62 12.88,14.93C12.94,15.24 13.24,15.45 13.5,15.38C13.77,15.32 14.84,14.93 14.84,14.93L16.07,17.76L14.84,15.87Z"/></svg>
-                    </a>
-                </div>
-            </div>
+            
             <div class="kw-footer-col-links">
+                <h1 class="footer-heading">Legal</h1>
                 <ul class="kw-footer-link-list">
+                    <li><a href="#">Responsible Disclosure Policy</a></li>
                     <li><a href="#">Cookie Policy</a></li>
                     <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Policies</a></li>
+                    <li><a href="#">Terms of Use</a></li>
+                    <li><a href="#">Proof of Reserve</a></li>
                 </ul>
             </div>
             <div class="kw-footer-col-links">
+                <h1 class="footer-heading">Admissions & Aid</h1>
                 <ul class="kw-footer-link-list">
-                    <li><a href="#">Academic Year</a></li>
-                    <li><a href="#">Staff</a></li>
-                    <li><a href="#">Students</a></li>
-                    <li><a href="#">Alumni & Friends</a></li>
-                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">How to apply</a></li>
+                    <li><a href="#">Admissions Requirements</a></li>
+                    <li><a href="#">Tuition, Fees & Payments</a></li>
+                    <li><a href="#">Registration</a></li>
+                    <li><a href="#">Assessments</a></li>
+                    <li><a href="#">Financial Aid</a></li>
+                    <li><a href="#">Late Enquiries</a></li>
+                    <li><a href="#">Check your status</a></li>
+                    <li><a href="#">Timetables</a></li>
                 </ul>
             </div>
             <div class="kw-footer-col-links">
+                <h1 class="footer-heading">Campus Life</h1>
+                <ul class="kw-footer-link-list">
+                    <li><a href="#">Student Activities</a></li>
+                    <li><a href="#">Clubs & Societies</a></li>
+                    <li><a href="#">Sports & Recreation</a></li>
+                    <li><a href="#">Campus Facilities</a></li>
+                    <li><a href="#">Campus Support</a></li>
+                    <li><a href="#">Residence Life</a></li>
+                </ul>
+            </div>
+            <div class="kw-footer-col-links">
+                <h1 class="footer-heading">Calender</h1>
                 <ul class="kw-footer-link-list">
                     <li><a href="#">Term Dates</a></li>
-                    <li><a href="#">School Calendar</a></li>
-                    <li><a href="#">Admissions</a></li>
-                    <li><a href="#">Careers</a></li>
-                    <li><a href="#">Support Services</a></li>
+                    <li><a href="#">Academic Year</a></li>
+                    <li><a href="#">Sports Calender</a></li>
+                    <li><a href="#">Exam Timetable</a></li>
+                    <li><a href="#">Campus Events</a></li>
                 </ul>
             </div>
             <div class="kw-footer-col-links">
+                <h1 class="footer-heading">Maluti</h1>
                 <ul class="kw-footer-link-list">
-                    <li><a href="#">Maluti Alumnus</a></li>
-                    <li><a href="#">Coltech</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Executive Leadership</a></li>
+                    <li><a href="#">Roadmap</a></li>
+                    <li><a href="#">Innovations</a></li>
+                    <li><a href="#">Events</a></li>
+                    <li><a href="#">Vision 2023</a></li>
+                    <li><a href="#">Office & Department Directory</a></li>
+                    <li><a href="#">Awards & Achievements</a></li>
+                    <li><a href="#">Job Opportunities</a></li>
+                    <li><a href="#">Maluti Merchandise</a></li>
+                </ul>
+            </div>
+            <div class="kw-footer-col-links">
+                <h1 class="footer-heading">Students</h1>
+                <ul class="kw-footer-link-list">
+                    <li><a href="#">Alumni & Friends</a></li>
+                    <li><a href="#">Noticeboard</a></li>
+                    <li><a href="#">Students</a></li>
                 </ul>
             </div>
         </div>
         <div class="kw-footer-content-wrapper kw-footer-bottom">
-            <span class="kw-footer-designer">Copyright &copy; 2024 Maluti TVET College. All rights reserved.</span>
+            <span class="kw-footer-designer">Copyright &copy; 2026 Maluti TVET College. All rights reserved.</span>
         </div>
     </div>
 </footer>
