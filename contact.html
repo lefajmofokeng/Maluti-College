@@ -3,425 +3,1001 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
-
+    <title>Cronos IT Solutions - Contact Form</title>
+    <!-- WEB TAB ICON -->
+    <link rel="icon" type="image/png" href="thumbnails/top-1.png">
     <style>
-        /* =========================================
-           CSS Isolation: Prefix 'ct-' (Contact)
-           ========================================= */
-
-        * {
-            margin: 0;
-            padding: 0;
+    /* ── Alvarado Font ───────────────────────────────────── */
+        @font-face {
+            font-family: 'Alvarado';
+            font-weight: 300;
+            src: url('fonts/Alvarado-Light.otf') format('opentype'),
+                 url('fonts/Alvarado-Light.woff') format('woff');
+        }
+        @font-face {
+            font-family: 'Alvarado';
+            font-weight: 400;
+            src: url('fonts/Alvarado-Regular.otf') format('opentype'),
+                 url('fonts/Alvarado-Regular.woff') format('woff');
+        }
+        @font-face {
+            font-family: 'Alvarado';
+            font-weight: 500;
+            src: url('fonts/Alvarado-Medium.otf') format('opentype'),
+                 url('fonts/Alvarado-Medium.woff') format('woff');
+        }
+        @font-face {
+            font-family: 'Alvarado';
+            font-weight: 600;
+            src: url('fonts/Alvarado-Bold.otf') format('opentype'),
+                 url('fonts/Alvarado-Bold.woff') format('woff');
         }
 
+    * {
+        font-family: 'Alvarado', sans-serif;
+        line-height: 1.2;
+    }
+
+        /* --- MAIN FORM CSS STYLES --- */
+        
         :root {
-            --ct-font-family: 'Bricolage Grotesque', sans-serif;
-            --ct-navy: #020035;
-            --ct-orange: #F06449;
-            --ct-bg-light: #FBFBFE;
-            --ct-white: #ffffff;
-            --ct-text-muted: #666666;
-            --ct-border: #e2e8f0;
+            --crns-font-family: 'Alvarado', sans-serif;
+            --crns-color-primary-blue: #116ae6;
+            --crns-color-primary-hover: #0e5ac2;
+            --crns-color-bg-dark: #051424;
+            --crns-color-text-dark: #111827;
+            --crns-color-text-medium: #4b5563;
+            --crns-color-text-light: #6b7280;
+            --crns-color-border: #d1d5db;
+            --crns-color-required: #ef4444;
+            --crns-color-success-bg: #ecfdf5;
+            --crns-color-success-text: #065f46;
         }
 
-        .ct-page-wrapper {
-            font-family: var(--ct-font-family);
-            color: var(--ct-navy);
-            background-color: var(--ct-white);
+        body {
             margin: 0;
             padding: 0;
+            font-family: var(--crns-font-family);
+            background-color: #fff;
         }
 
-        .ct-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+        .crns-main-wrapper {
+            position: relative;
+            background-color: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 90px 20px;
+            box-sizing: border-box;
+            line-height: 1.5;
         }
 
-        /* --- Section 1: Hero --- */
-        .ct-hero {
-            padding: 120px 0 80px;
-            text-align: center;
-            background: linear-gradient(to bottom, #f0f4f8 0%, #ffffff 100%);
+        .crns-main-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 240px;
+            background-image: url('https://images.pexels.com/photos/28428587/pexels-photo-28428587.jpeg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+            z-index: 0;
         }
 
-        .ct-hero h1 {
-            font-size: clamp(48px, 6vw, 72px);
-            font-weight: 800;
-            letter-spacing: -2px;
-            margin-bottom: 20px;
+        .crns-main-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 240px;
+            background-image: linear-gradient(to bottom, rgba(0, 8, 17, 0), rgb(1, 7, 14));
+            z-index: 1;
         }
 
-        .ct-hero p {
-            font-size: 20px;
-            color: var(--ct-text-muted);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* --- Section 2: Departments Grid --- */
-        .ct-dept-section {
-            padding: 80px 0;
-        }
-
-        .ct-section-title {
-            font-size: 32px;
-            font-weight: 700;
+        .crns-form-container {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 510px;
+            padding: 35px;
+            border-radius: 4px;
+            margin-top: 100px; 
             margin-bottom: 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Back Button */
+        .crns-back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 10;
+            border: none;
+            padding: 10px 0 0 24px;
+            font-family: var(--crns-font-family);
+            font-size: 14px;
+            font-weight: 500;
+            color: #fff;
+            cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 6px;
+            text-decoration: none;
         }
 
-        .ct-section-title::after {
-            content: "";
-            flex-grow: 1;
-            height: 1px;
-            background: var(--ct-border);
+        .crns-back-button svg {
+            width: 16px;
+            height: 16px;
         }
 
-        .ct-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
+        /* Logo Area */
+        .crns-logo-placeholder {
+            width: 100%;
+            margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .crns-logo-img {
+            max-height: 40px;
+            max-width: 200px;
+            object-fit: contain;
         }
 
-        .ct-contact-card {
+        .crns-headline {
+            font-size: 30px;
+            font-weight: 500;
+            color: var(--crns-color-text-dark);
+            margin: 0 0 16px 0;
+        }
+
+        .crns-intro-text {
+            font-size: 17px;
+            font-weight: 500;
+            color: var(--crns-color-text-dark);
+            margin: 0 0 32px 0;
+            line-height: 1.4;
+        }
+
+        .crns-field-group {
+            margin-bottom: 28px;
+            position: relative; /* For custom dropdown positioning */
+        }
+
+        .crns-label {
+            display: block;
+            font-size: 17px;
+            font-weight: 500;
+            color: var(--crns-color-text-dark);
+            margin-bottom: 6px;
+        }
+
+        .crns-required-mark {
+            color: var(--crns-color-required);
+            margin-left: 2px;
+        }
+
+        .crns-helper-text {
+            display: block;
+            font-size: 15px;
+            color: var(--crns-color-text-light);
+            margin-bottom: 10px;
+            margin-top: 0;
+        }
+
+        .crns-input,
+        .crns-textarea {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--crns-color-border);
+            border-radius: 4px;
+            font-family: var(--crns-font-family);
+            font-size: 15px;
+            color: var(--crns-color-text-dark);
+            transition: all 0.2s ease;
+            appearance: none;
+            -webkit-appearance: none;
+            background-color: #fff;
+        }
+
+        .crns-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .crns-input:focus,
+        .crns-textarea:focus {
+            outline: none;
+            border-color: var(--crns-color-primary-blue);
+            box-shadow: 0 0 0 3px rgba(17, 106, 230, 0.15);
+        }
+
+        /* --- CUSTOM DROPDOWN CSS --- */
+        .crns-custom-select-wrapper {
+            position: relative;
+            user-select: none;
+            width: 100%;
+        }
+
+        .crns-custom-select {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .crns-custom-select-trigger {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            font-size: 15px;
+            font-weight: 400;
+            color: var(--crns-color-text-dark);
+            background: #fff;
+            cursor: pointer;
+            border: 2px solid var(--crns-color-border); /* 2px solid grey */
+            border-radius: 4px; /* 4px border radius */
+            transition: all 0.2s ease;
+        }
+
+        .crns-custom-select-trigger:focus {
+             outline: none;
+             border-color: var(--crns-color-primary-blue);
+             box-shadow: 0 0 0 3px rgba(17, 106, 230, 0.15);
+        }
+
+        /* Custom Arrow */
+        .crns-custom-select-trigger::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23111827%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+            background-repeat: no-repeat;
+            background-size: contain;
+            transition: transform 0.2s ease;
+        }
+
+        .crns-custom-select.open .crns-custom-select-trigger::after {
+            transform: rotate(180deg);
+        }
+        
+        .crns-custom-select.open .crns-custom-select-trigger {
+             border-color: var(--crns-color-primary-blue);
+        }
+
+        .crns-custom-options {
+            position: absolute;
+            display: block;
+            top: 100%;
+            left: 0;
+            right: 0;
+            /* CHANGED: Removed border-top:0 and added full border-radius */
+            border: 2px solid var(--crns-color-border);
+            border-radius: 4px;
+            background: #fff;
+            transition: all 0.2s ease;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            z-index: 20;
+            margin-top: 4px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .crns-custom-select.open .crns-custom-options {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: all;
+            border-color: var(--crns-color-primary-blue);
+        }
+
+        .crns-custom-option {
+            position: relative;
+            display: block;
+            padding: 12px 16px;
+            font-size: 15px;
+            font-weight: 400;
+            color: var(--crns-color-text-dark);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        /* Add border radius to first and last options so they don't overflow the rounded container */
+        .crns-custom-option:first-child {
+            border-top-left-radius: 2px;
+            border-top-right-radius: 2px;
+        }
+        .crns-custom-option:last-child {
+            border-bottom-left-radius: 2px;
+            border-bottom-right-radius: 2px;
+        }
+
+        .crns-custom-option:hover {
+            background-color: #f3f4f6;
+            color: var(--crns-color-primary-blue);
+        }
+
+        .crns-custom-option.selected {
+            font-weight: 600;
+            background-color: #f3f4f6;
+        }
+
+        /* --- END CUSTOM DROPDOWN --- */
+
+
+        .crns-submit-section {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 32px;
+        }
+
+        .crns-submit-btn {
+            background-color: var(--crns-color-primary-blue);
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            padding: 14px 32px;
+            font-size: 16px;
+            font-weight: 550;
+            font-family: var(--crns-font-family);
+            cursor: pointer;
+            transition: background-color 0.2s, opacity 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .crns-submit-btn:hover {
+            background-color: var(--crns-color-primary-hover);
+        }
+
+        .crns-submit-btn:disabled {
+            background-color: #9ca3af;
+            cursor: not-allowed;
+            opacity: 0.8;
+        }
+
+        .crns-disclaimer {
+            font-size: 13px;
+            color: var(--crns-color-text-light);
+            text-align: center;
+        }
+        
+        .crns-report-link {
+            color: var(--crns-color-text-light);
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        .crns-report-link:hover {
+            color: var(--crns-color-text-dark);
+        }
+
+        /* Success Message Box */
+        .crns-success-message {
+            display: none; /* Hidden by default */
+            background-color: var(--crns-color-success-bg);
+            color: var(--crns-color-success-text);
             padding: 32px;
-            border: 1px solid var(--ct-border);
-            border-radius: 20px;
-            transition: all 0.3s ease;
+            border-radius: 1px;
+            text-align: center;
+            margin-top: 20px;
+            border: 1px solid #a7f3d0;
+            animation: fadeIn 0.5s ease;
         }
-
-        .ct-contact-card:hover {
-            border-color: var(--ct-orange);
-            box-shadow: 0 10px 30px rgba(2, 0, 53, 0.05);
-        }
-
-        .ct-dept-label {
-            color: var(--ct-orange);
-            text-transform: uppercase;
-            font-size: 12px;
+        
+        .crns-success-title {
             font-weight: 700;
-            letter-spacing: 0.1em;
+            font-size: 20px;
             margin-bottom: 12px;
             display: block;
         }
 
-        .ct-person-name {
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 4px;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .ct-person-role {
-            font-size: 15px;
-            color: var(--ct-text-muted);
-            margin-bottom: 20px;
+        @media (max-width: 768px) {
+            .crns-main-wrapper {
+                padding: 20px 12px;
+                background-size: 100% 250px; 
+            }
+            .crns-form-container {
+                padding: 24px;
+                margin-top: 60px;
+            }
+            .crns-headline {
+                font-size: 24px;
+            }
+
+            .crns-modal-container {
+                margin-right: 30px;
+                width: 100%;
+            }
         }
 
-        .ct-contact-link {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            color: var(--ct-navy);
-            margin-bottom: 10px;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-
-        .ct-contact-link:hover {
-            color: var(--ct-orange);
-        }
-
-        .ct-contact-link svg {
-            width: 18px;
-            height: 18px;
-            opacity: 0.7;
-        }
-
-        /* --- Section 3: Campus Directories --- */
-        .ct-campus-section {
-            padding: 80px 0;
-            background-color: var(--ct-bg-light);
-        }
-
-        .ct-campus-table-wrapper {
-            overflow-x: auto;
-            background: white;
-            border-radius: 20px;
-            border: 1px solid var(--ct-border);
-        }
-
-        .ct-table {
+        /* --- MODAL CSS STYLES --- */
+        .crns-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            border-collapse: collapse;
-            text-align: left;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            padding: 16px;
+            backdrop-filter: blur(2px);
         }
 
-        .ct-table th {
-            padding: 20px;
-            background: #f8fafc;
-            font-weight: 700;
-            border-bottom: 1px solid var(--ct-border);
+        .crns-modal-container {
+            background-color: #fff;
+            padding: 32px;
+            border-radius: 4px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            font-family: var(--crns-font-family);
+            animation: modalPop 0.3s ease-out;
         }
 
-        .ct-table td {
-            padding: 20px;
-            border-bottom: 1px solid var(--ct-border);
+        @keyframes modalPop {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
         }
 
-        .ct-table tr:last-child td {
-            border-bottom: none;
+        .crns-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #e2e2e2;
+            padding-bottom: 10px;
         }
 
-        /* --- Section 4: Form & Map --- */
-        .ct-form-section {
-            padding: 100px 0;
+        .crns-modal-title {
+            font-size: 20px;
+            font-weight: 500;
+            color: var(--crns-color-text-dark);
+            margin: 0;
         }
 
-        .ct-form-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: start;
+        .crns-close-btn {
+            background: none;
+            border: none;
+            font-size: 30px;
+            color: var(--crns-color-text-light);
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+            margin-left: 10px;
+        }
+        .crns-close-btn:hover { color: var(--crns-color-text-dark); }
+
+        .crns-modal-body p {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--crns-color-text-medium);
+            margin: 0 0 24px 0;
+            line-height: 1.5;
         }
 
-        .ct-input-group {
+        .crns-radio-group {
             margin-bottom: 24px;
         }
 
-        .ct-input-group label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 8px;
+        .crns-radio-option {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+        
+        .crns-radio-option input[type="radio"] {
+            margin-right: 12px;
+            margin-top: 3px;
+            accent-color: var(--crns-color-primary-blue);
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
         }
 
-        .ct-input, .ct-textarea {
-            width: 100%;
-            padding: 16px;
-            border: 1px solid var(--ct-border);
-            border-radius: 12px;
-            font-family: var(--ct-font-family);
-            font-size: 16px;
-            transition: border-color 0.3s;
-        }
-
-        .ct-input:focus, .ct-textarea:focus {
-            outline: none;
-            border-color: var(--ct-navy);
-        }
-
-        .ct-submit-btn {
-            background: var(--ct-navy);
-            color: white;
-            padding: 18px 40px;
-            border-radius: 50px;
-            border: none;
-            font-weight: 700;
+        .crns-radio-option label {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--crns-color-text-dark);
             cursor: pointer;
-            transition: background 0.3s;
         }
 
-        .ct-submit-btn:hover {
-            background: var(--ct-orange);
+        .crns-modal-textarea {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--crns-color-border);
+            border-radius: 4px;
+            font-family: var(--crns-font-family);
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--crns-color-text-dark);
+            resize: vertical;
+            min-height: 80px;
+            margin-bottom: 24px;
+        }
+        .crns-modal-textarea:focus {
+            outline: none;
+            border-color: var(--crns-color-primary-blue);
         }
 
-        /* --- Responsive --- */
-        @media (max-width: 968px) {
-            .ct-form-container { grid-template-columns: 1fr; }
-            .ct-grid { grid-template-columns: 1fr; }
+        .crns-modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            border-top: 1px solid #f3f4f6;
+            padding-top: 20px;
         }
+
+        .crns-cancel-btn {
+            background: #fff;
+            border: 2px solid var(--crns-color-border);
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--crns-color-text-dark);
+            cursor: pointer;
+            font-family: var(--crns-font-family);
+        }
+        .crns-cancel-btn:hover { background-color: #f9fafb; border-color: #9ca3af; }
+
+        .crns-modal-submit-btn {
+            background-color: #007ad7; 
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            font-family: var(--crns-font-family);
+        }
+        .crns-modal-submit-btn:hover { background-color: #007ddc; }
+        .crns-modal-submit-btn:disabled { background-color: #9ca3af; cursor: not-allowed;}
+
+       @media screen and (max-width: 768px) {
+            .crns-modal-container {
+                margin-right: 30px;
+                width: 100%;
+            }
+        
+            .crns-back-button {
+                top: 30px;
+                left: 10px;
+                padding: 0;
+                font-size: 18px;
+            }
+       }
     </style>
 </head>
 <body>
 
-<div class="ct-page-wrapper">
-
-    <section class="ct-hero">
-        <div class="ct-container">
-            <h1>Get in touch</h1>
-            <p>Have questions about admissions, our campuses, or specific programs? We're here to help you navigate your journey.</p>
-        </div>
-    </section>
-
-    <section class="ct-dept-section">
-        <div class="ct-container">
-            <h2 class="ct-section-title">Central Departments</h2>
-            <div class="ct-grid">
-                <div class="ct-contact-card">
-                    <span class="ct-dept-label">Admissions</span>
-                    <h3 class="ct-person-name">Sarah Jenkins</h3>
-                    <p class="ct-person-role">Head of Enrolment</p>
-                    <a href="tel:+27581234567" class="ct-contact-link">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                        +27 (0) 58 123 4567
-                    </a>
-                    <a href="mailto:admissions@college.edu" class="ct-contact-link">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                        admissions@college.edu
-                    </a>
-                </div>
-
-                <div class="ct-contact-card">
-                    <span class="ct-dept-label">Student Finance</span>
-                    <h3 class="ct-person-name">Michael Thabo</h3>
-                    <p class="ct-person-role">Bursar & Accounts</p>
-                    <a href="tel:+27581234568" class="ct-contact-link">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                        +27 (0) 58 123 4568
-                    </a>
-                    <a href="mailto:finance@college.edu" class="ct-contact-link">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                        finance@college.edu
-                    </a>
-                </div>
-
-                <div class="ct-contact-card">
-                    <span class="ct-dept-label">Registrar</span>
-                    <h3 class="ct-person-name">Dr. Elena Rossi</h3>
-                    <p class="ct-person-role">Academic Records</p>
-                    <a href="tel:+27581234569" class="ct-contact-link">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                        +27 (0) 58 123 4569
-                    </a>
-                    <a href="mailto:registrar@college.edu" class="ct-contact-link">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                        registrar@college.edu
-                    </a>
-                </div>
+    <div class="crns-main-wrapper">
+        <a href="index.html" class="crns-back-button">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+            </svg>
+            Back to Home
+        </a>
+        
+        <div class="crns-form-container">
+            
+            <div class="crns-logo-placeholder">
+                <a href="index.html"><img src="thumbnails/logo1.png" alt="Cronos IT Solutions" class="crns-logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                </a>
+                <span style="display:none; font-weight:700; font-size:20px; color:#111827;">Cronos IT Solutions</span>
             </div>
-        </div>
-    </section>
 
-    <section class="ct-campus-section">
-        <div class="ct-container">
-            <h2 class="ct-section-title">Campus Direct Lines</h2>
-            <div class="ct-campus-table-wrapper">
-                <table class="ct-table">
-                    <thead>
-                        <tr>
-                            <th>Campus</th>
-                            <th>Reception Tel</th>
-                            <th>Campus Manager</th>
-                            <th>Direct Email</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Main Campus</strong></td>
-                            <td>+27 58 713 0001</td>
-                            <td>Mr. S. Mokoena</td>
-                            <td>main.info@college.edu</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Lere La Tshepe</strong></td>
-                            <td>+27 58 713 0002</td>
-                            <td>Ms. P. Zungu</td>
-                            <td>llt@college.edu</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Harrismith</strong></td>
-                            <td>+27 58 623 0003</td>
-                            <td>Mr. D. Smith</td>
-                            <td>hsm@college.edu</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Bethlehem</strong></td>
-                            <td>+27 58 303 0004</td>
-                            <td>Dr. L. Meyer</td>
-                            <td>btl@college.edu</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Kwetlisong</strong></td>
-                            <td>+27 58 713 0005</td>
-                            <td>Ms. J. Moloi</td>
-                            <td>kwe@college.edu</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Bonamelo</strong></td>
-                            <td>+27 58 713 0006</td>
-                            <td>Mr. R. Naidoo</td>
-                            <td>bon@college.edu</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Sefikeng</strong></td>
-                            <td>+27 58 713 0007</td>
-                            <td>Ms. T. Khumalo</td>
-                            <td>sef@college.edu</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Itemoheleng</strong></td>
-                            <td>+27 58 713 0008</td>
-                            <td>Mr. V. Cele</td>
-                            <td>ite@college.edu</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
+            <div id="crns-form-content">
+                <h1 class="crns-headline">Maluti Contact Form</h1>
+                
+                <div class="crns-intro-text">
+                    Thank you for your interest in Cronos. Please complete the form below to get in touch with our development and support teams.
+                </div>
 
-    <section class="ct-form-section">
-        <div class="ct-container">
-            <div class="ct-form-container">
-                <div>
-                    <h2 style="font-size: 42px; margin-bottom: 20px;">Send a message</h2>
-                    <p style="margin-bottom: 40px; color: var(--ct-text-muted);">Fill out the form below and our general inquiries team will get back to you within 24 hours.</p>
+                <form id="crns-contact-form" style="margin-top: 5rem;">
                     
-                    <form>
-                        <div class="ct-input-group">
-                            <label>Full Name</label>
-                            <input type="text" class="ct-input" placeholder="John Doe">
-                        </div>
-                        <div class="ct-input-group">
-                            <label>Email Address</label>
-                            <input type="email" class="ct-input" placeholder="john@example.com">
-                        </div>
-                        <div class="ct-input-group">
-                            <label>How can we help?</label>
-                            <select class="ct-input">
-                                <option>General Inquiry</option>
-                                <option>Admissions Question</option>
-                                <option>Campus Tour Request</option>
-                                <option>Media & Press</option>
-                            </select>
-                        </div>
-                        <div class="ct-input-group">
-                            <label>Message</label>
-                            <textarea class="ct-textarea" rows="5" placeholder="Tell us more about your inquiry..."></textarea>
-                        </div>
-                        <button type="submit" class="ct-submit-btn">Send Message</button>
-                    </form>
-                </div>
-
-                <div style="background: var(--ct-navy); color: white; padding: 60px; border-radius: 30px;">
-                    <h2 style="margin-bottom: 30px;">Head Office</h2>
-                    <p style="opacity: 0.8; margin-bottom: 40px;">Our central administration is located at the Main Campus, serving as the hub for all 8 institutions.</p>
+                    <input type="hidden" name="_subject" value="New Cronos IT Website Inquiry">
+                    <input type="hidden" name="_captcha" value="true"> <input type="hidden" name="_template" value="table">
                     
-                    <div style="margin-bottom: 30px;">
-                        <h4 style="color: var(--ct-orange); margin-bottom: 10px;">Physical Address</h4>
-                        <p>123 Education Drive<br>Phuthaditjhaba, 9866<br>Free State, South Africa</p>
+                    <div class="crns-field-group">
+                        <label for="crns-name" class="crns-label">
+                            Full Name <span class="crns-required-mark">*</span>
+                        </label>
+                        <input type="text" id="crns-name" name="name" class="crns-input" required placeholder="John Doe">
                     </div>
 
-                    <div style="margin-bottom: 30px;">
-                        <h4 style="color: var(--ct-orange); margin-bottom: 10px;">Operating Hours</h4>
-                        <p>Monday – Friday: 08:00 – 16:30<br>Saturday & Sunday: Closed</p>
+                    <div class="crns-field-group">
+                        <label for="crns-email" class="crns-label">
+                            Your email address <span class="crns-required-mark">*</span>
+                        </label>
+                        <p class="crns-helper-text">Make sure to enter a valid, active email address.</p>
+                        <input type="email" id="crns-email" name="email" class="crns-input" required placeholder="name@company.com">
                     </div>
 
-                    <div style="width: 100%; height: 200px; background: #1a1a4a; border-radius: 15px; margin-top: 40px; display: flex; align-items: center; justify-content: center; font-style: italic; opacity: 0.5; border: 1px dashed rgba(255,255,255,0.2);">
-                        Map view placeholder
+                    <div class="crns-field-group">
+                        <label for="crns-location" class="crns-label">
+                            Location <span class="crns-required-mark">*</span>
+                        </label>
+                        <input type="text" id="crns-location" name="location" class="crns-input" required placeholder="Bethlehem, Free State">
                     </div>
-                </div>
+
+                    <div class="crns-field-group">
+                        <label class="crns-label">
+                            I am completing this form in connection with my: <span class="crns-required-mark">*</span>
+                        </label>
+                        <div class="crns-custom-select-wrapper">
+                            <div class="crns-custom-select" id="custom-context-select">
+                                <div class="crns-custom-select-trigger"><span>Select an option</span></div>
+                                <div class="crns-custom-options">
+                                    <span class="crns-custom-option" data-value="business">Business</span>
+                                    <span class="crns-custom-option" data-value="work">Work</span>
+                                    <span class="crns-custom-option" data-value="personal">Personal interests</span>
+                                </div>
+                            </div>
+                            <input type="hidden" id="crns-context" name="connection_type" value=""> 
+                        </div>
+                    </div>
+
+                    <div id="crns-business-fields" style="display: none;">
+                        <div class="crns-field-group">
+                            <label class="crns-label">
+                                Industry <span class="crns-required-mark">*</span>
+                            </label>
+                            
+                            <div class="crns-custom-select-wrapper">
+                                <div class="crns-custom-select" id="custom-industry-select">
+                                    <div class="crns-custom-select-trigger"><span>Select Industry</span></div>
+                                    <div class="crns-custom-options">
+                                        <span class="crns-custom-option" data-value="technology">Technology</span>
+                                        <span class="crns-custom-option" data-value="finance">Finance</span>
+                                        <span class="crns-custom-option" data-value="healthcare">Healthcare</span>
+                                        <span class="crns-custom-option" data-value="education">Education</span>
+                                        <span class="crns-custom-option" data-value="manufacturing">Manufacturing</span>
+                                        <span class="crns-custom-option" data-value="retail">Retail</span>
+                                        <span class="crns-custom-option" data-value="other">Other</span>
+                                    </div>
+                                </div>
+                                <input type="hidden" id="crns-industry" name="industry" value="">
+                            </div>
+
+                        </div>
+                        <div class="crns-field-group">
+                            <label for="crns-bus-phone" class="crns-label">
+                                Telephone Number <span class="crns-required-mark">*</span>
+                            </label>
+                            <input type="tel" id="crns-bus-phone" name="business_phone" class="crns-input" placeholder="(012) 000-0000">
+                        </div>
+                    </div>
+
+                    <div id="crns-work-fields" style="display: none;">
+                        <div class="crns-field-group">
+                            <label for="crns-job-role" class="crns-label">
+                                Job Role <span class="crns-required-mark">*</span>
+                            </label>
+                            <input type="text" id="crns-job-role" name="job_role" class="crns-input" placeholder="e.g. Senior Developer, Manager">
+                        </div>
+                        <div class="crns-field-group">
+                            <label for="crns-company-phone" class="crns-label">
+                                Company Telephone Number <span class="crns-required-mark">*</span>
+                            </label>
+                            <input type="tel" id="crns-company-phone" name="company_phone" class="crns-input" placeholder="(078) 000 0000">
+                        </div>
+                    </div>
+
+                    <div class="crns-field-group">
+                        <label for="crns-inquiry" class="crns-label">
+                            How can we help you? <span class="crns-required-mark">*</span>
+                        </label>
+                        <p class="crns-helper-text">Please include specific details so we can address your proposal efficiently.</p>
+                        <textarea id="crns-inquiry" name="inquiry_details" class="crns-textarea" rows="4" required></textarea>
+                    </div>
+
+                    <div class="crns-field-group">
+                        <label for="crns-project-context" class="crns-label">
+                            Project Context (Optional)
+                        </label>
+                        <p class="crns-helper-text">Tell us about your app, timeline, or requirements.</p>
+                        <textarea id="crns-project-context" name="project_context" class="crns-textarea" rows="3"></textarea>
+                    </div>
+
+                    <div class="crns-field-group">
+                        <label for="crns-previous-contact" class="crns-label">
+                            Referral (Optional)
+                        </label>
+                        <p class="crns-helper-text">If you have already been in touch with someone on the Cronos team, please indicate their name.</p>
+                        <input type="text" id="crns-previous-contact" name="previous_contact_person" class="crns-input">
+                    </div>
+
+                    <div class="crns-submit-section">
+                        <button type="submit" id="crns-submit-btn" class="crns-submit-btn">Send Message</button>
+                        <span class="crns-disclaimer">Do not submit passwords, payments or your identity through this form. <a id="crns-open-report-modal" class="crns-report-link">Report malicious form</a>.</span>
+                    </div>
+
+                </form>
+            </div>
+
+            <div id="crns-success-message" class="crns-success-message">
+                <span class="crns-success-title">Message Sent!</span>
+                <p>Your message has been safely delivered to Cronos IT Solutions. <br>We will get back to you shortly at <strong id="crns-success-email"></strong>.</p>
+                <button onclick="location.reload()" style="margin-top:20px; background:none; border:none; text-decoration:underline; cursor:pointer; color:var(--crns-color-primary-blue); font-weight:600;">Send another message</button>
+                <button onclick="window.location.href='index.html'" style="margin-top:10px; background:none; border:none; text-decoration:underline; cursor:pointer; color:var(--crns-color-primary-blue); font-weight:600;">Return to homepage</button>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="crns-report-modal" class="crns-modal-overlay">
+        <div class="crns-modal-container">
+            <div class="crns-modal-header">
+                <h2 class="crns-modal-title">Report a malicious form</h2>
+                <button class="crns-close-btn crns-modal-close" aria-label="Close modal">&times;</button>
+            </div>
+            <div class="crns-modal-body">
+                <p>Please briefly describe how this form is being misused. Our security team will review your report.</p>
+                
+                <form id="crns-report-form">
+                     <input type="hidden" name="_subject" value="⚠️ MALICIOUS FORM REPORT">
+                    <input type="hidden" name="_captcha" value="false">
+
+                    <div class="crns-radio-group">
+                        <div class="crns-radio-option">
+                            <input type="radio" id="crns-reason-spam" name="report_reason" value="Spam, malware, or phishing" checked>
+                            <label for="crns-reason-spam">Spam, malware, or phishing</label>
+                        </div>
+                        <div class="crns-radio-option">
+                            <input type="radio" id="crns-reason-fake" name="report_reason" value="Impersonation">
+                            <label for="crns-reason-fake">Impersonation of a business</label>
+                        </div>
+                        <div class="crns-radio-option">
+                            <input type="radio" id="crns-reason-other" name="report_reason" value="Other">
+                            <label for="crns-reason-other">Other (please explain)</label>
+                        </div>
+                    </div>
+
+                    <textarea name="report_details" class="crns-modal-textarea" placeholder="Additional details..." rows="3"></textarea>
+
+                    <div class="crns-modal-footer">
+                        <button type="button" class="crns-cancel-btn crns-modal-close">Cancel</button>
+                        <button type="submit" id="crns-report-submit-btn" class="crns-modal-submit-btn">Submit Report</button>
+                    </div>
+                </form>
             </div>
         </div>
-    </section>
+    </div>
 
-</div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // --- CONSTANTS ---
+            const FORMSUBMIT_ENDPOINT = "https://formsubmit.co/ajax/accesscronos@gmail.com"; 
+
+
+            // --- CUSTOM DROPDOWN LOGIC ---
+            
+            // Setup Dropdowns
+            const customSelects = document.querySelectorAll('.crns-custom-select');
+            
+            customSelects.forEach(select => {
+                const trigger = select.querySelector('.crns-custom-select-trigger');
+                const triggerText = trigger.querySelector('span');
+                const options = select.querySelectorAll('.crns-custom-option');
+                const hiddenInput = select.parentElement.querySelector('input[type="hidden"]'); // Find sibling input
+
+                // Toggle Open
+                trigger.addEventListener('click', function(e) {
+                    // Close others
+                    customSelects.forEach(other => {
+                        if(other !== select) other.classList.remove('open');
+                    });
+                    select.classList.toggle('open');
+                    e.stopPropagation();
+                });
+
+                // Select Option
+                options.forEach(option => {
+                    option.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        // Styling updates
+                        options.forEach(opt => opt.classList.remove('selected'));
+                        this.classList.add('selected');
+                        
+                        // Set Values
+                        const val = this.getAttribute('data-value');
+                        const display = this.textContent;
+                        
+                        triggerText.textContent = display;
+                        hiddenInput.value = val;
+                        
+                        // Close dropdown
+                        select.classList.remove('open');
+
+                        // TRIGGER CONDITIONAL LOGIC MANUALLY
+                        // Because hidden inputs don't fire 'change' events automatically
+                        if(hiddenInput.id === 'crns-context') {
+                            handleContextChange(val);
+                        }
+                    });
+                });
+            });
+
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', function(e) {
+                customSelects.forEach(select => {
+                    if (!select.contains(e.target)) {
+                        select.classList.remove('open');
+                    }
+                });
+            });
+
+
+            // --- CONDITIONAL FIELDS LOGIC ---
+            const businessFields = document.getElementById('crns-business-fields');
+            const workFields = document.getElementById('crns-work-fields');
+            const industryInput = document.getElementById('crns-industry');
+            const busPhoneInput = document.getElementById('crns-bus-phone');
+            const jobRoleInput = document.getElementById('crns-job-role');
+            const compPhoneInput = document.getElementById('crns-company-phone');
+
+            function handleContextChange(val) {
+                // Reset Visibility
+                businessFields.style.display = 'none';
+                workFields.style.display = 'none';
+
+                // Reset Validations (Hidden inputs aren't natively validated well, but we untoggle required logic mentally)
+                busPhoneInput.required = false;
+                jobRoleInput.required = false;
+                compPhoneInput.required = false;
+
+                if (val === 'business') {
+                    businessFields.style.display = 'block';
+                    busPhoneInput.required = true;
+                    // Industry is handled via custom check in submit
+                } else if (val === 'work') {
+                    workFields.style.display = 'block';
+                    jobRoleInput.required = true;
+                    compPhoneInput.required = true;
+                }
+            }
+
+
+            // --- MAIN CONTACT FORM LOGIC ---
+            const form = document.getElementById('crns-contact-form');
+            const submitBtn = document.getElementById('crns-submit-btn');
+            const formContent = document.getElementById('crns-form-content');
+            const successMessage = document.getElementById('crns-success-message');
+            const successEmailSpan = document.getElementById('crns-success-email');
+
+            if(form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+
+                    // --- CUSTOM VALIDATION FOR DROPDOWNS ---
+                    const contextVal = document.getElementById('crns-context').value;
+                    if(!contextVal) {
+                        alert("Please select connection type.");
+                        return;
+                    }
+                    
+                    if(contextVal === 'business') {
+                        const industryVal = document.getElementById('crns-industry').value;
+                        if(!industryVal) {
+                            alert("Please select an Industry.");
+                            return;
+                        }
+                    }
+
+                    
+                    // UI Loading State
+                    const originalBtnText = submitBtn.innerText;
+                    submitBtn.innerText = 'Sending...';
+                    submitBtn.disabled = true;
+                    submitBtn.style.opacity = '0.7';
+
+                    const formData = new FormData(form);
+                    const email = formData.get('email');
+
+                    fetch(FORMSUBMIT_ENDPOINT, {
+                        method: "POST",
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        // Success Logic
+                        formContent.style.display = 'none';
+                        successMessage.style.display = 'block';
+                        successEmailSpan.innerText = email || "your email";
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    })
+                    .catch(error => {
+                        // Error Logic
+                        console.error('Form Error:', error);
+                        submitBtn.innerText = 'Error - Try Again';
+                        submitBtn.disabled = false;
+                        submitBtn.style.opacity = '1';
+                        alert("There was an issue sending your message. Please check your internet connection and try again.");
+                    });
+                });
+            }
+
+
+            // --- REPORT MODAL LOGIC ---
+            const modalOverlay = document.getElementById('crns-report-modal');
+            const openModalLink = document.getElementById('crns-open-report-modal');
+            const closeModalBtns = document.querySelectorAll('.crns-modal-close');
+            const reportForm = document.getElementById('crns-report-form');
+            const reportSubmitBtn = document.getElementById('crns-report-submit-btn');
+
+            if (openModalLink && modalOverlay) {
+                openModalLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    modalOverlay.style.display = 'flex';
+                });
+
+                function closeModal() {
+                    modalOverlay.style.display = 'none';
+                }
+
+                closeModalBtns.forEach(btn => {
+                    btn.addEventListener('click', closeModal);
+                });
+
+                modalOverlay.addEventListener('click', function(e) {
+                    if (e.target === modalOverlay) {
+                        closeModal();
+                    }
+                });
+
+                if (reportForm) {
+                    reportForm.addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        
+                        const originalText = reportSubmitBtn.innerText;
+                        reportSubmitBtn.innerText = 'Sending...';
+                        reportSubmitBtn.disabled = true;
+                        
+                        const reportData = new FormData(reportForm);
+
+                        fetch(FORMSUBMIT_ENDPOINT, {
+                            method: "POST",
+                            body: reportData
+                        })
+                        .then(response => {
+                            closeModal();
+                            reportForm.reset();
+                            reportSubmitBtn.innerText = originalText;
+                            reportSubmitBtn.disabled = false;
+                            alert("Thank you. Your report has been submitted.");
+                        })
+                        .catch(error => {
+                            console.error('Report Error:', error);
+                            reportSubmitBtn.innerText = originalText;
+                            reportSubmitBtn.disabled = false;
+                            alert("There was an issue sending your report. Please try again.");
+                        });
+                    });
+                }
+            }
+
+        });
+    </script>
 
 </body>
 </html>

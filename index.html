@@ -32,6 +32,8 @@
     }
 </style>
 
+<script src="main.js"></script>
+
 
 
 
@@ -186,7 +188,7 @@
         display: flex; font-size: 14px; align-items: center;
         transition: color 0.2s;
     }
-    .hyperion-custom-nav-link:hover { color: var(--hyperion-color-accent); }
+    .hyperion-custom-nav-link:hover { color: #a0aadd; }
     .hyperion-custom-nav-item--has-megamenu.active .hyperion-custom-nav-link { color: var(--hyperion-color-accent); }
 
     .hyperion-desktop-link-icon {
@@ -297,11 +299,11 @@
     .hyperion-mega-menu-group-list a {
         display: block; border-radius: 0; transition: color 0.2s;
         position: relative; margin: 7px 0; padding: 2px 0;
-        font-size: 16px; font-weight: 400;
+        font-size: 19px; font-weight: 400;
         color: #f1f1f1; text-decoration: none; border-bottom: none;
     }
     .hyperion-mega-menu-link-title { font-size: inherit; font-weight: inherit; color: inherit; margin-bottom: 0; }
-    .hyperion-mega-menu-group-list a:hover { color: var(--hyperion-color-accent); background-color: transparent; }
+    .hyperion-mega-menu-group-list a:hover { color: #a0aadd; background-color: transparent; }
 
     @media (max-width: 1024px) {
         .hyperion-custom-header-container { padding: 0 20px; }
@@ -399,7 +401,7 @@
                         <a href="pricing.html" class="hyperion-custom-nav-link">Calendar</a>
                     </li>
                     <li>
-                        <a href="page.html" class="hyperion-custom-nav-link">Enrollment</a>
+                        <a href="page.html" class="hyperion-custom-nav-link">News & Events</a>
                     </li>
                     <li class="hyperion-custom-nav-item--has-megamenu">
                         <a href="page.html" class="hyperion-custom-nav-link" data-hyperion-megamenu-trigger="services">
@@ -416,7 +418,7 @@
                                         <h3>
                                             <img src="images/engineering.png" alt="Dev Icon" class="hyperion-menu-group-img-icon">
                                             <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 500; font-size: 14px;">
-                                                School of Engineering
+                                                School of Science & Engineering
                                                 <span class="hyperion-menu-group-tagline">For aspirated engineers</span>
                                             </span>
                                         </h3>
@@ -424,10 +426,10 @@
                                             <a style="text-decoration: none; border-bottom: none; color: #fff;" href="index.html">Learn about engineering</a>
                                         </button>
                                         <ul class="hyperion-mega-menu-group-list">
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Agricultural Sciences</span></a></li>
                                             <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Electrical Engineering</span></a></li>
                                             <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Mechanical Engineering</span></a></li>
                                             <li><a href="mobile-applications.html"><span class="hyperion-mega-menu-link-title">Civil Engineering</span></a></li>
-                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Agricultural Sciences</span></a></li>
                                         </ul>
                                     </div>
                                     <div class="hyperion-menu-group-card">
@@ -461,15 +463,13 @@
                                         <ul class="hyperion-mega-menu-group-list">
                                             <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Hospitality Management</span></a></li>
                                             <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Tourism Management</span></a></li>
-                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Hospitality Management</span></a></li>
-                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Tourism Management</span></a></li>
                                         </ul>
                                     </div>
                                     <div class="hyperion-menu-group-card">
                                         <h3>
                                             <img src="images/business.png" alt="Business Icon" class="hyperion-menu-group-img-icon">
                                             <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 500; font-size: 14px;">
-                                                School of Business &amp; Commerce
+                                                School of Business &amp; Management
                                                 <span class="hyperion-menu-group-tagline">Lead in Business</span>
                                             </span>
                                         </h3>
@@ -507,6 +507,66 @@
                         </div>
                     </li>
                     <li class="hyperion-custom-nav-item--has-megamenu">
+                        <a href="#" class="hyperion-custom-nav-link" data-hyperion-megamenu-trigger="campus">
+                            Study @ Maluti
+                            <svg class="hyperion-desktop-link-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><polyline points="4 6 8 10 12 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            <svg class="hyperion-mobile-dropdown-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                        <div class="hyperion-mega-menu-container">
+                            <div class="hyperion-mega-menu-panel" data-hyperion-megamenu-panel="campus">
+                                <div class="hyperion-megamenu-3-column-grid">
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>Student Resources</h3>
+                                        <ul class="hyperion-mega-menu-group-list">
+                                            <li><a href="portal.html"><span class="hyperion-mega-menu-link-title">Student Portal</span></a></li>
+                                            <li><a href="housing.html"><span class="hyperion-mega-menu-link-title">Noticeboard</span></a></li>
+                                            <li><a href="library.html"><span class="hyperion-mega-menu-link-title">Digital Library</span></a></li>
+                                            <li><a href="exams.html"><span class="hyperion-mega-menu-link-title">Exam Schedules</span></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>Admissions &amp; Aid</h3>
+                                        <ul class="hyperion-mega-menu-group-list">
+                                            <li><a href="how-to-apply.html"><span class="hyperion-mega-menu-link-title">How to apply</span></a></li>
+                                            <li><a href="payroll.html"><span class="hyperion-mega-menu-link-title">Admissions Requirements</span></a></li>
+                                            <li><a href="events.html"><span class="hyperion-mega-menu-link-title">Tuition, Fees & Payments</span></a></li>
+                                            <li><a href="support.html"><span class="hyperion-mega-menu-link-title">Registrations</span></a></li>
+                                            <li><a href="hr-resources.html"><span class="hyperion-mega-menu-link-title">Assessments</span></a></li>
+                                            <li><a href="research.html"><span class="hyperion-mega-menu-link-title">Financial Aid</span></a></li>
+                                            <li><a href="research.html"><span class="hyperion-mega-menu-link-title">Late Enquiries</span></a></li>
+                                            <li><a href="research.html"><span class="hyperion-mega-menu-link-title">Check your status</span></a></li>
+                                            <li><a href="research.html"><span class="hyperion-mega-menu-link-title">Timetables</span></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>Campus Life</h3>
+                                        <ul class="hyperion-mega-menu-group-list">
+                                            <li><a href="prospectus.html"><span class="hyperion-mega-menu-link-title">Campus Support</span></a></li>
+                                            <li><a href="requirements.html"><span class="hyperion-mega-menu-link-title">Campus Facilities</span></a></li>
+                                            <li><a href="scholarships.html"><span class="hyperion-mega-menu-link-title">Residence Life</span></a></li>
+                                            <li><a href="faq.html"><span class="hyperion-mega-menu-link-title">Student Activities</span></a></li>
+                                            <li><a href="apply.html"><span class="hyperion-mega-menu-link-title">Sports & Recreation</span></a></li>
+                                            <li><a href="visit.html"><span class="hyperion-mega-menu-link-title">Clubs & Societies</span></a></li>
+                                            <li><a href="visit.html"><span class="hyperion-mega-menu-link-title">SRC</span></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>Future Students</h3>
+                                        <ul class="hyperion-mega-menu-group-list">
+                                            <li><a href="prospectus.html"><span class="hyperion-mega-menu-link-title">Download Prospectus</span></a></li>
+                                            <li><a href="requirements.html"><span class="hyperion-mega-menu-link-title">Entry Requirements</span></a></li>
+                                            <li><a href="scholarships.html"><span class="hyperion-mega-menu-link-title">Scholarships</span></a></li>
+                                            <li><a href="faq.html"><span class="hyperion-mega-menu-link-title">Admissions FAQ</span></a></li>
+                                            <li><a href="apply.html"><span class="hyperion-mega-menu-link-title">Apply Now</span></a></li>  
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="hyperion-custom-nav-item--has-megamenu">
                         <a href="#" class="hyperion-custom-nav-link" data-hyperion-megamenu-trigger="discover">
                             Discover
                             <svg class="hyperion-desktop-link-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><polyline points="4 6 8 10 12 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -530,9 +590,9 @@
                                         </ul>
                                     </div>
                                     <div class="hyperion-menu-group-card">
-                                        <h3>Resources</h3>
+                                        <h3>Staff & Faculty</h3>
                                         <ul class="hyperion-mega-menu-group-list">
-                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Blog</span></a></li>
+                                            <li><a href="staff.html"><span class="hyperion-mega-menu-link-title">QMS</span></a></li>
                                             <li><a href="page.html"><span class="hyperion-mega-menu-link-title">eBooks</span></a></li>
                                             <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Webinars</span></a></li>
                                             <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Podcasts</span></a></li>
@@ -552,62 +612,13 @@
                             </div>
                         </div>
                     </li>
-                    <li class="hyperion-custom-nav-item--has-megamenu">
-                        <a href="#" class="hyperion-custom-nav-link" data-hyperion-megamenu-trigger="campus">
-                            Campus
-                            <svg class="hyperion-desktop-link-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><polyline points="4 6 8 10 12 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                            <svg class="hyperion-mobile-dropdown-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </a>
-                        <div class="hyperion-mega-menu-container">
-                            <div class="hyperion-mega-menu-panel" data-hyperion-megamenu-panel="campus">
-                                <div class="hyperion-megamenu-3-column-grid">
-                                    <div class="hyperion-menu-group-card">
-                                        <h3>Student Resources</h3>
-                                        <ul class="hyperion-mega-menu-group-list">
-                                            <li><a href="portal.html"><span class="hyperion-mega-menu-link-title">Student Portal</span></a></li>
-                                            <li><a href="email.html"><span class="hyperion-mega-menu-link-title">Campus Email</span></a></li>
-                                            <li><a href="grades.html"><span class="hyperion-mega-menu-link-title">Grades &amp; Transcripts</span></a></li>
-                                            <li><a href="housing.html"><span class="hyperion-mega-menu-link-title">Campus Housing</span></a></li>
-                                            <li><a href="library.html"><span class="hyperion-mega-menu-link-title">Digital Library</span></a></li>
-                                            <li><a href="exams.html"><span class="hyperion-mega-menu-link-title">Exam Schedules</span></a></li>
-                                            <li><a href="financial-aid.html"><span class="hyperion-mega-menu-link-title">Financial Aid</span></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="hyperion-menu-group-card">
-                                        <h3>Staff &amp; Faculty</h3>
-                                        <ul class="hyperion-mega-menu-group-list">
-                                            <li><a href="management.html"><span class="hyperion-mega-menu-link-title">LMS Management</span></a></li>
-                                            <li><a href="payroll.html"><span class="hyperion-mega-menu-link-title">Payroll &amp; Benefits</span></a></li>
-                                            <li><a href="events.html"><span class="hyperion-mega-menu-link-title">Academic Calendar</span></a></li>
-                                            <li><a href="support.html"><span class="hyperion-mega-menu-link-title">IT Support</span></a></li>
-                                            <li><a href="hr-resources.html"><span class="hyperion-mega-menu-link-title">HR Resources</span></a></li>
-                                            <li><a href="research.html"><span class="hyperion-mega-menu-link-title">Research Grants</span></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="hyperion-menu-group-card">
-                                        <h3>Future Students</h3>
-                                        <ul class="hyperion-mega-menu-group-list">
-                                            <li><a href="prospectus.html"><span class="hyperion-mega-menu-link-title">Download Prospectus</span></a></li>
-                                            <li><a href="requirements.html"><span class="hyperion-mega-menu-link-title">Entry Requirements</span></a></li>
-                                            <li><a href="scholarships.html"><span class="hyperion-mega-menu-link-title">Scholarships</span></a></li>
-                                            <li><a href="faq.html"><span class="hyperion-mega-menu-link-title">Admissions FAQ</span></a></li>
-                                            <li><a href="apply.html"><span class="hyperion-mega-menu-link-title">Apply Now</span></a></li>
-                                            <li><a href="visit.html"><span class="hyperion-mega-menu-link-title">Campus Tours</span></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
                 </ul>
                 <div class="hyperion-header-action-buttons">
                     <button class="hyperion-header-secondary-btn">
                         <a href="login.html">Student Portal</a>
                     </button>
                     <button class="hyperion-header-action-btn">
-                        <a href="staff.html">Staff Workspace</a>
+                        <a href="contact.html">Contact Us</a>
                     </button>
                 </div>
             </nav>
@@ -738,692 +749,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hero Section</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-</head>
-<body style="margin:0;padding:0;">
-
-<style>
-    .it-hero-wrapper {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Inter', sans-serif;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        min-height: 700px;
-        width: 100%;
-        background: linear-gradient(to right, rgba(0,0,0,0.8) 20%, rgba(0,0,0,0.1) 100%), 
-                    url('https://images.unsplash.com/photo-1525921429624-479b6a26d84d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-        background-size: cover;
-        background-position: center;
-        color: #ffffff;
-        padding-left: 10%;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .it-hero-content {
-        max-width: 700px;
-        z-index: 2;
-    }
-
-    .it-hero-headline {
-        font-size: 3.5rem;
-        line-height: 1.1;
-        font-weight: 400;
-        margin-bottom: 1.8rem;
-        letter-spacing: -0.03em;
-    }
-
-    .it-hero-buttons {
-        display: flex;
-        gap: 12px;
-        flex-wrap: wrap;
-    }
-
-    .it-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 0.7rem 1.5rem;
-        border-radius: 60px;
-        font-family: 'Alvarado', sans-serif;
-        font-size: 1rem;
-        font-weight: 400;
-        cursor: pointer;
-        text-decoration: none;
-        transition: all 0.2s ease;
-        white-space: nowrap;
-        border: none;
-    }
-
-    /* Primary — Enroll Now */
-    .it-btn-primary {
-        background: #ffffff;
-        color: #000000; 
-    }
-    .it-btn-primary:hover {
-        background: #e8e8e8;
-    }
-
-    /* Secondary — Download Prospectus */
-    .it-btn-secondary {
-        background: transparent;
-        color: #ffffff; font-weight: 400;
-        border: 1px solid rgb(255, 255, 255);
-    }
-    .it-btn-secondary:hover {
-        background: rgba(255,255,255,0.1);
-        border-color: #ffffff;
-    }
-
-    .it-btn svg {
-        flex-shrink: 0;
-    }
-
-    .it-hero-footer-note {
-        font-size: 1rem;
-        font-weight: 500;
-        color: #ffffff;
-        margin-top: 1.4rem;
-    }
-
-    @media (max-width: 768px) {
-        .it-hero-headline { font-size: 2.5rem; }
-        .it-hero-wrapper { padding-left: 5%; padding-right: 5%; }
-        .it-hero-buttons { flex-direction: column; align-items: flex-start; }
-    }
-</style>
-
-<section class="it-hero-wrapper">
-    <div class="it-hero-content">
-
-        <h1 class="it-hero-headline">
-            Innovate your future.<br>
-            Build it when you're right.
-        </h1>
-
-        <div class="it-hero-buttons">
-
-            <!-- ENROLL NOW -->
-            <a href="enroll.html" class="it-btn it-btn-primary">
-                Enroll Now
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <path d="M3 7H11M11 7L7.5 3.5M11 7L7.5 10.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </a>
-
-            <!-- DOWNLOAD PROSPECTUS — replace href with your document path -->
-            <a href="maluti-prospectus-2027.pdf" download class="it-btn it-btn-secondary">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <path d="M7 2V9M7 9L4.5 6.5M7 9L9.5 6.5M2.5 11.5H11.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                Download 2027 Prospectus
-            </a>
-
-        </div>
-
-        <p class="it-hero-footer-note">Applications open for the 2027 academic year.</p>
-
-    </div>
-</section>
-
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<style>
-    .info-section {
-        background-color: #E9E9F5; /* The pale lavender from your image */
-        padding: 90px 20px;
-        text-align: center;
-        width: 100%;
-        box-sizing: border-box;
-    }
-
-    .info-text {
-        /* Using a Serif font stack for that academic look */
-        font-family: 'Alvarado', Times, serif;
-        color: #000051; /* Deep navy blue */
-        font-size: 2rem;
-        line-height: 1.4;
-        max-width: 600px;
-        margin: 0 auto;
-        font-weight: 400;
-    }
-
-    /* Responsive adjustment for mobile */
-    @media (max-width: 600px) {
-        .info-text {
-            font-size: 1.3rem;
-        }
-    }
-</style>
-
-<div class="info-section">
-    <p class="info-text">
-        Maluti TVET College, your gateway to a successful career through industry-aligned vocational education and hands-on training.
-    </p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-
-<style>
-    :root {
-        --it-bg: transparent;
-        --it-text-main: #0a0a3c;
-        --it-text-muted: #5b5d62;
-        --it-radius: 20px;
-        --it-accent: #0077cc;
-    }
-
-    .it-scroll-wrapper {
-        background-color: var(--it-bg);
-        color: var(--it-text-main);
-        font-family: 'Inter', sans-serif;
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    /* Main Container */
-    .it-scroll-container {
-        display: flex;
-        max-width: 1200px;
-        margin: 0 auto;
-        position: relative;
-    }
-
-    /* --- DESKTOP: LEFT STICKY PANEL --- */
-    .it-sticky-visual {
-        flex: 0 0 50%; /* Half width */
-        height: 100vh;
-        position: sticky;
-        top: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 40px;
-        /* Hidden on mobile by default via media query below */
-    }
-
-    .it-image-stack {
-        width: 100%;
-        height: 400px; /* Fixed height for consistency */
-        position: relative;
-        border-radius: var(--it-radius);
-        overflow: hidden;
-    }
-
-    .it-image-stack img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        opacity: 0;
-        transition: opacity 0.6s ease;
-    }
-
-    .it-image-stack img.active {
-        opacity: 1;
-    }
-
-    /* --- RIGHT CONTENT PANEL --- */
-    .it-scroll-content {
-        flex: 0 0 50%;
-        padding: 40px;
-    }
-
-    .it-text-step {
-        min-height: 100vh; /* Ensures enough scroll space on desktop */
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 40px 0;
-    }
-
-    .it-step-title {
-        font-size: 2.7rem;
-        font-weight: 500;
-        line-height: 1.1;
-        margin-bottom: 1.5rem;
-        letter-spacing: -0.03em;
-    }
-
-    .it-step-desc {
-        font-size: 1.2rem;
-        line-height: 1.6;
-        color: var(--it-text-main);
-        max-width: 450px;
-        font-weight: 400;
-    }
-
-    /* --- MOBILE IMAGE (Hidden on Desktop) --- */
-    .it-mobile-image {
-        display: none; /* Hidden by default */
-        width: 100%;
-        height: 300px;
-        object-fit: cover;
-        border-radius: var(--it-radius);
-        margin-top: 30px;
-        margin-bottom: 30px;
-    }
-
-    /* --- RESPONSIVE LOGIC --- */
-    @media (max-width: 900px) {
-        .it-scroll-container {
-            flex-direction: column;
-        }
-
-        /* Hide the sticky desktop panel */
-        .it-sticky-visual {
-            display: none;
-        }
-
-        /* Reset right panel width */
-        .it-scroll-content {
-            flex: 0 0 100%;
-            padding: 20px 20px 40px 20px;
-        }
-
-        /* Reset step height so they stack naturally */
-        .it-text-step {
-            min-height: auto;
-            margin-bottom: 10px;
-            display: block; /* Normal block flow */
-        }
-
-        /* Show the mobile image inside the text block */
-        .it-mobile-image {
-            display: block;
-        }
-
-        .it-step-title {
-            font-size: 2.2rem;
-        }
-    }
-
-    /* --- NEW CLASSES FOR NUMBERING AND LINKS --- */
-    .it-step-number {
-        color: var(--it-accent);
-        font-size: 1.9rem;
-        font-weight: 500;
-        display: block;
-        letter-spacing: 1px;
-    }
-
-    /* New CTA style: matching image_1.png */
-    .my-it-comp-cta {
-        display: flex;
-        align-items: center;
-        gap: 16px; /* Spacing between circle and text */
-        text-decoration: none;
-        transition: opacity var(--my-it-comp-speed);
-    }
-
-    .my-it-comp-cta-circle {
-        width: 48px;
-        height: 48px;
-        background-color: var(--ft-color-bg);
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .my-it-comp-cta-circle svg {
-        width: 22px;
-        height: 22px;
-        stroke: #fff;
-        stroke-width: 2;
-        fill: none;
-    }
-
-    .my-it-comp-cta-text {
-        color: var(--ft-color-bg);
-        font-size: 17px;
-        font-weight: 500;
-    }
-</style>
-
-<div class="it-scroll-wrapper">
-    <div class="it-scroll-container">
-        
-        <div class="it-sticky-visual">
-            <div class="it-image-stack">
-                <img src="https://images.unsplash.com/photo-1583373834259-46cc92173cb7?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="active" data-id="1" alt="Main Campus">
-                <img src="https://images.unsplash.com/photo-1680084521806-b408d976e3e7?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" data-id="2" alt="Itemoheleng Campus">
-                <img src="https://images.unsplash.com/photo-1591123120675-6f7f1aae0e5b?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" data-id="3" alt="Bethlehem Campus">
-                <img src="https://images.unsplash.com/photo-1576495199011-eb94736d05d6?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" data-id="4" alt="Harrismith Campus">
-                <img src="https://images.unsplash.com/photo-1592280771190-3e2e4d571952?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" data-id="5" alt="Kwetlisong Campus">
-                <img src="https://images.unsplash.com/photo-1622470190232-81df3782484b?q=80&w=759&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" data-id="6" alt="Bonamelo Campus">
-                <img src="https://images.unsplash.com/photo-1607369542452-78f59815692d?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" data-id="7" alt="Sefikeng Campus">
-                <img src="https://images.unsplash.com/photo-1590230946777-9f2ade879639?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" data-id="8" alt="Lere la Tshepe Campus">
-            </div>
-        </div>
-
-        <div class="it-scroll-content">
-            <div class="it-text-step" data-target="1">
-                <span class="it-step-number">01</span>
-                <h2 class="it-step-title">Main Campus</h2>
-                <p class="it-step-desc">
-                    The central hub of Maluti TVET operations. Dedicated to administrative excellence, corporate governance, and advanced Information Technology programs.
-                </p>
-                <a href="#" class="my-it-comp-cta">
-                    <div class="my-it-comp-cta-circle">
-                        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                    </div>
-                    <span class="my-it-comp-cta-text">See Campus</span>
-                </a>
-                <img class="it-mobile-image" src="https://images.unsplash.com/photo-1583373834259-46cc92173cb7?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Main Campus">
-            </div>
-
-            <div class="it-text-step" data-target="2">
-                <span class="it-step-number">02</span>
-                <h2 class="it-step-title">Itemoheleng Campus</h2>
-                <p class="it-step-desc">
-                    Located in Phuthaditjhaba, this is our premier School of Engineering. Equipped with specialized labs for Civil, Mechanical, and Electrical practicals.
-                </p>
-                <a href="#" class="my-it-comp-cta">
-                    <div class="my-it-comp-cta-circle">
-                        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                    </div>
-                    <span class="my-it-comp-cta-text">See Campus</span>
-                </a>
-                <img class="it-mobile-image" src="https://images.unsplash.com/photo-1680084521806-b408d976e3e7?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Itemoheleng Campus">
-            </div>
-
-            <div class="it-text-step" data-target="3">
-                <span class="it-step-number">03</span>
-                <h2 class="it-step-title">Bethlehem Campus</h2>
-                <p class="it-step-desc">
-                    Positioned in the commercial heart of the region, focusing on General Studies, Commercial Administration, and Public Management.
-                </p>
-                <a href="#" class="my-it-comp-cta">
-                    <div class="my-it-comp-cta-circle">
-                        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                    </div>
-                    <span class="my-it-comp-cta-text">See Campus</span>
-                </a>
-                <img class="it-mobile-image" src="https://images.unsplash.com/photo-1591123120675-6f7f1aae0e5b?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Bethlehem Campus">
-            </div>
-
-            <div class="it-text-step" data-target="4">
-                <span class="it-step-number">04</span>
-                <h2 class="it-step-title">Harrismith Campus</h2>
-                <p class="it-step-desc">
-                    Our dedicated School of Business and Management. Fostering future corporate leaders through Human Resources, Marketing, and Financial curriculums.
-                </p>
-                <a href="#" class="my-it-comp-cta">
-                    <div class="my-it-comp-cta-circle">
-                        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                    </div>
-                    <span class="my-it-comp-cta-text">See Campus</span>
-                </a>
-                <img class="it-mobile-image" src="https://images.unsplash.com/photo-1576495199011-eb94736d05d6?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Harrismith Campus">
-            </div>
-
-            <div class="it-text-step" data-target="5">
-                <span class="it-step-number">05</span>
-                <h2 class="it-step-title">Kwetlisong Campus</h2>
-                <p class="it-step-desc">
-                    A vibrant center for Practical Skills. Specializing in Information Technology, and comprehensive Artisan development programs.
-                </p>
-                <a href="#" class="my-it-comp-cta">
-                    <div class="my-it-comp-cta-circle">
-                        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                    </div>
-                    <span class="my-it-comp-cta-text">See Campus</span>
-                </a>
-                <img class="it-mobile-image" src="https://images.unsplash.com/photo-1592280771190-3e2e4d571952?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Kwetlisong Campus">
-            </div>
-
-            <div class="it-text-step" data-target="6">
-                <span class="it-step-number">06</span>
-                <h2 class="it-step-title">Bonamelo Campus</h2>
-                <p class="it-step-desc">
-                    Dedicated entirely to Education and Training. We prepare the next generation of educators and foundational phase teachers for the academic sector.
-                </p>
-                <a href="#" class="my-it-comp-cta">
-                    <div class="my-it-comp-cta-circle">
-                        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                    </div>
-                    <span class="my-it-comp-cta-text">See Campus</span>
-                </a>
-                <img class="it-mobile-image" src="https://images.unsplash.com/photo-1618050989131-b62b57da4528?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Bonamelo Campus">
-            </div>
-
-            <div class="it-text-step" data-target="7">
-                <span class="it-step-number">07</span>
-                <h2 class="it-step-title">Sefikeng Campus</h2>
-                <p class="it-step-desc">
-                    Focused on targeted Occupational Programs. Providing niche, high-demand skills training designed for immediate integration into the local workforce.
-                </p>
-                <a href="#" class="my-it-comp-cta">
-                    <div class="my-it-comp-cta-circle">
-                        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                    </div>
-                    <span class="my-it-comp-cta-text">See Campus</span>
-                </a>
-                <img class="it-mobile-image" src="https://images.unsplash.com/photo-1607369542452-78f59815692d?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Sefikeng Campus">
-            </div>
-
-            <div class="it-text-step" data-target="8">
-                <span class="it-step-number">08</span>
-                <h2 class="it-step-title">Lere La Tshepe Campus</h2>
-                <p class="it-step-desc">
-                    A dynamic hybrid campus offering a strategic mix of Vocational Engineering and core Business courses tailored to community development needs.
-                </p>
-                <a href="#" class="my-it-comp-cta">
-                    <div class="my-it-comp-cta-circle">
-                        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                    </div>
-                    <span class="my-it-comp-cta-text">See Campus</span>
-                </a>
-                <img class="it-mobile-image" src="https://images.unsplash.com/photo-1590230946777-9f2ade879639?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Lere la Tshepe Campus">
-            </div>
-
-        </div>
-    </div>
-</div>
-
-<script>
-    const stackImages = document.querySelectorAll('.it-image-stack img');
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const targetId = entry.target.getAttribute('data-target');
-                
-                stackImages.forEach(img => {
-                    if (img.getAttribute('data-id') === targetId) {
-                        img.classList.add('active');
-                    } else {
-                        img.classList.remove('active');
-                    }
-                });
-            }
-        });
-    }, {
-        root: null,
-        rootMargin: '-40% 0px -40% 0px', 
-        threshold: 0
-    });
-
-    document.querySelectorAll('.it-text-step').forEach(step => {
-        observer.observe(step);
-    });
-</script>
 
 
 
@@ -2036,6 +1361,1118 @@
 
 
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hero Section</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body style="margin:0;padding:0;">
+
+<style>
+    .it-hero-wrapper {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Inter', sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        min-height: 700px;
+        width: 100%;
+        background: linear-gradient(to right, rgba(0,0,0,0.8) 20%, rgba(0,0,0,0.1) 100%), 
+                    url('https://images.unsplash.com/photo-1525921429624-479b6a26d84d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        background-size: cover;
+        background-position: center;
+        color: #ffffff;
+        padding-left: 10%;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .it-hero-content {
+        max-width: 700px;
+        z-index: 2;
+    }
+
+    .it-hero-headline {
+        font-size: 3.5rem;
+        line-height: 1.1;
+        font-weight: 400;
+        margin-bottom: 1.8rem;
+        letter-spacing: -0.03em;
+    }
+
+    .it-hero-buttons {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .it-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 0.7rem 1.5rem;
+        border-radius: 60px;
+        font-family: 'Alvarado', sans-serif;
+        font-size: 1rem;
+        font-weight: 400;
+        cursor: pointer;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        white-space: nowrap;
+        border: none;
+    }
+
+    /* Primary — Enroll Now */
+    .it-btn-primary {
+        background: #ffffff;
+        color: #000000; 
+    }
+    .it-btn-primary:hover {
+        background: #e8e8e8;
+    }
+
+    /* Secondary — Download Prospectus */
+    .it-btn-secondary {
+        background: transparent;
+        color: #ffffff; font-weight: 400;
+        border: 1px solid rgb(255, 255, 255);
+    }
+    .it-btn-secondary:hover {
+        background: rgba(255,255,255,0.1);
+        border-color: #ffffff;
+    }
+
+    .it-btn svg {
+        flex-shrink: 0;
+    }
+
+    .it-hero-footer-note {
+        font-size: 1rem;
+        font-weight: 500;
+        color: #ffffff;
+        margin-top: 1.4rem;
+    }
+
+    @media (max-width: 768px) {
+        .it-hero-headline { font-size: 2.5rem; }
+        .it-hero-wrapper { padding-left: 5%; padding-right: 5%; }
+        .it-hero-buttons { flex-direction: column; align-items: flex-start; }
+    }
+</style>
+
+<section class="it-hero-wrapper">
+    <div class="it-hero-content">
+
+        <h1 class="it-hero-headline">
+            Innovate your future.<br>
+            Build it when you're right.
+        </h1>
+
+        <div class="it-hero-buttons">
+
+            <!-- ENROLL NOW -->
+            <a href="enroll.html" class="it-btn it-btn-primary">
+                Enroll Now
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M3 7H11M11 7L7.5 3.5M11 7L7.5 10.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+
+            <!-- DOWNLOAD PROSPECTUS — replace href with your document path -->
+            <a href="maluti-prospectus-2027.pdf" download class="it-btn it-btn-secondary">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M7 2V9M7 9L4.5 6.5M7 9L9.5 6.5M2.5 11.5H11.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Download 2027 Prospectus
+            </a>
+
+        </div>
+
+        <p class="it-hero-footer-note">Applications open for the 2027 academic year.</p>
+
+    </div>
+</section>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+    .info-section {
+        background-color: #E9E9F5; /* The pale lavender from your image */
+        padding: 90px 20px;
+        text-align: center;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .info-text {
+        /* Using a Serif font stack for that academic look */
+        font-family: 'Alvarado', Times, serif;
+        color: #000051; /* Deep navy blue */
+        font-size: 2rem;
+        line-height: 1.4;
+        max-width: 600px;
+        margin: 0 auto;
+        font-weight: 400;
+    }
+
+    /* Responsive adjustment for mobile */
+    @media (max-width: 600px) {
+        .info-text {
+            font-size: 1.3rem;
+        }
+    }
+</style>
+
+<div class="info-section">
+    <p class="info-text">
+        Maluti TVET College, your gateway to a successful career through industry-aligned vocational education and hands-on training.
+    </p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+    :root {
+        --it-bg: transparent;
+        --it-text-main: #0a0a3c;
+        --it-text-muted: #5b5d62;
+        --it-radius: 1px;
+        --it-accent: #0077cc;
+    }
+
+    .it-scroll-wrapper {
+        background-color: var(--it-bg);
+        color: var(--it-text-main);
+        font-family: 'Alvarado', sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* Main Container */
+    .it-scroll-container {
+        display: flex;
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    /* --- DESKTOP: LEFT STICKY PANEL --- */
+    .it-sticky-visual {
+        flex: 0 0 50%; /* Half width */
+        height: 110vh;
+        position: sticky;
+        top: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px;
+        /* Hidden on mobile by default via media query below */
+    }
+
+    .it-image-stack {
+        width: 100%;
+        height: 400px; /* Fixed height for consistency */
+        position: relative;
+        border-radius: var(--it-radius);
+        overflow: hidden;
+    }
+
+    .it-image-stack img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0;
+        transition: opacity 0.6s ease;
+    }
+
+    .it-image-stack img.active {
+        opacity: 1;
+    }
+
+    /* --- RIGHT CONTENT PANEL --- */
+    .it-scroll-content {
+        flex: 0 0 50%;
+        padding: 40px;
+    }
+
+    .it-text-step {
+        min-height: 100vh; /* Ensures enough scroll space on desktop */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 40px 0;
+    }
+
+    .it-step-title {
+        font-size: 35px;
+        font-weight: 500;
+        line-height: 1.1;
+        margin-bottom: 1.5rem;
+        letter-spacing: -0.03em;
+    }
+
+    .it-step-desc {
+        font-size: 1.2rem;
+        line-height: 1.6;
+        color: var(--it-text-main);
+        max-width: 450px;
+        font-weight: 400;
+    }
+
+    /* --- MOBILE IMAGE (Hidden on Desktop) --- */
+    .it-mobile-image {
+        display: none; /* Hidden by default */
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        border-radius: var(--it-radius);
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+
+    /* --- RESPONSIVE LOGIC --- */
+    @media (max-width: 900px) {
+        .it-scroll-container {
+            flex-direction: column;
+        }
+
+        /* Hide the sticky desktop panel */
+        .it-sticky-visual {
+            display: none;
+        }
+
+        /* Reset right panel width */
+        .it-scroll-content {
+            flex: 0 0 100%;
+            padding: 20px 20px 40px 20px;
+        }
+
+        /* Reset step height so they stack naturally */
+        .it-text-step {
+            min-height: auto;
+            margin-bottom: 10px;
+            display: block; /* Normal block flow */
+        }
+
+        /* Show the mobile image inside the text block */
+        .it-mobile-image {
+            display: block;
+        }
+
+        .it-step-title {
+            font-size: 2.2rem;
+        }
+    }
+
+    /* --- NEW CLASSES FOR NUMBERING AND LINKS --- */
+    .it-step-number {
+        color: var(--it-accent);
+        font-size: 1.9rem;
+        font-weight: 500;
+        display: block;
+        letter-spacing: 1px;
+    }
+
+    /* New CTA style: matching image_1.png */
+    .my-it-comp-cta {
+        display: flex;
+        align-items: center;
+        gap: 16px; /* Spacing between circle and text */
+        text-decoration: none;
+        transition: opacity var(--my-it-comp-speed);
+    }
+
+    .my-it-comp-cta-circle {
+        width: 48px;
+        height: 48px;
+        background-color: var(--ft-color-bg);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .my-it-comp-cta-circle svg {
+        width: 22px;
+        height: 22px;
+        stroke: #fff;
+        stroke-width: 2;
+        fill: none;
+    }
+
+    .my-it-comp-cta-text {
+        color: var(--ft-color-bg);
+        font-size: 17px;
+        font-weight: 500;
+    }
+</style>
+
+<div class="it-scroll-wrapper">
+    <div class="it-scroll-container">
+        
+        <div class="it-sticky-visual">
+            <div class="it-image-stack">
+                <img src="https://images.unsplash.com/photo-1583373834259-46cc92173cb7?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="active" data-id="1" alt="Main Campus">
+                <img src="https://images.unsplash.com/photo-1680084521806-b408d976e3e7?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" data-id="2" alt="Itemoheleng Campus">
+                <img src="https://images.unsplash.com/photo-1591123120675-6f7f1aae0e5b?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" data-id="3" alt="Bethlehem Campus">
+                <img src="https://images.unsplash.com/photo-1576495199011-eb94736d05d6?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" data-id="4" alt="Harrismith Campus">
+                <img src="https://images.unsplash.com/photo-1592280771190-3e2e4d571952?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" data-id="5" alt="Kwetlisong Campus">
+                <img src="https://images.unsplash.com/photo-1622470190232-81df3782484b?q=80&w=759&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" data-id="6" alt="Bonamelo Campus">
+                <img src="https://images.unsplash.com/photo-1607369542452-78f59815692d?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" data-id="7" alt="Sefikeng Campus">
+                <img src="https://images.unsplash.com/photo-1590230946777-9f2ade879639?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" data-id="8" alt="Lere la Tshepe Campus">
+            </div>
+        </div>
+
+        <div class="it-scroll-content">
+            <div class="it-text-step" data-target="1">
+                <span class="it-step-number">01</span>
+                <h2 class="it-step-title">Main Campus</h2>
+                <p class="it-step-desc">
+                    The central hub of Maluti TVET operations. Dedicated to administrative excellence, corporate governance, and advanced Information Technology programs.
+                </p>
+                <a href="#" class="my-it-comp-cta">
+                    <div class="my-it-comp-cta-circle">
+                        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </div>
+                    <span class="my-it-comp-cta-text">Learn about this campus</span>
+                </a>
+                <img class="it-mobile-image" src="https://images.unsplash.com/photo-1583373834259-46cc92173cb7?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Main Campus">
+            </div>
+
+            <div class="it-text-step" data-target="2">
+                <span class="it-step-number">02</span>
+                <h2 class="it-step-title">Itemoheleng Campus</h2>
+                <p class="it-step-desc">
+                    Located in Phuthaditjhaba, this is our premier School of Engineering. Equipped with specialized labs for Civil, Mechanical, and Electrical practicals.
+                </p>
+                <a href="#" class="my-it-comp-cta">
+                    <div class="my-it-comp-cta-circle">
+                        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </div>
+                    <span class="my-it-comp-cta-text">Learn about this campus</span>
+                </a>
+                <img class="it-mobile-image" src="https://images.unsplash.com/photo-1680084521806-b408d976e3e7?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Itemoheleng Campus">
+            </div>
+
+            <div class="it-text-step" data-target="3">
+                <span class="it-step-number">03</span>
+                <h2 class="it-step-title">Bethlehem Campus</h2>
+                <p class="it-step-desc">
+                    Positioned in the commercial heart of the region, focusing on General Studies, Commercial Administration, and Public Management.
+                </p>
+                <a href="#" class="my-it-comp-cta">
+                    <div class="my-it-comp-cta-circle">
+                        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </div>
+                    <span class="my-it-comp-cta-text">Learn about this campus</span>
+                </a>
+                <img class="it-mobile-image" src="https://images.unsplash.com/photo-1591123120675-6f7f1aae0e5b?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Bethlehem Campus">
+            </div>
+
+            <div class="it-text-step" data-target="4">
+                <span class="it-step-number">04</span>
+                <h2 class="it-step-title">Harrismith Campus</h2>
+                <p class="it-step-desc">
+                    Our dedicated School of Business and Management. Fostering future corporate leaders through Human Resources, Marketing, and Financial curriculums.
+                </p>
+                <a href="#" class="my-it-comp-cta">
+                    <div class="my-it-comp-cta-circle">
+                        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </div>
+                    <span class="my-it-comp-cta-text">Learn about this campus</span>
+                </a>
+                <img class="it-mobile-image" src="https://images.unsplash.com/photo-1576495199011-eb94736d05d6?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Harrismith Campus">
+            </div>
+
+            <div class="it-text-step" data-target="5">
+                <span class="it-step-number">05</span>
+                <h2 class="it-step-title">Kwetlisong Campus</h2>
+                <p class="it-step-desc">
+                    A vibrant center for Practical Skills. Specializing in Information Technology, and comprehensive Artisan development programs.
+                </p>
+                <a href="#" class="my-it-comp-cta">
+                    <div class="my-it-comp-cta-circle">
+                        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </div>
+                    <span class="my-it-comp-cta-text">Learn about this campus</span>
+                </a>
+                <img class="it-mobile-image" src="https://images.unsplash.com/photo-1592280771190-3e2e4d571952?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Kwetlisong Campus">
+            </div>
+
+            <div class="it-text-step" data-target="6">
+                <span class="it-step-number">06</span>
+                <h2 class="it-step-title">Bonamelo Campus</h2>
+                <p class="it-step-desc">
+                    Dedicated entirely to Education and Training. We prepare the next generation of educators and foundational phase teachers for the academic sector.
+                </p>
+                <a href="#" class="my-it-comp-cta">
+                    <div class="my-it-comp-cta-circle">
+                        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </div>
+                    <span class="my-it-comp-cta-text">Learn about this campus</span>
+                </a>
+                <img class="it-mobile-image" src="https://images.unsplash.com/photo-1618050989131-b62b57da4528?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Bonamelo Campus">
+            </div>
+
+            <div class="it-text-step" data-target="7">
+                <span class="it-step-number">07</span>
+                <h2 class="it-step-title">Sefikeng Campus</h2>
+                <p class="it-step-desc">
+                    Focused on targeted Occupational Programs. Providing niche, high-demand skills training designed for immediate integration into the local workforce.
+                </p>
+                <a href="#" class="my-it-comp-cta">
+                    <div class="my-it-comp-cta-circle">
+                        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </div>
+                    <span class="my-it-comp-cta-text">Learn about this campus</span>
+                </a>
+                <img class="it-mobile-image" src="https://images.unsplash.com/photo-1607369542452-78f59815692d?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Sefikeng Campus">
+            </div>
+
+            <div class="it-text-step" data-target="8">
+                <span class="it-step-number">08</span>
+                <h2 class="it-step-title">Lere La Tshepe Campus</h2>
+                <p class="it-step-desc">
+                    A dynamic hybrid campus offering a strategic mix of Vocational Engineering and core Business courses tailored to community development needs.
+                </p>
+                <a href="#" class="my-it-comp-cta">
+                    <div class="my-it-comp-cta-circle">
+                        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </div>
+                    <span class="my-it-comp-cta-text">Learn about this campus</span>
+                </a>
+                <img class="it-mobile-image" src="https://images.unsplash.com/photo-1590230946777-9f2ade879639?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Lere la Tshepe Campus">
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    const stackImages = document.querySelectorAll('.it-image-stack img');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const targetId = entry.target.getAttribute('data-target');
+                
+                stackImages.forEach(img => {
+                    if (img.getAttribute('data-id') === targetId) {
+                        img.classList.add('active');
+                    } else {
+                        img.classList.remove('active');
+                    }
+                });
+            }
+        });
+    }, {
+        root: null,
+        rootMargin: '-40% 0px -40% 0px', 
+        threshold: 0
+    });
+
+    document.querySelectorAll('.it-text-step').forEach(step => {
+        observer.observe(step);
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <style>
+        
+        :root {
+            --itsvc-bg: transparent;
+            --itsvc-text-dark: #0A0A3C; 
+            --itsvc-text-body: #0a0a3c; 
+            --itsvc-text-muted: #CBD5E1; 
+            --itsvc-accent: #0077CC; 
+            --itsvc-border: #E2E8F0;
+            --itsvc-font: 'Alvarado', sans-serif;
+            --itsvc-anim-speed: 5s;
+        }
+
+        .itsvc-wrapper * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        .itsvc-wrapper {
+            font-family: var(--itsvc-font);
+            background-color: var(--itsvc-bg);
+            padding: 150px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* --- Header: 1000px --- */
+        .itsvc-header-section {
+            width: 100%;
+            max-width: 900px;
+            text-align: left;
+            margin-bottom: 80px;
+        }
+
+        .itsvc-eyebrow {
+            color: var(--itsvc-accent);
+            font-weight: 500;
+            font-size: 16px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .itsvc-h1 {
+            font-size: 35px;
+            line-height: 1.1;
+            font-weight: 500;
+            color: var(--itsvc-text-dark);
+            margin-bottom: 30px; letter-spacing: -0.02em;
+        }
+
+        /* --- Main Content: 1200px --- */
+        .itsvc-main-section {
+            width: 100%;
+            max-width: 1200px; padding: 0 20px;
+            display: flex; /* Using Flex for equal height stretching */
+            gap: 80px;
+            align-items: stretch; /* This makes left and right equal height */
+        }
+
+        /* Left Column: The Image */
+        .itsvc-image-col {
+            flex: 1;
+            position: relative;
+            border-radius: 2px;
+            overflow: hidden;
+            min-height: 400px; /* Base height for mobile/empty states */
+        }
+
+        .itsvc-img {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .itsvc-img.active { opacity: 1; z-index: 2; }
+
+        /* Right Column: The Content */
+        .itsvc-content-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        /* Tabs */
+        .itsvc-tabs-stack {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 40px;
+        }
+
+        .itsvc-tab-item {
+            position: relative;
+            cursor: pointer;
+            margin-bottom: 30px;
+            display: inline-block; /* Crucial for progress bar width */
+            width: fit-content;
+        }
+
+        .itsvc-tab-title {
+            font-size: 35px;
+            font-weight: 500;
+            color: var(--itsvc-text-muted);
+            transition: color 0.3s ease;
+            line-height: 1.2; letter-spacing: -0.02em;
+        }
+
+        .itsvc-tab-item.active .itsvc-tab-title {
+            color: var(--itsvc-text-dark);
+        }
+
+        /* Progress Bar: Width of the Tab Title */
+        .itsvc-progress-bg {
+            height: 3px;
+            width: 100%;
+            background-color: transparent;
+            margin-top: 8px;
+        }
+
+        .itsvc-tab-item.active .itsvc-progress-bg {
+            background-color: var(--itsvc-border);
+        }
+
+        .itsvc-progress-fill {
+            height: 3px;
+            width: 0%;
+            background-color: var(--itsvc-text-dark);
+        }
+
+        .itsvc-animating {
+            animation: itsvc-fill var(--itsvc-anim-speed) linear forwards;
+        }
+
+        @keyframes itsvc-fill { from { width: 0%; } to { width: 100%; } }
+
+        /* Description & Button Section */
+        .itsvc-description-area {
+            position: relative;
+            margin-top: auto; /* Pushes content to the bottom of the column if needed */
+        }
+
+        .itsvc-desc-content {
+            display: none;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        .itsvc-desc-content.active { display: block; }
+
+        .itsvc-body-text {
+            font-size: 19px;
+            line-height: 1.6;
+            margin-bottom: 40px; color: var(--itsvc-text-body);
+        }
+
+        .itsvc-btn {
+            display: inline-block;
+            background-color: #0A0A3C;
+            color: #fff;
+            padding: 12px 30px;
+            font-weight: 400;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: background 0.3s;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- Responsive --- */
+        @media (max-width: 1024px) {
+            .itsvc-main-section { flex-direction: column; }
+            .itsvc-image-col { order: 2; height: 400px; min-height: 400px; }
+            .itsvc-content-col { order: 1; }
+            .itsvc-h1 { font-size: 34px; }
+            .itsvc-tab-title { font-size: 40px; }
+            .itsvc-main-section {
+                padding: 0 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="itsvc-wrapper">
+    <header class="itsvc-header-section">
+        <span class="itsvc-eyebrow">OUR MAIN OFFICES</span>
+        <h1 class="itsvc-h1">We have 2 main offices with Maluti college, serving as our operational hubs of business across all our campuses.</h1>
+    </header>
+
+    <section class="itsvc-main-section">
+        <div class="itsvc-image-col">
+            <img src="https://images.unsplash.com/photo-1590230946777-9f2ade879639?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="itsvc-img active" data-id="0">
+            <img src="https://images.unsplash.com/photo-1576495199011-eb94736d05d6?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="itsvc-img" data-id="1">
+        </div>
+
+        <div class="itsvc-content-col">
+            <span class="itsvc-eyebrow">PAY US A VISIT</span>
+            
+            <div class="itsvc-tabs-stack">
+                <div class="itsvc-tab-item active" data-id="0">
+                    <div class="itsvc-tab-title">1. Corporate Office</div>
+                    <div class="itsvc-progress-bg">
+                        <div class="itsvc-progress-fill itsvc-animating"></div>
+                    </div>
+                </div>
+
+                <div class="itsvc-tab-item" data-id="1">
+                    <div class="itsvc-tab-title">2. Central Office</div>
+                    <div class="itsvc-progress-bg">
+                        <div class="itsvc-progress-fill"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="itsvc-description-area">
+                <div class="itsvc-desc-content active" data-id="0">
+                    <p class="itsvc-body-text">
+                        From system architecture to full-scale cloud migrations—fast, clean, and reliable engineering for your infrastructure. We cover security, scalability, and 24/7 maintenance.
+                    </p>
+                    <a href="#" class="itsvc-btn">See Offices</a>
+                </div>
+
+                <div class="itsvc-desc-content" data-id="1">
+                    <p class="itsvc-body-text">
+                        Rapid MVP development to launch your vision. We build high-performance web and mobile applications designed to scale alongside your user base and business goals.
+                    </p>
+                    <a href="#" class="itsvc-btn">See Offices</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script>
+    const tabs = document.querySelectorAll('.itsvc-tab-item');
+    const images = document.querySelectorAll('.itsvc-img');
+    const contents = document.querySelectorAll('.itsvc-desc-content');
+    let currentIndex = 0;
+    let timer;
+
+    function switchStep(index) {
+        currentIndex = index % tabs.length;
+
+        tabs.forEach((tab, i) => {
+            const isActive = i === currentIndex;
+            tab.classList.toggle('active', isActive);
+            
+            const bar = tab.querySelector('.itsvc-progress-fill');
+            bar.classList.remove('itsvc-animating');
+            if (isActive) {
+                void bar.offsetWidth; // Trigger reflow
+                bar.classList.add('itsvc-animating');
+            }
+        });
+
+        images.forEach((img, i) => img.classList.toggle('active', i === currentIndex));
+        contents.forEach((desc, i) => desc.classList.toggle('active', i === currentIndex));
+
+        resetTimer();
+    }
+
+    function resetTimer() {
+        clearInterval(timer);
+        timer = setInterval(() => switchStep(currentIndex + 1), 5000);
+    }
+
+    tabs.forEach((tab, i) => {
+        tab.addEventListener('click', () => switchStep(i));
+    });
+
+    resetTimer();
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2238,7 +2675,7 @@
     <div class="kw-special-welcome-content">
       <h2 class="kw-special-title">Welcome from the Principal</h2>
       <p class="kw-special-text">At Maluti, our guiding principle is 'Aim High, Be Kind, and Dare to be Different'. This motto, deeply rooted at our core, combined with exceptional teaching sets us apart.</p>
-      <a href="#" class="kw-special-btn" style="width: fit-content;">Read More</a>
+      <a href="principal.html" class="kw-special-btn" style="width: fit-content;">Read More</a>
     </div>
   </div>
 
@@ -2421,7 +2858,7 @@
         }
 
         .ft-description {
-            font-size: 16px;
+            font-size: 19px;
             line-height: 1.6;
             color: #eeeeee;
             max-width: 90%;
@@ -3223,22 +3660,22 @@
             <div class="kw-footer-col-links">
                 <h1 class="footer-heading">Campus Life</h1>
                 <ul class="kw-footer-link-list">
-                    <li><a href="#">Student Activities</a></li>
-                    <li><a href="#">Clubs & Societies</a></li>
-                    <li><a href="#">Sports & Recreation</a></li>
-                    <li><a href="#">Campus Facilities</a></li>
                     <li><a href="#">Campus Support</a></li>
+                    <li><a href="#">Campus Facilities</a></li>
                     <li><a href="#">Residence Life</a></li>
+                    <li><a href="#">Student Activities</a></li>
+                    <li><a href="#">Sports & Recreation</a></li>
+                    <li><a href="#">Clubs & Societies</a></li>
+                    <li><a href="#">SRC</a></li>
                 </ul>
             </div>
             <div class="kw-footer-col-links">
                 <h1 class="footer-heading">Calender</h1>
                 <ul class="kw-footer-link-list">
-                    <li><a href="#">Term Dates</a></li>
                     <li><a href="#">Academic Year</a></li>
+                    <li><a href="#">Term Dates</a></li>
                     <li><a href="#">Sports Calender</a></li>
                     <li><a href="#">Exam Timetable</a></li>
-                    <li><a href="#">Campus Events</a></li>
                 </ul>
             </div>
             <div class="kw-footer-col-links">
@@ -3248,8 +3685,8 @@
                     <li><a href="#">Executive Leadership</a></li>
                     <li><a href="#">Roadmap</a></li>
                     <li><a href="#">Innovations</a></li>
-                    <li><a href="#">Events</a></li>
-                    <li><a href="#">Vision 2023</a></li>
+                    <li><a href="#">News & Events</a></li>
+                    <li><a href="#">Vision 2030</a></li>
                     <li><a href="#">Office & Department Directory</a></li>
                     <li><a href="#">Awards & Achievements</a></li>
                     <li><a href="#">Job Opportunities</a></li>
@@ -3262,7 +3699,6 @@
                     <li><a href="#">Alumni & Friends</a></li>
                     <li><a href="#">Digital Library</a></li>
                     <li><a href="#">Noticeboard</a></li>
-                    <li><a href="#">Students</a></li>
                 </ul>
             </div>
         </div>
