@@ -25,35 +25,59 @@
   const style = document.createElement('style');
   style.textContent = `
     
-    * { box-sizing: border-box; font-family: 'Alvarado', 'Circular Std', sans-serif; line-height: 1.2; }
+    * { box-sizing: border-box; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; line-height: 1.2; }
+
+    
+    @font-face {
+    font-family: 'Lucida Sans Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Lucida Sans Regular'), url('LSANS.woff') format('woff');
+    }
+    
 
     @font-face {
-    font-family: 'Alvarado';
+    font-family: 'Lucida Sans Italic';
     font-style: normal;
-    font-weight: 300;
-    src: local('Alvarado Regular'), url('fonts/Alvarado-Light.otf') format('woff');
+    font-weight: normal;
+    src: local('Lucida Sans Italic'), url('LSANSI.woff') format('woff');
     }
+    
+
     @font-face {
-    font-family: 'Alvarado';
+    font-family: 'Lucida Sans Demibold Roman';
     font-style: normal;
-    font-weight: 400;
-    src: local('Alvarado Regular Italic'), url('fonts/Alvarado-Regular.otf') format('woff');
+    font-weight: normal;
+    src: local('Lucida Sans Demibold Roman'), url('LSANSD.woff') format('woff');
     }
+    
+
     @font-face {
-    font-family: 'Alvarado';
+    font-family: 'Lucida Sans Demibold Italic';
     font-style: normal;
-    font-weight: 500;
-    src: local('Alvarado Light'), url('fonts/Alvarado-Medium.otf') format('woff');
+    font-weight: normal;
+    src: local('Lucida Sans Demibold Italic'), url('LSANSDI.woff') format('woff');
     }
+    
+
     @font-face {
-    font-family: 'Alvarado';
+    font-family: 'Lucida Sans Typewriter Regular';
     font-style: normal;
-    font-weight: 600;
-    src: local('Alvarado Light Italic'), url('fonts/Alvarado-Bold.otf') format('woff');
+    font-weight: normal;
+    src: local('Lucida Sans Typewriter Regular'), url('LTYPE.woff') format('woff');
     }
+    
+
+    @font-face {
+    font-family: 'Lucida Sans Unicode Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Lucida Sans Unicode Regular'), url('l_10646.woff') format('woff');
+    }
+    
 
     * {
-        font-family: 'Alvarado', sans-serif;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         line-height: 1.2;
     }
 
