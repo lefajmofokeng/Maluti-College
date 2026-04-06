@@ -775,27 +775,68 @@
 
 
 
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Selected Works Component</title>
+    <title>Accommodation Outside Campus — Maluti TVET College</title>
     <style>
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Alvarado', sans-serif;
+            background-color: #ffffff;
+            color: #111111;
+        }
+
         /* =========================================
-           CSS Isolation: Prefix 'sw-' used
+           SHARED CONTENT ALIGNMENT
+           The inner wrapper is exactly 1200px,
+           no left/right padding on desktop.
+           Padding only applied on mobile.
+           ========================================= */
+
+        .mh-content-inner,
+        .sw-property-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        /* =========================================
+           HERO
+           ========================================= */
+
+        .mh-hero {
+            width: 100%;
+            background-color: #0a0a3c;
+            color: #ffffff;
+            padding-top: 120px;
+            padding-bottom: 52px;
+        }
+
+        .mh-hero h1 {
+            font-size: 43px;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin-bottom: 18px;
+        }
+
+        .mh-hero p {
+            font-size: 16px;
+            color: #bebebe;
+            max-width: 560px;
+            line-height: 1.65;
+        }
+
+        /* =========================================
+           PROPERTY SECTION — one per property
            ========================================= */
 
         :root {
-            --sw-font-family: 'Alvarado', sans-serif;
             --sw-color-dark: #111111;
             --sw-color-grey: #888888;
             --sw-color-light-grey: #bebebe;
@@ -804,53 +845,65 @@
             --sw-border-radius-sm: 12px;
         }
 
-        /* Reset for component wrapper */
-        .sw-component-wrapper {
-            box-sizing: border-box;
-            font-family: var(--sw-font-family);
-            background-color: var(--sw-color-bg);
-            color: var(--sw-color-dark);
-            padding: 60px 20px;
-            margin: 0 auto;
-            max-width: 1200px;
+        .sw-property-section {
+            padding-top: 80px;
+            padding-bottom: 80px;
+            border-bottom: 1px solid #f0f0f0;
         }
 
-        .sw-component-wrapper * {
-            box-sizing: border-box;
+        .sw-property-section:last-of-type {
+            border-bottom: none;
         }
 
-        /* --- Header Section --- */
-        .sw-header {
-            text-align: center;
-            margin-bottom: 60px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+        /* Top bar: title left, status right */
+        .sw-property-topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
         }
 
-        .sw-title {
-            font-size: 60px;
+        .sw-property-title {
+            font-size: 22px;
             font-weight: 500;
-            margin: 0 0 24px 0;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.01em;
+            color: var(--sw-color-dark);
         }
 
-        .sw-subtitle {
-            font-size: 16px;
-            line-height: 1.5;
+        /* Availability badge — monochrome, no colour */
+        .sw-status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 16px;
+            border-radius: 50px;
+            border: 1px solid #dddddd;
+            font-size: 13px;
+            font-weight: 400;
             color: var(--sw-color-grey);
-            margin: 0;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
 
-        /* --- Main Grid Layout --- */
+        .sw-status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #bbbbbb;
+            flex-shrink: 0;
+        }
+
+        /* Two-column grid */
         .sw-content-grid {
             display: grid;
-            grid-template-columns: 1.2fr 1fr; /* Left image column slightly wider */
+            grid-template-columns: 1.2fr 1fr;
             gap: 40px;
             align-items: start;
         }
 
-        /* --- Left Column (Images & Button) --- */
+        /* ---- Left: Images ---- */
         .sw-image-column {
             display: flex;
             flex-direction: column;
@@ -862,7 +915,7 @@
             aspect-ratio: 4/3;
             border-radius: var(--sw-border-radius-lg);
             overflow: hidden;
-            background-color: var(--sw-color-light-grey); /* Placeholder color */
+            background-color: var(--sw-color-light-grey);
         }
 
         .sw-main-image {
@@ -873,7 +926,6 @@
             transition: opacity 0.3s ease;
         }
 
-        /* Bottom row containing button and thumbnails */
         .sw-image-footer-row {
             display: flex;
             justify-content: space-between;
@@ -887,12 +939,14 @@
             padding: 12px 32px;
             border: 1px solid var(--sw-color-dark);
             border-radius: 50px;
-            text-decoration: none;
             color: var(--sw-color-dark);
             font-weight: 500;
             font-size: 14px;
+            font-family: inherit;
             transition: all 0.2s ease;
             white-space: nowrap;
+            cursor: pointer;
+            background: transparent;
         }
 
         .sw-browse-btn:hover {
@@ -913,7 +967,8 @@
             cursor: pointer;
             border: 2px solid transparent;
             transition: border-color 0.2s ease;
-            padding: 2px; /* Space for border */
+            padding: 2px;
+            flex-shrink: 0;
         }
 
         .sw-thumbnail.active {
@@ -928,233 +983,723 @@
             display: block;
         }
 
-        /* --- Right Column (Accordion) --- */
+        /* ---- Right: Accordion ---- */
         .sw-accordion-column {
             display: flex;
             flex-direction: column;
-            gap: 24px;
-            padding-top: 20px; /* Alignment adjustment */
+            padding-top: 20px;
         }
 
         .sw-acc-item {
+            border-top: 1px solid #eeeeee;
+        }
+
+        .sw-acc-item:last-child {
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .sw-acc-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 0;
             cursor: pointer;
-            transition: all 0.3s ease;
+            user-select: none;
         }
 
         .sw-acc-header h3 {
             font-size: 32px;
             font-weight: 400;
-            margin: 0;
             line-height: 1.2;
-            color: var(--sw-color-light-grey); /* Inactive state color */
+            color: var(--sw-color-light-grey);
             transition: color 0.3s ease;
             letter-spacing: -0.03em;
+        }
+
+        .sw-acc-item.active .sw-acc-header h3 {
+            color: var(--sw-color-dark);
+            font-weight: 500;
+        }
+
+        .sw-acc-toggle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #f3f3f3;
+            border: none;
+            font-size: 22px;
+            color: var(--sw-color-dark);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: transform 0.3s ease;
+            line-height: 1;
+            padding-bottom: 2px;
+            pointer-events: none;
+        }
+
+        .sw-acc-item.active .sw-acc-toggle {
+            transform: rotate(45deg);
         }
 
         .sw-acc-content {
             max-height: 0;
             overflow: hidden;
             opacity: 0;
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-        }
-
-        .sw-acc-description {
-            font-size: 16px;
-            line-height: 1.6;
-            color: var(--sw-color-grey);
-            margin: 24px 0;
-            max-width: 90%;
-        }
-
-        .sw-plus-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: #F3F3F3;
-            border: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            color: var(--sw-color-dark);
-            cursor: pointer;
-            padding-bottom: 4px; /* visual center adjustment */
-        }
-
-        /* Accordion Active State */
-        .sw-acc-item.active .sw-acc-header h3 {
-            color: var(--sw-color-dark);
-            font-weight: 500;
+            transition: max-height 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.3s ease;
         }
 
         .sw-acc-item.active .sw-acc-content {
-            max-height: 500px; /* Arbitrary height large enough for content */
+            max-height: 1000px;
             opacity: 1;
         }
 
-
-        /* --- Responsiveness --- */
-        @media (max-width: 900px) {
-            .sw-content-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .sw-image-footer-row {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-             .sw-title {
-                font-size: 32px;
-            }
-             .sw-acc-header h3 {
-                 font-size: 24px;
-             }
+        .sw-acc-body {
+            padding-bottom: 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
         }
+
+        /* ---- Text styles ---- */
+
+        .sw-body-text {
+            font-size: 15px;
+            color: var(--sw-color-grey);
+            line-height: 1.75;
+        }
+
+        /* Formal section label */
+        .sw-field-label {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--sw-color-light-grey);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        /* ---- Location ---- */
+        .sw-loc-address {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--sw-color-dark);
+            margin-bottom: 10px;
+        }
+
+        .sw-loc-campus-row {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            padding-top: 18px;
+            border-top: 1px solid #eeeeee;
+        }
+
+        .sw-loc-campus-name {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--sw-color-dark);
+        }
+
+        .sw-loc-campus-dist {
+            font-size: 14px;
+            color: var(--sw-color-grey);
+            line-height: 1.6;
+        }
+
+        /* ---- Features — plain list ---- */
+        .sw-features-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sw-features-list li {
+            font-size: 15px;
+            color: var(--sw-color-grey);
+            line-height: 1.7;
+            padding: 10px 0;
+            border-bottom: 1px solid #f5f5f5;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+
+        .sw-features-list li:last-child {
+            border-bottom: none;
+        }
+
+        .sw-features-list li::before {
+            content: '';
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background-color: #cccccc;
+            flex-shrink: 0;
+            margin-top: 9px;
+        }
+
+        /* ---- Pricing — formal row layout, no cards ---- */
+        .sw-pricing-rows {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .sw-pricing-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 12px 0;
+            border-bottom: 1px solid #f5f5f5;
+        }
+
+        .sw-pricing-row:last-child {
+            border-bottom: none;
+        }
+
+        .sw-pricing-row-label {
+            font-size: 14px;
+            color: var(--sw-color-grey);
+        }
+
+        .sw-pricing-row-value {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--sw-color-dark);
+        }
+
+        /* ---- Contact ---- */
+        .sw-contact-name {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--sw-color-dark);
+            margin-bottom: 3px;
+        }
+
+        .sw-contact-role {
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--sw-color-light-grey);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .sw-contact-phone {
+            font-size: 15px;
+            color: var(--sw-color-grey);
+            margin-bottom: 14px;
+        }
+
+        .sw-contact-note {
+            font-size: 14px;
+            color: var(--sw-color-grey);
+            line-height: 1.7;
+            padding-top: 14px;
+            border-top: 1px solid #eeeeee;
+        }
+
+        /* =========================================
+           MAP MODAL
+           ========================================= */
+
+        .sw-modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sw-modal-overlay.open {
+            display: flex;
+        }
+
+        .sw-modal-box {
+            background: #ffffff;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 740px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sw-modal-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            padding: 22px 26px;
+            border-bottom: 1px solid #eeeeee;
+            gap: 16px;
+        }
+
+        .sw-modal-prop-name {
+            font-size: 17px;
+            font-weight: 500;
+            color: #111111;
+        }
+
+        .sw-modal-prop-address {
+            font-size: 13px;
+            color: #888888;
+            margin-top: 5px;
+        }
+
+        .sw-modal-close {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #f3f3f3;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #111111;
+            flex-shrink: 0;
+            transition: background 0.2s;
+        }
+
+        .sw-modal-close:hover { background: #e5e5e5; }
+
+        .sw-modal-map {
+            width: 100%;
+            height: 420px;
+            border: none;
+            display: block;
+        }
+
+        /* =========================================
+           RESPONSIVE
+           ========================================= */
+
+        @media (max-width: 900px) {
+            .mh-content-inner,
+            .sw-property-section {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+            .mh-hero h1 { font-size: 34px; }
+            .sw-content-grid { grid-template-columns: 1fr; }
+            .sw-image-footer-row { flex-direction: column; align-items: flex-start; }
+            .sw-acc-header h3 { font-size: 24px; }
+            .sw-modal-map { height: 280px; }
+        }
+
     </style>
 </head>
 <body>
 
-<div class="sw-component-wrapper">
-    <div class="sw-header">
-        <h1 class="sw-title">Selected works</h1>
-        <p class="sw-subtitle">Explore our recent portfolio featuring bespoke residential renovations and award-winning commercial architecture designs tailored to modern living.</p>
+<!-- ===== HERO ===== -->
+<div class="mh-hero">
+    <div class="mh-content-inner">
+        <h1>Off-campus Accomodation</h1>
+        <p>Browse verified off-campus properties listed by registered landlords near Maluti TVET College — helping students from afar find housing quickly and with confidence.</p>
     </div>
+</div>
 
-    <div class="sw-content-grid">
-        
-        <div class="sw-image-column">
-            <div class="sw-main-image-wrapper">
-                <img id="sw-main-display-img" class="sw-main-image" src="" alt="Project main view">
+<!-- ===== PROPERTIES (rendered by JS) ===== -->
+<div id="sw-properties-container"></div>
+
+<!-- ===== MAP MODAL ===== -->
+<div class="sw-modal-overlay" id="sw-modal-overlay">
+    <div class="sw-modal-box">
+        <div class="sw-modal-header">
+            <div>
+                <div class="sw-modal-prop-name" id="sw-modal-prop-name"></div>
+                <div class="sw-modal-prop-address" id="sw-modal-prop-address"></div>
             </div>
-            
-            <div class="sw-image-footer-row">
-                <a href="#" class="sw-browse-btn">Browse all portfolio</a>
-                
-                <div class="sw-thumbnails-wrapper" id="sw-thumbnails-container">
-                    </div>
-            </div>
+            <button class="sw-modal-close" id="sw-modal-close">&#x2715;</button>
         </div>
-
-        <div class="sw-accordion-column" id="sw-accordion-container">
-            </div>
-
+        <iframe id="sw-map-iframe" class="sw-modal-map" src="" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
 </div>
 
 <script>
-    // Data Structure for Projects
-    const swProjectsData = [
+
+    const swProperties = [
         {
-            id: 1,
-            title: "House architecture design in Los Angeles, CA",
-            description: "A modern minimalist residence featuring natural wood textures, panoramic window walls, and an open-plan kitchen designed for seamless indoor-outdoor living in the Hollywood Hills.",
-            // Using Unsplash IDs for realistic imagery matching the style
+            id: 'prop1',
+            title: 'Senotsi Student Lodge — Kestell',
+            status: '2 Spots Available',
             images: [
-                "https://images.pexels.com/photos/262367/pexels-photo-262367.jpeg", // Main Kitchen
-                "https://images.pexels.com/photos/1619660/pexels-photo-1619660.jpeg", // Bedroom thumb
-                "https://images.pexels.com/photos/533157/pexels-photo-533157.jpeg"  // Bathroom thumb
-            ]
+                'https://images.pexels.com/photos/271816/pexels-photo-271816.jpeg',
+                'https://images.pexels.com/photos/1643389/pexels-photo-1643389.jpeg',
+                'https://images.pexels.com/photos/2506990/pexels-photo-2506990.jpeg'
+            ],
+            location: {
+                address: '14 Thabo Street, Kestell, Free State, 9860',
+                description: 'Situated in the heart of Kestell town, within walking distance of local shops, a taxi rank, and essential amenities. The neighbourhood is quiet and well-suited for students seeking a focused study environment.',
+                campus: 'Maluti TVET College — Kestell Campus',
+                distance: 'Approximately 1.4 km — roughly a 17-minute walk or a short taxi ride.',
+                mapSrc: 'https://www.google.com/maps?q=Kestell,+Free+State,+South+Africa&output=embed'
+            },
+            features: [
+                'Private furnished room with lockable door',
+                'Shared bathroom and ablution facilities — 1 bathroom per 3 rooms',
+                'JoJo water storage tank on site — reliable supply during municipal outages',
+                'Solar-powered geyser — no electricity cost for hot water',
+                'Dedicated study desk, chair, and wardrobe per room',
+                'Secure fenced yard with lockable gate',
+                'Shared laundry area with washing lines',
+                'Refuse removal twice weekly',
+                'No open fires permitted — gas stove provided in shared kitchen'
+            ],
+            pricing: {
+                monthly: 'R1 800 per month',
+                deposit: 'R900 (50% of monthly rent — refundable)',
+                includes: 'Water and refuse removal included in the monthly rent.',
+                electricity: 'Electricity is prepaid and managed separately by the tenant.',
+                paymentTerms: 'Monthly rent is due on or before the 1st of each month. The deposit is collected upon signing the rental agreement and is fully refundable at the end of the tenancy, subject to a satisfactory exit inspection.'
+            },
+            contact: {
+                name: 'Mrs Ntombifikile Dlamini',
+                role: 'Property Owner',
+                phone: '+27 72 341 0082',
+                note: 'Available on weekdays between 08:00 and 17:00. Please call or send a WhatsApp message to arrange a viewing. Walk-in visits are welcome, however an appointment is preferred to ensure the owner is on site.'
+            }
         },
         {
-            id: 2,
-            title: "Remodeling in Brooklyn Heights, New York",
-            description: "A complete renovation of a historic brownstone, preserving original molding details while introducing contemporary fixtures, a chef's kitchen, and a rooftop garden oasis.",
+            id: 'prop2',
+            title: 'Phuthaditjhaba Shared Residence',
+            status: '1 Spot Available',
             images: [
-                "https://images.pexels.com/photos/6958122/pexels-photo-6958122.jpeg", // Brownstone Kitchen
-                "https://images.pexels.com/photos/30355549/pexels-photo-30355549.jpeg", // Living room thumb
-                "https://images.pexels.com/photos/6125668/pexels-photo-6125668.jpeg"  // Exterior thumb
-            ]
+                'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg',
+                'https://images.pexels.com/photos/1648776/pexels-photo-1648776.jpeg',
+                'https://images.pexels.com/photos/259962/pexels-photo-259962.jpeg'
+            ],
+            location: {
+                address: '7 Ntlo Khono Drive, Phuthaditjhaba, Free State, 9869',
+                description: 'Located in a well-established residential area of Phuthaditjhaba, with easy access to public transport routes heading toward the college. Local spaza shops, a clinic, and a supermarket are all within a 10-minute walk.',
+                campus: 'Maluti TVET College — Phuthaditjhaba Campus',
+                distance: 'Approximately 2.1 km — about a 25-minute walk or a short taxi/bus ride via the main road.',
+                mapSrc: 'https://www.google.com/maps?q=Phuthaditjhaba,+Free+State,+South+Africa&output=embed'
+            },
+            features: [
+                'Single and double room options available — specify your preference when enquiring',
+                'Outdoor toilet and bathroom facilities — well maintained and cleaned daily',
+                'Borehole water supply — uninterrupted even during municipal outages',
+                '24-hour manned security gate with visitor sign-in register',
+                'Wi-Fi infrastructure in place — tenants arrange their own SIM card data',
+                'Shared fully equipped kitchen with gas stove and fridge',
+                'Communal living area with seating',
+                'Wheelie bins provided — no littering or dumping permitted on the property'
+            ],
+            pricing: {
+                monthly: 'R1 500 per month',
+                deposit: 'R750 (50% of monthly rent — refundable)',
+                includes: 'Water (borehole supply) is included in the monthly rent.',
+                electricity: 'Electricity is via prepaid meter — tenant purchases and loads their own units.',
+                paymentTerms: 'Rent is payable monthly in advance. The deposit is due upon signing the rental agreement and is fully refundable at the end of the lease, subject to a satisfactory exit inspection by the owner.'
+            },
+            contact: {
+                name: 'Mr Sipho Motaung',
+                role: 'Property Owner',
+                phone: '+27 83 560 2234',
+                note: 'Reachable by phone or WhatsApp at any time during the day. Viewings are conducted on Saturdays between 09:00 and 13:00, or by arrangement during the week. Please confirm availability before visiting.'
+            }
         },
         {
-            id: 3,
-            title: "Office architecture design in Manhattan, New York",
-            description: "An award-winning commercial space characterized by sustainable materials, collaborative breakout zones, and ergonomic workstations overlooking Central Park.",
+            id: 'prop3',
+            title: 'Clarens Road Self-Contained Unit — Kestell',
+            status: 'Fully Occupied',
             images: [
-                "https://images.pexels.com/photos/5490364/pexels-photo-5490364.jpeg", // Office main
-                "https://images.pexels.com/photos/5490363/pexels-photo-5490363.jpeg", // Meeting room thumb
-                "https://images.pexels.com/photos/3172740/pexels-photo-3172740.jpeg"  // Lounge thumb
-            ]
+                'https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg',
+                'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg',
+                'https://images.pexels.com/photos/2082087/pexels-photo-2082087.jpeg'
+            ],
+            location: {
+                address: '22 Rondavel Close, Clarens Road, Kestell, Free State, 9860',
+                description: 'Set on a quiet residential close just off the Clarens Road, this property offers a calm, semi-rural setting while remaining accessible to the college and town. Ideal for students who value privacy and independence.',
+                campus: 'Maluti TVET College — Kestell Campus',
+                distance: 'Approximately 2.8 km — about a 35-minute walk or a quick taxi ride. A bicycle is recommended for daily commuting.',
+                mapSrc: 'https://www.google.com/maps?q=Clarens,+Free+State,+South+Africa&output=embed'
+            },
+            features: [
+                'Fully self-contained unit with its own private entrance — no shared access with other tenants',
+                'Private indoor toilet and shower en suite',
+                'Prepaid electricity meter — tenant purchases and manages their own units',
+                'Burglar bars on all windows and reinforced security door with deadbolt lock',
+                'Dedicated off-street parking bay — suitable for a vehicle or secure bicycle storage',
+                'Access to shared vegetable garden — tenants are welcome to use and maintain it',
+                'Small pets considered upon prior discussion with the owner',
+                'All windows fitted with fly screens'
+            ],
+            pricing: {
+                monthly: 'R2 200 per month',
+                deposit: 'R1 100 (50% of monthly rent — refundable)',
+                includes: 'Municipal rates and refuse removal included in the monthly rent.',
+                electricity: 'Water and electricity are metered separately and paid directly by the tenant.',
+                paymentTerms: 'Rent is due on the 1st of every month. The deposit is payable alongside the signed lease agreement. It is held in full and returned at the end of the tenancy, provided no damage is identified during the exit inspection.'
+            },
+            contact: {
+                name: 'Ms Lerato Mokoena',
+                role: 'Property Owner',
+                phone: '+27 61 874 9905',
+                note: 'This unit is currently fully occupied. You are welcome to contact Ms Mokoena to be placed on the waiting list — she will reach out as soon as a vacancy arises. Enquiries via WhatsApp are preferred.'
+            }
         }
     ];
 
-    // State initialization
-    let swActiveProjectIndex = 0;
-    let swActiveImageIndex = 0;
+    // Modal
+    const swOverlay   = document.getElementById('sw-modal-overlay');
+    const swMapIframe = document.getElementById('sw-map-iframe');
+    const swModalName = document.getElementById('sw-modal-prop-name');
+    const swModalAddr = document.getElementById('sw-modal-prop-address');
 
-    const swMainImageElement = document.getElementById('sw-main-display-img');
-    const swThumbnailsContainer = document.getElementById('sw-thumbnails-container');
-    const swAccordionContainer = document.getElementById('sw-accordion-container');
-
-    // Function to render the whole component state
-    function swRenderComponent() {
-        swRenderAccordion();
-        swRenderImages();
+    function swOpenModal(prop) {
+        swModalName.textContent = prop.title;
+        swModalAddr.textContent = prop.location.address;
+        swMapIframe.src = prop.location.mapSrc;
+        swOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
     }
 
-    // Function to render images based on active state
-    function swRenderImages() {
-        const activeProject = swProjectsData[swActiveProjectIndex];
-        
-        // Fade effect for main image change
-        swMainImageElement.style.opacity = '0';
-        setTimeout(() => {
-             swMainImageElement.src = activeProject.images[swActiveImageIndex];
-             swMainImageElement.style.opacity = '1';
-        }, 200);
-       
+    function swCloseModal() {
+        swOverlay.classList.remove('open');
+        swMapIframe.src = '';
+        document.body.style.overflow = '';
+    }
 
-        // Render Thumbnails
-        swThumbnailsContainer.innerHTML = '';
-        activeProject.images.forEach((imgSrc, index) => {
-            const thumbBtn = document.createElement('div');
-            thumbBtn.className = `sw-thumbnail ${index === swActiveImageIndex ? 'active' : ''}`;
-            thumbBtn.innerHTML = `<img src="${imgSrc}" alt="Thumbnail ${index + 1}">`;
-            
-            thumbBtn.addEventListener('click', () => {
-                swActiveImageIndex = index;
-                swRenderImages(); // Re-render just images part
-            });
-            
-            swThumbnailsContainer.appendChild(thumbBtn);
+    document.getElementById('sw-modal-close').addEventListener('click', swCloseModal);
+    swOverlay.addEventListener('click', e => { if (e.target === swOverlay) swCloseModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') swCloseModal(); });
+
+    // Build each property
+    function swBuildProperty(prop) {
+        const section = document.createElement('div');
+        section.className = 'sw-property-section';
+
+        // Top bar
+        const topbar = document.createElement('div');
+        topbar.className = 'sw-property-topbar';
+
+        const titleEl = document.createElement('h2');
+        titleEl.className = 'sw-property-title';
+        titleEl.textContent = prop.title;
+
+        const badge = document.createElement('span');
+        badge.className = 'sw-status-badge';
+        badge.innerHTML = `<span class="sw-status-dot"></span>${prop.status}`;
+
+        topbar.appendChild(titleEl);
+        topbar.appendChild(badge);
+        section.appendChild(topbar);
+
+        // Grid
+        const grid = document.createElement('div');
+        grid.className = 'sw-content-grid';
+
+        // ---- LEFT ----
+        const imgCol = document.createElement('div');
+        imgCol.className = 'sw-image-column';
+
+        const mainWrapper = document.createElement('div');
+        mainWrapper.className = 'sw-main-image-wrapper';
+        const mainImg = document.createElement('img');
+        mainImg.className = 'sw-main-image';
+        mainImg.src = prop.images[0];
+        mainImg.alt = prop.title;
+        mainWrapper.appendChild(mainImg);
+        imgCol.appendChild(mainWrapper);
+
+        const footer = document.createElement('div');
+        footer.className = 'sw-image-footer-row';
+
+        const mapBtn = document.createElement('button');
+        mapBtn.className = 'sw-browse-btn';
+        mapBtn.textContent = 'See on the map';
+        mapBtn.addEventListener('click', () => swOpenModal(prop));
+        footer.appendChild(mapBtn);
+
+        const thumbsWrapper = document.createElement('div');
+        thumbsWrapper.className = 'sw-thumbnails-wrapper';
+
+        function setActiveImg(idx) {
+            mainImg.style.opacity = '0';
+            setTimeout(() => { mainImg.src = prop.images[idx]; mainImg.style.opacity = '1'; }, 200);
+            thumbsWrapper.querySelectorAll('.sw-thumbnail').forEach((t, i) => t.classList.toggle('active', i === idx));
+        }
+
+        prop.images.forEach((src, idx) => {
+            const thumb = document.createElement('div');
+            thumb.className = 'sw-thumbnail' + (idx === 0 ? ' active' : '');
+            thumb.innerHTML = `<img src="${src}" alt="View ${idx + 1}">`;
+            thumb.addEventListener('click', () => setActiveImg(idx));
+            thumbsWrapper.appendChild(thumb);
         });
-    }
 
-    // Function to render accordion items
-    function swRenderAccordion() {
-        swAccordionContainer.innerHTML = '';
-        swProjectsData.forEach((project, index) => {
-            const isActive = index === swActiveProjectIndex;
-            
-            const accItem = document.createElement('div');
-            accItem.className = `sw-acc-item ${isActive ? 'active' : ''}`;
-            
-            accItem.innerHTML = `
-                <div class="sw-acc-header">
-                    <h3>${project.title}</h3>
-                </div>
-                <div class="sw-acc-content">
-                    <p class="sw-acc-description">${project.description}</p>
-                    <button class="sw-plus-btn">+</button>
-                </div>
-            `;
+        footer.appendChild(thumbsWrapper);
+        imgCol.appendChild(footer);
+        grid.appendChild(imgCol);
 
-            // Add click handler to accordion header
-            accItem.querySelector('.sw-acc-header').addEventListener('click', () => {
-                if (swActiveProjectIndex !== index) {
-                    swActiveProjectIndex = index;
-                    swActiveImageIndex = 0; // Reset image index for new project
-                    swRenderComponent(); // Re-render everything
+        // ---- RIGHT: Accordion ----
+        const accCol = document.createElement('div');
+        accCol.className = 'sw-accordion-column';
+
+        const accordionItems = [
+            {
+                label: 'Location',
+                buildContent: () => {
+                    const body = document.createElement('div');
+                    body.className = 'sw-acc-body';
+
+                    const addr = document.createElement('p');
+                    addr.className = 'sw-loc-address';
+                    addr.textContent = prop.location.address;
+                    body.appendChild(addr);
+
+                    const desc = document.createElement('p');
+                    desc.className = 'sw-body-text';
+                    desc.textContent = prop.location.description;
+                    body.appendChild(desc);
+
+                    const campusWrap = document.createElement('div');
+                    campusWrap.className = 'sw-loc-campus-row';
+
+                    const campusLabel = document.createElement('span');
+                    campusLabel.className = 'sw-field-label';
+                    campusLabel.textContent = 'Nearest campus';
+                    campusWrap.appendChild(campusLabel);
+
+                    const campusName = document.createElement('span');
+                    campusName.className = 'sw-loc-campus-name';
+                    campusName.textContent = prop.location.campus;
+                    campusWrap.appendChild(campusName);
+
+                    const campusDist = document.createElement('span');
+                    campusDist.className = 'sw-loc-campus-dist';
+                    campusDist.textContent = prop.location.distance;
+                    campusWrap.appendChild(campusDist);
+
+                    body.appendChild(campusWrap);
+                    return body;
                 }
+            },
+            {
+                label: 'Features',
+                buildContent: () => {
+                    const body = document.createElement('div');
+                    body.className = 'sw-acc-body';
+                    const ul = document.createElement('ul');
+                    ul.className = 'sw-features-list';
+                    prop.features.forEach(f => {
+                        const li = document.createElement('li');
+                        li.textContent = f;
+                        ul.appendChild(li);
+                    });
+                    body.appendChild(ul);
+                    return body;
+                }
+            },
+            {
+                label: 'Pricing',
+                buildContent: () => {
+                    const body = document.createElement('div');
+                    body.className = 'sw-acc-body';
+
+                    const rows = document.createElement('div');
+                    rows.className = 'sw-pricing-rows';
+
+                    const items = [
+                        { label: 'Monthly rent', value: prop.pricing.monthly },
+                        { label: 'Deposit', value: prop.pricing.deposit },
+                        { label: 'Included in rent', value: prop.pricing.includes },
+                        { label: 'Electricity', value: prop.pricing.electricity }
+                    ];
+
+                    items.forEach(item => {
+                        const row = document.createElement('div');
+                        row.className = 'sw-pricing-row';
+                        row.innerHTML = `<span class="sw-pricing-row-label">${item.label}</span><span class="sw-pricing-row-value">${item.value}</span>`;
+                        rows.appendChild(row);
+                    });
+
+                    body.appendChild(rows);
+
+                    const termsLabel = document.createElement('span');
+                    termsLabel.className = 'sw-field-label';
+                    termsLabel.textContent = 'Payment & deposit terms';
+                    body.appendChild(termsLabel);
+
+                    const termsText = document.createElement('p');
+                    termsText.className = 'sw-body-text';
+                    termsText.textContent = prop.pricing.paymentTerms;
+                    body.appendChild(termsText);
+
+                    return body;
+                }
+            },
+            {
+                label: 'Contact',
+                buildContent: () => {
+                    const body = document.createElement('div');
+                    body.className = 'sw-acc-body';
+
+                    const name = document.createElement('div');
+                    name.className = 'sw-contact-name';
+                    name.textContent = prop.contact.name;
+                    body.appendChild(name);
+
+                    const role = document.createElement('div');
+                    role.className = 'sw-contact-role';
+                    role.textContent = prop.contact.role;
+                    body.appendChild(role);
+
+                    const phone = document.createElement('div');
+                    phone.className = 'sw-contact-phone';
+                    phone.textContent = prop.contact.phone;
+                    body.appendChild(phone);
+
+                    const note = document.createElement('div');
+                    note.className = 'sw-contact-note';
+                    note.textContent = prop.contact.note;
+                    body.appendChild(note);
+
+                    return body;
+                }
+            }
+        ];
+
+        accordionItems.forEach(item => {
+            const accItem = document.createElement('div');
+            accItem.className = 'sw-acc-item';
+
+            const header = document.createElement('div');
+            header.className = 'sw-acc-header';
+            header.innerHTML = `<h3>${item.label}</h3><button class="sw-acc-toggle">+</button>`;
+
+            const contentWrap = document.createElement('div');
+            contentWrap.className = 'sw-acc-content';
+            contentWrap.appendChild(item.buildContent());
+
+            header.addEventListener('click', () => {
+                const isOpen = accItem.classList.contains('active');
+                accCol.querySelectorAll('.sw-acc-item').forEach(el => el.classList.remove('active'));
+                if (!isOpen) accItem.classList.add('active');
             });
 
-            swAccordionContainer.appendChild(accItem);
+            accItem.appendChild(header);
+            accItem.appendChild(contentWrap);
+            accCol.appendChild(accItem);
         });
+
+        grid.appendChild(accCol);
+        section.appendChild(grid);
+        return section;
     }
 
-    // Initial Render on Page Load
-    document.addEventListener('DOMContentLoaded', swRenderComponent);
+    const container = document.getElementById('sw-properties-container');
+    swProperties.forEach(prop => container.appendChild(swBuildProperty(prop)));
 
 </script>
-
 </body>
 </html>
