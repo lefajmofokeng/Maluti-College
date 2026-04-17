@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stanford Admission Replica</title>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .main-title {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #000;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            font-weight: 400;
+            color: #555;
+            margin-bottom: 0;
+        }
+
+        /* Hero Image Section */
+        .hero-image-container {
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            padding: 40px 0;
+            margin-bottom: 40px;
+        }
+
+        .stat-item h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin: 0 0 5px 0;
+            color: #000;
+        }
+
+        .stat-item p {
+            font-size: 14px;
+            font-weight: 400;
+            margin: 0;
+            color: #777;
+        }
+
+        /* Undergraduates Section */
+        .undergrad-section {
+            background-color: #fff;
+            display: flex;
+            margin-bottom: 40px;
+        }
+
+        .undergrad-text-content {
+            flex: 1;
+            padding: 60px;
+        }
+
+        .section-title-wrapper {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 0;
+        }
+
+        .undergrad-heading {
+            font-size: 18px;
+            font-weight: 700;
+            color: #000;
+            margin: 0 0 10px 0;
+        }
+
+        .undergrad-para {
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.6;
+            margin: 0 0 20px 0;
+            color: #555;
+        }
+
+        .undergrad-image {
+            width: 50%;
+            object-fit: cover;
+        }
+
+        .link-style {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        /* Graduate Studies Section */
+        .grad-section {
+            background-color: #3b312b; /* A deep brown/grey */
+            display: flex;
+            color: #fff;
+            margin-bottom: 40px;
+        }
+
+        .grad-image {
+            width: 50%;
+            object-fit: cover;
+        }
+
+        .grad-text-content {
+            flex: 1;
+            padding: 60px;
+        }
+
+        .grad-text-block {
+            padding: 40px;
+            background-color: #fff;
+            color: #333;
+            width: 80%;
+            position: relative;
+            left: -80px;
+        }
+
+        .grad-heading {
+            font-size: 18px;
+            font-weight: 700;
+            color: #000;
+            margin: 0 0 10px 0;
+        }
+
+        .grad-para {
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.6;
+            margin: 0 0 20px 0;
+            color: #555;
+        }
+
+        .grad-section-title {
+            color: #fff;
+        }
+
+        /* Financial Aid Section */
+        .finaid-section {
+            background-color: #f7f7f7;
+            padding: 60px 0;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .finaid-title-block {
+            margin-bottom: 40px;
+        }
+
+        .finaid-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .finaid-stat-item h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin: 0 0 5px 0;
+            color: #000;
+        }
+
+        .finaid-stat-item p {
+            font-size: 14px;
+            font-weight: 400;
+            margin: 0;
+            color: #777;
+        }
+
+        .finaid-para {
+            font-size: 18px;
+            font-weight: 400;
+            color: #555;
+            margin: 0;
+        }
+
+        .btn-finaid {
+            background-color: #a31c2c; /* Stanford red */
+            color: #fff;
+            padding: 15px 30px;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            margin-top: 40px;
+        }
+
+        /* Applying to Other Programs Section */
+        .other-programs-section {
+            background-color: #fff;
+            padding: 60px 0;
+            margin-bottom: 40px;
+        }
+
+        .other-programs-cols {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .other-heading {
+            font-size: 16px;
+            font-weight: 700;
+            margin: 0 0 10px 0;
+            color: #000;
+        }
+
+        .other-para {
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 1.6;
+            margin: 0 0 15px 0;
+            color: #555;
+        }
+
+        /* Footer Image Section */
+        .footer-image-container {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .footer-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div class="container">
+        <h1 class="main-title">Admission</h1>
+        <h3 class="subtitle">Explore the possibilities of a Stanford education.</h3>
+    </div>
+</div>
+
+<div class="hero-image-container">
+    <img src="https://www.stanford.edu/wp-content/uploads/2017/06/Tree-hero-1.jpg" alt="Stanford Tree mascot in stadium" class="hero-image">
+</div>
+
+<div class="container">
+    <div class="stats-section">
+        <div class="stat-item">
+            <h2>7,289</h2>
+            <p>Undergraduate students</p>
+        </div>
+        <div class="stat-item">
+            <h2>Class of 2029</h2>
+            <p>from 50 countries | 50 states</p>
+        </div>
+        <div class="stat-item">
+            <h2>10,025</h2>
+            <p>Graduate students</p>
+        </div>
+    </div>
+</div>
+
+<div class="section-title-wrapper">
+    <div class="container">
+        <h2 class="section-title">Undergraduates</h2>
+    </div>
+</div>
+
+<div class="container">
+    <div class="undergrad-section">
+        <div class="undergrad-text-content">
+            <h4 class="undergrad-heading">Undergraduate Admission</h4>
+            <p class="undergrad-para">
+                About 1,700 freshmen and 30 transfer students enroll at Stanford each year. We review each applicant on comprehensive academic excellence, intellectual vitality, and personal context.
+            </p>
+            <a href="#" class="link-style">Undergraduate Admission</a>
+
+            <div style="height: 30px;"></div>
+
+            <h4 class="undergrad-heading">Undergraduate Financial Aid</h4>
+            <p class="undergrad-para">
+                Stanford meets the full financial need of every admitted undergraduate who qualifies for assistance. Tuition is covered for all undergraduates with family incomes below $150,000. Tuition, room, and board are covered for undergraduates with family incomes below $100,000.
+            </p>
+            <a href="#" class="link-style">Undergraduate Financial Aid</a>
+
+            <div style="height: 30px;"></div>
+
+            <h4 class="undergrad-heading">Profile of the Class of 2023</h4>
+            <a href="#" class="link-style">Class of 2023</a>
+        </div>
+        <img src="https://www.stanford.edu/wp-content/uploads/2020/09/20200922_frosh_social-distancing_2568-1.jpg" alt="Students in group talking" class="undergrad-image">
+    </div>
+</div>
+
+<div class="section-title-wrapper" style="background-color: #3b312b;">
+    <div class="container">
+        <h2 class="section-title grad-section-title">Graduate Studies</h2>
+    </div>
+</div>
+
+<div class="container">
+    <div class="grad-section">
+        <img src="https://www.stanford.edu/wp-content/uploads/2017/06/quad_main.jpg" alt="Student with laptop in quad" class="grad-image">
+        <div class="grad-text-content">
+            <div class="grad-text-block">
+                <h4 class="grad-heading">Graduate Admission</h4>
+                <p class="grad-para">
+                    Nearly 200 graduate programs are offered across seven schools at Stanford. Selection remains competitive across dynamic academic areas.
+                </p>
+                <a href="#" class="link-style">Graduate Admission</a>
+
+                <div style="height: 30px;"></div>
+
+                <h4 class="grad-heading">Financing Graduate Study</h4>
+                <p class="grad-para">
+                    The costs of graduate study at Stanford—and the resources available for financial support—vary by degree, school, and academic status. We offer a mix of fellowships, assistantships, and financial assistance.
+                </p>
+                <a href="#" class="link-style">Graduate Student Funding</a>
+
+                <div style="height: 30px;"></div>
+
+                <h4 class="grad-heading">Vice Provost for Graduate Education</h4>
+                <p class="grad-para">
+                    The Office of the Vice Provost for Graduate Education (VPGE) offers info for prospective students on the valuable opportunities and academic environment.
+                </p>
+                <a href="#" class="link-style">Information for Prospective Students</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section-title-wrapper">
+    <div class="container">
+        <h2 class="section-title">Financial Aid</h2>
+    </div>
+</div>
+
+<div class="finaid-section">
+    <div class="container">
+        <div class="finaid-title-block">
+            <h3 class="finaid-para">We are committed to making a world-class education affordable.</h3>
+        </div>
+        <div class="finaid-stats">
+            <div class="finaid-stat-item">
+                <h2>69%</h2>
+                <p>of students receive financial aid toward the cost of attendance</p>
+            </div>
+            <div class="finaid-stat-item">
+                <h2>Tuition covered</h2>
+                <p>for undergraduates with family incomes below $150,000</p>
+            </div>
+            <div class="finaid-stat-item">
+                <h2>Tuition, room, & board covered</h2>
+                <p>for undergraduates with family incomes below $100,000</p>
+            </div>
+            <div class="finaid-stat-item">
+                <h2>Graduate aid available</h2>
+                <p>based on available funds and academic merit</p>
+            </div>
+        </div>
+        <button class="btn-finaid">More About Financial Aid</button>
+    </div>
+</div>
+
+<div class="section-title-wrapper">
+    <div class="container">
+        <h2 class="section-title">Applying To Other Programs</h2>
+    </div>
+</div>
+
+<div class="other-programs-section">
+    <div class="container">
+        <div class="other-programs-cols">
+            <div>
+                <h5 class="other-heading">Summer Session</h5>
+                <p class="other-para">High school, college and graduate students can take courses in one of eight different academic programs.</p>
+                <a href="#" class="link-style">Summer Session</a>
+            </div>
+            <div>
+                <h5 class="other-heading">Lifelong Learning</h5>
+                <p class="other-para">Stanford offers wide opportunities in continuing education, executive education, and professional programs, and other programs for diverse students.</p>
+                <a href="#" class="link-style">Lifelong Learning Programs</a>
+            </div>
+            <div>
+                <h5 class="other-heading">Postdocs</h5>
+                <p class="other-para">Information for postdoctoral scholars considering positions at Stanford University.</p>
+                <a href="#" class="link-style">Postdoctoral Positions</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="footer-image-container">
+    <img src="https://www.stanford.edu/wp-content/uploads/2017/06/The-Dish-landscape.jpg" alt="Stanford Dish radio telescope in hills" class="footer-image">
+</div>
+
+</body>
+</html>
