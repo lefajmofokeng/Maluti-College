@@ -1,505 +1,671 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maluti School | Excellence in Learning</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maluti TVET College</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
 
-    <style>
-        /* --- RESET & BASICS --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: 'Bricolage Grotesque', sans-serif;
-            background-color: #ffffff;
-            color: #ffffff;
-            overflow-x: hidden;
-            line-height: 1.5;
-        }
+<script src="main.js"></script>
 
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
-        ul { list-style: none; }
-
-        /* --- HEADER CONTAINER --- */
-        .kw-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            background: rgb(5, 13, 56);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(255,255,255,0.08);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* --- TOP BAR --- */
-        .kw-top-bar {
-            background-color: rgba(255, 255, 255, 0.05);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            position: relative;
-            z-index: 1001;
-            /* Removed overflow:hidden to allow dropdowns to be seen */
-            transition: transform 0.4s, opacity 0.3s, height 0.4s;
-            height: 45px;
-        }
-
-        .kw-header.scrolled .kw-top-bar {
-            transform: translateY(-100%);
-            opacity: 0;
-            height: 0;
-            pointer-events: none;
-        }
-
-        .kw-top-nav-list {
-            display: flex;
-            justify-content: flex-end;
-            gap: 25px;
-            padding: 0 50px;
-            height: 100%;
-            align-items: center;
-            font-size: 12px;
-            text-transform: uppercase;
-            font-weight: 600;
-        }
-
-        .kw-top-link-wrapper {
-            position: relative;
-            height: 100%;
-            display: flex;
-            align-items: center;
-        }
-
-        .kw-top-link {
-            color: rgba(255, 255, 255, 0.934);
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            letter-spacing: 0.05em;
-            cursor: pointer;
-        }
-
-        .kw-top-link:hover { color: #fff; }
-
-        /* --- MAIN NAV --- */
-        .kw-main-nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 15px 50px;
-            position: relative;
-        }
-
-        .kw-header.scrolled .kw-main-nav {
-            padding: 10px 50px;
-        }
-
-        .kw-logo img {
-            height: 40px;
-            width: auto;
-            display: block;
-        }
-
-        .kw-nav-links {
-            display: flex;
-            gap: 5px;
-            align-items: center;
-        }
-
-        .kw-nav-item { position: relative; }
-
-        .kw-nav-link {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            padding: 8px 15px;
-            font-size: 15px;
-            font-weight: 500;
-            color: rgba(255,255,255,0.9);
-            border-radius: 6px;
-            white-space: nowrap;
-        }
-
-        .kw-nav-link:hover {
-            color: #bfb9cb;
-        }
-
-        .kw-caret {
-            width: 17px;
-            height: 17px;
-            fill: currentColor;
-            opacity: 1;
-            transition: transform 0.3s;
-        }
-
-        /* --- DROPDOWNS (Universal Styling) --- */
-        .kw-dropdown {
-            position: absolute;
-            top: 95%;
-            left: 0;
-            min-width: 220px;
-            background: #020035;
-            
-            border-radius: 1px;
-            padding: 10px 0;
-            
-            
-            /* Animation States */
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(10px);
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 2000;
-        }
-
-        /* Desktop Hover logic */
-        @media (min-width: 1101px) {
-            .kw-nav-item:hover .kw-dropdown,
-            .kw-top-link-wrapper:hover .kw-dropdown {
-                opacity: 1;
-                visibility: visible;
-                transform: translateY(0);
-            }
-            .kw-nav-item:hover .kw-caret,
-            .kw-top-link-wrapper:hover .kw-caret {
-                transform: rotate(180deg);
-            }
-        }
-
-        .kw-nav-item:last-child .kw-dropdown {
-            left: auto;
-            right: 0;
-        }
-
-        .kw-drop-link {
-            display: block;
-            padding: 8px 20px;
-            font-size: 14px;
-            font-weight: 500;
-            color: #ccc;
-            text-transform: none;
-        }
-
-        .kw-drop-link:hover {
-            color: #fff;
-            background: rgba(70, 69, 143, 0.385);
-        }
-
-        /* --- HERO SECTION --- */
-        .kw-hero {
-            position: relative;
-            height: 100vh;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            background: #ffffff;
-        }
-
-        .kw-hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.7;
-            animation: slowZoom 20s infinite alternate;
-        }
-
-        @keyframes slowZoom {
-            from { transform: scale(1); }
-            to { transform: scale(1.1); }
-        }
-
-        .kw-hero-overlay {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.3), #0a0a0a);
-            z-index: 2;
-        }
-
-        .kw-hero-content {
-            position: relative;
-            z-index: 3;
-            text-align: center;
-            padding: 0 20px;
-            max-width: 900px;
-        }
-
-        .kw-hero-title {
-            font-size: clamp(32px, 7vw, 72px);
-            line-height: 1.1;
-            font-weight: 500;
-            margin-bottom: 30px;
-            letter-spacing: -0.02em;
-        }
-
-        .kw-cta {
-            display: inline-block;
-            padding: 14px 30px;
-            border: 1px solid #fff;
-            color: #ffffff;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 16px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-
-        .kw-cta:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-        }
-
-        /* --- MOBILE TOGGLE --- */
-        .kw-mobile-toggle {
-            display: none;
-            background: rgba(255,255,255,0.1);
-            border: none;
-            color: white;
-            padding: 8px;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-
-        /* --- RESPONSIVE BREAKPOINT (TABLET & MOBILE) --- */
-        @media (max-width: 1100px) {
-            .kw-top-bar { display: none; }
-            .kw-mobile-toggle { display: block; }
-
-            .kw-nav-links {
-                position: fixed;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                height: calc(100vh - 70px);
-                background: #050d38;
-                flex-direction: column;
-                padding: 20px 0;
-                gap: 0;
-                transform: translateX(100%);
-                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                overflow-y: auto;
-            }
-
-            .kw-nav-links.active { transform: translateX(0); }
-
-            .kw-nav-item { width: 100%; }
-
-            .kw-nav-link {
-                padding: 15px 30px;
-                font-size: 18px;
-                border-radius: 0;
-                justify-content: space-between;
-                border-bottom: 1px solid rgba(255,255,255,0.05);
-            }
-
-            .kw-dropdown {
-                position: static;
-                width: 100%;
-                opacity: 1;
-                visibility: visible;
-                transform: none;
-                background: rgba(0,0,0,0.2);
-                display: none; /* Controlled by JS toggle */
-                border: none;
-                box-shadow: none;
-                padding: 5px 0 15px 20px;
-            }
-
-            .kw-nav-item.open .kw-dropdown { display: block; }
-            .kw-nav-item.open .kw-caret { transform: rotate(180deg); }
-            
-            .kw-main-nav { padding: 15px 25px; }
-            .kw-header.scrolled .kw-main-nav { padding: 12px 25px; }
-        }
-
-        @media (max-width: 480px) {
-            .kw-hero-title { font-size: 34px; }
-            .kw-cta { width: 100%; padding: 15px; text-align: center; }
-        }
-    </style>
+<style>
+  body { margin: 0; background: #f0f0f4; }
+  .page-body { margin-top: 55px; padding: 40px; 
+  font-family: sans-serif;
+  color: #333; }
+</style>
 </head>
 <body>
 
-    <header class="kw-header" id="header">
-        <div class="kw-top-bar">
-            <ul class="kw-top-nav-list">
-                <li class="kw-top-link-wrapper">
-                    <div class="kw-top-link">
-                        Applications
-                        <svg class="kw-caret" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
-                    </div>
-                    <ul class="kw-dropdown">
-                        <li><a href="#" class="kw-drop-link">Online Application</a></li>
-                        <li><a href="#" class="kw-drop-link">Application Requirements</a></li>
-                        <li><a href="#" class="kw-drop-link">Application Deadlines</a></li>
-                        <li><a href="#" class="kw-drop-link">Internation Students</a></li>
-                    </ul>
-                </li>
-                <li class="kw-top-link-wrapper">
-                    <div class="kw-top-link">
-                        Calendar
-                        <svg class="kw-caret" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
-                    </div>
-                    <ul class="kw-dropdown">
-                        <li><a href="#" class="kw-drop-link">Academic Year</a></li>
-                        <li><a href="#" class="kw-drop-link">Sports Calendar</a></li>
-                        <li><a href="#" class="kw-drop-link">Campus Events</a></li>
-                        <li><a href="#" class="kw-drop-link">Exam Timetable</a></li>
-                    </ul>
-                </li>
-                <li><a href="#" class="kw-top-link">Staff</a></li>
-                <li><a href="#" class="kw-top-link">Students</a></li>
-                <li><a href="#" class="kw-top-link">Alumni & Friends</a></li>
-                <li><a href="#" class="kw-top-link">Noticeboard</a></li>
-                <li><a href="#" class="kw-top-link">Contact</a></li>
-            </ul>
-        </div>
+<div id="hyperion-host"></div>
 
-        <div class="kw-main-nav">
-            <a href="#" class="kw-logo">
-                <img src="images/logo.png" alt="Maluti School">
-            </a>
+<script>
+(function () {
+  const host   = document.getElementById('hyperion-host');
+  const shadow = host.attachShadow({ mode: 'open' });
 
-            <button class="kw-mobile-toggle" id="menuBtn" aria-label="Toggle Menu">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <line x1="3" y1="12" x2="21" y2="12" id="line1"></line>
-                    <line x1="3" y1="6" x2="21" y2="6" id="line2"></line>
-                    <line x1="3" y1="18" x2="21" y2="18" id="line3"></line>
-                </svg>
+  const style = document.createElement('style');
+  style.textContent = `
+    
+    * { box-sizing: border-box; font-family: 'Source Sans Pro', sans-serif; line-height: 1.2; }
+
+    :host {
+        --hyperion-color-header-bg: #0a0a3c;
+        --hyperion-color-accent: #0077cc;
+        --hyperion-color-text-light: #fff;
+        --hyperion-color-background-dark: #000;
+        --hyperion-color-off-white: #f4f4f4;
+        --hyperion-color-text-muted: #A0A9BE;
+        --hyperion-color-menu-bg: #0a0a3c;
+        --hyperion-color-menu-border: rgba(0, 145, 255, 0.2);
+        --hyperion-color-qr-dropdown-bg: #06273e;
+        --hyperion-header-height: 55px;
+        --hyperion-content-max-width-fg: 1500px;
+    }
+
+    .hyperion-header-wrapper {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%;
+        z-index: 1000;
+        background-color: var(--hyperion-color-header-bg);
+        text-decoration: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .hyperion-custom-header {
+        height: var(--hyperion-header-height);
+        display: flex;
+        align-items: center;
+    }
+
+    .hyperion-custom-header-container {
+        max-width: var(--hyperion-content-max-width-fg);
+        width: 100%;
+        margin: 0 auto;
+        padding: 0 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .hyperion-custom-logo-text img {
+        font-size: 28px; font-weight: 900; letter-spacing: -0.5px;
+        color: var(--hyperion-color-text-light);
+        transition: color 0.3s ease;
+        height: 30px; vertical-align: middle;
+    }
+    .hyperion-custom-logo-text:hover { color: var(--hyperion-color-accent); }
+
+    .hyperion-custom-main-nav {
+        flex-grow: 1; display: flex;
+        justify-content: space-between; align-items: center;
+    }
+
+    .hyperion-custom-nav-list {
+        display: flex; list-style: none;
+        margin: 0; padding: 0; align-items: center;
+    }
+
+    .hyperion-custom-nav-list li {
+        margin-left: 35px; position: relative;
+        text-decoration: none; border-bottom: none;
+    }
+
+    .hyperion-custom-nav-link {
+        text-decoration: none;
+        color: var(--hyperion-color-text-light);
+        font-weight: 500; padding: 10px 0;
+        display: flex; font-size: 16px; align-items: center;
+        transition: color 0.2s; letter-spacing: 0.02em;
+    }
+    .hyperion-custom-nav-link:hover { color: #a0aadd; }
+    .hyperion-custom-nav-item--has-megamenu.active .hyperion-custom-nav-link { color: var(--hyperion-color-accent); }
+
+    .hyperion-desktop-link-icon {
+        width: 14px; height: 14px; margin-left: 6px;
+        color: inherit; stroke-width: 2; transition: transform 0.2s;
+    }
+    .hyperion-custom-nav-item--has-megamenu.active .hyperion-desktop-link-icon { transform: rotate(180deg); }
+
+    .hyperion-header-action-buttons { display: flex; align-items: center; gap: 12px; }
+
+    .hyperion-header-action-btn {
+        background: var(--hyperion-color-accent); color: var(--hyperion-color-text-light);
+        border: none; padding: 9px 18px; border-radius: 50px;
+        font-weight: 600; font-size: 15px; cursor: pointer;
+        transition: background-color 0.2s ease;
+        text-decoration: none; font-family: inherit; letter-spacing: 0.02em;
+    }
+    .hyperion-header-action-btn a { color: inherit; text-decoration: none; border-bottom: none; }
+    .hyperion-header-action-btn:hover { background-color: #0077cc; }
+
+    .hyperion-header-secondary-btn {
+        background-color: transparent; color: var(--hyperion-color-text-light);
+        border: 1px solid rgba(255,255,255,0.2); padding: 9px 17px; border-radius: 50px;
+        font-weight: 600; font-size: 15px; cursor: pointer; letter-spacing: 0.02em;
+        transition: background-color 0.2s ease, border-color 0.2s ease;
+        text-decoration: none; font-family: inherit;
+    }
+    .hyperion-header-secondary-btn a { color: inherit; text-decoration: none; border-bottom: none; }
+    .hyperion-header-secondary-btn:hover { background-color: rgba(255,255,255,0.05); border-color: #fff; }
+
+    .hyperion-mobile-dropdown-icon {
+        display: none; transition: transform 0.3s ease; flex-shrink: 0;
+    }
+
+    .hyperion-mobile-toggle {
+        display: none; background: none; border: none;
+        width: 30px; height: 24px; cursor: pointer; padding: 0;
+        position: relative; z-index: 1010;
+    }
+    .hyperion-mobile-toggle span {
+        display: block; height: 2px; width: 100%;
+        background-color: var(--hyperion-color-text-light);
+        margin: 6px 0; border-radius: 1px; transition: all 0.3s ease;
+    }
+    .hyperion-header-wrapper.hyperion-mobile-menu-open .hyperion-mobile-toggle span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .hyperion-header-wrapper.hyperion-mobile-menu-open .hyperion-mobile-toggle span:nth-child(2) { opacity: 0; }
+    .hyperion-header-wrapper.hyperion-mobile-menu-open .hyperion-mobile-toggle span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .hyperion-mega-menu-container {
+        position: absolute;
+        top: var(--hyperion-header-height); left: 0; width: 100%;
+        background-color: var(--hyperion-color-menu-bg);
+        border-top: 1px solid rgba(255,255,255,0.07);
+        border-bottom: 1px solid rgba(255,255,255,0.07);
+        visibility: hidden; opacity: 0; transform: translateY(-8px);
+        transition: visibility 0s linear 0.15s, opacity 0.15s ease, transform 0.15s ease;
+        pointer-events: none;
+    }
+
+    .hyperion-header-wrapper.hyperion-mega-menu-open .hyperion-mega-menu-container {
+        visibility: visible; opacity: 1; transform: translateY(0); pointer-events: auto;
+        transition-delay: 0s;
+    }
+
+    .hyperion-mega-menu-panel {
+        display: none;
+        max-width: var(--hyperion-content-max-width-fg);
+        width: 100%; margin: 0 auto; padding: 10px 40px 48px;
+    }
+    .hyperion-mega-menu-panel.active { display: block; }
+
+    .hyperion-megamenu-3-column-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 250px);
+        gap: 40px; justify-content: start;
+    }
+
+    .hyperion-menu-group-card {
+        padding: 0; padding-top: 10px; padding-bottom: 2rem; 
+    }
+
+    .hyperion-menu-group-card h3 {
+        font-size: 14px; font-weight: 500; margin-bottom: 20px;
+        text-transform: none; cursor: default;
+        display: flex; align-items: center; color: var(--hyperion-color-text-muted);
+    }
+
+    .hyperion-menu-group-img-icon {
+        width: auto; height: 43px; margin-right: 12px;
+        flex-shrink: 0; border-radius: 8px; vertical-align: middle;
+    }
+
+    .hyperion-menu-group-text-container {
+        display: flex; flex-direction: column; justify-content: center;
+    }
+
+    .hyperion-menu-group-tagline {
+        font-size: 14px; font-weight: 400;
+        color: var(--hyperion-color-text-muted); margin-top: 4px; display: block;
+    }
+
+    .hyperion-mega-menu-group-list { list-style: none; padding: 0; margin: 0; }
+
+    .hyperion-mega-menu-group-list a {
+        display: block; border-radius: 0; transition: color 0.2s;
+        position: relative; margin: 7px 0; padding: 4px 0;
+        font-size: 19px; font-weight: 500;
+        color: #f1f1f1; text-decoration: none; border-bottom: none;
+    }
+    .hyperion-mega-menu-link-title { font-size: inherit; font-weight: inherit; color: inherit; margin-bottom: 0; }
+    .hyperion-mega-menu-group-list a:hover { color: #a0aadd; background-color: transparent; }
+
+    @media (max-width: 1024px) {
+        .hyperion-custom-header-container { padding: 0 20px; }
+        .hyperion-mobile-toggle { display: block; }
+
+        .hyperion-custom-main-nav {
+            position: fixed;
+            top: var(--hyperion-header-height); left: 0;
+            width: 100%; height: calc(100vh - var(--hyperion-header-height));
+            background-color: var(--hyperion-color-header-bg);
+            overflow-y: auto; overflow-x: hidden; padding: 16px 0 40px;
+            transform: translateX(100%); transition: transform 0.3s ease;
+            display: block; z-index: 900; box-sizing: border-box;
+        }
+        .hyperion-header-wrapper.hyperion-mobile-menu-open .hyperion-custom-main-nav {
+            transform: translateX(0);
+        }
+
+        .hyperion-custom-nav-list {
+            flex-direction: column; align-items: flex-start;
+            padding: 0 20px; margin-left: 0;
+        }
+        .hyperion-custom-nav-list li { margin: 0; width: 100%; }
+
+        .hyperion-custom-nav-link {
+            padding: 15px 0; font-size: 16px; width: 100%;
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .hyperion-desktop-link-icon { display: none; }
+        .hyperion-mobile-dropdown-icon { display: inline-block; }
+
+        .hyperion-custom-nav-item--has-megamenu.active .hyperion-custom-nav-link .hyperion-mobile-dropdown-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Ensure taglines appear beautifully on mobile */
+        .hyperion-menu-group-tagline { 
+            display: block; 
+            margin-bottom: 12px; 
+            font-size: 13px; 
+        }
+
+        .hyperion-header-action-buttons {
+            flex-direction: column; width: 100%;
+            padding: 24px 20px 0; box-sizing: border-box; margin-top: 0;
+            gap: 12px;
+        }
+
+        .hyperion-header-action-btn,
+        .hyperion-header-secondary-btn {
+            width: 100%; margin: 0; padding: 14px 20px;
+            text-align: center; display: block; box-sizing: border-box;
+            font-size: 15px;
+        }
+
+        .hyperion-mega-menu-container {
+            position: static !important; visibility: visible !important;
+            opacity: 1 !important; transform: none !important;
+            pointer-events: auto !important;
+            background-color: var(--hyperion-color-menu-bg);
+            border: none; box-shadow: none;
+            overflow: hidden; max-height: 0;
+            transition: max-height 0.35s ease; width: 100%;
+        }
+        .hyperion-standalone-mega-menu { display: none !important; }
+        .hyperion-custom-nav-item--has-megamenu.active .hyperion-mega-menu-container {
+            max-height: 3000px;
+        }
+        .hyperion-mega-menu-panel { display: block !important; padding: 10px 0 20px; }
+        .hyperion-megamenu-3-column-grid { grid-template-columns: 1fr; gap: 0; }
+        .hyperion-menu-group-card { padding: 0; padding-bottom: 12px; margin: 0 0 20px 0;}
+        .hyperion-menu-group-card h3 { margin-top: 18px; margin-bottom: 10px; }
+        .hyperion-mega-menu-group-list a { font-size: 15px; margin: 6px 0; padding: 0; }
+        .hyperion-mega-menu-group-list li { border: none; }
+        .hyperion-menu-group-button { width: fit-content; text-align: left; box-sizing: border-box; }
+        .hyperion-menu-group-img-icon { vertical-align: middle; justify-content: center;}
+    }
+  `;
+
+  const tpl = document.createElement('template');
+  tpl.innerHTML = `
+<div class="hyperion-header-wrapper">
+    <header class="hyperion-custom-header">
+        <div class="hyperion-custom-header-container">
+            <div class="hyperion-custom-logo-container">
+                <a href="index.html" class="hyperion-custom-logo-link hyperion-custom-logo-text">
+                    <img src="images/logo.png" alt="Hyperion Logo">
+                </a>
+            </div>
+            <nav class="hyperion-custom-main-nav">
+                <ul class="hyperion-custom-nav-list">
+                    <li>
+                        <a href="pricing.html" class="hyperion-custom-nav-link">Calendar</a>
+                    </li>
+                    <li>
+                        <a href="page.html" class="hyperion-custom-nav-link">News & Events</a>
+                    </li>
+                    <li class="hyperion-custom-nav-item--has-megamenu">
+                        <a href="page.html" class="hyperion-custom-nav-link" data-hyperion-megamenu-trigger="services">
+                            Programs of Study
+                            <svg class="hyperion-desktop-link-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><polyline points="4 6 8 10 12 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            <svg class="hyperion-mobile-dropdown-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                        <div class="hyperion-mega-menu-container">
+                            <div class="hyperion-mega-menu-panel" data-hyperion-megamenu-panel="services">
+                                <div class="hyperion-megamenu-3-column-grid">
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>
+                                            <img src="images/engineering.png" alt="Dev Icon" class="hyperion-menu-group-img-icon">
+                                            <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 500; font-size: 15px; line-height: 1;">
+                                                Faculty of Engineering Studies
+                                                <span class="hyperion-menu-group-tagline">Pioneers of Infrastructure</span>
+                                            </span>
+                                        </h3>
+                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 600; font-size: 15px; cursor:pointer;">
+                                            <a style="text-decoration: none; border-bottom: none; color: #fff;" href="faculty-of-engineering.html">Learn about this faculty</a>
+                                        </button>
+                                        <ul class="hyperion-mega-menu-group-list">
+                                            <li><a href="electrical-engineering.html"><span class="hyperion-mega-menu-link-title">Electrical Engineering</span></a></li>
+                                            <li><a href="mechanical-engineering.html"><span class="hyperion-mega-menu-link-title">Mechanical Engineering</span></a></li>
+                                            <li><a href="civil-engineering.html"><span class="hyperion-mega-menu-link-title">Civil Engineering</span></a></li>
+                                            <li><a href="information-technology.html"><span class="hyperion-mega-menu-link-title">Information Technology & Computer Science</span></a></li>
+                                            <li><a href="programming.html"><span class="hyperion-mega-menu-link-title">Programming & Robotics</span></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>
+                                            <img src="images/it.png" alt="IT Icon" class="hyperion-menu-group-img-icon">
+                                            <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 500; font-size: 15px; line-height: 1;">
+                                                Faculty of Business Management
+                                                <span class="hyperion-menu-group-tagline">Architects of Commerce</span>
+                                            </span>
+                                        </h3>
+                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 600; font-size: 15px; cursor:pointer;">
+                                            <a style="text-decoration: none; border-bottom: none; color: #fff; border-radius: 50px;" href="faculty-of-business.html">Learn about this faculty</a>
+                                        </button>
+                                         <ul class="hyperion-mega-menu-group-list">
+                                            <li><a href="business.html"><span class="hyperion-mega-menu-link-title">Business Management</span></a></li>
+                                            <li><a href="finance.html"><span class="hyperion-mega-menu-link-title">Finance, Economics, and Accounting</span></a></li>
+                                            <li><a href="financial-management.html"><span class="hyperion-mega-menu-link-title">Financial Management</span></a></li>
+                                            <li><a href="marketing.html"><span class="hyperion-mega-menu-link-title">Marketing Management</span></a></li>
+                                            <li><a href="office-administration.html"><span class="hyperion-mega-menu-link-title">Office Administration</span></a></li>
+                                            <li><a href="management-assistant.html"><span class="hyperion-mega-menu-link-title">Management Assistant</span></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>
+                                            <img src="images/hosp.png" alt="Hospitality Icon" class="hyperion-menu-group-img-icon">
+                                            <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 500; font-size: 15px; line-height: 1;">
+                                                Faculty of Humanities & Social Services
+                                                <span class="hyperion-menu-group-tagline">Champions of Community</span>
+                                            </span>
+                                        </h3>
+                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 600; font-size: 15px; cursor:pointer;">
+                                            <a style="text-decoration: none; border-bottom: none; color: #fff;" href="faculty-of-humanities.html">Learn about this faculty</a>
+                                        </button>
+                                        <ul class="hyperion-mega-menu-group-list">
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Hospitality & Catering Services</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Tourism Management</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Educare</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Art & Design</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Education & Development</span></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>
+                                            <img src="images/business.png" alt="Business Icon" class="hyperion-menu-group-img-icon">
+                                            <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 500; font-size: 15px; line-height: 1;">
+                                                Faculty of Agriculture
+                                                <span class="hyperion-menu-group-tagline">Stewards of Sustainability</span>
+                                            </span>
+                                        </h3>
+                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 600; font-size: 15px; cursor:pointer;">
+                                            <a style="text-decoration: none; border-bottom: none; color: #fff;" href="faculty-of-agriculture.html">Learn about this faculty</a>
+                                        </button>
+                                        <ul class="hyperion-mega-menu-group-list">
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Primary Agriculture</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Farm Management & Mechanisation</span></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>
+                                            <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 500; font-size: 15px; line-height: 1;">
+                                               Skills & Occupational Faculty
+                                                <span class="hyperion-menu-group-tagline">Masters of Craft</span>
+                                            </span>
+                                        </h3>
+                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 600; font-size: 15px; cursor:pointer;">
+                                            <a style="text-decoration: none; border-bottom: none; color: #fff;" href="index.html">Learn about skills programs</a>
+                                        </button>
+                                        <ul class="hyperion-mega-menu-group-list">
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Motor Mechanics</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Bricklaying</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Panelbeating</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Boilermaking</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Welding</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Cabinet Making</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Early Childhood Development</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">End-User Computing</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">IT Technical Support</span></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="hyperion-custom-nav-item--has-megamenu">
+                        <a href="#" class="hyperion-custom-nav-link" data-hyperion-megamenu-trigger="campus">
+                            Study @ Maluti
+                            <svg class="hyperion-desktop-link-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><polyline points="4 6 8 10 12 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            <svg class="hyperion-mobile-dropdown-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                        <div class="hyperion-mega-menu-container">
+                            <div class="hyperion-mega-menu-panel" data-hyperion-megamenu-panel="campus">
+                                <div class="hyperion-megamenu-3-column-grid">
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>Student Resources</h3>
+                                        <ul class="hyperion-mega-menu-group-list">
+                                            <li><a href="portal.html"><span class="hyperion-mega-menu-link-title">Student Portal</span></a></li>
+                                            <li><a href="housing.html"><span class="hyperion-mega-menu-link-title">Noticeboard</span></a></li>
+                                            <li><a href="library.html"><span class="hyperion-mega-menu-link-title">Digital Library</span></a></li>
+                                            <li><a href="exams.html"><span class="hyperion-mega-menu-link-title">Exam Schedules</span></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>Admissions &amp; Aid</h3>
+                                        <ul class="hyperion-mega-menu-group-list">
+                                            <li><a href="how-to-apply.html"><span class="hyperion-mega-menu-link-title">How to apply</span></a></li>
+                                            <li><a href="payroll.html"><span class="hyperion-mega-menu-link-title">Admissions Requirements</span></a></li>
+                                            <li><a href="events.html"><span class="hyperion-mega-menu-link-title">Tuition, Fees & Payments</span></a></li>
+                                            <li><a href="support.html"><span class="hyperion-mega-menu-link-title">Registrations</span></a></li>
+                                            <li><a href="hr-resources.html"><span class="hyperion-mega-menu-link-title">Assessments</span></a></li>
+                                            <li><a href="research.html"><span class="hyperion-mega-menu-link-title">Financial Aid</span></a></li>
+                                            <li><a href="research.html"><span class="hyperion-mega-menu-link-title">Late Enquiries</span></a></li>
+                                            <li><a href="research.html"><span class="hyperion-mega-menu-link-title">Check your status</span></a></li>
+                                            <li><a href="research.html"><span class="hyperion-mega-menu-link-title">Timetables</span></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>Campus Life</h3>
+                                        <ul class="hyperion-mega-menu-group-list">
+                                            <li><a href="prospectus.html"><span class="hyperion-mega-menu-link-title">Campus Support</span></a></li>
+                                            <li><a href="requirements.html"><span class="hyperion-mega-menu-link-title">Campus Facilities</span></a></li>
+                                            <li><a href="scholarships.html"><span class="hyperion-mega-menu-link-title">Residence Life</span></a></li>
+                                            <li><a href="faq.html"><span class="hyperion-mega-menu-link-title">Student Activities</span></a></li>
+                                            <li><a href="apply.html"><span class="hyperion-mega-menu-link-title">Sports & Recreation</span></a></li>
+                                            <li><a href="visit.html"><span class="hyperion-mega-menu-link-title">Clubs & Societies</span></a></li>
+                                            <li><a href="visit.html"><span class="hyperion-mega-menu-link-title">SRC</span></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>Future Students</h3>
+                                        <ul class="hyperion-mega-menu-group-list">
+                                            <li><a href="prospectus.html"><span class="hyperion-mega-menu-link-title">Download Prospectus</span></a></li>
+                                            <li><a href="requirements.html"><span class="hyperion-mega-menu-link-title">Entry Requirements</span></a></li>
+                                            <li><a href="scholarships.html"><span class="hyperion-mega-menu-link-title">Scholarships</span></a></li>
+                                            <li><a href="faq.html"><span class="hyperion-mega-menu-link-title">Admissions FAQ</span></a></li>
+                                            <li><a href="apply.html"><span class="hyperion-mega-menu-link-title">Apply Now</span></a></li>
+                                            <li><a href="accomodation.html"><span class="hyperion-mega-menu-link-title">Off-campus Accomodation</span></a></li>  
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="hyperion-custom-nav-item--has-megamenu">
+                        <a href="#" class="hyperion-custom-nav-link" data-hyperion-megamenu-trigger="discover">
+                            Discover
+                            <svg class="hyperion-desktop-link-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><polyline points="4 6 8 10 12 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            <svg class="hyperion-mobile-dropdown-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                        <div class="hyperion-mega-menu-container">
+                            <div class="hyperion-mega-menu-panel" data-hyperion-megamenu-panel="discover">
+                                <div class="hyperion-megamenu-3-column-grid">
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>Maluti</h3>
+                                        <ul class="hyperion-mega-menu-group-list">
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">About Us</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Roadmap</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Innovations</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Events</span></a></li>
+                                            <li><a href="careers.html"><span class="hyperion-mega-menu-link-title">Job Opportunities</span></a></li>
+                                            <li><a href="merchandise.html"><span class="hyperion-mega-menu-link-title">Maluti Merchandise</span></a></li>
+                                            <li><a href="licenses-and-registrations.html"><span class="hyperion-mega-menu-link-title">Executive Leadership</span></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>Staff & Faculty</h3>
+                                        <ul class="hyperion-mega-menu-group-list">
+                                            <li><a href="staff.html"><span class="hyperion-mega-menu-link-title">QMS</span></a></li>
+                                          
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Webinars</span></a></li>
+                                            
+                                        </ul>
+                                    </div>
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>Connect</h3>
+                                        <ul class="hyperion-mega-menu-group-list">
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">X</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Facebook</span></a></li>
+                                            <li><a href="#"><span class="hyperion-mega-menu-link-title">LinkedIn</span></a></li>
+                                            <li><a href="#"><span class="hyperion-mega-menu-link-title">Youtube</span></a></li>
+                                            <li><a href="#"><span class="hyperion-mega-menu-link-title">Instagram</span></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="hyperion-header-action-buttons">
+                    <button class="hyperion-header-secondary-btn">
+                        <a href="login.html">Student Portal</a>
+                    </button>
+                    <button class="hyperion-header-action-btn">
+                        <a href="contact.html">Contact Us</a>
+                    </button>
+                </div>
+            </nav>
+            <button class="hyperion-mobile-toggle" id="hyperion-mobileMenuToggle" aria-label="Toggle navigation menu">
+                <span></span><span></span><span></span>
             </button>
-
-            <ul class="kw-nav-links" id="navLinks">
-                <li class="kw-nav-item">
-                    <a href="#" class="kw-nav-link">
-                        About
-                        <svg class="kw-caret" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
-                    </a>
-                    <ul class="kw-dropdown">
-                        <li><a href="#" class="kw-drop-link">Our History</a></li>
-                        <li><a href="#" class="kw-drop-link">Philosophy</a></li>
-                        <li><a href="#" class="kw-drop-link">Executive Leadership</a></li>
-                        <li><a href="#" class="kw-drop-link">Faculty & Staff Directory</a></li>
-                        <li><a href="#" class="kw-drop-link">Office & Department Directory</a></li>
-                        <li><a href="#" class="kw-drop-link">Corporate Affairs</a></li>
-                        <li><a href="#" class="kw-drop-link">Awards & Achievements</a></li>
-                        <li><a href="#" class="kw-drop-link">Official Maluti Merchandise</a></li>
-                    </ul>
-                </li>
-                <li class="kw-nav-item"><a href="#" class="kw-nav-link">Vision 2030</a></li>
-                <li class="kw-nav-item">
-                    <a href="#" class="kw-nav-link">
-                        Admissions & Aid
-                        <svg class="kw-caret" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
-                    </a>
-                    <ul class="kw-dropdown">
-                        <li><a href="#" class="kw-drop-link">How to Apply</a></li>
-                        <li><a href="#" class="kw-drop-link">Admission Requirements</a></li>
-                        <li><a href="#" class="kw-drop-link">Tuition, Fees & Payments</a></li>
-                        <li><a href="#" class="kw-drop-link">Registration</a></li>
-                        <li><a href="#" class="kw-drop-link">Assessments</a></li>
-                        <li><a href="#" class="kw-drop-link">Financial Aid</a></li>
-                        <li><a href="#" class="kw-drop-link">Late Enquires</a></li>
-                        <li><a href="#" class="kw-drop-link">Check Your Status</a></li>
-                        <li><a href="#" class="kw-drop-link">Timetables</a></li>
-                    </ul>
-                </li>
-                <li class="kw-nav-item">
-                    <a href="#" class="kw-nav-link">
-                        Study @ Maluti
-                        <svg class="kw-caret" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
-                    </a>
-                    <ul class="kw-dropdown">
-                        <li><a href="#" class="kw-drop-link">Programs & Courses</a></li>
-                        <li><a href="#" class="kw-drop-link">Faculty Directory</a></li>
-                        <li><a href="#" class="kw-drop-link">Academic Support</a></li>
-                        <li><a href="#" class="kw-drop-link">Library Resources</a></li>
-                    </ul>
-                </li>
-                <li class="kw-nav-item">
-                    <a href="#" class="kw-nav-link">
-                        Campus Life
-                        <svg class="kw-caret" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
-                    </a>
-                    <ul class="kw-dropdown">
-                        <li><a href="#" class="kw-drop-link">Student Activities</a></li>
-                        <li><a href="#" class="kw-drop-link">Clubs & Socities</a></li>
-                        <li><a href="#" class="kw-drop-link">Sports & Recreation</a></li>
-                        <li><a href="#" class="kw-drop-link">Campus Facilities</a></li>
-                        <li><a href="#" class="kw-drop-link">Campus Support</a></li>
-                        <li><a href="#" class="kw-drop-link">Residence Life</a></li>
-                    </ul>
-                </li>
-                <li class="kw-nav-item"><a href="#" class="kw-nav-link">News & Events</a></li>
-                <li class="kw-nav-item"><a href="#" class="kw-nav-link">Maluti Innovations</a></li>
-                <li class="kw-nav-item"><a href="#" class="kw-nav-link">Visit</a></li>
-                <li class="kw-nav-item"><a href="#" class="kw-nav-link">Careers</a></li>
-                <li class="kw-nav-item">
-                    <a href="#" class="kw-nav-link" style="background: #fff; color: #050d38; font-weight: 800; border-radius: 50px;">Enroll Now</a>
-                </li>
-            </ul>
         </div>
     </header>
+    <div class="hyperion-mega-menu-container hyperion-standalone-mega-menu" id="hyperion-desktopMegaMenu"></div>
+</div>
+  `;
 
-    <script>
-        // 1. Scroll Handler
-        const header = document.getElementById('header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
+  shadow.appendChild(style);
+  shadow.appendChild(tpl.content.cloneNode(true));
 
-        // 2. Mobile Menu Logic
-        const menuBtn = document.getElementById('menuBtn');
-        const navLinks = document.getElementById('navLinks');
-        
-        menuBtn.addEventListener('click', () => {
-            const isActive = navLinks.classList.toggle('active');
-            document.body.style.overflow = isActive ? 'hidden' : '';
-            
-            // Hamburger to X animation
-            if(isActive) {
-                menuBtn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
-            } else {
-                menuBtn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>';
-            }
-        });
+  const wrapper      = shadow.querySelector('.hyperion-header-wrapper');
+  const desktopMenu  = shadow.getElementById('hyperion-desktopMegaMenu');
+  const triggers     = shadow.querySelectorAll('[data-hyperion-megamenu-trigger]');
+  const mobileToggle = shadow.getElementById('hyperion-mobileMenuToggle');
+  const mobileItems  = shadow.querySelectorAll('.hyperion-custom-nav-item--has-megamenu');
+  const body         = document.body;
 
-        // 3. Mobile Accordion Logic
-        const navItems = document.querySelectorAll('.kw-nav-item');
-        navItems.forEach(item => {
-            const link = item.querySelector('.kw-nav-link');
-            link.addEventListener('click', (e) => {
-                if (window.innerWidth <= 1100 && item.querySelector('.kw-dropdown')) {
-                    e.preventDefault();
-                    // Close others
-                    navItems.forEach(other => { if(other !== item) other.classList.remove('open'); });
-                    // Toggle current
-                    item.classList.toggle('open');
-                }
-            });
-        });
+  triggers.forEach(trigger => {
+      const panelId     = trigger.getAttribute('data-hyperion-megamenu-trigger');
+      const sourcePanel = trigger.closest('li')
+          .querySelector('[data-hyperion-megamenu-panel="' + panelId + '"]');
+      if (!sourcePanel) return;
+      const clone = sourcePanel.cloneNode(true);
+      clone.classList.add('hyperion-desktop-clone');
+      desktopMenu.appendChild(clone);
+  });
 
-        // Close menu on resize if moving to desktop
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 1100) {
-                navLinks.classList.remove('active');
-                document.body.style.overflow = '';
-                navItems.forEach(item => item.classList.remove('open'));
-            }
-        });
-    </script>
+  const desktopPanels = desktopMenu.querySelectorAll('.hyperion-mega-menu-panel');
+  let closeTimer = null;
+
+  function openDesktopMenu(panelId) {
+      clearTimeout(closeTimer);
+      desktopPanels.forEach(p => p.classList.remove('active'));
+      triggers.forEach(t => t.classList.remove('active'));
+      const panel = desktopMenu.querySelector('[data-hyperion-megamenu-panel="' + panelId + '"]');
+      const trig  = shadow.querySelector('[data-hyperion-megamenu-trigger="' + panelId + '"]');
+      if (panel) panel.classList.add('active');
+      if (trig)  trig.classList.add('active');
+      wrapper.classList.add('hyperion-mega-menu-open');
+  }
+
+  function closeDesktopMenu() {
+      closeTimer = setTimeout(() => {
+          desktopPanels.forEach(p => p.classList.remove('active'));
+          triggers.forEach(t => t.classList.remove('active'));
+          wrapper.classList.remove('hyperion-mega-menu-open');
+      }, 150);
+  }
+
+  triggers.forEach(trigger => {
+      trigger.addEventListener('mouseenter', () => {
+          if (window.innerWidth > 1024) openDesktopMenu(trigger.getAttribute('data-hyperion-megamenu-trigger'));
+      });
+      trigger.closest('li').addEventListener('mouseleave', () => {
+          if (window.innerWidth > 1024) closeDesktopMenu();
+      });
+  });
+
+  desktopMenu.addEventListener('mouseenter', () => { if (window.innerWidth > 1024) clearTimeout(closeTimer); });
+  desktopMenu.addEventListener('mouseleave', () => { if (window.innerWidth > 1024) closeDesktopMenu(); });
+
+  mobileToggle.addEventListener('click', () => {
+      wrapper.classList.toggle('hyperion-mobile-menu-open');
+      body.classList.toggle('hyperion-mobile-menu-active');
+      if (!wrapper.classList.contains('hyperion-mobile-menu-open')) {
+          mobileItems.forEach(item => item.classList.remove('active'));
+          wrapper.classList.remove('hyperion-mega-menu-open');
+      }
+  });
+
+  mobileItems.forEach(item => {
+      const trigger = item.querySelector('.hyperion-custom-nav-link');
+      trigger.addEventListener('click', e => {
+          if (window.innerWidth <= 1024) {
+              e.preventDefault(); e.stopPropagation();
+              const isOpen = item.classList.contains('active');
+              mobileItems.forEach(other => other.classList.remove('active'));
+              if (!isOpen) item.classList.add('active');
+          }
+      });
+  });
+
+  shadow.querySelectorAll('.hyperion-mega-menu-group-list a, .hyperion-custom-nav-list > li > a:not([data-hyperion-megamenu-trigger])').forEach(link => {
+      link.addEventListener('click', () => {
+          if (window.innerWidth <= 1024) {
+              wrapper.classList.remove('hyperion-mobile-menu-open');
+              body.classList.remove('hyperion-mobile-menu-active');
+              mobileItems.forEach(item => item.classList.remove('active'));
+          }
+      });
+  });
+
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+          if (window.innerWidth > 1024) {
+              wrapper.classList.remove('hyperion-mobile-menu-open');
+              body.classList.remove('hyperion-mobile-menu-active');
+              mobileItems.forEach(item => item.classList.remove('active'));
+          } else {
+              desktopPanels.forEach(p => p.classList.remove('active'));
+              wrapper.classList.remove('hyperion-mega-menu-open');
+          }
+      }, 200);
+  });
+
+})();
+</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -543,755 +709,334 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lere La Tshepe Campus - 2026</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
-
+    <title>Lere La Tshepe Campus | Maluti TVET</title>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <style>
-        /* =========================================
-           CSS Isolation: Prefix 'llt-'
-           ========================================= */
-
-        * {
-            margin: 0;
-            padding: 0;
-        }   
-
         :root {
-            --llt-font: 'Bricolage Grotesque', sans-serif;
-            --llt-navy: #020035;
-            --llt-orange: #F06449;
-            --llt-bg-light: #F4F6F9;
-            --llt-white: #ffffff;
-            --llt-text: #444444;
-            --llt-border-color: #e2e8f0;
-            --llt-radius: 1px; /* STRICT 1PX RADIUS AS REQUESTED */
+            --bg-main: #ffffff;
+            --text-main: #1a1c1e;
+            --text-muted: #5f6368;
+            --brand-accent: #1a73e8;
+            --border-thin: #eef0f2;
+            --font-main: 'Source Sans Pro', sans-serif;
         }
 
-        .llt-page-wrapper {
-            font-family: var(--llt-font);
-            color: var(--llt-navy);
-            background-color: var(--llt-white);
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
-        .llt-page-wrapper * {
-            box-sizing: border-box;
-        }
-
-        .llt-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .llt-section {
-            padding: 80px 0;
-        }
-
-        /* --- Hero Section --- */
-        .llt-hero {
-            background-image: linear-gradient(rgba(2, 0, 53, 0.85), rgba(2, 0, 53, 0.75)), url('https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=1200');
-            background-size: cover;
-            background-position: center;
-            color: var(--llt-white);
-            padding: 180px 0 100px;
-            text-align: center;
-        }
-
-        .llt-hero h1 {
-            font-size: clamp(40px, 5vw, 72px);
-            font-weight: 800;
-            margin-bottom: 24px;
-            letter-spacing: -1px;
-        }
-
-        .llt-hero p {
-            font-size: 20px;
-            max-width: 800px;
-            margin: 0 auto;
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-main);
+            color: var(--text-main);
             line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* --- About / Current State --- */
-        .llt-state-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+
+        /* --- FLAGSHIP HERO --- */
+        .campus-hero {
+            padding: 120px 0 80px;
         }
 
-        .llt-tag {
-            color: var(--llt-orange);
+        .campus-label {
+            font-size: 11px;
             font-weight: 700;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 14px;
+            color: var(--brand-accent);
+            margin-bottom: 20px;
             display: block;
-            margin-bottom: 16px;
         }
 
-        .llt-headline {
-            font-size: 42px;
-            line-height: 1.1;
-            margin-bottom: 24px;
-        }
-
-        .llt-text {
-            color: var(--llt-text);
-            line-height: 1.7;
-            font-size: 16px;
-        }
-
-        .llt-img-responsive {
-            width: 100%;
-            border-radius: var(--llt-radius);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
-
-        /* --- Courses Section (Redesigned with Tables) --- */
-        .llt-courses-bg {
-            background-color: var(--llt-bg-light);
-        }
-
-        .llt-program-block {
-            background: var(--llt-white);
-            border: 1px solid var(--llt-border-color);
-            border-radius: var(--llt-radius);
-            margin-bottom: 60px;
-            overflow: hidden;
-            padding: 40px;
-        }
-
-        .llt-program-header {
-            margin-bottom: 30px;
-            border-bottom: 2px solid var(--llt-navy);
-            padding-bottom: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .llt-program-title h3 {
-            font-size: 32px;
-            margin-bottom: 10px;
-            color: var(--llt-navy);
-        }
-
-        .llt-program-type {
-            background: var(--llt-navy);
-            color: white;
-            padding: 6px 12px;
-            font-size: 12px;
+        .campus-title {
+            font-size: clamp(40px, 8vw, 80px);
             font-weight: 600;
-            border-radius: var(--llt-radius);
+            line-height: 0.85;
+            margin-bottom: 40px;
             text-transform: uppercase;
         }
 
-        .llt-program-desc {
-            font-size: 18px;
-            color: var(--llt-text);
-            margin-bottom: 30px;
-            max-width: 900px;
-        }
-
-        /* Table Styling */
-        .llt-table-wrapper {
-            overflow-x: auto;
-            margin-bottom: 30px;
-            border: 1px solid var(--llt-border-color);
-            border-radius: var(--llt-radius);
-        }
-
-        .llt-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 15px;
-            min-width: 700px;
-        }
-
-        .llt-table th {
-            background-color: #f8fafc;
-            text-align: left;
-            padding: 18px;
-            font-weight: 700;
-            color: var(--llt-navy);
-            border-bottom: 2px solid var(--llt-border-color);
-        }
-
-        .llt-table td {
-            padding: 18px;
-            border-bottom: 1px solid var(--llt-border-color);
-            vertical-align: top;
-            color: var(--llt-text);
-        }
-
-        .llt-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .llt-subject-list {
-            margin: 0;
-            padding-left: 18px;
-        }
-        
-        .llt-subject-list li {
-            margin-bottom: 4px;
-        }
-
-        /* Career & Requirements Section */
-        .llt-info-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            background: #fdfdfd;
-            padding: 30px;
-            border: 1px solid var(--llt-border-color);
-            border-radius: var(--llt-radius);
-        }
-
-        .llt-info-box h4 {
-            font-size: 18px;
-            margin-bottom: 15px;
-            color: var(--llt-orange);
-            text-transform: uppercase;
-        }
-
-        .llt-info-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .llt-info-list li {
-            position: relative;
-            padding-left: 20px;
-            margin-bottom: 8px;
-            color: var(--llt-text);
-            font-size: 15px;
-        }
-
-        .llt-info-list li::before {
-            content: "•";
-            color: var(--llt-orange);
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-        }
-
-        .llt-btn-apply {
-            display: inline-block;
-            background-color: var(--llt-orange);
-            color: white;
-            padding: 14px 28px;
-            text-decoration: none;
-            font-weight: 600;
-            border-radius: var(--llt-radius);
-            margin-top: 20px;
-            transition: background 0.3s;
-        }
-
-        .llt-btn-apply:hover {
-            background-color: #d85a42;
-        }
-
-        /* --- Download Section --- */
-        .llt-download-bar {
-            background: var(--llt-navy);
-            color: var(--llt-white);
-            padding: 40px;
-            border-radius: var(--llt-radius);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 60px 0;
-        }
-
-        .llt-btn-download {
-            background: var(--llt-orange);
-            color: var(--llt-white);
-            text-decoration: none;
-            padding: 15px 30px;
-            border-radius: var(--llt-radius);
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: background 0.3s;
-        }
-
-        /* --- Contacts & Map --- */
-        .llt-contact-split {
+        /* --- ASYMMETRIC GRID --- */
+        .campus-layout {
             display: grid;
             grid-template-columns: 1.2fr 0.8fr;
-            gap: 40px;
+            gap: 120px;
+            padding: 100px 0;
         }
 
-        .llt-faculty-card {
-            display: flex;
-            gap: 20px;
-            padding: 20px;
-            border: 1px solid var(--llt-border-color);
-            border-radius: var(--llt-radius);
-            margin-bottom: 20px;
-            align-items: center;
-        }
-
-        .llt-avatar {
-            width: 60px;
-            height: 60px;
-            border-radius: var(--llt-radius);
-            background-color: #eee;
-            object-fit: cover;
-        }
-
-        .llt-map-frame {
-            width: 100%;
-            height: 280px; 
-            background: #eee;
-            border-radius: var(--llt-radius);
-            overflow: hidden;
-            position: relative;
-        }
-
-        /* --- Articles --- */
-        .llt-article-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-
-        .llt-article-card {
-            text-decoration: none;
-            color: inherit;
+        .section-tag {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-muted);
+            margin-bottom: 40px;
             display: block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .llt-article-img {
+        .content-block { margin-bottom: 100px; }
+
+        .content-block h2 {
+            font-size: 38px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            letter-spacing: -1.5px;
+        }
+
+        .content-block p {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        /* --- TECHNICAL FACILITIES LIST --- */
+        .facility-list {
+            margin: 40px 0;
+            border-top: 1px solid var(--text-main);
+        }
+
+        .facility-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: 30px 0;
+            border-bottom: 1px solid var(--border-thin);
+        }
+
+        .facility-name { font-weight: 700; font-size: 18px; }
+        .facility-desc { font-size: 15px; color: var(--text-muted); }
+
+        /* --- LEADERSHIP --- */
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .leader-card {
+            background: #f8f9fa;
+            padding: 30px;
+            border-left: 4px solid var(--brand-accent);
+        }
+
+        .leader-role { 
+            font-size: 11px; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            color: var(--brand-accent); 
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .leader-name { font-size: 20px; font-weight: 900; display: block; }
+
+        /* --- SIDEBAR REFINEMENT --- */
+        .sidebar-data {
+            padding-top: 10px;
+        }
+
+        .data-point {
+            margin-bottom: 50px;
+        }
+
+        .data-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            display: block;
+            letter-spacing: 1px;
+        }
+
+        .data-value { font-size: 18px; font-weight: 600; }
+
+        /* --- MAP SECTION --- */
+        .map-section {
+            background: #000;
+            color: #fff;
+            padding: 100px 0;
+            margin-top: 80px;
+        }
+
+        .map-frame {
             width: 100%;
-            height: 220px;
-            object-fit: cover;
-            border-radius: var(--llt-radius);
-            margin-bottom: 16px;
+            height: 500px;
+            background: #1a1c1e;
+            border: 1px solid #333;
+            overflow: hidden;
+            margin-top: 40px;
         }
 
-        /* --- Responsive --- */
+        .map-frame iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            filter: grayscale(100%) contrast(1.2);
+        }
+
         @media (max-width: 900px) {
-            .llt-state-grid, .llt-contact-split, .llt-article-grid, .llt-info-grid {
-                grid-template-columns: 1fr;
-            }
-            .llt-download-bar {
-                flex-direction: column;
-                text-align: center;
-                gap: 20px;
-            }
+            .campus-layout { grid-template-columns: 1fr; gap: 60px; }
+            .facility-row, .leadership-grid { grid-template-columns: 1fr; gap: 10px; }
+            .container { padding: 0 20px;}
         }
     </style>
 </head>
 <body>
 
-<div class="llt-page-wrapper">
-
-    <header class="llt-hero">
-        <div class="llt-container">
-            <h1>Lere La Tshepe Campus</h1>
-            <p>A center of excellence for Information Technology, Business Studies, and Hospitality Management. We are dedicated to equipping students with practical skills for the modern workforce.</p>
+    <header class="campus-hero">
+        <div class="container">
+            <span class="campus-label">Basotho Heritage Hub • Bethlehem</span>
+            <h1 class="campus-title">Lere La Tshepe<br>Campus</h1>
+            <p style="font-size: 24px; max-width: 800px; color: var(--text-muted); font-weight: 300;">A specialized center for Civil Engineering and Building Construction excellence in the Free State.</p>
         </div>
     </header>
 
-    <section class="llt-section">
-        <div class="llt-container llt-state-grid">
-            <div>
-                <span class="llt-tag">Current State</span>
-                <h2 class="llt-headline">Modernizing for the future of skills training.</h2>
-                <p class="llt-text">Lere La Tshepe is currently undergoing an exciting phase of digital and infrastructural transformation. We have recently upgraded our three main computer laboratories with high-spec machines to support our NCV IT curriculum.</p>
-                <br>
-                <p class="llt-text">Our hospitality wing has received new industrial-grade kitchen equipment to ensure our NATED and NCV students train in environments that mirror top-tier hotels. The campus grounds are fully operational, safe, and vibrant with student life.</p>
-            </div>
-            <div>
-                <img src="https://images.unsplash.com/photo-1531545514256-b1400bc00f31?q=80&w=800" alt="Students in IT Lab" class="llt-img-responsive">
-            </div>
-        </div>
-    </section>
-
-    <section class="llt-section llt-courses-bg">
-        <div class="llt-container">
-            <h2 class="llt-headline" style="text-align: center; margin-bottom: 60px;">Academic Programmes (2026)</h2>
+    <main class="container campus-layout">
+        
+        <div class="main-column">
             
-            <div class="llt-program-block">
-                <div class="llt-program-header">
-                    <div class="llt-program-title">
-                        <h3>Information Technology</h3>
-                        <span class="llt-program-type">NCV Programme (National Certificate Vocational)</span>
+            <section class="content-block">
+                <span class="section-tag">Campus Identity</span>
+                <h2>Forging the Future of Infrastructure</h2>
+                <p>Lere La Tshepe Campus, named with deep respect for local cultural heritage, serves as Maluti TVET College's primary hub for the built environment. We focus on equipping students with the practical skills required to design, build, and maintain the infrastructure of South Africa.</p>
+            </section>
+
+            <section class="content-block">
+                <span class="section-tag">Infrastructure & Facilities</span>
+                <div class="facility-list">
+                    <div class="facility-row">
+                        <div class="facility-name">Civil Engineering Labs (06 Units)</div>
+                        <div class="facility-desc">Specialized workshops for bricklaying, plastering, and plumbing practicals.</div>
+                    </div>
+                    <div class="facility-row">
+                        <div class="facility-name">Drafting Studio (02 Suites)</div>
+                        <div class="facility-desc">Computer-aided design (CAD) facilities for architectural and structural drafting.</div>
+                    </div>
+                    <div class="facility-row">
+                        <div class="facility-name">Satellite Library (450m²)</div>
+                        <div class="facility-desc">Specialized collection focusing on building standards, civil laws, and carpentry.</div>
+                    </div>
+                    <div class="facility-row">
+                        <div class="facility-name">Multi-Purpose Court (600m²)</div>
+                        <div class="facility-desc">Hard-surface court for basketball, netball, and campus gatherings.</div>
                     </div>
                 </div>
-                
-                <p class="llt-program-desc">
-                    This vocational programme is designed to provide students with a solid foundation in the IT industry. Students will learn the building blocks of software development, how computers communicate in a network, and the intricacies of hardware maintenance. It combines theory with practical lab work to prepare students for technical roles immediately upon completion.
-                </p>
+            </section>
 
-                <div class="llt-table-wrapper">
-                    <table class="llt-table">
-                        <thead>
-                            <tr>
-                                <th width="15%">Level</th>
-                                <th width="15%">Duration</th>
-                                <th>Curriculum Subjects</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Level 2</strong></td>
-                                <td>1 Year</td>
-                                <td>
-                                    <ul class="llt-subject-list">
-                                        <li>Introduction to Systems Development</li>
-                                        <li>Electronics & Digital Concepts</li>
-                                        <li>Introduction to Information Systems</li>
-                                        <li>Mathematics / Mathematical Literacy</li>
-                                        <li>English First Additional Language</li>
-                                        <li>Life Orientation</li>
-                                    </ul>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><strong>Level 3</strong></td>
-                                <td>1 Year</td>
-                                <td>
-                                    <ul class="llt-subject-list">
-                                        <li>Systems Analysis and Design</li>
-                                        <li>Computer Hardware and Software</li>
-                                        <li>Principles of Computer Programming</li>
-                                        <li>Mathematics</li>
-                                        <li>Life Orientation</li>
-                                    </ul>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><strong>Level 4</strong></td>
-                                <td>1 Year</td>
-                                <td>
-                                    <ul class="llt-subject-list">
-                                        <li>Systems Development (Advanced Programming)</li>
-                                        <li>Data Communication and Networking</li>
-                                        <li>IT Project Management</li>
-                                        <li>Mathematics</li>
-                                        <li>Life Orientation</li>
-                                    </ul>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="llt-info-grid">
-                    <div class="llt-info-box">
-                        <h4>Admission Requirements</h4>
-                        <ul class="llt-info-list">
-                            <li>Grade 9 Pass (minimum)</li>
-                            <li>Preference given to students with Mathematics aptitude</li>
-                            <li>Placement test may be required</li>
-                        </ul>
+            <section class="content-block">
+                <span class="section-tag">Campus Leadership</span>
+                <div class="leadership-grid">
+                    <div class="leader-card">
+                        <span class="leader-role">Campus Manager</span>
+                        <span class="leader-name">Mr. T.S. Mofokeng</span>
                     </div>
-                    <div class="llt-info-box">
-                        <h4>Career Opportunities</h4>
-                        <ul class="llt-info-list">
-                            <li>Junior Software Developer</li>
-                            <li>IT Technician / Support Specialist</li>
-                            <li>Network Administrator</li>
-                            <li>Systems Analyst Assistant</li>
-                            <li>Database Administrator</li>
-                        </ul>
+                    <div class="leader-card">
+                        <span class="leader-role">HOD: Civil Engineering</span>
+                        <span class="leader-name">Mr. R. Naidoo</span>
+                    </div>
+                    <div class="leader-card">
+                        <span class="leader-role">Senior Administrator</span>
+                        <span class="leader-name">Mrs. G. Sithole</span>
+                    </div>
+                    <div class="leader-card">
+                        <span class="leader-role">Student Support Lead</span>
+                        <span class="leader-name">Mr. J. Moloi</span>
                     </div>
                 </div>
-                <div style="text-align: right;">
-                    <a href="#apply" class="llt-btn-apply">Apply for IT Programme</a>
-                </div>
-            </div>
-
-            <div class="llt-program-block">
-                <div class="llt-program-header">
-                    <div class="llt-program-title">
-                        <h3>Business Studies</h3>
-                        <span class="llt-program-type">NATED Programme (Report 191)</span>
-                    </div>
-                </div>
-                
-                <p class="llt-program-desc">
-                    The Business Studies NATED programme focuses on the administrative, financial, and managerial aspects of the modern business world. This course moves at a fast pace (semester based) and is ideal for students who want to enter the corporate world with a strong understanding of entrepreneurship, sales, and personnel management.
-                </p>
-
-                <div class="llt-table-wrapper">
-                    <table class="llt-table">
-                        <thead>
-                            <tr>
-                                <th width="15%">Certificate</th>
-                                <th width="15%">Duration</th>
-                                <th>Curriculum Subjects</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>N4</strong></td>
-                                <td>1 Semester</td>
-                                <td>
-                                    <ul class="llt-subject-list">
-                                        <li>Entrepreneurship and Business Management N4</li>
-                                        <li>Management Communication N4</li>
-                                        <li>Computer Practice N4</li>
-                                        <li>Financial Accounting N4</li>
-                                    </ul>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><strong>N5</strong></td>
-                                <td>1 Semester</td>
-                                <td>
-                                    <ul class="llt-subject-list">
-                                        <li>Sales Management N5</li>
-                                        <li>Labour Relations N5</li>
-                                        <li>Entrepreneurship and Business Management N5</li>
-                                        <li>Computer Practice N5</li>
-                                    </ul>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><strong>N6</strong></td>
-                                <td>1 Semester</td>
-                                <td>
-                                    <ul class="llt-subject-list">
-                                        <li>Marketing Management N6</li>
-                                        <li>Personnel Management N6</li>
-                                        <li>Entrepreneurship and Business Management N6</li>
-                                        <li>Computer Practice N6</li>
-                                    </ul>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="llt-info-grid">
-                    <div class="llt-info-box">
-                        <h4>Admission Requirements</h4>
-                        <ul class="llt-info-list">
-                            <li>Grade 12 (NSC) or Senior Certificate</li>
-                            <li>Or NCV Level 4 Certificate</li>
-                        </ul>
-                    </div>
-                    <div class="llt-info-box">
-                        <h4>Career Opportunities</h4>
-                        <ul class="llt-info-list">
-                            <li>Business Administrator</li>
-                            <li>Sales Consultant / Manager</li>
-                            <li>Human Resources Assistant</li>
-                            <li>Entrepreneur / Small Business Owner</li>
-                            <li>Marketing Assistant</li>
-                        </ul>
-                    </div>
-                </div>
-                <div style="text-align: right;">
-                    <a href="#apply" class="llt-btn-apply">Apply for Business Studies</a>
-                </div>
-            </div>
-
-            <div class="llt-program-block">
-                <div class="llt-program-header">
-                    <div class="llt-program-title">
-                        <h3>Hospitality Management</h3>
-                        <span class="llt-program-type">Combined NCV & NATED Offerings</span>
-                    </div>
-                </div>
-                
-                <p class="llt-program-desc">
-                    Hospitality Management at Lere La Tshepe covers everything from professional cookery and food preparation to front-of-house services and hotel management. Students train in industrial kitchens and learn the high standards of service required by the international tourism and hospitality sector.
-                </p>
-
-                <div class="llt-table-wrapper">
-                    <table class="llt-table">
-                        <thead>
-                            <tr>
-                                <th width="15%">Stream</th>
-                                <th width="15%">Level/Cert</th>
-                                <th>Curriculum Subjects</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td rowspan="3"><strong>NCV<br>(Vocational)</strong><br><small>1 Year per level</small></td>
-                                <td><strong>Level 2</strong></td>
-                                <td>Food Preparation, Hospitality Services, Client Services & Human Relations, Life Orientation.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Level 3</strong></td>
-                                <td>Food Preparation, Hospitality Generics, Client Services, Math Literacy.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Level 4</strong></td>
-                                <td>Advanced Food Preparation, Hospitality Services, Professional Cookery, Math Literacy.</td>
-                            </tr>
-                            
-                            <tr style="border-top: 2px solid #e2e8f0;">
-                                <td rowspan="3"><strong>NATED<br>(Report 191)</strong><br><small>1 Semester per cert</small></td>
-                                <td><strong>N4</strong></td>
-                                <td>Applied Management N4, Catering Theory & Practical N4, Sanitation & Safety N4, Nutrition & Menu Planning N4.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>N5</strong></td>
-                                <td>Applied Management N5, Catering Theory & Practical N5, Food & Beverage Service N5, Entrepreneurship N5.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>N6</strong></td>
-                                <td>Applied Management N6, Catering Theory & Practical N6, Communication N6, Computer Practice N6.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="llt-info-grid">
-                    <div class="llt-info-box">
-                        <h4>Admission Requirements</h4>
-                        <ul class="llt-info-list">
-                            <li><strong>NCV:</strong> Grade 9 Pass (min)</li>
-                            <li><strong>NATED:</strong> Grade 12 with Tourism/Consumer Studies preferred</li>
-                        </ul>
-                    </div>
-                    <div class="llt-info-box">
-                        <h4>Career Opportunities</h4>
-                        <ul class="llt-info-list">
-                            <li>Professional Chef / Sous Chef</li>
-                            <li>Hotel Receptionist / Front Office Manager</li>
-                            <li>Event & Catering Coordinator</li>
-                            <li>Restaurant Manager</li>
-                            <li>Guest House Manager</li>
-                        </ul>
-                    </div>
-                </div>
-                <div style="text-align: right;">
-                    <a href="#apply" class="llt-btn-apply">Apply for Hospitality</a>
-                </div>
-            </div>
-
+            </section>
         </div>
-    </section>
 
-    <section class="llt-container">
-        <div class="llt-download-bar">
-            <div>
-                <h3 style="font-size: 24px; margin-bottom: 8px;">2026 Academic Timetable</h3>
-                <p style="opacity: 0.9;">Download the official class and exam schedules for Lere La Tshepe Campus.</p>
-            </div>
-            <a href="#" class="llt-btn-download">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                Download PDF
-            </a>
-        </div>
-    </section>
-
-    <section class="llt-section">
-        <div class="llt-container llt-contact-split">
-            
-            <div>
-                <h2 class="llt-headline" style="margin-bottom: 30px;">Key Contacts</h2>
-                
-                <div class="llt-faculty-card">
-                    <img src="https://i.pravatar.cc/150?u=a042581f4e29026024d" alt="Manager" class="llt-avatar">
-                    <div class="llt-faculty-info">
-                        <span>Campus Manager</span>
-                        <h4>Ms. P. Zungu</h4>
-                        <a href="mailto:zungu.p@college.edu" class="llt-contact-detail">zungu.p@college.edu</a>
-                        <a href="tel:+27587130002" class="llt-contact-detail">+27 58 713 0002</a>
-                    </div>
-                </div>
-
-                <div class="llt-faculty-card">
-                    <img src="https://i.pravatar.cc/150?u=a042581f4e29026704d" alt="IT HoD" class="llt-avatar">
-                    <div class="llt-faculty-info">
-                        <span>HOD: Information Technology</span>
-                        <h4>Mr. T. Moloi</h4>
-                        <a href="mailto:moloi.t@college.edu" class="llt-contact-detail">moloi.t@college.edu</a>
-                    </div>
-                </div>
-
-                <div class="llt-faculty-card">
-                    <img src="https://i.pravatar.cc/150?u=a04258114e29026704d" alt="Business HoD" class="llt-avatar">
-                    <div class="llt-faculty-info">
-                        <span>HOD: Business Studies</span>
-                        <h4>Mrs. S. Khumalo</h4>
-                        <a href="mailto:khumalo.s@college.edu" class="llt-contact-detail">khumalo.s@college.edu</a>
-                    </div>
-                </div>
-
-                <div class="llt-faculty-card">
-                    <img src="https://i.pravatar.cc/150?u=a048581f4e29026704d" alt="Hospitality HoD" class="llt-avatar">
-                    <div class="llt-faculty-info">
-                        <span>HOD: Hospitality</span>
-                        <h4>Chef R. Van Der Merwe</h4>
-                        <a href="mailto:rvdm@college.edu" class="llt-contact-detail">rvdm@college.edu</a>
-                    </div>
-                </div>
-
+        <aside class="sidebar-data">
+            <div class="data-point">
+                <span class="data-label">Campus Enrollment</span>
+                <div class="data-value">1,150 Active Students</div>
             </div>
 
-            <div>
-                <h2 class="llt-headline" style="margin-bottom: 30px;">Find Us</h2>
-                <div class="llt-map-frame">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3488.9482782806256!2d28.8166!3d-28.5333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDMyJzAwLjAiUyAyOMKwNDknMDAuMCJF!5e0!3m2!1sen!2sza!4v1600000000000!5m2!1sen!2sza" 
-                        width="100%" 
-                        height="100%" 
-                        style="border:0; position:absolute; top:0; left:0;" 
-                        allowfullscreen="" 
-                        loading="lazy">
-                    </iframe>
+            <div class="data-point">
+                <span class="data-label">Primary Specializations</span>
+                <div class="data-value" style="font-size: 15px; line-height: 2;">
+                    • Civil Engineering & Building Construction<br>
+                    • Carpentry & Roof Work<br>
+                    • Plumbing & Masonry<br>
+                    • Electrical Infrastructure
                 </div>
-                <p style="margin-top: 20px; color: var(--llt-text);">
-                    <strong>Physical Address:</strong><br>
-                    142 University Road, Phuthaditjhaba, 9866
-                </p>
+            </div>
+
+            <div class="data-point">
+                <span class="data-label">Operational Stats</span>
+                <div class="data-value" style="font-size: 15px; line-height: 2;">
+                    • 58 Dedicated Staff Members<br>
+                    • 88% Technical Certification Rate<br>
+                    • Secured Perimeter & On-site Parking
+                </div>
+            </div>
+
+            <div class="data-point">
+                <span class="data-label">Contact Primary</span>
+                <div class="data-value">+27 58 303 1732</div>
+                <div style="font-size: 14px; color: var(--text-muted); margin-top: 5px;">Monday — Friday<br>07:30 – 16:00</div>
+            </div>
+
+            <div class="data-point" style="padding: 30px; background: #f8f9fa; border-top: 2px solid var(--text-main);">
+                <span class="data-label" style="color: var(--brand-accent);">Safety Notice</span>
+                <p style="font-size: 14px;">Personal Protective Equipment (PPE) is mandatory for all students entering the Civil Engineering workshop zones.</p>
+            </div>
+        </aside>
+
+    </main>
+
+    <section class="map-section">
+        <div class="container">
+            <span class="section-tag" style="color: #666;">Spatial Presence</span>
+            <h2 style="font-size: 44px; letter-spacing: -2px;">Visit our Bethlehem Annex</h2>
+            <div class="map-frame">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3536.878504381835!2d28.3072!3d-28.2345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDE0JzA0LjIiUyAyOMKwMTgnMjUuOSJF!5e0!3m2!1sen!2sza!4v1713600000000!5m2!1sen!2sza" 
+                    allowfullscreen="" 
+                    loading="lazy">
+                </iframe>
+            </div>
+            <div style="margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+                <p style="font-size: 15px; color: #999;">Physical Address: Bethlehem, Free State, 9700. Easily accessible via major regional routes and local taxi services.</p>
+                <p style="font-size: 15px; color: #999;">GPS Coordinates: -28.2411° S, 28.3122° E</p>
             </div>
         </div>
     </section>
 
-    <section class="llt-section">
-        <div class="llt-container">
-            <h2 class="llt-headline">Campus News</h2>
-            <div class="llt-article-grid">
-                
-                <a href="#" class="llt-article-card">
-                    <img src="https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg" alt="Hospitality Event" class="llt-article-img">
-                    <span class="llt-date">Jan 05, 2026</span>
-                    <h3 class="llt-article-title">Hospitality students host charity gala dinner</h3>
-                    <p class="llt-text" style="font-size: 15px;">Level 4 students showcased their skills by preparing a 3-course meal for local charities.</p>
-                </a>
-
-                <a href="#" class="llt-article-card">
-                    <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=600" alt="IT Hackathon" class="llt-article-img">
-                    <span class="llt-date">Dec 12, 2025</span>
-                    <h3 class="llt-article-title">IT Department wins regional coding hackathon</h3>
-                    <p class="llt-text" style="font-size: 15px;">Our Lere La Tshepe coding team took first prize in the Free State TVET Challenge.</p>
-                </a>
-
-                <a href="#" class="llt-article-card">
-                    <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=600" alt="Graduation" class="llt-article-img">
-                    <span class="llt-date">Nov 28, 2025</span>
-                    <h3 class="llt-article-title">NATED Business Studies exam results released</h3>
-                    <p class="llt-text" style="font-size: 15px;">Record-breaking pass rates for N6 Financial Management students this semester.</p>
-                </a>
-
-            </div>
+    <footer style="padding: 100px 0; background: #fff; text-align: center;">
+        <div class="container">
+            <p style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700;">Empowering Builders, Constructing Careers.</p>
         </div>
-    </section>
-
-</div>
+    </footer>
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1324,223 +1069,343 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kentwood Academy Footer Recreation</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
 <style>
-    /* --- Unique Namespace Styling (kw-footer-) --- */
 
-    /* Footer Container & Reset */
+    /* ── Footer (unchanged) ── */
     .kw-footer-container {
-        background-color: #050533; /* Deep Blue sampled from image */
+        background-color: #050533;
         color: #ffffff;
-        font-family: 'Bricolage Grotesque', sans-serif;
+        font-family: 'Source Sans Pro', sans-serif;
         width: 100%;
     }
-
-    /* Reset inside the footer namespace */
-    .kw-footer-container * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
-
-    .kw-footer-content-wrapper {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
-    }
-
-    .kw-footer-container a {
-        text-decoration: none;
-        color: inherit;
-        transition: opacity 0.3s, background-color 0.3s, color 0.3s;
-    }
-
-    .kw-footer-container ul {
-        list-style: none;
-    }
-
-    /* --- Top Bar Section --- */
-    .kw-footer-top-bar {
-        padding: 35px 0;
-        border-bottom: 1px solid rgba(255,255,255,0.15);
-    }
-
-    .kw-footer-top-flex {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .kw-footer-cta-text {
-        font-size: 26px;
-        font-weight: 600;
-        letter-spacing: -0.5px;
-    }
-
-    .kw-footer-cta-buttons {
-        display: flex;
-        gap: 20px;
-    }
-
-    /* Outline Button Style */
+    .kw-footer-container * { box-sizing: border-box; margin: 0; padding: 0; }
+    .kw-footer-content-wrapper { max-width: 1450px; margin: 0 auto; padding: 0 20px; }
+    .kw-footer-container a { text-decoration: none; color: inherit; transition: opacity 0.3s, background-color 0.3s, color 0.3s; }
+    .kw-footer-container ul { list-style: none; }
+    .kw-footer-top-bar { padding: 35px 0; border-bottom: 1px solid rgba(255,255,255,0.15); }
+    .kw-footer-top-flex { display: flex; justify-content: space-between; align-items: center; }
+    .kw-footer-cta-text { font-size: 26px; font-weight: 400; letter-spacing: -0.5px; }
+    .kw-footer-cta-buttons { display: flex; gap: 20px; }
     .kw-footer-btn-outline {
-        display: inline-block;
-        padding: 12px 32px;
-        background-color: transparent;
-        color: #ffffff;
-        border: 1px solid #ffffff;
-        border-radius: 50px;
-        font-weight: 600;
-        font-size: 15px;
-        text-align: center;
-        white-space: nowrap;
+        display: inline-block; padding: 8px 32px;
+        background-color: transparent; color: #ffffff;
+        border: 1px solid #ffffff; border-radius: 50px;
+        font-weight: 600; font-size: 15px; text-align: center; white-space: nowrap;
+    }
+    .kw-footer-btn-outline:hover { background-color: #ffffff; color: #050533; }
+    .kw-footer-main { padding: 70px 0 30px; }
+    .kw-footer-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 80px; align-items: start; }
+    .kw-footer-logo-block { display: flex; flex-direction: column; align-items: flex-start; margin-bottom: 30px; }
+    .kw-footer-crest { width: 55px; height: auto; margin-bottom: 15px; filter: brightness(0) invert(1); }
+    .kw-footer-logo-text { font-size: 22px; font-weight: 400; }
+    .kw-footer-address { font-style: normal; line-height: 1.5; margin-bottom: 30px; font-size: 16px; }
+    .kw-footer-directions-btn { padding: 12px 40px; margin-bottom: 35px; }
+    .kw-footer-socials { display: flex; gap: 20px; align-items: center; }
+    .kw-footer-social-icon { display: flex; align-items: center; justify-content: center; }
+    .kw-footer-social-icon svg { width: 18px; height: 18px; fill: currentColor; }
+    .kw-footer-social-icon:hover { opacity: 0.7; }
+    .kw-footer-link-list li { margin-bottom: 18px; }
+    .kw-footer-link-list a { font-size: 19px; font-weight: 600; }
+    .kw-footer-link-list a:hover { opacity: 0.7; }
+    .kw-footer-bottom { text-align: right; }
+    .kw-footer-designer { font-size: 14px; font-weight: 400; }
+    @media (max-width: 1024px) {
+        .kw-footer-grid { grid-template-columns: 1fr 1fr; gap: 50px 30px; }
+        .kw-footer-col-info { grid-column: 1 / -1; }
+    }
+    @media (max-width: 768px) {
+        .kw-footer-top-flex { flex-direction: column; text-align: center; gap: 25px; }
+        .kw-footer-cta-text { font-size: 22px; }
+        .kw-footer-bottom { text-align: center; }
+    }
+    @media (max-width: 550px) {
+        .kw-footer-grid { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+        .kw-footer-logo-block { align-items: center; }
+        .kw-footer-socials { justify-content: center; }
+        .kw-footer-cta-buttons { flex-direction: column; width: 100%; }
+        .kw-footer-btn-outline { width: 100%; }
     }
 
-    .kw-footer-btn-outline:hover {
-         background-color: #ffffff;
-         color: #050533;
+    /* ── Visit Modal ── */
+
+    /* Sharp text rendering — fix blur from transform/filter */
+    .vm-overlay,
+    .vm-modal,
+    .vm-modal * {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+        /* prevent subpixel blur from translateY animations */
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
     }
 
-    /* --- Main Footer Content --- */
-    .kw-footer-main {
-        padding: 70px 0 30px;
+    .vm-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        /* no backdrop-filter — causes font blur */
     }
+    .vm-overlay.vm-open { display: flex; }
 
-    .kw-footer-grid {
-        display: grid;
-        /* Column ratios adjusted to match image: wider first column */
-        grid-template-columns: 2.5fr 1fr 1fr 1fr;
-        gap: 40px;
-        margin-bottom: 80px;
-        align-items: start;
-    }
-
-    /* Column 1: Logo & Info */
-    .kw-footer-logo-block {
+    .vm-modal {
+        background: #fff;
+        border-radius: 16px;
+        width: 100%;
+        max-width: 1080px;
+        height: 90vh;
+        max-height: 720px;
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
-        margin-bottom: 30px;
+        overflow: hidden;
+      
+        font-family: 'Source Sans Pro', sans-serif;
+        /* Use opacity-only animation — no transform to avoid subpixel blur */
+        animation: vm-fadein .18s ease;
+        /* Promote to own compositor layer cleanly */
+        will-change: auto;
+        transform: translateZ(0);
+    }
+    @keyframes vm-fadein {
+        from { opacity: 0; }
+        to   { opacity: 1; }
     }
 
-    .kw-footer-crest {
-        width: 55px;
-        height: auto;
-        margin-bottom: 15px;
-        /* Ensure crest is white */
-        filter: brightness(0) invert(1);
-    }
-
-    .kw-footer-logo-text {
-        font-size: 22px;
-        font-weight: 700;
-    }
-
-    .kw-footer-address {
-        font-style: normal;
-        line-height: 1.5;
-        margin-bottom: 30px;
-        font-size: 16px;
-    }
-
-    .kw-footer-directions-btn {
-        /* Overriding standard size for this specific button */
-        padding: 12px 40px;
-        margin-bottom: 35px;
-    }
-
-    .kw-footer-socials {
+    /* Header */
+    .vm-header {
         display: flex;
-        gap: 20px;
         align-items: center;
+        justify-content: space-between;
+        padding: 18px 24px 0;
+        flex-shrink: 0;
     }
-
-    .kw-footer-social-icon {
+    .vm-header-text h2 {
+        font-size: 15px;
+        font-weight: 600;
+        color: #111;
+        letter-spacing: -0.1px;
+        /* prevent any inherited blurriness */
+        transform: none;
+    }
+    .vm-header-text p {
+        font-size: 14px; font-weight: 500;
+        color: #999;
+        margin-top: 2px;
+    }
+    .vm-close {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        border: none;
+        background: #f0f0f0;
+        color: #555;
+        cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
+        flex-shrink: 0;
+        font-family: inherit;
+        /* no transition — keeps text crisp */
     }
+    .vm-close:hover { background: #e4e4e4; color: #111; }
 
-    .kw-footer-social-icon svg {
-        width: 18px;
-        height: 18px;
-        fill: currentColor;
-    }
-
-    .kw-footer-social-icon:hover {
-        opacity: 0.7;
-    }
-
-    /* Columns 2, 3, 4: Link Lists */
-    .kw-footer-link-list li {
-        margin-bottom: 18px;
-    }
-
-    .kw-footer-link-list a {
-        font-size: 16px;
+    .footer-heading {
+        font-size: 15px;
+        color: #939ca2;
         font-weight: 600;
-    }
-    .kw-footer-link-list a:hover {
-        opacity: 0.7;
+        margin-bottom: 20px;
     }
 
-    /* --- Bottom Section --- */
-    .kw-footer-bottom {
-        text-align: right;
+    /* Tab nav row */
+    .vm-nav {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        padding: 14px 24px 0;
+        flex-shrink: 0;
+        flex-wrap: wrap;
+        row-gap: 6px;
     }
 
-    .kw-footer-designer {
+    .vm-nav-sep {
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: .09em;
+        text-transform: uppercase;
+        color: #ccc;
+        padding: 4px 8px 4px 6px;
+        white-space: nowrap;
+        user-select: none;
+    }
+    /* small divider line between groups */
+    .vm-nav-divider {
+        width: 1px;
+        height: 16px;
+        background: #e8e8e8;
+        margin: 0 6px;
+        flex-shrink: 0;
+    }
+
+    .vm-tab {
+        background: none;
+        border: none;
+        padding: 9px 15px;
+        border-radius: 60px;
         font-size: 14px;
+        font-weight: 600;
+        color: #555;
+        cursor: pointer;
+        font-family: 'Source Sans Pro', sans-serif;
+        white-space: nowrap;
+        /* no transition on color — avoids subpixel repaint blur */
+    }
+    .vm-tab:hover { background: #f5f5f5; color: #111; }
+    .vm-tab.vm-active {
+        background: #050533;
+        color: #fff;
         font-weight: 500;
     }
 
-
-    /* --- Responsive Design --- */
-    @media (max-width: 1024px) {
-        .kw-footer-grid {
-            grid-template-columns: 1fr 1fr;
-             gap: 50px 30px;
-        }
-        .kw-footer-col-info {
-             grid-column: 1 / -1;
-        }
+    /* Divider between nav and map */
+    .vm-divider {
+        height: 1px;
+        background: #ececec;
+        margin: 14px 0 0;
+        flex-shrink: 0;
     }
 
-    @media (max-width: 768px) {
-        .kw-footer-top-flex {
-            flex-direction: column;
-            text-align: center;
-            gap: 25px;
-        }
-        .kw-footer-cta-text {
-            font-size: 22px;
-        }
-        .kw-footer-bottom {
-            text-align: center;
-        }
+    /* Map wrapper — inset with padding and border-radius */
+    .vm-map-wrap {
+        flex: 1;
+        overflow: hidden;
+        padding: 16px;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
     }
 
-    @media (max-width: 550px) {
-        .kw-footer-grid {
-            grid-template-columns: 1fr;
-            text-align: center;
-            gap: 40px;
+    /* The rounded container that holds the map */
+    .vm-map-inner {
+        flex: 1;
+        border-radius: 20px;
+        overflow: hidden;
+        position: relative;
+        min-height: 0;
+        background: #f2f2f2;
+    }
+
+    /* Empty state */
+    .vm-empty {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        pointer-events: none;
+    }
+    .vm-empty-ring {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: 1px solid #ddd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ccc;
+        font-size: 16px;
+    }
+    .vm-empty p {
+        font-size: 13px;
+        color: #bbb;
+        text-align: center;
+        line-height: 1.5;
+    }
+
+    /* Spinner */
+    .vm-spinner-wrap {
+        display: none;
+        position: absolute;
+        inset: 0;
+        align-items: center;
+        justify-content: center;
+        background: #f2f2f2;
+        border-radius: 20px;
+    }
+    .vm-spinner-wrap.show { display: flex; }
+    .vm-spin {
+        width: 22px;
+        height: 22px;
+        border: 2px solid #e0e0e0;
+        border-top-color: #050533;
+        border-radius: 50%;
+        animation: vm-spin .65s linear infinite;
+    }
+    @keyframes vm-spin { to { transform: rotate(360deg); } }
+
+    /* Location label inside map, bottom-left */
+    .vm-map-label {
+        display: none;
+        position: absolute;
+        bottom: 12px;
+        left: 12px;
+        z-index: 2;
+        background: rgba(255, 255, 255, 0.94);
+        border-radius: 8px;
+        padding: 8px 12px;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+        pointer-events: none;
+    }
+    .vm-map-label.show { display: block; }
+    .vm-map-label h3 {
+        font-size: 12.5px;
+        font-weight: 400;
+        color: #111;
+        white-space: nowrap;
+    }
+    .vm-map-label p {
+        font-size: 11px;
+        color: #777;
+        margin-top: 1px;
+        white-space: nowrap;
+    }
+
+    /* iframe fills map inner */
+    .vm-iframe-box {
+        display: none;
+        position: absolute;
+        inset: 0;
+    }
+    .vm-iframe-box.show { display: block; }
+    .vm-iframe-box iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        display: block;
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 640px) {
+        .vm-overlay { padding: 0; align-items: flex-end; }
+        .vm-modal {
+            max-width: 100%;
+            height: 92vh;
+            max-height: none;
+            border-radius: 16px 16px 0 0;
         }
-        .kw-footer-logo-block {
-            align-items: center;
-        }
-        .kw-footer-socials {
-            justify-content: center;
-        }
-        .kw-footer-cta-buttons {
-            flex-direction: column;
-            width: 100%;
-        }
-        .kw-footer-btn-outline {
-            width: 100%;
-        }
+        .vm-nav { padding: 12px 16px 0; gap: 4px; }
+        .vm-nav-sep { display: none; }
+        .vm-nav-divider { display: none; }
+        .vm-tab { font-size: 12.5px; padding: 5px 11px; border-radius: 50px; border: 1px solid #e8e8e8; background: #f7f7f7; }
+        .vm-tab.vm-active { background: #050533; border-color: #050533; color: #fff; }
+        .vm-map-wrap { padding: 12px; }
+        .vm-header { padding: 16px 16px 0; }
     }
 </style>
 </head>
@@ -1551,7 +1416,7 @@
         <div class="kw-footer-content-wrapper kw-footer-top-flex">
             <h2 class="kw-footer-cta-text">We look forward to welcoming you to Maluti College.</h2>
             <div class="kw-footer-cta-buttons">
-                <a href="#" class="kw-footer-btn-outline">Visit</a>
+                <a href="#" class="kw-footer-btn-outline" id="kw-visit-btn">Visit</a>
                 <a href="#" class="kw-footer-btn-outline">Enquire</a>
                 <a href="#" class="kw-footer-btn-outline">Apply</a>
             </div>
@@ -1560,68 +1425,225 @@
 
     <div class="kw-footer-main">
         <div class="kw-footer-content-wrapper kw-footer-grid">
-            <div class="kw-footer-col-info">
-                <div class="kw-footer-logo-block">
-                    <img src="images/logo.png" alt="Kentwood Crest" class="kw-footer-crest">
-                    <span class="kw-footer-logo-text">Maluti TVET College</span>
-                </div>
-                <address class="kw-footer-address">
-                    Corporate Office, Bethlehem, Wessels Street, CT12 4YZ<br>
-                    (058) 085 1234<br>
-                </address>
-                <a href="#" class="kw-footer-btn-outline kw-footer-directions-btn">Get Directions</a>
-                
-                <div class="kw-footer-socials">
-                    <a href="#" class="kw-footer-social-icon" aria-label="Facebook">
-                        <svg viewBox="0 0 24 24"><path d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.15 5.96C15.21 5.96 16.12 6.04 16.12 6.04V8.51H15.01C13.77 8.51 13.38 9.28 13.38 10.07V12.06H16.15L15.71 14.96H13.38V21.96C18.16 21.21 21.82 17.06 21.82 12.06C21.82 6.53 17.32 2.04 12 2.04Z"/></svg>
-                    </a>
-                    <a href="#" class="kw-footer-social-icon" aria-label="Instagram">
-                         <svg viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/></svg>
-                    </a>
-                    <a href="#" class="kw-footer-social-icon" aria-label="TikTok">
-                        <svg viewBox="0 0 24 24"><path d="M12.5,2C12.5,2 12.5,4.46 12.5,5.73C14.32,6.03 15.94,7.18 16.79,8.9H19.68C18.64,6.14 16.1,4 13.04,3.5V2H12.5M16.33,11.04C16.33,11.04 16.33,11.04 16.33,11.04C15.12,11.04 13.96,10.53 13.1,9.68C13.39,10.74 13.54,11.86 13.54,13C13.54,17.42 9.96,21 5.54,21C3.41,21 1.5,20.17 0.05,18.76L2.17,16.64C3.06,17.47 4.24,18 5.54,18C8.3,18 10.54,15.76 10.54,13C10.54,11.26 9.65,9.7 8.26,8.82L10.38,6.7C12.35,8.06 13.54,10.38 13.54,13H16.33V11.04Z"/></svg>
-                    </a>
-                    <a href="#" class="kw-footer-social-icon" aria-label="Tumblr">
-                        <svg viewBox="0 0 24 24"><path d="M14.84,15.87C14.06,16.09 13.5,16.57 13.24,17.42C13.13,18.16 13.36,21.97 13.36,21.97H9.34V16.59C9.34,15.84 9.36,13.58 9.36,13.58H6.93V10.4H8.94C8.94,10.4 8.83,7.97 9,6.4C9.38,3.93 11.74,2 14.57,2V5.33C14.57,5.33 13.36,5.38 13.05,5.8C12.74,6.22 12.77,7.5 12.77,8.36V10.38H15.63V13.56H12.82C12.82,13.56 12.82,14.62 12.88,14.93C12.94,15.24 13.24,15.45 13.5,15.38C13.77,15.32 14.84,14.93 14.84,14.93L16.07,17.76L14.84,15.87Z"/></svg>
-                    </a>
-                </div>
-            </div>
-
+            
             <div class="kw-footer-col-links">
+                <h1 class="footer-heading">Legal</h1>
                 <ul class="kw-footer-link-list">
+                    <li><a href="#">Responsible Disclosure Policy</a></li>
                     <li><a href="#">Cookie Policy</a></li>
                     <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Policies</a></li>
+                    <li><a href="#">Terms of Use</a></li>
+                    <li><a href="#">Proof of Reserve</a></li>
                 </ul>
             </div>
-
             <div class="kw-footer-col-links">
+                <h1 class="footer-heading">Admissions & Aid</h1>
+                <ul class="kw-footer-link-list">
+                    <li><a href="#">How to apply</a></li>
+                    <li><a href="#">Admissions Requirements</a></li>
+                    <li><a href="#">Tuition, Fees & Payments</a></li>
+                    <li><a href="#">Registration</a></li>
+                    <li><a href="#">Assessments</a></li>
+                    <li><a href="#">Financial Aid</a></li>
+                    <li><a href="#">Late Enquiries</a></li>
+                    <li><a href="#">Check your status</a></li>
+                    <li><a href="#">Timetables</a></li>
+                </ul>
+            </div>
+            <div class="kw-footer-col-links">
+                <h1 class="footer-heading">Campus Life</h1>
+                <ul class="kw-footer-link-list">
+                    <li><a href="#">Campus Support</a></li>
+                    <li><a href="#">Campus Facilities</a></li>
+                    <li><a href="#">Residence Life</a></li>
+                    <li><a href="#">Student Activities</a></li>
+                    <li><a href="#">Sports & Recreation</a></li>
+                    <li><a href="#">Clubs & Societies</a></li>
+                    <li><a href="#">SRC</a></li>
+                </ul>
+            </div>
+            <div class="kw-footer-col-links">
+                <h1 class="footer-heading">Calender</h1>
                 <ul class="kw-footer-link-list">
                     <li><a href="#">Academic Year</a></li>
-                    <li><a href="#">Staff</a></li>
-                    <li><a href="#">Students</a></li>
-                    <li><a href="#">Stuff Portal</a></li>
-                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Term Dates</a></li>
+                    <li><a href="#">Sports Calender</a></li>
+                    <li><a href="#">Exam Timetable</a></li>
                 </ul>
             </div>
-
             <div class="kw-footer-col-links">
+                <h1 class="footer-heading">Maluti</h1>
                 <ul class="kw-footer-link-list">
-                    <li><a href="#">Term Dates</a></li>
-                    <li><a href="#">School Calendar</a></li>
-                    <li><a href="#">Admissions</a></li>
-                    <li><a href="#">Careers</a></li>
-                    <li><a href="#">Support Services</a></li>
-
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Executive Leadership</a></li>
+                    <li><a href="#">Roadmap</a></li>
+                    <li><a href="#">Innovations</a></li>
+                    <li><a href="#">News & Events</a></li>
+                    <li><a href="#">Vision 2030</a></li>
+                    <li><a href="#">Office & Department Directory</a></li>
+                    <li><a href="#">Awards & Achievements</a></li>
+                    <li><a href="#">Job Opportunities</a></li>
+                    <li><a href="#">Maluti Merchandise</a></li>
+                </ul>
+            </div>
+            <div class="kw-footer-col-links">
+                <h1 class="footer-heading">Students</h1>
+                <ul class="kw-footer-link-list">
+                    <li><a href="#">Alumni & Friends</a></li>
+                    <li><a href="#">Digital Library</a></li>
+                    <li><a href="#">Noticeboard</a></li>
                 </ul>
             </div>
         </div>
-        
         <div class="kw-footer-content-wrapper kw-footer-bottom">
-            <span class="kw-footer-designer">Copyright &copy; 2024 Maluti TVET College. All rights reserved.</span>
+            <span class="kw-footer-designer">Copyright &copy; 2026 Maluti TVET College. All rights reserved.</span>
         </div>
     </div>
 </footer>
+
+<!-- ── Visit Modal ── -->
+<div class="vm-overlay" id="vm-overlay" role="dialog" aria-modal="true" aria-label="Our Locations">
+    <div class="vm-modal">
+
+        <!-- Header -->
+        <div class="vm-header">
+            <div class="vm-header-text">
+                <h2>Our Locations</h2>
+                <p>Select a campus or office to view on the map</p>
+            </div>
+            <button class="vm-close" id="vm-close" aria-label="Close">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Tab nav -->
+        <div class="vm-nav" id="vm-nav">
+            <span class="vm-nav-sep">Campuses</span>
+            <button class="vm-tab" data-key="main">Main Campus</button>
+            <button class="vm-tab" data-key="lere">Lere La Tshepe</button>
+            <button class="vm-tab" data-key="sefikeng">Sefikeng</button>
+            <button class="vm-tab" data-key="bonamelo">Bonamelo</button>
+            <button class="vm-tab" data-key="harrismith">Harrismith</button>
+            <button class="vm-tab" data-key="bethlehem">Bethlehem</button>
+            <button class="vm-tab" data-key="kwetlisong">Kwetlisong</button>
+            <button class="vm-tab" data-key="itemoheleng">Itemoheleng</button>
+            <div class="vm-nav-divider"></div>
+            <span class="vm-nav-sep">Offices</span>
+            <button class="vm-tab" data-key="central">Central Office</button>
+            <button class="vm-tab" data-key="corporate">Corporate Office</button>
+        </div>
+
+        <div class="vm-divider"></div>
+
+        <!-- Map -->
+        <div class="vm-map-wrap">
+            <div class="vm-map-inner">
+
+                <!-- Empty state -->
+                <div class="vm-empty" id="vm-empty">
+                    <div class="vm-empty-ring">◎</div>
+                    <p>Select a location above</p>
+                </div>
+
+                <!-- Spinner -->
+                <div class="vm-spinner-wrap" id="vm-spinner">
+                    <div class="vm-spin"></div>
+                </div>
+
+                <!-- iframe -->
+                <div class="vm-iframe-box" id="vm-iframe-box">
+                    <iframe id="vm-iframe" src="" allowfullscreen title="Campus map"></iframe>
+                </div>
+
+                <!-- Floating label -->
+                <div class="vm-map-label" id="vm-map-label">
+                    <h3 id="vm-label-name"></h3>
+                    <p id="vm-label-addr"></p>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+(function () {
+    var DATA = {
+        main:        { name: 'Main Campus',        addr: 'Phuthaditjhaba, QwaQwa, Free State',      lat: -28.5333, lng: 28.9333 },
+        lere:        { name: 'Lere La Tshepe',      addr: 'Phuthaditjhaba, QwaQwa, Free State',      lat: -28.5360, lng: 28.9300 },
+        sefikeng:    { name: 'Sefikeng Campus',     addr: 'Phuthaditjhaba, Free State',              lat: -28.5290, lng: 28.9380 },
+        bonamelo:    { name: 'Bonamelo Campus',     addr: 'Bonamelo, Free State',                    lat: -28.3700, lng: 27.4800 },
+        harrismith:  { name: 'Harrismith Campus',   addr: 'Harrismith, Free State',                  lat: -28.2742, lng: 29.1225 },
+        bethlehem:   { name: 'Bethlehem Campus',    addr: 'Bethlehem, Free State',                   lat: -28.2292, lng: 28.3081 },
+        kwetlisong:  { name: 'Kwetlisong Campus',   addr: 'Phuthaditjhaba, Free State',              lat: -28.5410, lng: 28.9260 },
+        itemoheleng: { name: 'Itemoheleng Campus',  addr: 'Witsieshoek, QwaQwa, Free State',         lat: -28.5700, lng: 28.8900 },
+        central:     { name: 'Central Office',      addr: 'Phuthaditjhaba, Free State',              lat: -28.5310, lng: 28.9355 },
+        corporate:   { name: 'Corporate Office',    addr: 'Wessels Street, Bethlehem, Free State',   lat: -28.2305, lng: 28.3095 }
+    };
+
+    var overlay    = document.getElementById('vm-overlay');
+    var closeBtn   = document.getElementById('vm-close');
+    var visitBtn   = document.getElementById('kw-visit-btn');
+    var tabs       = document.querySelectorAll('.vm-tab');
+    var empty      = document.getElementById('vm-empty');
+    var spinner    = document.getElementById('vm-spinner');
+    var iframeBox  = document.getElementById('vm-iframe-box');
+    var iframe     = document.getElementById('vm-iframe');
+    var mapLabel   = document.getElementById('vm-map-label');
+    var labelName  = document.getElementById('vm-label-name');
+    var labelAddr  = document.getElementById('vm-label-addr');
+    var fallbackTimer;
+
+    function openModal()  { overlay.classList.add('vm-open');    document.body.style.overflow = 'hidden'; }
+    function closeModal() { overlay.classList.remove('vm-open'); document.body.style.overflow = ''; }
+
+    visitBtn.addEventListener('click', function (e) { e.preventDefault(); openModal(); });
+    closeBtn.addEventListener('click', closeModal);
+    overlay.addEventListener('click', function (e) { if (e.target === overlay) closeModal(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
+
+    function showMap() {
+        clearTimeout(fallbackTimer);
+        spinner.classList.remove('show');
+        iframeBox.classList.add('show');
+        mapLabel.classList.add('show');
+    }
+
+    tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+            tabs.forEach(function (t) { t.classList.remove('vm-active'); });
+            tab.classList.add('vm-active');
+
+            var d = DATA[tab.dataset.key];
+            if (!d) return;
+
+            empty.style.display = 'none';
+            iframeBox.classList.remove('show');
+            mapLabel.classList.remove('show');
+            spinner.classList.add('show');
+
+            labelName.textContent = d.name;
+            labelAddr.textContent = d.addr;
+
+            var pad = 0.012;
+            var src = 'https://www.openstreetmap.org/export/embed.html'
+                    + '?bbox='   + (d.lng - pad)         + '%2C' + (d.lat - pad * 0.75)
+                    + '%2C'      + (d.lng + pad)         + '%2C' + (d.lat + pad * 0.75)
+                    + '&layer=mapnik'
+                    + '&marker=' + d.lat + '%2C' + d.lng;
+
+            iframe.onload = showMap;
+            clearTimeout(fallbackTimer);
+            fallbackTimer = setTimeout(showMap, 5000);
+
+            iframe.src = src;
+        });
+    });
+})();
+</script>
 
 </body>
 </html>
