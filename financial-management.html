@@ -1,0 +1,1708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maluti TVET College</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+                
+<style>
+  body { margin: 0; background: #f0f0f4; }
+  .page-body { margin-top: 55px; padding: 40px; 
+  font-family: sans-serif;
+  color: #333; }
+</style>
+</head>
+<body>
+
+<div id="hyperion-host"></div>
+
+<script>
+(function () {
+  const host   = document.getElementById('hyperion-host');
+  const shadow = host.attachShadow({ mode: 'open' });
+
+  const style = document.createElement('style');
+  style.textContent = `
+    
+    * { box-sizing: border-box; font-family: 'Source Sans Pro', sans-serif; line-height: 1.2; }
+
+    :host {
+        --hyperion-color-header-bg: #0a0a3c;
+        --hyperion-color-accent: #0077cc;
+        --hyperion-color-text-light: #fff;
+        --hyperion-color-background-dark: #000;
+        --hyperion-color-off-white: #f4f4f4;
+        --hyperion-color-text-muted: #A0A9BE;
+        --hyperion-color-menu-bg: #0a0a3c;
+        --hyperion-color-menu-border: rgba(0, 145, 255, 0.2);
+        --hyperion-color-qr-dropdown-bg: #06273e;
+        --hyperion-header-height: 55px;
+        --hyperion-content-max-width-fg: 1500px;
+    }
+
+    .hyperion-header-wrapper {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%;
+        z-index: 1000;
+        background-color: var(--hyperion-color-header-bg);
+        text-decoration: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .hyperion-custom-header {
+        height: var(--hyperion-header-height);
+        display: flex;
+        align-items: center;
+    }
+
+    .hyperion-custom-header-container {
+        max-width: var(--hyperion-content-max-width-fg);
+        width: 100%;
+        margin: 0 auto;
+        padding: 0 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .hyperion-custom-logo-text img {
+        font-size: 28px; font-weight: 900; letter-spacing: -0.5px;
+        color: var(--hyperion-color-text-light);
+        transition: color 0.3s ease;
+        height: 30px; vertical-align: middle;
+    }
+    .hyperion-custom-logo-text:hover { color: var(--hyperion-color-accent); }
+
+    .hyperion-custom-main-nav {
+        flex-grow: 1; display: flex;
+        justify-content: space-between; align-items: center;
+    }
+
+    .hyperion-custom-nav-list {
+        display: flex; list-style: none;
+        margin: 0; padding: 0; align-items: center;
+    }
+
+    .hyperion-custom-nav-list li {
+        margin-left: 35px; position: relative;
+        text-decoration: none; border-bottom: none;
+    }
+
+    .hyperion-custom-nav-link {
+        text-decoration: none;
+        color: var(--hyperion-color-text-light);
+        font-weight: 500; padding: 10px 0;
+        display: flex; font-size: 16px; align-items: center;
+        transition: color 0.2s; letter-spacing: 0.02em;
+    }
+    .hyperion-custom-nav-link:hover { color: #a0aadd; }
+    .hyperion-custom-nav-item--has-megamenu.active .hyperion-custom-nav-link { color: var(--hyperion-color-accent); }
+
+    .hyperion-desktop-link-icon {
+        width: 14px; height: 14px; margin-left: 6px;
+        color: inherit; stroke-width: 2; transition: transform 0.2s;
+    }
+    .hyperion-custom-nav-item--has-megamenu.active .hyperion-desktop-link-icon { transform: rotate(180deg); }
+
+    .hyperion-header-action-buttons { display: flex; align-items: center; gap: 12px; }
+
+    .hyperion-header-action-btn {
+        background: var(--hyperion-color-accent); color: var(--hyperion-color-text-light);
+        border: none; padding: 9px 18px; border-radius: 50px;
+        font-weight: 600; font-size: 15px; cursor: pointer;
+        transition: background-color 0.2s ease;
+        text-decoration: none; font-family: inherit; letter-spacing: 0.02em;
+    }
+    .hyperion-header-action-btn a { color: inherit; text-decoration: none; border-bottom: none; }
+    .hyperion-header-action-btn:hover { background-color: #0077cc; }
+
+    .hyperion-header-secondary-btn {
+        background-color: transparent; color: var(--hyperion-color-text-light);
+        border: 1px solid rgba(255,255,255,0.2); padding: 9px 17px; border-radius: 50px;
+        font-weight: 600; font-size: 15px; cursor: pointer; letter-spacing: 0.02em;
+        transition: background-color 0.2s ease, border-color 0.2s ease;
+        text-decoration: none; font-family: inherit;
+    }
+    .hyperion-header-secondary-btn a { color: inherit; text-decoration: none; border-bottom: none; }
+    .hyperion-header-secondary-btn:hover { background-color: rgba(255,255,255,0.05); border-color: #fff; }
+
+    .hyperion-mobile-dropdown-icon {
+        display: none; transition: transform 0.3s ease; flex-shrink: 0;
+    }
+
+    .hyperion-mobile-toggle {
+        display: none; background: none; border: none;
+        width: 30px; height: 24px; cursor: pointer; padding: 0;
+        position: relative; z-index: 1010;
+    }
+    .hyperion-mobile-toggle span {
+        display: block; height: 2px; width: 100%;
+        background-color: var(--hyperion-color-text-light);
+        margin: 6px 0; border-radius: 1px; transition: all 0.3s ease;
+    }
+    .hyperion-header-wrapper.hyperion-mobile-menu-open .hyperion-mobile-toggle span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .hyperion-header-wrapper.hyperion-mobile-menu-open .hyperion-mobile-toggle span:nth-child(2) { opacity: 0; }
+    .hyperion-header-wrapper.hyperion-mobile-menu-open .hyperion-mobile-toggle span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .hyperion-mega-menu-container {
+        position: absolute;
+        top: var(--hyperion-header-height); left: 0; width: 100%;
+        background-color: var(--hyperion-color-menu-bg);
+        border-top: 1px solid rgba(255,255,255,0.07);
+        border-bottom: 1px solid rgba(255,255,255,0.07);
+        visibility: hidden; opacity: 0; transform: translateY(-8px);
+        transition: visibility 0s linear 0.15s, opacity 0.15s ease, transform 0.15s ease;
+        pointer-events: none;
+    }
+
+    .hyperion-header-wrapper.hyperion-mega-menu-open .hyperion-mega-menu-container {
+        visibility: visible; opacity: 1; transform: translateY(0); pointer-events: auto;
+        transition-delay: 0s;
+    }
+
+    .hyperion-mega-menu-panel {
+        display: none;
+        max-width: var(--hyperion-content-max-width-fg);
+        width: 100%; margin: 0 auto; padding: 10px 40px 48px;
+    }
+    .hyperion-mega-menu-panel.active { display: block; }
+
+    .hyperion-megamenu-3-column-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 250px);
+        gap: 40px; justify-content: start;
+    }
+
+    .hyperion-menu-group-card {
+        padding: 0; padding-top: 10px; padding-bottom: 2rem; 
+    }
+
+    .hyperion-menu-group-card h3 {
+        font-size: 14px; font-weight: 500; margin-bottom: 20px;
+        text-transform: none; cursor: default;
+        display: flex; align-items: center; color: var(--hyperion-color-text-muted);
+    }
+
+    .hyperion-menu-group-img-icon {
+        width: auto; height: 43px; margin-right: 12px;
+        flex-shrink: 0; border-radius: 8px; vertical-align: middle;
+    }
+
+    .hyperion-menu-group-text-container {
+        display: flex; flex-direction: column; justify-content: center;
+    }
+
+    .hyperion-menu-group-tagline {
+        font-size: 14px; font-weight: 400;
+        color: var(--hyperion-color-text-muted); margin-top: 4px; display: block;
+    }
+
+    .hyperion-mega-menu-group-list { list-style: none; padding: 0; margin: 0; }
+
+    .hyperion-mega-menu-group-list a {
+        display: block; border-radius: 0; transition: color 0.2s;
+        position: relative; margin: 7px 0; padding: 2px 0;
+        font-size: 19px; font-weight: 600;
+        color: #f1f1f1; text-decoration: none; border-bottom: none;
+    }
+    .hyperion-mega-menu-link-title { font-size: inherit; font-weight: inherit; color: inherit; margin-bottom: 0; }
+    .hyperion-mega-menu-group-list a:hover { color: #a0aadd; background-color: transparent; }
+
+    @media (max-width: 1024px) {
+        .hyperion-custom-header-container { padding: 0 20px; }
+        .hyperion-mobile-toggle { display: block; }
+
+        .hyperion-custom-main-nav {
+            position: fixed;
+            top: var(--hyperion-header-height); left: 0;
+            width: 100%; height: calc(100vh - var(--hyperion-header-height));
+            background-color: var(--hyperion-color-header-bg);
+            overflow-y: auto; overflow-x: hidden; padding: 16px 0 40px;
+            transform: translateX(100%); transition: transform 0.3s ease;
+            display: block; z-index: 900; box-sizing: border-box;
+        }
+        .hyperion-header-wrapper.hyperion-mobile-menu-open .hyperion-custom-main-nav {
+            transform: translateX(0);
+        }
+
+        .hyperion-custom-nav-list {
+            flex-direction: column; align-items: flex-start;
+            padding: 0 20px; margin-left: 0;
+        }
+        .hyperion-custom-nav-list li { margin: 0; width: 100%; }
+
+        .hyperion-custom-nav-link {
+            padding: 15px 0; font-size: 16px; width: 100%;
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .hyperion-desktop-link-icon { display: none; }
+        .hyperion-mobile-dropdown-icon { display: inline-block; }
+
+        .hyperion-custom-nav-item--has-megamenu.active .hyperion-custom-nav-link .hyperion-mobile-dropdown-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Ensure taglines appear beautifully on mobile */
+        .hyperion-menu-group-tagline { 
+            display: block; 
+            margin-bottom: 12px; 
+            font-size: 13px; 
+        }
+
+        .hyperion-header-action-buttons {
+            flex-direction: column; width: 100%;
+            padding: 24px 20px 0; box-sizing: border-box; margin-top: 0;
+            gap: 12px;
+        }
+
+        .hyperion-header-action-btn,
+        .hyperion-header-secondary-btn {
+            width: 100%; margin: 0; padding: 14px 20px;
+            text-align: center; display: block; box-sizing: border-box;
+            font-size: 15px;
+        }
+
+        .hyperion-mega-menu-container {
+            position: static !important; visibility: visible !important;
+            opacity: 1 !important; transform: none !important;
+            pointer-events: auto !important;
+            background-color: var(--hyperion-color-menu-bg);
+            border: none; box-shadow: none;
+            overflow: hidden; max-height: 0;
+            transition: max-height 0.35s ease; width: 100%;
+        }
+        .hyperion-standalone-mega-menu { display: none !important; }
+        .hyperion-custom-nav-item--has-megamenu.active .hyperion-mega-menu-container {
+            max-height: 3000px;
+        }
+        .hyperion-mega-menu-panel { display: block !important; padding: 10px 0 20px; }
+        .hyperion-megamenu-3-column-grid { grid-template-columns: 1fr; gap: 0; }
+        .hyperion-menu-group-card { padding: 0; padding-bottom: 12px; margin: 0 0 20px 0;}
+        .hyperion-menu-group-card h3 { margin-top: 18px; margin-bottom: 10px; }
+        .hyperion-mega-menu-group-list a { font-size: 15px; margin: 6px 0; padding: 0; }
+        .hyperion-mega-menu-group-list li { border: none; }
+        .hyperion-menu-group-button { width: fit-content; text-align: left; box-sizing: border-box; }
+        .hyperion-menu-group-img-icon { vertical-align: middle; justify-content: center;}
+    }
+  `;
+
+  const tpl = document.createElement('template');
+  tpl.innerHTML = `
+<div class="hyperion-header-wrapper">
+    <header class="hyperion-custom-header">
+        <div class="hyperion-custom-header-container">
+            <div class="hyperion-custom-logo-container">
+                <a href="index.html" class="hyperion-custom-logo-link hyperion-custom-logo-text">
+                    <img src="images/logo.png" alt="Hyperion Logo">
+                </a>
+            </div>
+            <nav class="hyperion-custom-main-nav">
+                <ul class="hyperion-custom-nav-list">
+                    <li>
+                        <a href="pricing.html" class="hyperion-custom-nav-link">Calendar</a>
+                    </li>
+                    <li>
+                        <a href="page.html" class="hyperion-custom-nav-link">News & Events</a>
+                    </li>
+                    <li class="hyperion-custom-nav-item--has-megamenu">
+                        <a href="page.html" class="hyperion-custom-nav-link" data-hyperion-megamenu-trigger="services">
+                            Programs of Study
+                            <svg class="hyperion-desktop-link-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><polyline points="4 6 8 10 12 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            <svg class="hyperion-mobile-dropdown-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                        <div class="hyperion-mega-menu-container">
+                            <div class="hyperion-mega-menu-panel" data-hyperion-megamenu-panel="services">
+                                <div class="hyperion-megamenu-3-column-grid">
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>
+                                            <img src="images/engineering.png" alt="Dev Icon" class="hyperion-menu-group-img-icon">
+                                            <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 500; font-size: 15px; line-height: 1;">
+                                                Faculty of Engineering Studies
+                                                <span class="hyperion-menu-group-tagline">Pioneers of Infrastructure</span>
+                                            </span>
+                                        </h3>
+                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 600; font-size: 15px; cursor:pointer;">
+                                            <a style="text-decoration: none; border-bottom: none; color: #fff;" href="faculty-of-engineering.html">Learn more</a>
+                                        </button>
+                                        <ul class="hyperion-mega-menu-group-list">
+                                            <li><a href="electrical-engineering.html"><span class="hyperion-mega-menu-link-title">Electrical Engineering</span></a></li>
+                                            <li><a href="mechanical-engineering.html"><span class="hyperion-mega-menu-link-title">Mechanical Engineering</span></a></li>
+                                            <li><a href="civil-engineering.html"><span class="hyperion-mega-menu-link-title">Civil Engineering</span></a></li>
+                                            <li><a href="information-technology.html"><span class="hyperion-mega-menu-link-title">Information Technology & Computer Science</span></a></li>
+                                            <li><a href="programming.html"><span class="hyperion-mega-menu-link-title">Programming & Robotics</span></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>
+                                            <img src="images/it.png" alt="IT Icon" class="hyperion-menu-group-img-icon">
+                                            <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 500; font-size: 15px; line-height: 1;">
+                                                Faculty of Business Management
+                                                <span class="hyperion-menu-group-tagline">Architects of Commerce</span>
+                                            </span>
+                                        </h3>
+                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 600; font-size: 15px; cursor:pointer;">
+                                            <a style="text-decoration: none; border-bottom: none; color: #fff; border-radius: 50px;" href="faculty-of-business.html">Learn more</a>
+                                        </button>
+                                         <ul class="hyperion-mega-menu-group-list">
+                                            <li><a href="business.html"><span class="hyperion-mega-menu-link-title">Business Management</span></a></li>
+                                            <li><a href="finance.html"><span class="hyperion-mega-menu-link-title">Finance, Economics, and Accounting</span></a></li>
+                                            <li><a href="financial-management.html"><span class="hyperion-mega-menu-link-title">Financial Management</span></a></li>
+                                            <li><a href="marketing.html"><span class="hyperion-mega-menu-link-title">Marketing Management</span></a></li>
+                                            <li><a href="office-administration.html"><span class="hyperion-mega-menu-link-title">Office Administration</span></a></li>
+                                            <li><a href="management-assistant.html"><span class="hyperion-mega-menu-link-title">Management Assistant</span></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>
+                                            <img src="images/hosp.png" alt="Hospitality Icon" class="hyperion-menu-group-img-icon">
+                                            <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 500; font-size: 15px; line-height: 1;">
+                                                Faculty of Humanities & Social Services
+                                                <span class="hyperion-menu-group-tagline">Champions of Community</span>
+                                            </span>
+                                        </h3>
+                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 600; font-size: 15px; cursor:pointer;">
+                                            <a style="text-decoration: none; border-bottom: none; color: #fff;" href="faculty-of-humanities.html">Learn more</a>
+                                        </button>
+                                        <ul class="hyperion-mega-menu-group-list">
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Hospitality & Catering Services</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Tourism Management</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Educare</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Art & Design</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Education & Development</span></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>
+                                            <img src="images/business.png" alt="Business Icon" class="hyperion-menu-group-img-icon">
+                                            <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 500; font-size: 15px; line-height: 1;">
+                                                Faculty of Agriculture
+                                                <span class="hyperion-menu-group-tagline">Stewards of Sustainability</span>
+                                            </span>
+                                        </h3>
+                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 600; font-size: 15px; cursor:pointer;">
+                                            <a style="text-decoration: none; border-bottom: none; color: #fff;" href="faculty-of-agriculture.html">Learn more</a>
+                                        </button>
+                                        <ul class="hyperion-mega-menu-group-list">
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Primary Agriculture</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Farm Management & Mechanisation</span></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>
+                                            <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 500; font-size: 15px; line-height: 1;">
+                                               Skills & Occupational Faculty
+                                                <span class="hyperion-menu-group-tagline">Masters of Craft</span>
+                                            </span>
+                                        </h3>
+                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 600; font-size: 15px; cursor:pointer;">
+                                            <a style="text-decoration: none; border-bottom: none; color: #fff;" href="index.html">Advance your skills</a>
+                                        </button>
+                                        <ul class="hyperion-mega-menu-group-list">
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Motor Mechanics</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Bricklaying</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Panelbeating</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Boilermaking</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Welding</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Cabinet Making</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Early Childhood Development</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">End-User Computing</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">IT Technical Support</span></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="hyperion-custom-nav-item--has-megamenu">
+                        <a href="#" class="hyperion-custom-nav-link" data-hyperion-megamenu-trigger="campus">
+                            Study @ Maluti
+                            <svg class="hyperion-desktop-link-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><polyline points="4 6 8 10 12 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            <svg class="hyperion-mobile-dropdown-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                        <div class="hyperion-mega-menu-container">
+                            <div class="hyperion-mega-menu-panel" data-hyperion-megamenu-panel="campus">
+                                <div class="hyperion-megamenu-3-column-grid">
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>Student Resources</h3>
+                                        <ul class="hyperion-mega-menu-group-list">
+                                            <li><a href="portal.html"><span class="hyperion-mega-menu-link-title">Student Portal</span></a></li>
+                                            <li><a href="housing.html"><span class="hyperion-mega-menu-link-title">Noticeboard</span></a></li>
+                                            <li><a href="library.html"><span class="hyperion-mega-menu-link-title">Digital Library</span></a></li>
+                                            <li><a href="exams.html"><span class="hyperion-mega-menu-link-title">Exam Schedules</span></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>Admissions &amp; Aid</h3>
+                                        <ul class="hyperion-mega-menu-group-list">
+                                            <li><a href="how-to-apply.html"><span class="hyperion-mega-menu-link-title">How to apply</span></a></li>
+                                            <li><a href="payroll.html"><span class="hyperion-mega-menu-link-title">Admissions Requirements</span></a></li>
+                                            <li><a href="events.html"><span class="hyperion-mega-menu-link-title">Tuition, Fees & Payments</span></a></li>
+                                            <li><a href="support.html"><span class="hyperion-mega-menu-link-title">Registrations</span></a></li>
+                                            <li><a href="hr-resources.html"><span class="hyperion-mega-menu-link-title">Assessments</span></a></li>
+                                            <li><a href="research.html"><span class="hyperion-mega-menu-link-title">Financial Aid</span></a></li>
+                                            <li><a href="research.html"><span class="hyperion-mega-menu-link-title">Late Enquiries</span></a></li>
+                                            <li><a href="research.html"><span class="hyperion-mega-menu-link-title">Check your status</span></a></li>
+                                            <li><a href="research.html"><span class="hyperion-mega-menu-link-title">Timetables</span></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>Campus Life</h3>
+                                        <ul class="hyperion-mega-menu-group-list">
+                                            <li><a href="prospectus.html"><span class="hyperion-mega-menu-link-title">Campus Support</span></a></li>
+                                            <li><a href="requirements.html"><span class="hyperion-mega-menu-link-title">Campus Facilities</span></a></li>
+                                            <li><a href="scholarships.html"><span class="hyperion-mega-menu-link-title">Residence Life</span></a></li>
+                                            <li><a href="faq.html"><span class="hyperion-mega-menu-link-title">Student Activities</span></a></li>
+                                            <li><a href="apply.html"><span class="hyperion-mega-menu-link-title">Sports & Recreation</span></a></li>
+                                            <li><a href="visit.html"><span class="hyperion-mega-menu-link-title">Clubs & Societies</span></a></li>
+                                            <li><a href="visit.html"><span class="hyperion-mega-menu-link-title">SRC</span></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>Future Students</h3>
+                                        <ul class="hyperion-mega-menu-group-list">
+                                            <li><a href="prospectus.html"><span class="hyperion-mega-menu-link-title">Download Prospectus</span></a></li>
+                                            <li><a href="requirements.html"><span class="hyperion-mega-menu-link-title">Entry Requirements</span></a></li>
+                                            <li><a href="scholarships.html"><span class="hyperion-mega-menu-link-title">Scholarships</span></a></li>
+                                            <li><a href="faq.html"><span class="hyperion-mega-menu-link-title">Admissions FAQ</span></a></li>
+                                            <li><a href="apply.html"><span class="hyperion-mega-menu-link-title">Apply Now</span></a></li>
+                                            <li><a href="accomodation.html"><span class="hyperion-mega-menu-link-title">Off-campus Accomodation</span></a></li>  
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="hyperion-custom-nav-item--has-megamenu">
+                        <a href="#" class="hyperion-custom-nav-link" data-hyperion-megamenu-trigger="discover">
+                            Discover
+                            <svg class="hyperion-desktop-link-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><polyline points="4 6 8 10 12 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            <svg class="hyperion-mobile-dropdown-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                        <div class="hyperion-mega-menu-container">
+                            <div class="hyperion-mega-menu-panel" data-hyperion-megamenu-panel="discover">
+                                <div class="hyperion-megamenu-3-column-grid">
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>Maluti</h3>
+                                        <ul class="hyperion-mega-menu-group-list">
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">About Us</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Roadmap</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Innovations</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Events</span></a></li>
+                                            <li><a href="careers.html"><span class="hyperion-mega-menu-link-title">Job Opportunities</span></a></li>
+                                            <li><a href="merchandise.html"><span class="hyperion-mega-menu-link-title">Maluti Merchandise</span></a></li>
+                                            <li><a href="licenses-and-registrations.html"><span class="hyperion-mega-menu-link-title">Executive Leadership</span></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>Staff & Faculty</h3>
+                                        <ul class="hyperion-mega-menu-group-list">
+                                            <li><a href="staff.html"><span class="hyperion-mega-menu-link-title">QMS</span></a></li>
+                                          
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Webinars</span></a></li>
+                                            
+                                        </ul>
+                                    </div>
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>Connect</h3>
+                                        <ul class="hyperion-mega-menu-group-list">
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">X</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Facebook</span></a></li>
+                                            <li><a href="#"><span class="hyperion-mega-menu-link-title">LinkedIn</span></a></li>
+                                            <li><a href="#"><span class="hyperion-mega-menu-link-title">Youtube</span></a></li>
+                                            <li><a href="#"><span class="hyperion-mega-menu-link-title">Instagram</span></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="hyperion-header-action-buttons">
+                    <button class="hyperion-header-secondary-btn">
+                        <a href="login.html">Student Portal</a>
+                    </button>
+                    <button class="hyperion-header-action-btn">
+                        <a href="contact.html">Contact Us</a>
+                    </button>
+                </div>
+            </nav>
+            <button class="hyperion-mobile-toggle" id="hyperion-mobileMenuToggle" aria-label="Toggle navigation menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+    <div class="hyperion-mega-menu-container hyperion-standalone-mega-menu" id="hyperion-desktopMegaMenu"></div>
+</div>
+  `;
+
+  shadow.appendChild(style);
+  shadow.appendChild(tpl.content.cloneNode(true));
+
+  const wrapper      = shadow.querySelector('.hyperion-header-wrapper');
+  const desktopMenu  = shadow.getElementById('hyperion-desktopMegaMenu');
+  const triggers     = shadow.querySelectorAll('[data-hyperion-megamenu-trigger]');
+  const mobileToggle = shadow.getElementById('hyperion-mobileMenuToggle');
+  const mobileItems  = shadow.querySelectorAll('.hyperion-custom-nav-item--has-megamenu');
+  const body         = document.body;
+
+  triggers.forEach(trigger => {
+      const panelId     = trigger.getAttribute('data-hyperion-megamenu-trigger');
+      const sourcePanel = trigger.closest('li')
+          .querySelector('[data-hyperion-megamenu-panel="' + panelId + '"]');
+      if (!sourcePanel) return;
+      const clone = sourcePanel.cloneNode(true);
+      clone.classList.add('hyperion-desktop-clone');
+      desktopMenu.appendChild(clone);
+  });
+
+  const desktopPanels = desktopMenu.querySelectorAll('.hyperion-mega-menu-panel');
+  let closeTimer = null;
+
+  function openDesktopMenu(panelId) {
+      clearTimeout(closeTimer);
+      desktopPanels.forEach(p => p.classList.remove('active'));
+      triggers.forEach(t => t.classList.remove('active'));
+      const panel = desktopMenu.querySelector('[data-hyperion-megamenu-panel="' + panelId + '"]');
+      const trig  = shadow.querySelector('[data-hyperion-megamenu-trigger="' + panelId + '"]');
+      if (panel) panel.classList.add('active');
+      if (trig)  trig.classList.add('active');
+      wrapper.classList.add('hyperion-mega-menu-open');
+  }
+
+  function closeDesktopMenu() {
+      closeTimer = setTimeout(() => {
+          desktopPanels.forEach(p => p.classList.remove('active'));
+          triggers.forEach(t => t.classList.remove('active'));
+          wrapper.classList.remove('hyperion-mega-menu-open');
+      }, 150);
+  }
+
+  triggers.forEach(trigger => {
+      trigger.addEventListener('mouseenter', () => {
+          if (window.innerWidth > 1024) openDesktopMenu(trigger.getAttribute('data-hyperion-megamenu-trigger'));
+      });
+      trigger.closest('li').addEventListener('mouseleave', () => {
+          if (window.innerWidth > 1024) closeDesktopMenu();
+      });
+  });
+
+  desktopMenu.addEventListener('mouseenter', () => { if (window.innerWidth > 1024) clearTimeout(closeTimer); });
+  desktopMenu.addEventListener('mouseleave', () => { if (window.innerWidth > 1024) closeDesktopMenu(); });
+
+  mobileToggle.addEventListener('click', () => {
+      wrapper.classList.toggle('hyperion-mobile-menu-open');
+      body.classList.toggle('hyperion-mobile-menu-active');
+      if (!wrapper.classList.contains('hyperion-mobile-menu-open')) {
+          mobileItems.forEach(item => item.classList.remove('active'));
+          wrapper.classList.remove('hyperion-mega-menu-open');
+      }
+  });
+
+  mobileItems.forEach(item => {
+      const trigger = item.querySelector('.hyperion-custom-nav-link');
+      trigger.addEventListener('click', e => {
+          if (window.innerWidth <= 1024) {
+              e.preventDefault(); e.stopPropagation();
+              const isOpen = item.classList.contains('active');
+              mobileItems.forEach(other => other.classList.remove('active'));
+              if (!isOpen) item.classList.add('active');
+          }
+      });
+  });
+
+  shadow.querySelectorAll('.hyperion-mega-menu-group-list a, .hyperion-custom-nav-list > li > a:not([data-hyperion-megamenu-trigger])').forEach(link => {
+      link.addEventListener('click', () => {
+          if (window.innerWidth <= 1024) {
+              wrapper.classList.remove('hyperion-mobile-menu-open');
+              body.classList.remove('hyperion-mobile-menu-active');
+              mobileItems.forEach(item => item.classList.remove('active'));
+          }
+      });
+  });
+
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+          if (window.innerWidth > 1024) {
+              wrapper.classList.remove('hyperion-mobile-menu-open');
+              body.classList.remove('hyperion-mobile-menu-active');
+              mobileItems.forEach(item => item.classList.remove('active'));
+          } else {
+              desktopPanels.forEach(p => p.classList.remove('active'));
+              wrapper.classList.remove('hyperion-mega-menu-open');
+          }
+      }, 200);
+  });
+
+})();
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Management | Full Academic Guide | Maluti TVET</title>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700;900&family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+    <style>
+        /* --- GLOBAL & TYPOGRAPHY --- */
+        :root {
+            --bg-main: #ffffff;
+            --text-main: #202124;
+            --text-muted: #5f6368;
+            --brand-faculty: #1b5e20; /* Faculty of Business Standard: Dark Green */
+            --accent-light: #e8f5e9;
+            --energy-yellow: #fbbc04;
+            --border-tech: #e8eaed;
+            --font-mono: 'Roboto Mono', monospace;
+            --font-main: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+
+        /* --- COURSE HERO --- */
+        .course-hero {
+            padding: 140px 0 80px;
+            border-bottom: 1px solid var(--border-tech);
+            background: linear-gradient(135deg, #f1f8e9 0%, #ffffff 100%);
+        }
+
+        .breadcrumb {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--brand-faculty);
+            margin-bottom: 24px;
+            display: block;
+            font-weight: 700;
+        }
+
+        .course-title {
+            font-size: clamp(40px, 7vw, 82px);
+            font-weight: 900;
+            letter-spacing: -2px;
+            line-height: 0.95;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            color: #121212;
+        }
+
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 20px;
+            background: var(--brand-faculty);
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1px;
+            border-radius: 2px;
+        }
+
+        /* --- LAYOUT --- */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1fr 360px;
+            gap: 120px;
+            padding: 100px 0;
+        }
+
+        /* --- CONTENT BLOCKS --- */
+        .section-tag {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--brand-faculty);
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .content-block { margin-bottom: 120px; }
+
+        .content-block h2 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 32px;
+            letter-spacing: -1px;
+            color: #1a1a1a;
+            line-height: 1.2;
+        }
+
+        .content-block p {
+            font-size: 20px;
+            color: #444;
+            margin-bottom: 30px;
+        }
+
+        /* Module Grids */
+        .module-card {
+            border-top: 1px solid var(--border-tech);
+            padding: 40px 0;
+        }
+
+        .module-grid {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 40px;
+        }
+
+        .level-indicator {
+            font-family: var(--font-mono);
+            font-weight: 900;
+            font-size: 16px;
+            color: var(--brand-faculty);
+            text-transform: uppercase;
+        }
+
+        .module-list-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .module-description {
+            font-size: 17px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        /* Info Boxes */
+        .feature-box {
+            background: var(--accent-light);
+            padding: 40px;
+            border-radius: 4px;
+            border-left: 6px solid var(--brand-faculty);
+            margin: 40px 0;
+        }
+
+        .feature-box h4 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--brand-faculty);
+        }
+
+        /* --- SIDEBAR --- */
+        .sidebar-sticky {
+            position: sticky;
+            top: 40px;
+        }
+
+        .sidebar-card {
+            background: #fafafa;
+            border: 1px solid var(--border-tech);
+            padding: 32px;
+            margin-bottom: 40px;
+        }
+
+        .sidebar-title {
+            font-size: 12px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .campus-list {
+            list-style: none;
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--text-main);
+        }
+
+        .campus-list li { margin-bottom: 10px; }
+
+        .metric-item {
+            margin-bottom: 30px;
+        }
+
+        .metric-value {
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--brand-faculty);
+            display: block;
+        }
+
+        .metric-label {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 1000px) {
+            .main-layout { grid-template-columns: 1fr; gap: 80px; }
+            .course-title { font-size: 52px; }
+            .module-grid { grid-template-columns: 1fr; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="course-hero">
+        <div class="container">
+            <nav class="breadcrumb">Faculty of Business & Management Sciences</nav>
+            <h1 class="course-title">Financial<br>Management</h1>
+            <div class="status-pill">NATIONAL DIPLOMA PATHWAY (N4–N6)</div>
+        </div>
+    </header>
+
+    <main class="container main-layout">
+        
+        <div class="content-area">
+            
+            <section class="content-block">
+                <span class="section-tag">Executive Summary</span>
+                <h2>Architecting Corporate Value</h2>
+                <p>The Financial Management program at Maluti TVET is a rigorous academic track designed for the modern economic climate. It moves beyond simple bookkeeping to focus on the <strong>strategic management of capital</strong>. Students are trained to analyze financial health, predict market trends, and implement the accounting controls that prevent corporate failure.</p>
+                
+                <div class="feature-box">
+                    <h4>The "Hope" Factor: Recession-Proof Skills</h4>
+                    <p>In every economic cycle—growth or recession—companies require financial managers. By completing this program, you are securing a skillset that is a universal requirement for every registered business in South Africa. You aren't just looking for a job; you are becoming an essential component of the economy.</p>
+                </div>
+            </section>
+
+            <section class="content-block">
+                <span class="section-tag">Academic Progression</span>
+                <h2>The NATED Stream (N4–N6)</h2>
+                <p>Our semester-based NATED program is built for rapid progression and high-level theoretical mastery. Each 6-month semester focuses on a specific tier of financial engineering.</p>
+
+                <div class="module-card">
+                    <div class="module-grid">
+                        <div class="level-indicator">Level N4</div>
+                        <div class="module-info">
+                            <h3 class="module-list-title">The Foundation of Reporting</h3>
+                            <p class="module-description">Focuses on <strong>Financial Accounting N4</strong>, <strong>Management Communication</strong>, <strong>Entrepreneurship</strong>, and <strong>Computerized Financial Systems (CFS)</strong>. Students learn the transition from manual ledgers to digital environments.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-grid">
+                        <div class="level-indicator">Level N5</div>
+                        <div class="module-info">
+                            <h3 class="module-list-title">Cost Analysis & Logic</h3>
+                            <p class="module-description">Introduction of <strong>Cost & Management Accounting N5</strong>. Students learn to calculate production costs, manage budgets, and analyze variances—essential for manufacturing and retail sectors.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-grid">
+                        <div class="level-indicator">Level N6</div>
+                        <div class="module-info">
+                            <h3 class="module-list-title">Advanced Taxation & Auditing</h3>
+                            <p class="module-description">The final theoretical tier covers <strong>Income Tax N6</strong> and advanced <strong>Financial Accounting</strong>. This prepares students for SARS compliance and complex corporate financial reporting.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-block">
+                <span class="section-tag">Technical Edge</span>
+                <h2>Computerized Financial Systems</h2>
+                <p>A Financial Manager is only as effective as the tools they use. Our program integrates <strong>Computerized Financial Systems (CFS)</strong> across all levels. Students gain hands-on experience with industry-standard software such as <strong>Sage Pastel</strong> and advanced <strong>Microsoft Excel</strong> applications.</p>
+                
+                <div class="feature-box" style="background: #fdfdfd; border: 1px solid var(--border-tech); border-left-color: var(--brand-faculty);">
+                    <h4>Why this matters:</h4>
+                    <p>Modern employers rarely use physical journals. By the time you reach N6, you will be capable of setting up a company’s books digitally, processing payroll, and generating automated financial statements—making you "office-ready" the day you graduate.</p>
+                </div>
+            </section>
+
+            <section class="content-block">
+                <span class="section-tag">Certification Mastery</span>
+                <h2>Securing the National Diploma</h2>
+                <p>It is crucial for students to understand the distinction between a Certificate and a Diploma. Your journey at Maluti TVET is designed to take you to the highest professional tier.</p>
+                
+                <div class="module-card">
+                    <h3 style="margin-bottom: 20px;">Phase 1: Theoretical Excellence</h3>
+                    <p>Completion of N4, N5, and N6 levels. Each level results in a National Certificate issued by the DHET.</p>
+                </div>
+
+                <div class="module-card">
+                    <h3 style="margin-bottom: 20px;">Phase 2: Work Integrated Learning (WIL)</h3>
+                    <p>To qualify for the <strong>National N-Diploma</strong>, students must complete <strong>18 months (2,000 hours)</strong> of relevant practical experience in a financial environment. During this time, you will maintain a Logbook provided by the college to track your application of accounting principles in the real world.</p>
+                </div>
+            </section>
+
+            <section class="content-block">
+                <span class="section-tag">Career Trajectory</span>
+                <h2>Your Future in Industry</h2>
+                <p>Financial Management is a "Global Language." A National Diploma from Maluti TVET allows you to pivot into various specialized roles across the private and public sectors.</p>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                    <div style="padding: 20px; border: 1px solid var(--border-tech);">
+                        <strong style="color: var(--brand-faculty);">Public Sector</strong>
+                        <p style="font-size: 15px; margin-top: 10px;">Municipal Finance, Provincial Treasury, SARS Administration, and Internal Auditing for Government Departments.</p>
+                    </div>
+                    <div style="padding: 20px; border: 1px solid var(--border-tech);">
+                        <strong style="color: var(--brand-faculty);">Private Sector</strong>
+                        <p style="font-size: 15px; margin-top: 10px;">Corporate Accounting, Cost Consulting, Financial Analysis, and Risk Management for Commercial Banks.</p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <aside class="sidebar-sticky">
+            
+            <div class="sidebar-card" style="background: var(--brand-faculty); color: white; border: none;">
+                <span class="sidebar-title" style="color: rgba(255,255,255,0.7);">Admission Status</span>
+                <p style="font-size: 18px; font-weight: 700; margin-bottom: 10px;">Registration is OPEN</p>
+                <p style="font-size: 14px; opacity: 0.9;">Apply now for the upcoming semester. Financial Management spaces are limited due to lab capacity.</p>
+            </div>
+
+            <div class="sidebar-card">
+                <span class="sidebar-title">Core Campus Locations</span>
+                <ul class="campus-list">
+                    <li>Bethlehem Campus</li>
+                    <li>Harrismith Campus</li>
+                    <li>Kwetlisong Campus</li>
+                </ul>
+            </div>
+
+            <div class="sidebar-card">
+                <span class="sidebar-title">Program Logistics</span>
+                <div class="metric-item">
+                    <span class="metric-value">6 Months</span>
+                    <span class="metric-label">Per N-Level (N4, N5, N6)</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-value">Grade 12</span>
+                    <span class="metric-label">Minimum Entry (with Accounting)</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-value">R3,200*</span>
+                    <span class="metric-label">Estimated Average Fee Per Semester</span>
+                </div>
+            </div>
+
+            <div class="sidebar-card">
+                <span class="sidebar-title">Entry Requirements</span>
+                <p style="font-size: 15px; color: var(--text-muted);">
+                    To enroll in N4 Financial Management, you must have a <strong>Grade 12 Certificate</strong>. It is highly recommended that you have passed <strong>Accounting</strong> at the matric level. Students with Mathematical Literacy are accepted, but Pure Mathematics is preferred for N5/N6 Cost Accounting modules.
+                </p>
+            </div>
+
+            <div class="sidebar-card" style="background: #fffcf0; border-left: 4px solid var(--energy-yellow);">
+                <span class="sidebar-title" style="color: #856404;">NSFAS Information</span>
+                <p style="font-size: 14px; color: #856404;">
+                    This program is fully accredited and eligible for <strong>NSFAS Funding</strong>. Ensure your application is submitted before the DHET deadline.
+                </p>
+            </div>
+
+        </aside>
+
+    </main>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kentwood Academy Footer Recreation</title>
+<style>
+
+    /* ── Footer (unchanged) ── */
+    .kw-footer-container {
+        background-color: #050533;
+        color: #ffffff;
+        font-family: 'Source Sans Pro', sans-serif;
+        width: 100%;
+    }
+    .kw-footer-container * { box-sizing: border-box; margin: 0; padding: 0; }
+    .kw-footer-content-wrapper { max-width: 1450px; margin: 0 auto; padding: 0 20px; }
+    .kw-footer-container a { text-decoration: none; color: inherit; transition: opacity 0.3s, background-color 0.3s, color 0.3s; }
+    .kw-footer-container ul { list-style: none; }
+    .kw-footer-top-bar { padding: 35px 0; border-bottom: 1px solid rgba(255,255,255,0.15); }
+    .kw-footer-top-flex { display: flex; justify-content: space-between; align-items: center; }
+    .kw-footer-cta-text { font-size: 26px; font-weight: 400; letter-spacing: -0.5px; }
+    .kw-footer-cta-buttons { display: flex; gap: 20px; }
+    .kw-footer-btn-outline {
+        display: inline-block; padding: 8px 32px;
+        background-color: transparent; color: #ffffff;
+        border: 1px solid #ffffff; border-radius: 50px;
+        font-weight: 600; font-size: 15px; text-align: center; white-space: nowrap;
+    }
+    .kw-footer-btn-outline:hover { background-color: #ffffff; color: #050533; }
+    .kw-footer-main { padding: 70px 0 30px; }
+    .kw-footer-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 80px; align-items: start; }
+    .kw-footer-logo-block { display: flex; flex-direction: column; align-items: flex-start; margin-bottom: 30px; }
+    .kw-footer-crest { width: 55px; height: auto; margin-bottom: 15px; filter: brightness(0) invert(1); }
+    .kw-footer-logo-text { font-size: 22px; font-weight: 400; }
+    .kw-footer-address { font-style: normal; line-height: 1.5; margin-bottom: 30px; font-size: 16px; }
+    .kw-footer-directions-btn { padding: 12px 40px; margin-bottom: 35px; }
+    .kw-footer-socials { display: flex; gap: 20px; align-items: center; }
+    .kw-footer-social-icon { display: flex; align-items: center; justify-content: center; }
+    .kw-footer-social-icon svg { width: 18px; height: 18px; fill: currentColor; }
+    .kw-footer-social-icon:hover { opacity: 0.7; }
+    .kw-footer-link-list li { margin-bottom: 18px; }
+    .kw-footer-link-list a { font-size: 19px; font-weight: 600; }
+    .kw-footer-link-list a:hover { opacity: 0.7; }
+    .kw-footer-bottom { text-align: right; }
+    .kw-footer-designer { font-size: 14px; font-weight: 400; }
+    @media (max-width: 1024px) {
+        .kw-footer-grid { grid-template-columns: 1fr 1fr; gap: 50px 30px; }
+        .kw-footer-col-info { grid-column: 1 / -1; }
+    }
+    @media (max-width: 768px) {
+        .kw-footer-top-flex { flex-direction: column; text-align: center; gap: 25px; }
+        .kw-footer-cta-text { font-size: 22px; }
+        .kw-footer-bottom { text-align: center; }
+    }
+    @media (max-width: 550px) {
+        .kw-footer-grid { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+        .kw-footer-logo-block { align-items: center; }
+        .kw-footer-socials { justify-content: center; }
+        .kw-footer-cta-buttons { flex-direction: column; width: 100%; }
+        .kw-footer-btn-outline { width: 100%; }
+    }
+
+    /* ── Visit Modal ── */
+
+    /* Sharp text rendering — fix blur from transform/filter */
+    .vm-overlay,
+    .vm-modal,
+    .vm-modal * {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+        /* prevent subpixel blur from translateY animations */
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+
+    .vm-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        /* no backdrop-filter — causes font blur */
+    }
+    .vm-overlay.vm-open { display: flex; }
+
+    .vm-modal {
+        background: #fff;
+        border-radius: 16px;
+        width: 100%;
+        max-width: 1080px;
+        height: 90vh;
+        max-height: 720px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      
+        font-family: 'Source Sans Pro', sans-serif;
+        /* Use opacity-only animation — no transform to avoid subpixel blur */
+        animation: vm-fadein .18s ease;
+        /* Promote to own compositor layer cleanly */
+        will-change: auto;
+        transform: translateZ(0);
+    }
+    @keyframes vm-fadein {
+        from { opacity: 0; }
+        to   { opacity: 1; }
+    }
+
+    /* Header */
+    .vm-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 24px 0;
+        flex-shrink: 0;
+    }
+    .vm-header-text h2 {
+        font-size: 15px;
+        font-weight: 600;
+        color: #111;
+        letter-spacing: -0.1px;
+        /* prevent any inherited blurriness */
+        transform: none;
+    }
+    .vm-header-text p {
+        font-size: 14px; font-weight: 500;
+        color: #999;
+        margin-top: 2px;
+    }
+    .vm-close {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        border: none;
+        background: #f0f0f0;
+        color: #555;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        font-family: inherit;
+        /* no transition — keeps text crisp */
+    }
+    .vm-close:hover { background: #e4e4e4; color: #111; }
+
+    .footer-heading {
+        font-size: 15px;
+        color: #939ca2;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+
+    /* Tab nav row */
+    .vm-nav {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        padding: 14px 24px 0;
+        flex-shrink: 0;
+        flex-wrap: wrap;
+        row-gap: 6px;
+    }
+
+    .vm-nav-sep {
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: .09em;
+        text-transform: uppercase;
+        color: #ccc;
+        padding: 4px 8px 4px 6px;
+        white-space: nowrap;
+        user-select: none;
+    }
+    /* small divider line between groups */
+    .vm-nav-divider {
+        width: 1px;
+        height: 16px;
+        background: #e8e8e8;
+        margin: 0 6px;
+        flex-shrink: 0;
+    }
+
+    .vm-tab {
+        background: none;
+        border: none;
+        padding: 9px 15px;
+        border-radius: 60px;
+        font-size: 14px;
+        font-weight: 600;
+        color: #555;
+        cursor: pointer;
+        font-family: 'Source Sans Pro', sans-serif;
+        white-space: nowrap;
+        /* no transition on color — avoids subpixel repaint blur */
+    }
+    .vm-tab:hover { background: #f5f5f5; color: #111; }
+    .vm-tab.vm-active {
+        background: #050533;
+        color: #fff;
+        font-weight: 500;
+    }
+
+    /* Divider between nav and map */
+    .vm-divider {
+        height: 1px;
+        background: #ececec;
+        margin: 14px 0 0;
+        flex-shrink: 0;
+    }
+
+    /* Map wrapper — inset with padding and border-radius */
+    .vm-map-wrap {
+        flex: 1;
+        overflow: hidden;
+        padding: 16px;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* The rounded container that holds the map */
+    .vm-map-inner {
+        flex: 1;
+        border-radius: 20px;
+        overflow: hidden;
+        position: relative;
+        min-height: 0;
+        background: #f2f2f2;
+    }
+
+    /* Empty state */
+    .vm-empty {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        pointer-events: none;
+    }
+    .vm-empty-ring {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: 1px solid #ddd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ccc;
+        font-size: 16px;
+    }
+    .vm-empty p {
+        font-size: 13px;
+        color: #bbb;
+        text-align: center;
+        line-height: 1.5;
+    }
+
+    /* Spinner */
+    .vm-spinner-wrap {
+        display: none;
+        position: absolute;
+        inset: 0;
+        align-items: center;
+        justify-content: center;
+        background: #f2f2f2;
+        border-radius: 20px;
+    }
+    .vm-spinner-wrap.show { display: flex; }
+    .vm-spin {
+        width: 22px;
+        height: 22px;
+        border: 2px solid #e0e0e0;
+        border-top-color: #050533;
+        border-radius: 50%;
+        animation: vm-spin .65s linear infinite;
+    }
+    @keyframes vm-spin { to { transform: rotate(360deg); } }
+
+    /* Location label inside map, bottom-left */
+    .vm-map-label {
+        display: none;
+        position: absolute;
+        bottom: 12px;
+        left: 12px;
+        z-index: 2;
+        background: rgba(255, 255, 255, 0.94);
+        border-radius: 8px;
+        padding: 8px 12px;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+        pointer-events: none;
+    }
+    .vm-map-label.show { display: block; }
+    .vm-map-label h3 {
+        font-size: 12.5px;
+        font-weight: 400;
+        color: #111;
+        white-space: nowrap;
+    }
+    .vm-map-label p {
+        font-size: 11px;
+        color: #777;
+        margin-top: 1px;
+        white-space: nowrap;
+    }
+
+    /* iframe fills map inner */
+    .vm-iframe-box {
+        display: none;
+        position: absolute;
+        inset: 0;
+    }
+    .vm-iframe-box.show { display: block; }
+    .vm-iframe-box iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        display: block;
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 640px) {
+        .vm-overlay { padding: 0; align-items: flex-end; }
+        .vm-modal {
+            max-width: 100%;
+            height: 92vh;
+            max-height: none;
+            border-radius: 16px 16px 0 0;
+        }
+        .vm-nav { padding: 12px 16px 0; gap: 4px; }
+        .vm-nav-sep { display: none; }
+        .vm-nav-divider { display: none; }
+        .vm-tab { font-size: 12.5px; padding: 5px 11px; border-radius: 50px; border: 1px solid #e8e8e8; background: #f7f7f7; }
+        .vm-tab.vm-active { background: #050533; border-color: #050533; color: #fff; }
+        .vm-map-wrap { padding: 12px; }
+        .vm-header { padding: 16px 16px 0; }
+    }
+</style>
+</head>
+<body>
+
+<footer class="kw-footer-container">
+    <div class="kw-footer-top-bar">
+        <div class="kw-footer-content-wrapper kw-footer-top-flex">
+            <h2 class="kw-footer-cta-text">We look forward to welcoming you to Maluti College.</h2>
+            <div class="kw-footer-cta-buttons">
+                <a href="#" class="kw-footer-btn-outline" id="kw-visit-btn">Visit</a>
+                <a href="#" class="kw-footer-btn-outline">Enquire</a>
+                <a href="#" class="kw-footer-btn-outline">Apply</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="kw-footer-main">
+        <div class="kw-footer-content-wrapper kw-footer-grid">
+            
+            <div class="kw-footer-col-links">
+                <h1 class="footer-heading">Legal</h1>
+                <ul class="kw-footer-link-list">
+                    <li><a href="#">Responsible Disclosure Policy</a></li>
+                    <li><a href="#">Cookie Policy</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Use</a></li>
+                    <li><a href="#">Proof of Reserve</a></li>
+                </ul>
+            </div>
+            <div class="kw-footer-col-links">
+                <h1 class="footer-heading">Admissions & Aid</h1>
+                <ul class="kw-footer-link-list">
+                    <li><a href="#">How to apply</a></li>
+                    <li><a href="#">Admissions Requirements</a></li>
+                    <li><a href="#">Tuition, Fees & Payments</a></li>
+                    <li><a href="#">Registration</a></li>
+                    <li><a href="#">Assessments</a></li>
+                    <li><a href="#">Financial Aid</a></li>
+                    <li><a href="#">Late Enquiries</a></li>
+                    <li><a href="#">Check your status</a></li>
+                    <li><a href="#">Timetables</a></li>
+                </ul>
+            </div>
+            <div class="kw-footer-col-links">
+                <h1 class="footer-heading">Campus Life</h1>
+                <ul class="kw-footer-link-list">
+                    <li><a href="#">Campus Support</a></li>
+                    <li><a href="#">Campus Facilities</a></li>
+                    <li><a href="#">Residence Life</a></li>
+                    <li><a href="#">Student Activities</a></li>
+                    <li><a href="#">Sports & Recreation</a></li>
+                    <li><a href="#">Clubs & Societies</a></li>
+                    <li><a href="#">SRC</a></li>
+                </ul>
+            </div>
+            <div class="kw-footer-col-links">
+                <h1 class="footer-heading">Calender</h1>
+                <ul class="kw-footer-link-list">
+                    <li><a href="#">Academic Year</a></li>
+                    <li><a href="#">Term Dates</a></li>
+                    <li><a href="#">Sports Calender</a></li>
+                    <li><a href="#">Exam Timetable</a></li>
+                </ul>
+            </div>
+            <div class="kw-footer-col-links">
+                <h1 class="footer-heading">Maluti</h1>
+                <ul class="kw-footer-link-list">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Executive Leadership</a></li>
+                    <li><a href="#">Roadmap</a></li>
+                    <li><a href="#">Innovations</a></li>
+                    <li><a href="#">News & Events</a></li>
+                    <li><a href="#">Vision 2030</a></li>
+                    <li><a href="#">Office & Department Directory</a></li>
+                    <li><a href="#">Awards & Achievements</a></li>
+                    <li><a href="#">Job Opportunities</a></li>
+                    <li><a href="#">Maluti Merchandise</a></li>
+                </ul>
+            </div>
+            <div class="kw-footer-col-links">
+                <h1 class="footer-heading">Students</h1>
+                <ul class="kw-footer-link-list">
+                    <li><a href="#">Alumni & Friends</a></li>
+                    <li><a href="#">Digital Library</a></li>
+                    <li><a href="#">Noticeboard</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="kw-footer-content-wrapper kw-footer-bottom">
+            <span class="kw-footer-designer">Copyright &copy; 2026 Maluti TVET College. All rights reserved.</span>
+        </div>
+    </div>
+</footer>
+
+<!-- ── Visit Modal ── -->
+<div class="vm-overlay" id="vm-overlay" role="dialog" aria-modal="true" aria-label="Our Locations">
+    <div class="vm-modal">
+
+        <!-- Header -->
+        <div class="vm-header">
+            <div class="vm-header-text">
+                <h2>Our Locations</h2>
+                <p>Select a campus or office to view on the map</p>
+            </div>
+            <button class="vm-close" id="vm-close" aria-label="Close">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Tab nav -->
+        <div class="vm-nav" id="vm-nav">
+            <span class="vm-nav-sep">Campuses</span>
+            <button class="vm-tab" data-key="main">Main Campus</button>
+            <button class="vm-tab" data-key="lere">Lere La Tshepe</button>
+            <button class="vm-tab" data-key="sefikeng">Sefikeng</button>
+            <button class="vm-tab" data-key="bonamelo">Bonamelo</button>
+            <button class="vm-tab" data-key="harrismith">Harrismith</button>
+            <button class="vm-tab" data-key="bethlehem">Bethlehem</button>
+            <button class="vm-tab" data-key="kwetlisong">Kwetlisong</button>
+            <button class="vm-tab" data-key="itemoheleng">Itemoheleng</button>
+            <div class="vm-nav-divider"></div>
+            <span class="vm-nav-sep">Offices</span>
+            <button class="vm-tab" data-key="central">Central Office</button>
+            <button class="vm-tab" data-key="corporate">Corporate Office</button>
+        </div>
+
+        <div class="vm-divider"></div>
+
+        <!-- Map -->
+        <div class="vm-map-wrap">
+            <div class="vm-map-inner">
+
+                <!-- Empty state -->
+                <div class="vm-empty" id="vm-empty">
+                    <div class="vm-empty-ring">◎</div>
+                    <p>Select a location above</p>
+                </div>
+
+                <!-- Spinner -->
+                <div class="vm-spinner-wrap" id="vm-spinner">
+                    <div class="vm-spin"></div>
+                </div>
+
+                <!-- iframe -->
+                <div class="vm-iframe-box" id="vm-iframe-box">
+                    <iframe id="vm-iframe" src="" allowfullscreen title="Campus map"></iframe>
+                </div>
+
+                <!-- Floating label -->
+                <div class="vm-map-label" id="vm-map-label">
+                    <h3 id="vm-label-name"></h3>
+                    <p id="vm-label-addr"></p>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+(function () {
+    var DATA = {
+        main:        { name: 'Main Campus',        addr: 'Phuthaditjhaba, QwaQwa, Free State',      lat: -28.5333, lng: 28.9333 },
+        lere:        { name: 'Lere La Tshepe',      addr: 'Phuthaditjhaba, QwaQwa, Free State',      lat: -28.5360, lng: 28.9300 },
+        sefikeng:    { name: 'Sefikeng Campus',     addr: 'Phuthaditjhaba, Free State',              lat: -28.5290, lng: 28.9380 },
+        bonamelo:    { name: 'Bonamelo Campus',     addr: 'Bonamelo, Free State',                    lat: -28.3700, lng: 27.4800 },
+        harrismith:  { name: 'Harrismith Campus',   addr: 'Harrismith, Free State',                  lat: -28.2742, lng: 29.1225 },
+        bethlehem:   { name: 'Bethlehem Campus',    addr: 'Bethlehem, Free State',                   lat: -28.2292, lng: 28.3081 },
+        kwetlisong:  { name: 'Kwetlisong Campus',   addr: 'Phuthaditjhaba, Free State',              lat: -28.5410, lng: 28.9260 },
+        itemoheleng: { name: 'Itemoheleng Campus',  addr: 'Witsieshoek, QwaQwa, Free State',         lat: -28.5700, lng: 28.8900 },
+        central:     { name: 'Central Office',      addr: 'Phuthaditjhaba, Free State',              lat: -28.5310, lng: 28.9355 },
+        corporate:   { name: 'Corporate Office',    addr: 'Wessels Street, Bethlehem, Free State',   lat: -28.2305, lng: 28.3095 }
+    };
+
+    var overlay    = document.getElementById('vm-overlay');
+    var closeBtn   = document.getElementById('vm-close');
+    var visitBtn   = document.getElementById('kw-visit-btn');
+    var tabs       = document.querySelectorAll('.vm-tab');
+    var empty      = document.getElementById('vm-empty');
+    var spinner    = document.getElementById('vm-spinner');
+    var iframeBox  = document.getElementById('vm-iframe-box');
+    var iframe     = document.getElementById('vm-iframe');
+    var mapLabel   = document.getElementById('vm-map-label');
+    var labelName  = document.getElementById('vm-label-name');
+    var labelAddr  = document.getElementById('vm-label-addr');
+    var fallbackTimer;
+
+    function openModal()  { overlay.classList.add('vm-open');    document.body.style.overflow = 'hidden'; }
+    function closeModal() { overlay.classList.remove('vm-open'); document.body.style.overflow = ''; }
+
+    visitBtn.addEventListener('click', function (e) { e.preventDefault(); openModal(); });
+    closeBtn.addEventListener('click', closeModal);
+    overlay.addEventListener('click', function (e) { if (e.target === overlay) closeModal(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
+
+    function showMap() {
+        clearTimeout(fallbackTimer);
+        spinner.classList.remove('show');
+        iframeBox.classList.add('show');
+        mapLabel.classList.add('show');
+    }
+
+    tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+            tabs.forEach(function (t) { t.classList.remove('vm-active'); });
+            tab.classList.add('vm-active');
+
+            var d = DATA[tab.dataset.key];
+            if (!d) return;
+
+            empty.style.display = 'none';
+            iframeBox.classList.remove('show');
+            mapLabel.classList.remove('show');
+            spinner.classList.add('show');
+
+            labelName.textContent = d.name;
+            labelAddr.textContent = d.addr;
+
+            var pad = 0.012;
+            var src = 'https://www.openstreetmap.org/export/embed.html'
+                    + '?bbox='   + (d.lng - pad)         + '%2C' + (d.lat - pad * 0.75)
+                    + '%2C'      + (d.lng + pad)         + '%2C' + (d.lat + pad * 0.75)
+                    + '&layer=mapnik'
+                    + '&marker=' + d.lat + '%2C' + d.lng;
+
+            iframe.onload = showMap;
+            clearTimeout(fallbackTimer);
+            fallbackTimer = setTimeout(showMap, 5000);
+
+            iframe.src = src;
+        });
+    });
+})();
+</script>
+
+</body>
+</html>
+
+

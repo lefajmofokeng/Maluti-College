@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maluti TVET College</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+                
+<style>
+  body { margin: 0; background: #f0f0f4; }
+  .page-body { margin-top: 55px; padding: 40px; 
+  font-family: sans-serif;
+  color: #333; }
+</style>
+</head>
+<body>
+
+<div id="hyperion-host"></div>
+
+<script>
+(function () {
+  const host   = document.getElementById('hyperion-host');
+  const shadow = host.attachShadow({ mode: 'open' });
+
+  const style = document.createElement('style');
+  style.textContent = `
+    
+    * { box-sizing: border-box; font-family: 'Source Sans Pro', sans-serif; line-height: 1.2; }
+
+    :host {
+        --hyperion-color-header-bg: #0a0a3c;
+        --hyperion-color-accent: #0077cc;
+        --hyperion-color-text-light: #fff;
+        --hyperion-color-background-dark: #000;
+        --hyperion-color-off-white: #f4f4f4;
+        --hyperion-color-text-muted: #A0A9BE;
+        --hyperion-color-menu-bg: #0a0a3c;
+        --hyperion-color-menu-border: rgba(0, 145, 255, 0.2);
+        --hyperion-color-qr-dropdown-bg: #06273e;
+        --hyperion-header-height: 55px;
+        --hyperion-content-max-width-fg: 1500px;
+    }
+
+    .hyperion-header-wrapper {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%;
+        z-index: 1000;
+        background-color: var(--hyperion-color-header-bg);
+        text-decoration: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .hyperion-custom-header {
+        height: var(--hyperion-header-height);
+        display: flex;
+        align-items: center;
+    }
+
+    .hyperion-custom-header-container {
+        max-width: var(--hyperion-content-max-width-fg);
+        width: 100%;
+        margin: 0 auto;
+        padding: 0 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .hyperion-custom-logo-text img {
+        font-size: 28px; font-weight: 900; letter-spacing: -0.5px;
+        color: var(--hyperion-color-text-light);
+        transition: color 0.3s ease;
+        height: 30px; vertical-align: middle;
+    }
+    .hyperion-custom-logo-text:hover { color: var(--hyperion-color-accent); }
+
+    .hyperion-custom-main-nav {
+        flex-grow: 1; display: flex;
+        justify-content: space-between; align-items: center;
+    }
+
+    .hyperion-custom-nav-list {
+        display: flex; list-style: none;
+        margin: 0; padding: 0; align-items: center;
+    }
+
+    .hyperion-custom-nav-list li {
+        margin-left: 35px; position: relative;
+        text-decoration: none; border-bottom: none;
+    }
+
+    .hyperion-custom-nav-link {
+        text-decoration: none;
+        color: var(--hyperion-color-text-light);
+        font-weight: 500; padding: 10px 0;
+        display: flex; font-size: 16px; align-items: center;
+        transition: color 0.2s; letter-spacing: 0.02em;
+    }
+    .hyperion-custom-nav-link:hover { color: #a0aadd; }
+    .hyperion-custom-nav-item--has-megamenu.active .hyperion-custom-nav-link { color: var(--hyperion-color-accent); }
+
+    .hyperion-desktop-link-icon {
+        width: 14px; height: 14px; margin-left: 6px;
+        color: inherit; stroke-width: 2; transition: transform 0.2s;
+    }
+    .hyperion-custom-nav-item--has-megamenu.active .hyperion-desktop-link-icon { transform: rotate(180deg); }
+
+    .hyperion-header-action-buttons { display: flex; align-items: center; gap: 12px; }
+
+    .hyperion-header-action-btn {
+        background: var(--hyperion-color-accent); color: var(--hyperion-color-text-light);
+        border: none; padding: 9px 18px; border-radius: 50px;
+        font-weight: 600; font-size: 15px; cursor: pointer;
+        transition: background-color 0.2s ease;
+        text-decoration: none; font-family: inherit; letter-spacing: 0.02em;
+    }
+    .hyperion-header-action-btn a { color: inherit; text-decoration: none; border-bottom: none; }
+    .hyperion-header-action-btn:hover { background-color: #0077cc; }
+
+    .hyperion-header-secondary-btn {
+        background-color: transparent; color: var(--hyperion-color-text-light);
+        border: 1px solid rgba(255,255,255,0.2); padding: 9px 17px; border-radius: 50px;
+        font-weight: 600; font-size: 15px; cursor: pointer; letter-spacing: 0.02em;
+        transition: background-color 0.2s ease, border-color 0.2s ease;
+        text-decoration: none; font-family: inherit;
+    }
+    .hyperion-header-secondary-btn a { color: inherit; text-decoration: none; border-bottom: none; }
+    .hyperion-header-secondary-btn:hover { background-color: rgba(255,255,255,0.05); border-color: #fff; }
+
+    .hyperion-mobile-dropdown-icon {
+        display: none; transition: transform 0.3s ease; flex-shrink: 0;
+    }
+
+    .hyperion-mobile-toggle {
+        display: none; background: none; border: none;
+        width: 30px; height: 24px; cursor: pointer; padding: 0;
+        position: relative; z-index: 1010;
+    }
+    .hyperion-mobile-toggle span {
+        display: block; height: 2px; width: 100%;
+        background-color: var(--hyperion-color-text-light);
+        margin: 6px 0; border-radius: 1px; transition: all 0.3s ease;
+    }
+    .hyperion-header-wrapper.hyperion-mobile-menu-open .hyperion-mobile-toggle span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .hyperion-header-wrapper.hyperion-mobile-menu-open .hyperion-mobile-toggle span:nth-child(2) { opacity: 0; }
+    .hyperion-header-wrapper.hyperion-mobile-menu-open .hyperion-mobile-toggle span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .hyperion-mega-menu-container {
+        position: absolute;
+        top: var(--hyperion-header-height); left: 0; width: 100%;
+        background-color: var(--hyperion-color-menu-bg);
+        border-top: 1px solid rgba(255,255,255,0.07);
+        border-bottom: 1px solid rgba(255,255,255,0.07);
+        visibility: hidden; opacity: 0; transform: translateY(-8px);
+        transition: visibility 0s linear 0.15s, opacity 0.15s ease, transform 0.15s ease;
+        pointer-events: none;
+    }
+
+    .hyperion-header-wrapper.hyperion-mega-menu-open .hyperion-mega-menu-container {
+        visibility: visible; opacity: 1; transform: translateY(0); pointer-events: auto;
+        transition-delay: 0s;
+    }
+
+    .hyperion-mega-menu-panel {
+        display: none;
+        max-width: var(--hyperion-content-max-width-fg);
+        width: 100%; margin: 0 auto; padding: 10px 40px 48px;
+    }
+    .hyperion-mega-menu-panel.active { display: block; }
+
+    .hyperion-megamenu-3-column-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 250px);
+        gap: 40px; justify-content: start;
+    }
+
+    .hyperion-menu-group-card {
+        padding: 0; padding-top: 10px; padding-bottom: 2rem; 
+    }
+
+    .hyperion-menu-group-card h3 {
+        font-size: 14px; font-weight: 500; margin-bottom: 20px;
+        text-transform: none; cursor: default;
+        display: flex; align-items: center; color: var(--hyperion-color-text-muted);
+    }
+
+    .hyperion-menu-group-img-icon {
+        width: auto; height: 43px; margin-right: 12px;
+        flex-shrink: 0; border-radius: 8px; vertical-align: middle;
+    }
+
+    .hyperion-menu-group-text-container {
+        display: flex; flex-direction: column; justify-content: center;
+    }
+
+    .hyperion-menu-group-tagline {
+        font-size: 14px; font-weight: 400;
+        color: var(--hyperion-color-text-muted); margin-top: 4px; display: block;
+    }
+
+    .hyperion-mega-menu-group-list { list-style: none; padding: 0; margin: 0; }
+
+    .hyperion-mega-menu-group-list a {
+        display: block; border-radius: 0; transition: color 0.2s;
+        position: relative; margin: 7px 0; padding: 2px 0;
+        font-size: 19px; font-weight: 600;
+        color: #f1f1f1; text-decoration: none; border-bottom: none;
+    }
+    .hyperion-mega-menu-link-title { font-size: inherit; font-weight: inherit; color: inherit; margin-bottom: 0; }
+    .hyperion-mega-menu-group-list a:hover { color: #a0aadd; background-color: transparent; }
+
+    @media (max-width: 1024px) {
+        .hyperion-custom-header-container { padding: 0 20px; }
+        .hyperion-mobile-toggle { display: block; }
+
+        .hyperion-custom-main-nav {
+            position: fixed;
+            top: var(--hyperion-header-height); left: 0;
+            width: 100%; height: calc(100vh - var(--hyperion-header-height));
+            background-color: var(--hyperion-color-header-bg);
+            overflow-y: auto; overflow-x: hidden; padding: 16px 0 40px;
+            transform: translateX(100%); transition: transform 0.3s ease;
+            display: block; z-index: 900; box-sizing: border-box;
+        }
+        .hyperion-header-wrapper.hyperion-mobile-menu-open .hyperion-custom-main-nav {
+            transform: translateX(0);
+        }
+
+        .hyperion-custom-nav-list {
+            flex-direction: column; align-items: flex-start;
+            padding: 0 20px; margin-left: 0;
+        }
+        .hyperion-custom-nav-list li { margin: 0; width: 100%; }
+
+        .hyperion-custom-nav-link {
+            padding: 15px 0; font-size: 16px; width: 100%;
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .hyperion-desktop-link-icon { display: none; }
+        .hyperion-mobile-dropdown-icon { display: inline-block; }
+
+        .hyperion-custom-nav-item--has-megamenu.active .hyperion-custom-nav-link .hyperion-mobile-dropdown-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Ensure taglines appear beautifully on mobile */
+        .hyperion-menu-group-tagline { 
+            display: block; 
+            margin-bottom: 12px; 
+            font-size: 13px; 
+        }
+
+        .hyperion-header-action-buttons {
+            flex-direction: column; width: 100%;
+            padding: 24px 20px 0; box-sizing: border-box; margin-top: 0;
+            gap: 12px;
+        }
+
+        .hyperion-header-action-btn,
+        .hyperion-header-secondary-btn {
+            width: 100%; margin: 0; padding: 14px 20px;
+            text-align: center; display: block; box-sizing: border-box;
+            font-size: 15px;
+        }
+
+        .hyperion-mega-menu-container {
+            position: static !important; visibility: visible !important;
+            opacity: 1 !important; transform: none !important;
+            pointer-events: auto !important;
+            background-color: var(--hyperion-color-menu-bg);
+            border: none; box-shadow: none;
+            overflow: hidden; max-height: 0;
+            transition: max-height 0.35s ease; width: 100%;
+        }
+        .hyperion-standalone-mega-menu { display: none !important; }
+        .hyperion-custom-nav-item--has-megamenu.active .hyperion-mega-menu-container {
+            max-height: 3000px;
+        }
+        .hyperion-mega-menu-panel { display: block !important; padding: 10px 0 20px; }
+        .hyperion-megamenu-3-column-grid { grid-template-columns: 1fr; gap: 0; }
+        .hyperion-menu-group-card { padding: 0; padding-bottom: 12px; margin: 0 0 20px 0;}
+        .hyperion-menu-group-card h3 { margin-top: 18px; margin-bottom: 10px; }
+        .hyperion-mega-menu-group-list a { font-size: 15px; margin: 6px 0; padding: 0; }
+        .hyperion-mega-menu-group-list li { border: none; }
+        .hyperion-menu-group-button { width: fit-content; text-align: left; box-sizing: border-box; }
+        .hyperion-menu-group-img-icon { vertical-align: middle; justify-content: center;}
+    }
+  `;
+
+  const tpl = document.createElement('template');
+  tpl.innerHTML = `
+<div class="hyperion-header-wrapper">
+    <header class="hyperion-custom-header">
+        <div class="hyperion-custom-header-container">
+            <div class="hyperion-custom-logo-container">
+                <a href="index.html" class="hyperion-custom-logo-link hyperion-custom-logo-text">
+                    <img src="images/logo.png" alt="Hyperion Logo">
+                </a>
+            </div>
+            <nav class="hyperion-custom-main-nav">
+                <ul class="hyperion-custom-nav-list">
+                    <li>
+                        <a href="pricing.html" class="hyperion-custom-nav-link">Calendar</a>
+                    </li>
+                    <li>
+                        <a href="page.html" class="hyperion-custom-nav-link">News & Events</a>
+                    </li>
+                    <li class="hyperion-custom-nav-item--has-megamenu">
+                        <a href="page.html" class="hyperion-custom-nav-link" data-hyperion-megamenu-trigger="services">
+                            Programs of Study
+                            <svg class="hyperion-desktop-link-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><polyline points="4 6 8 10 12 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            <svg class="hyperion-mobile-dropdown-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                        <div class="hyperion-mega-menu-container">
+                            <div class="hyperion-mega-menu-panel" data-hyperion-megamenu-panel="services">
+                                <div class="hyperion-megamenu-3-column-grid">
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>
+                                            <img src="images/engineering.png" alt="Dev Icon" class="hyperion-menu-group-img-icon">
+                                            <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 500; font-size: 15px; line-height: 1;">
+                                                Faculty of Engineering Studies
+                                                <span class="hyperion-menu-group-tagline">Pioneers of Infrastructure</span>
+                                            </span>
+                                        </h3>
+                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 600; font-size: 15px; cursor:pointer;">
+                                            <a style="text-decoration: none; border-bottom: none; color: #fff;" href="faculty-of-engineering.html">Learn more</a>
+                                        </button>
+                                        <ul class="hyperion-mega-menu-group-list">
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Electrical Engineering</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Mechanical Engineering</span></a></li>
+                                            <li><a href="mobile-applications.html"><span class="hyperion-mega-menu-link-title">Civil Engineering</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Information Technology & Computer Science</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Programming & Robotics</span></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>
+                                            <img src="images/it.png" alt="IT Icon" class="hyperion-menu-group-img-icon">
+                                            <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 500; font-size: 15px; line-height: 1;">
+                                                Faculty of Business Management
+                                                <span class="hyperion-menu-group-tagline">Architects of Commerce</span>
+                                            </span>
+                                        </h3>
+                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 600; font-size: 15px; cursor:pointer;">
+                                            <a style="text-decoration: none; border-bottom: none; color: #fff; border-radius: 50px;" href="faculty-of-business.html">Learn more</a>
+                                        </button>
+                                         <ul class="hyperion-mega-menu-group-list">
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Business Management</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Finance, Economics, and Accounting</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Financial Management</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Marketing Management</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Office Administration</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Management Assistant</span></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>
+                                            <img src="images/hosp.png" alt="Hospitality Icon" class="hyperion-menu-group-img-icon">
+                                            <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 500; font-size: 15px; line-height: 1;">
+                                                Faculty of Humanities & Social Services
+                                                <span class="hyperion-menu-group-tagline">Champions of Community</span>
+                                            </span>
+                                        </h3>
+                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 600; font-size: 15px; cursor:pointer;">
+                                            <a style="text-decoration: none; border-bottom: none; color: #fff;" href="faculty-of-humanities.html">Learn more</a>
+                                        </button>
+                                        <ul class="hyperion-mega-menu-group-list">
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Hospitality & Catering Services</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Tourism Management</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Educare</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Art & Design</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Education & Development</span></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>
+                                            <img src="images/business.png" alt="Business Icon" class="hyperion-menu-group-img-icon">
+                                            <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 500; font-size: 15px; line-height: 1;">
+                                                Faculty of Agriculture
+                                                <span class="hyperion-menu-group-tagline">Stewards of Sustainability</span>
+                                            </span>
+                                        </h3>
+                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 600; font-size: 15px; cursor:pointer;">
+                                            <a style="text-decoration: none; border-bottom: none; color: #fff;" href="faculty-of-agriculture.html">Learn more</a>
+                                        </button>
+                                        <ul class="hyperion-mega-menu-group-list">
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Primary Agriculture</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Farm Management & Mechanisation</span></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>
+                                            <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 500; font-size: 15px; line-height: 1;">
+                                               Skills & Occupational Faculty
+                                                <span class="hyperion-menu-group-tagline">Masters of Craft</span>
+                                            </span>
+                                        </h3>
+                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 600; font-size: 15px; cursor:pointer;">
+                                            <a style="text-decoration: none; border-bottom: none; color: #fff;" href="index.html">Advance your skills</a>
+                                        </button>
+                                        <ul class="hyperion-mega-menu-group-list">
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Motor Mechanics</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Bricklaying</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Panelbeating</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Boilermaking</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Welding</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Cabinet Making</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Early Childhood Development</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">End-User Computing</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">IT Technical Support</span></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="hyperion-custom-nav-item--has-megamenu">
+                        <a href="#" class="hyperion-custom-nav-link" data-hyperion-megamenu-trigger="campus">
+                            Study @ Maluti
+                            <svg class="hyperion-desktop-link-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><polyline points="4 6 8 10 12 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            <svg class="hyperion-mobile-dropdown-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                        <div class="hyperion-mega-menu-container">
+                            <div class="hyperion-mega-menu-panel" data-hyperion-megamenu-panel="campus">
+                                <div class="hyperion-megamenu-3-column-grid">
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>Student Resources</h3>
+                                        <ul class="hyperion-mega-menu-group-list">
+                                            <li><a href="portal.html"><span class="hyperion-mega-menu-link-title">Student Portal</span></a></li>
+                                            <li><a href="housing.html"><span class="hyperion-mega-menu-link-title">Noticeboard</span></a></li>
+                                            <li><a href="library.html"><span class="hyperion-mega-menu-link-title">Digital Library</span></a></li>
+                                            <li><a href="exams.html"><span class="hyperion-mega-menu-link-title">Exam Schedules</span></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>Admissions &amp; Aid</h3>
+                                        <ul class="hyperion-mega-menu-group-list">
+                                            <li><a href="how-to-apply.html"><span class="hyperion-mega-menu-link-title">How to apply</span></a></li>
+                                            <li><a href="payroll.html"><span class="hyperion-mega-menu-link-title">Admissions Requirements</span></a></li>
+                                            <li><a href="events.html"><span class="hyperion-mega-menu-link-title">Tuition, Fees & Payments</span></a></li>
+                                            <li><a href="support.html"><span class="hyperion-mega-menu-link-title">Registrations</span></a></li>
+                                            <li><a href="hr-resources.html"><span class="hyperion-mega-menu-link-title">Assessments</span></a></li>
+                                            <li><a href="research.html"><span class="hyperion-mega-menu-link-title">Financial Aid</span></a></li>
+                                            <li><a href="research.html"><span class="hyperion-mega-menu-link-title">Late Enquiries</span></a></li>
+                                            <li><a href="research.html"><span class="hyperion-mega-menu-link-title">Check your status</span></a></li>
+                                            <li><a href="research.html"><span class="hyperion-mega-menu-link-title">Timetables</span></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>Campus Life</h3>
+                                        <ul class="hyperion-mega-menu-group-list">
+                                            <li><a href="prospectus.html"><span class="hyperion-mega-menu-link-title">Campus Support</span></a></li>
+                                            <li><a href="requirements.html"><span class="hyperion-mega-menu-link-title">Campus Facilities</span></a></li>
+                                            <li><a href="scholarships.html"><span class="hyperion-mega-menu-link-title">Residence Life</span></a></li>
+                                            <li><a href="faq.html"><span class="hyperion-mega-menu-link-title">Student Activities</span></a></li>
+                                            <li><a href="apply.html"><span class="hyperion-mega-menu-link-title">Sports & Recreation</span></a></li>
+                                            <li><a href="visit.html"><span class="hyperion-mega-menu-link-title">Clubs & Societies</span></a></li>
+                                            <li><a href="visit.html"><span class="hyperion-mega-menu-link-title">SRC</span></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>Future Students</h3>
+                                        <ul class="hyperion-mega-menu-group-list">
+                                            <li><a href="prospectus.html"><span class="hyperion-mega-menu-link-title">Download Prospectus</span></a></li>
+                                            <li><a href="requirements.html"><span class="hyperion-mega-menu-link-title">Entry Requirements</span></a></li>
+                                            <li><a href="scholarships.html"><span class="hyperion-mega-menu-link-title">Scholarships</span></a></li>
+                                            <li><a href="faq.html"><span class="hyperion-mega-menu-link-title">Admissions FAQ</span></a></li>
+                                            <li><a href="apply.html"><span class="hyperion-mega-menu-link-title">Apply Now</span></a></li>
+                                            <li><a href="accomodation.html"><span class="hyperion-mega-menu-link-title">Off-campus Accomodation</span></a></li>  
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="hyperion-custom-nav-item--has-megamenu">
+                        <a href="#" class="hyperion-custom-nav-link" data-hyperion-megamenu-trigger="discover">
+                            Discover
+                            <svg class="hyperion-desktop-link-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><polyline points="4 6 8 10 12 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            <svg class="hyperion-mobile-dropdown-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                        <div class="hyperion-mega-menu-container">
+                            <div class="hyperion-mega-menu-panel" data-hyperion-megamenu-panel="discover">
+                                <div class="hyperion-megamenu-3-column-grid">
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>Maluti</h3>
+                                        <ul class="hyperion-mega-menu-group-list">
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">About Us</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Roadmap</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Innovations</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Events</span></a></li>
+                                            <li><a href="careers.html"><span class="hyperion-mega-menu-link-title">Job Opportunities</span></a></li>
+                                            <li><a href="merchandise.html"><span class="hyperion-mega-menu-link-title">Maluti Merchandise</span></a></li>
+                                            <li><a href="licenses-and-registrations.html"><span class="hyperion-mega-menu-link-title">Executive Leadership</span></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>Staff & Faculty</h3>
+                                        <ul class="hyperion-mega-menu-group-list">
+                                            <li><a href="staff.html"><span class="hyperion-mega-menu-link-title">QMS</span></a></li>
+                                          
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Webinars</span></a></li>
+                                            
+                                        </ul>
+                                    </div>
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>Connect</h3>
+                                        <ul class="hyperion-mega-menu-group-list">
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">X</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Facebook</span></a></li>
+                                            <li><a href="#"><span class="hyperion-mega-menu-link-title">LinkedIn</span></a></li>
+                                            <li><a href="#"><span class="hyperion-mega-menu-link-title">Youtube</span></a></li>
+                                            <li><a href="#"><span class="hyperion-mega-menu-link-title">Instagram</span></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="hyperion-header-action-buttons">
+                    <button class="hyperion-header-secondary-btn">
+                        <a href="login.html">Student Portal</a>
+                    </button>
+                    <button class="hyperion-header-action-btn">
+                        <a href="contact.html">Contact Us</a>
+                    </button>
+                </div>
+            </nav>
+            <button class="hyperion-mobile-toggle" id="hyperion-mobileMenuToggle" aria-label="Toggle navigation menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+    <div class="hyperion-mega-menu-container hyperion-standalone-mega-menu" id="hyperion-desktopMegaMenu"></div>
+</div>
+  `;
+
+  shadow.appendChild(style);
+  shadow.appendChild(tpl.content.cloneNode(true));
+
+  const wrapper      = shadow.querySelector('.hyperion-header-wrapper');
+  const desktopMenu  = shadow.getElementById('hyperion-desktopMegaMenu');
+  const triggers     = shadow.querySelectorAll('[data-hyperion-megamenu-trigger]');
+  const mobileToggle = shadow.getElementById('hyperion-mobileMenuToggle');
+  const mobileItems  = shadow.querySelectorAll('.hyperion-custom-nav-item--has-megamenu');
+  const body         = document.body;
+
+  triggers.forEach(trigger => {
+      const panelId     = trigger.getAttribute('data-hyperion-megamenu-trigger');
+      const sourcePanel = trigger.closest('li')
+          .querySelector('[data-hyperion-megamenu-panel="' + panelId + '"]');
+      if (!sourcePanel) return;
+      const clone = sourcePanel.cloneNode(true);
+      clone.classList.add('hyperion-desktop-clone');
+      desktopMenu.appendChild(clone);
+  });
+
+  const desktopPanels = desktopMenu.querySelectorAll('.hyperion-mega-menu-panel');
+  let closeTimer = null;
+
+  function openDesktopMenu(panelId) {
+      clearTimeout(closeTimer);
+      desktopPanels.forEach(p => p.classList.remove('active'));
+      triggers.forEach(t => t.classList.remove('active'));
+      const panel = desktopMenu.querySelector('[data-hyperion-megamenu-panel="' + panelId + '"]');
+      const trig  = shadow.querySelector('[data-hyperion-megamenu-trigger="' + panelId + '"]');
+      if (panel) panel.classList.add('active');
+      if (trig)  trig.classList.add('active');
+      wrapper.classList.add('hyperion-mega-menu-open');
+  }
+
+  function closeDesktopMenu() {
+      closeTimer = setTimeout(() => {
+          desktopPanels.forEach(p => p.classList.remove('active'));
+          triggers.forEach(t => t.classList.remove('active'));
+          wrapper.classList.remove('hyperion-mega-menu-open');
+      }, 150);
+  }
+
+  triggers.forEach(trigger => {
+      trigger.addEventListener('mouseenter', () => {
+          if (window.innerWidth > 1024) openDesktopMenu(trigger.getAttribute('data-hyperion-megamenu-trigger'));
+      });
+      trigger.closest('li').addEventListener('mouseleave', () => {
+          if (window.innerWidth > 1024) closeDesktopMenu();
+      });
+  });
+
+  desktopMenu.addEventListener('mouseenter', () => { if (window.innerWidth > 1024) clearTimeout(closeTimer); });
+  desktopMenu.addEventListener('mouseleave', () => { if (window.innerWidth > 1024) closeDesktopMenu(); });
+
+  mobileToggle.addEventListener('click', () => {
+      wrapper.classList.toggle('hyperion-mobile-menu-open');
+      body.classList.toggle('hyperion-mobile-menu-active');
+      if (!wrapper.classList.contains('hyperion-mobile-menu-open')) {
+          mobileItems.forEach(item => item.classList.remove('active'));
+          wrapper.classList.remove('hyperion-mega-menu-open');
+      }
+  });
+
+  mobileItems.forEach(item => {
+      const trigger = item.querySelector('.hyperion-custom-nav-link');
+      trigger.addEventListener('click', e => {
+          if (window.innerWidth <= 1024) {
+              e.preventDefault(); e.stopPropagation();
+              const isOpen = item.classList.contains('active');
+              mobileItems.forEach(other => other.classList.remove('active'));
+              if (!isOpen) item.classList.add('active');
+          }
+      });
+  });
+
+  shadow.querySelectorAll('.hyperion-mega-menu-group-list a, .hyperion-custom-nav-list > li > a:not([data-hyperion-megamenu-trigger])').forEach(link => {
+      link.addEventListener('click', () => {
+          if (window.innerWidth <= 1024) {
+              wrapper.classList.remove('hyperion-mobile-menu-open');
+              body.classList.remove('hyperion-mobile-menu-active');
+              mobileItems.forEach(item => item.classList.remove('active'));
+          }
+      });
+  });
+
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+          if (window.innerWidth > 1024) {
+              wrapper.classList.remove('hyperion-mobile-menu-open');
+              body.classList.remove('hyperion-mobile-menu-active');
+              mobileItems.forEach(item => item.classList.remove('active'));
+          } else {
+              desktopPanels.forEach(p => p.classList.remove('active'));
+              wrapper.classList.remove('hyperion-mega-menu-open');
+          }
+      }, 200);
+  });
+
+})();
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mechanical Engineering | Maluti TVET</title>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700;900&family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+    <style>
+        /* --- GLOBAL & TYPOGRAPHY --- */
+        :root {
+            --bg-main: #ffffff;
+            --text-main: #121416;
+            --text-muted: #5f6368;
+            --brand-industrial: #2c3e50; /* Deep charcoal/steel */
+            --alert-red: #d93025;
+            --accent-orange: #e67e22; /* Heat/Welding orange */
+            --border-heavy: #dadce0;
+            --font-mono: 'Roboto Mono', monospace;
+            --font-main: 'Source Sans Pro', sans-serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+
+        /* --- COURSE HERO --- */
+        .course-hero {
+            padding: 120px 0 60px;
+            border-bottom: 4px solid var(--text-main);
+            background: #fdfdfd;
+        }
+
+        .breadcrumb {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent-orange);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .course-title {
+            font-size: clamp(36px, 6vw, 72px);
+            font-weight: 900;
+            letter-spacing: -2px;
+            line-height: 1;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+        }
+
+        .status-bar {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .pathway-tag {
+            padding: 6px 14px;
+            background: var(--text-main);
+            color: #fff;
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        .reg-alert {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--alert-red);
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* --- SPLIT LAYOUT --- */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 100px;
+            padding: 80px 0;
+        }
+
+        /* --- CONTENT SECTIONS --- */
+        .section-header {
+            font-size: 13px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-header::after {
+            content: "";
+            height: 2px;
+            flex-grow: 1;
+            background: var(--text-main);
+        }
+
+        .content-block { margin-bottom: 100px; }
+
+        .content-block h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            letter-spacing: -0.5px;
+        }
+
+        .content-block p {
+            font-size: 19px;
+            color: #3c4043;
+            margin-bottom: 28px;
+        }
+
+        /* Module Rows */
+        .module-row {
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            padding: 28px 0;
+            border-top: 1px solid var(--border-heavy);
+        }
+
+        .module-meta { 
+            font-family: var(--font-mono); 
+            font-weight: 700; 
+            font-size: 13px; 
+            color: var(--accent-orange); 
+        }
+
+        .module-info h4 { font-size: 19px; font-weight: 700; margin-bottom: 4px; }
+        .module-info p { font-size: 15px; color: var(--text-muted); }
+
+        /* RECOVERY PROTOCOL */
+        .recovery-zone {
+            padding: 40px;
+            background-color: #fafafa;
+            border: 1px solid var(--border-heavy);
+            border-left: 6px solid var(--alert-red);
+        }
+
+        /* --- SIDEBAR --- */
+        .specs-sidebar {
+            position: sticky;
+            top: 40px;
+            height: fit-content;
+        }
+
+        .sidebar-widget { margin-bottom: 50px; }
+
+        .widget-title {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .fee-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-heavy);
+            font-size: 15px;
+        }
+
+        .fee-price { font-family: var(--font-mono); font-weight: 700; }
+
+        .requirement-bullet {
+            font-size: 14px;
+            padding: 10px 0;
+            border-bottom: 1px dashed var(--border-heavy);
+            display: block;
+        }
+
+        @media (max-width: 950px) {
+            .main-layout { grid-template-columns: 1fr; gap: 60px; }
+            .specs-sidebar { position: static; border-top: 2px solid var(--text-main); padding-top: 60px; }
+            .container { padding: 0 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="course-hero">
+        <div class="container">
+            <nav class="breadcrumb">Engineering / Fabrication & Production</nav>
+            <h1 class="course-title">Mechanical<br>Engineering</h1>
+            <div class="status-bar">
+                <div class="pathway-tag">NCV Available</div>
+                <div class="pathway-tag">NATED Available</div>
+                <div class="reg-alert">● NATED Trimester Registration Now Open</div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container main-layout">
+        
+        <div class="course-body">
+            
+            <section class="content-block">
+                <span class="section-header">Objective</span>
+                <h2>Forging the Future</h2>
+                <p>Mechanical Engineering is the core of all physical manufacturing. At Maluti TVET, this course covers everything from high-precision tool making to massive structural assembly. We prepare students for the heavy industries of South Africa—mining, automotive, and manufacturing plants.</p>
+            </section>
+
+            <section class="content-block">
+                <span class="section-header">NCV Pathway (7 Subjects)</span>
+                <p style="font-size: 16px; color: var(--text-muted);">The National Certificate Vocational route focuses on physical workshop mastery over 3 years.</p>
+                
+                <div class="module-row">
+                    <div class="module-meta">FUNDAMENTALS</div>
+                    <div class="module-info">
+                        <h4>English + Life Orientation</h4>
+                        <p>Core literacy and digital skills required for professional reporting and career management.</p>
+                    </div>
+                </div>
+
+                <div class="module-row">
+                    <div class="module-meta">MATH</div>
+                    <div class="module-info">
+                        <h4>Engineering Mathematics</h4>
+                        <p>Calculating tolerances, stress loads, and geometric dimensions.</p>
+                    </div>
+                </div>
+
+                <div class="module-row">
+                    <div class="module-meta">CORE</div>
+                    <div class="module-info">
+                        <h4>Engineering Fundamentals</h4>
+                        <p>The science of materials and the core physics behind mechanical movement.</p>
+                    </div>
+                </div>
+
+                <div class="module-row">
+                    <div class="module-meta">PRACTICAL</div>
+                    <div class="module-info">
+                        <h4>3 Specialized Electives</h4>
+                        <p>Focusing on Engineering Graphics and Design (CAD), Material Technology, and Professional Engineering Practice.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-block">
+                <span class="section-header">NATED Pathway (4 Subjects)</span>
+                <p style="font-size: 16px; color: var(--text-muted);">Trimester-based levels (N1–N6) focusing on theoretical engineering depth.</p>
+                
+                <div class="module-row">
+                    <div class="module-meta">N1 - N6</div>
+                    <div class="module-info">
+                        <h4>Mathematics</h4>
+                        <p>Advancing from algebra to high-level calculus per trimester.</p>
+                    </div>
+                </div>
+
+                <div class="module-row">
+                    <div class="module-meta">N1 - N6</div>
+                    <div class="module-info">
+                        <h4>Engineering Science</h4>
+                        <p>The mechanics of fluids, heat, and structural dynamics.</p>
+                    </div>
+                </div>
+
+                <div class="module-row">
+                    <div class="module-meta">CORE</div>
+                    <div class="module-info">
+                        <h4>Mechanical Drawing & Design</h4>
+                        <p>Mastering technical communication through precise blueprints and architectural design.</p>
+                    </div>
+                </div>
+
+                <div class="module-row">
+                    <div class="module-meta">CORE</div>
+                    <div class="module-info">
+                        <h4>Mechanotechnology / Fitting & Machining</h4>
+                        <p>The practical science of gears, pumps, and metal fabrication techniques.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-block">
+                <span class="section-header">Academic Policy</span>
+                <div class="recovery-zone">
+                    <h2 style="font-size: 22px; color: var(--alert-red);">What happens if you fail a subject?</h2>
+                    <p style="font-size: 15px; margin-bottom: 20px;">Failing a module requires immediate action to ensure your progress isn't stalled indefinitely:</p>
+                    <div style="font-size: 14px;">
+                        <p><strong>1. Re-Registration:</strong> For NATED, you must register for the failed subject in the very next trimester. You only pay for that specific subject.</p>
+                        <p style="margin-top: 10px;"><strong>2. The 'Chain' Rule:</strong> You cannot attempt N4 Fitting & Machining if you have not passed N3. The foundation must be solid.</p>
+                        <p style="margin-top: 10px;"><strong>3. Academic Support:</strong> Students are encouraged to attend peer-tutoring sessions at the Engineering block for subjects with high failure rates like Math and Science.</p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <aside class="specs-sidebar">
+            
+            <div class="sidebar-widget">
+                <span class="widget-title">Tuition & Fees</span>
+                <div class="fee-item">
+                    <span>NATED (Per Trimester)</span>
+                    <span class="fee-price">R 2,450.00</span>
+                </div>
+                <div class="fee-item">
+                    <span>NATED (Per Subject)</span>
+                    <span class="fee-price">R 620.00</span>
+                </div>
+                <div class="fee-item">
+                    <span>NCV (Annual)</span>
+                    <span class="fee-price">R 4,800.00</span>
+                </div>
+                <p style="font-size: 12px; color: var(--text-muted); margin-top: 15px;">*Fees are subject to change. Registration covers tuition and first-attempt exams.</p>
+            </div>
+
+            <div class="sidebar-widget">
+                <span class="widget-title">Entry Criteria</span>
+                <span class="requirement-bullet"><strong>N1:</strong> Grade 9 Pass (Math + Science)</span>
+                <span class="requirement-bullet"><strong>N4:</strong> Grade 12 (Pure Math + Physics)</span>
+                <span class="requirement-bullet"><strong>NCV L2:</strong> Grade 9 Pass</span>
+            </div>
+
+            <div class="sidebar-widget">
+                <span class="widget-title">Funding</span>
+                <p style="font-size: 15px; font-weight: 600; color: var(--accent-orange);">NSFAS Bursaries are available for all eligible full-time students.</p>
+            </div>
+
+            <div class="sidebar-widget" style="padding: 20px; background: #f8f9fa;">
+                <span class="widget-title">Location</span>
+                <p style="font-size: 15px;">Bethlehem Campus<br>Harrismith Campus</p>
+            </div>
+
+        </aside>
+
+    </main>
+
+</body>
+</html>
