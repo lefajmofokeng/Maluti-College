@@ -6,7 +6,11 @@
 <title>Maluti TVET College</title>
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
 
-<script src="main.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+
 
 <style>
   body { margin: 0; background: #f0f0f4; }
@@ -27,7 +31,7 @@
   const style = document.createElement('style');
   style.textContent = `
     
-    * { box-sizing: border-box; font-family: 'Source Sans Pro', sans-serif; line-height: 1.2; }
+    * { box-sizing: border-box; font-family: 'Google Sans', 'Roboto', sans-serif; line-height: 1.2; }
 
     :host {
         --hyperion-color-header-bg: #0a0a3c;
@@ -96,7 +100,7 @@
         text-decoration: none;
         color: var(--hyperion-color-text-light);
         font-weight: 500; padding: 10px 0;
-        display: flex; font-size: 16px; align-items: center;
+        display: flex; font-size: 14px; align-items: center;
         transition: color 0.2s; letter-spacing: 0.02em;
     }
     .hyperion-custom-nav-link:hover { color: #a0aadd; }
@@ -113,7 +117,7 @@
     .hyperion-header-action-btn {
         background: var(--hyperion-color-accent); color: var(--hyperion-color-text-light);
         border: none; padding: 9px 18px; border-radius: 50px;
-        font-weight: 600; font-size: 15px; cursor: pointer;
+        font-weight: 500; font-size: 14px; cursor: pointer;
         transition: background-color 0.2s ease;
         text-decoration: none; font-family: inherit; letter-spacing: 0.02em;
     }
@@ -123,7 +127,7 @@
     .hyperion-header-secondary-btn {
         background-color: transparent; color: var(--hyperion-color-text-light);
         border: 1px solid rgba(255,255,255,0.2); padding: 9px 17px; border-radius: 50px;
-        font-weight: 600; font-size: 15px; cursor: pointer; letter-spacing: 0.02em;
+        font-weight: 500; font-size: 14px; cursor: pointer; letter-spacing: 0.02em;
         transition: background-color 0.2s ease, border-color 0.2s ease;
         text-decoration: none; font-family: inherit;
     }
@@ -201,7 +205,7 @@
     }
 
     .hyperion-menu-group-tagline {
-        font-size: 14px; font-weight: 400;
+        font-size: 14px; font-weight: 500;
         color: var(--hyperion-color-text-muted); margin-top: 4px; display: block;
     }
 
@@ -333,7 +337,7 @@
                                                 <span class="hyperion-menu-group-tagline">Pioneers of Infrastructure</span>
                                             </span>
                                         </h3>
-                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 600; font-size: 15px; cursor:pointer;">
+                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 500; font-size: 15px; cursor:pointer;">
                                             <a style="text-decoration: none; border-bottom: none; color: #fff;" href="faculty-of-engineering.html">Learn about this faculty</a>
                                         </button>
                                         <ul class="hyperion-mega-menu-group-list">
@@ -352,7 +356,7 @@
                                                 <span class="hyperion-menu-group-tagline">Architects of Commerce</span>
                                             </span>
                                         </h3>
-                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 600; font-size: 15px; cursor:pointer;">
+                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 500; font-size: 15px; cursor:pointer;">
                                             <a style="text-decoration: none; border-bottom: none; color: #fff; border-radius: 50px;" href="faculty-of-business.html">Learn about this faculty</a>
                                         </button>
                                          <ul class="hyperion-mega-menu-group-list">
@@ -372,7 +376,7 @@
                                                 <span class="hyperion-menu-group-tagline">Champions of Community</span>
                                             </span>
                                         </h3>
-                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 600; font-size: 15px; cursor:pointer;">
+                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 500; font-size: 15px; cursor:pointer;">
                                             <a style="text-decoration: none; border-bottom: none; color: #fff;" href="faculty-of-humanities.html">Learn about this faculty</a>
                                         </button>
                                         <ul class="hyperion-mega-menu-group-list">
@@ -391,7 +395,7 @@
                                                 <span class="hyperion-menu-group-tagline">Stewards of Sustainability</span>
                                             </span>
                                         </h3>
-                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 600; font-size: 15px; cursor:pointer;">
+                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 500; font-size: 15px; cursor:pointer;">
                                             <a style="text-decoration: none; border-bottom: none; color: #fff;" href="faculty-of-agriculture.html">Learn about this faculty</a>
                                         </button>
                                         <ul class="hyperion-mega-menu-group-list">
@@ -406,7 +410,7 @@
                                                 <span class="hyperion-menu-group-tagline">Masters of Craft</span>
                                             </span>
                                         </h3>
-                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 600; font-size: 15px; cursor:pointer;">
+                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 500; font-size: 15px; cursor:pointer;">
                                             <a style="text-decoration: none; border-bottom: none; color: #fff;" href="index.html">Learn about skills programs</a>
                                         </button>
                                         <ul class="hyperion-mega-menu-group-list">
@@ -441,7 +445,7 @@
                                         <ul class="hyperion-mega-menu-group-list">
                                             <li><a href="portal.html"><span class="hyperion-mega-menu-link-title">Student Portal</span></a></li>
                                             <li><a href="housing.html"><span class="hyperion-mega-menu-link-title">Noticeboard</span></a></li>
-                                            <li><a href="library.html"><span class="hyperion-mega-menu-link-title">Digital Library</span></a></li>
+                                            <li><a href="https://lefajmofokeng.github.io/Ebooks"><span class="hyperion-mega-menu-link-title">Digital Library</span></a></li>
                                             <li><a href="exams.html"><span class="hyperion-mega-menu-link-title">Exam Schedules</span></a></li>
                                         </ul>
                                     </div>
@@ -1296,14 +1300,14 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: 'Source Sans Pro', sans-serif;
+        font-family: 'Google Sans', 'Roboto', sans-serif;
         display: flex;
         align-items: center;
         justify-content: flex-start;
         min-height: 700px;
         width: 100%;
         background: linear-gradient(to right, rgba(0,0,0,0.8) 20%, rgba(0,0,0,0.1) 100%), 
-                    url('https://images.unsplash.com/photo-1525921429624-479b6a26d84d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+                    url('images/Gemini_Generated_Image_dzzu6cdzzu6cdzzu.png');
         background-size: cover;
         background-position: center;
         color: #ffffff;
@@ -1320,9 +1324,9 @@
     .it-hero-headline {
         font-size: 3.5rem;
         line-height: 1.1;
-        font-weight: 600;
+        font-weight: 500;
         margin-bottom: 1.8rem;
-        font-family:'Source Sans Pro', sans-serif;                                   
+                                           
     }
 
     .it-hero-buttons {
@@ -1337,7 +1341,6 @@
         gap: 8px;
         padding: 0.7rem 1.5rem;
         border-radius: 60px;
-        font-family: 'Source Sans Pro', sans-serif;
         font-size: 1rem;
         font-weight: 600;
         cursor: pointer;
@@ -1444,13 +1447,13 @@
 
     .info-text {
         /* Using a Serif font stack for that academic look */
-        font-family: 'Source Sans Pro', sans-serif;
+        font-family: 'Google Sans', 'Roboto', sans-serif;
         color: #000051; /* Deep navy blue */
         font-size: 2rem;
         line-height: 1.4;
         max-width: 600px;
         margin: 0 auto;
-        font-weight: 400;
+        font-weight: 500;
     }
 
     /* Responsive adjustment for mobile */
@@ -1568,7 +1571,7 @@
     .it-scroll-wrapper {
         background-color: var(--it-bg);
         color: var(--it-text-main);
-        font-family: 'Source Sans Pro', sans-serif;
+        font-family: 'Google Sans', 'Roboto', sans-serif;
         margin: 0;
         padding: 0;
         box-sizing: border-box;
@@ -1645,7 +1648,7 @@
         line-height: 1.6;
         color: var(--it-text-main);
         max-width: 450px;
-        font-weight: 500;
+        font-weight: 400;
     }
 
     /* --- MOBILE IMAGE (Hidden on Desktop) --- */
@@ -1957,7 +1960,7 @@
             --itsvc-text-muted: #CBD5E1; 
             --itsvc-accent: #0077CC; 
             --itsvc-border: #E2E8F0;
-            --itsvc-font: 'Source Sans Pro', sans-serif;
+            --itsvc-font: 'Google Sans', 'Roboto', sans-serif;
             --itsvc-anim-speed: 5s;
         }
 
@@ -2406,7 +2409,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Google Sans', 'Roboto', sans-serif;
   }
 
   .kw-special-container {
@@ -2591,7 +2594,7 @@
 <div class="kw-special-container">
 
   <div class="kw-special-card kw-special-welcome-card">
-    <img src="https://images.unsplash.com/photo-1580411363668-4b59002b6962?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Headteacher" class="kw-special-welcome-bg">
+    <img src="https://scontent.fjnb1-1.fna.fbcdn.net/v/t39.30808-6/652337892_1438290397940356_9022245508570533571_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeGTY6EIEUUOwtE0Oj9yak7iX2muVLAMduVfaa5UsAx25Y87LD8E_kkjo7RNaGO_Nlb6AT8GeFl8dIKNQSYFlJGu&_nc_ohc=FPqQOgaYQxsQ7kNvwG6QWtU&_nc_oc=AdosLJQRW6rL1JSIvZL_9GMTO3RD8Ve5sscPFhmrAZaC3INjsVP4PtAvSBnG66on2T0&_nc_zt=23&_nc_ht=scontent.fjnb1-1.fna&_nc_gid=Zf1in_vGQ2ui7_2RBcXIzg&_nc_ss=7b2a8&oh=00_Af1XgORpGvfZ0eDxFrd5oti-GefBLbSn8ltUnF7HSHkv2g&oe=69F6D9C2" alt="Headteacher" class="kw-special-welcome-bg">
     <div class="kw-special-welcome-content">
       <h2 class="kw-special-title">Welcome from the Principal</h2>
       <p class="kw-special-text">At Maluti, our guiding principle is 'Aim High, Be Kind, and Dare to be Different'. This motto, deeply rooted at our core, combined with exceptional teaching sets us apart.</p>
@@ -2628,7 +2631,7 @@
   </div>
 
   <div class="kw-special-card kw-special-children-card">
-    <img src="https://images.unsplash.com/photo-1763673405004-42829575a2df?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Children Waving" class="kw-special-children-bg">
+    <img src="https://scontent.fjnb1-1.fna.fbcdn.net/v/t39.30808-6/643822649_1424496282653101_1509056007468627551_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeGwUyphUt5B4Awgupl6l27e0Nu4xMfBnBHQ27jEx8GcEazTKLs8feR5WcRpKjv_abgRjvkXohTOKdHBrVs7nzj1&_nc_ohc=jhc-ycu-4_EQ7kNvwGI5N5b&_nc_oc=AdrRDGBNwdXIot8CK_cea-w2KaoRx9dQtPpddyaANK75HMua_aq0gXosjxdCMMotS_g&_nc_zt=23&_nc_ht=scontent.fjnb1-1.fna&_nc_gid=b3KeflSAvzgefX3cMSp8Hw&_nc_ss=7b2a8&oh=00_Af29dPGxODIsoyrMvqKtl6UFiKaihbbN44aBe9TjcEA5cw&oe=69F6E7A4" alt="Children Waving" class="kw-special-children-bg">
   </div>
 
 </div>
@@ -2689,7 +2692,7 @@
            ========================================= */
 
         :root {
-            --ft-font-family: 'Source Sans Pro', sans-serif;
+            --ft-font-family: 'Google Sans', 'Roboto', sans-serif;
             --ft-color-bg: #020035; /* Deep Navy Blue matching the screenshot */
             --ft-color-text: #ffffff;
             --ft-color-border: #ffffff;
@@ -2832,7 +2835,7 @@
         <div class="ft-row">
             <div class="ft-image-col">
                 <div class="ft-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1594750852517-f37738fa2384?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Statue in a classic library setting" class="ft-image">
+                    <img src="images/academic-excellence.jpg" alt="Statue in a classic library setting" class="ft-image">
                 </div>
             </div>
             
@@ -2848,7 +2851,7 @@
         <div class="ft-row">
             <div class="ft-image-col">
                 <div class="ft-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=80&w=1000&auto=format&fit=crop" alt="Students running on athletic track" class="ft-image">
+                    <img src="https://scontent.fjnb1-1.fna.fbcdn.net/v/t39.30808-6/672189704_1463259988776730_3592341870029069511_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeG_h-HEoIzNSzDH3RtRg7J4_Y5k5JQ2p4r9jmTklDanio9YRQ2qYbCFmOwADfirpNXXqHVJ5Y2t8oORhx_G_uvy&_nc_ohc=oXvN9PuOgggQ7kNvwEQOCbC&_nc_oc=AdpdQ0WYDKJZ1Ka_ki7ODBn2uLoeO8bsrUUyulqvFkoYp5iHj9xvr6OuXmj2NU2iAH0&_nc_zt=23&_nc_ht=scontent.fjnb1-1.fna&_nc_gid=6PY4tvP-PAB-L6LdEg9s0g&_nc_ss=7b2a8&oh=00_Af2Zy-THBjz-FbxmPzVbLEY3pO7P3sqoHvn1fAuWRCd64g&oe=69F6BEFD" alt="Students running on athletic track" class="ft-image">
                 </div>
             </div>
 
@@ -2928,7 +2931,7 @@
 
             <article class="ra-card">
                 <div class="ra-card-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1647596344186-4f1865b0ea07?q=80&w=1331&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Color palette swatches on wooden table" class="ra-card-image">
+                    <img src="https://scontent.fjnb1-1.fna.fbcdn.net/v/t39.30808-6/642333191_1422919129477483_394250799152117287_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=101&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeFh3XP23g6V6UEzX0hgVVcF_F6u7Cz9-Cn8Xq7sLP34KajPbjc5vlZaLrekGa08L86wIPm71UiFnWnDYR1ncP8s&_nc_ohc=fFxzl8xpacQQ7kNvwFds7zn&_nc_oc=AdqsYe-dPUDnGsef0FomJ0s-G9v3bgAtZ616AMsrS2Z_C7swAJr-4caITBgxvwaheNQ&_nc_zt=23&_nc_ht=scontent.fjnb1-1.fna&_nc_gid=s_98miiewHF9JF1l_OVKSA&_nc_ss=7a2a8&oh=00_Af2EqCjOjy3N_KHrqlj6dw5YLX9WyZ83kiU40uhG3sfeqA&oe=69F6F24B" alt="Color palette swatches on wooden table" class="ra-card-image">
                 </div>
                 <div class="ra-card-content">
                     <div class="ra-card-meta">
@@ -2942,7 +2945,7 @@
 
             <article class="ra-card">
                 <div class="ra-card-image-wrapper">
-                    <img src="https://images.pexels.com/photos/35573072/pexels-photo-35573072.jpeg" alt="Paint roller on a beige wall" class="ra-card-image">
+                    <img src="https://scontent.fjnb1-1.fna.fbcdn.net/v/t39.30808-6/672182341_1463194812116581_6757855364832648630_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=106&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeFef44SRwWlKf2xQYpb_7VMWahnr8SNYJVZqGevxI1glfiK1MLgIdpe4pg4_jmQ0-qofaNxibsXEtKNJTIpuwJI&_nc_ohc=x7b7sXEzdYcQ7kNvwHHB_a1&_nc_oc=Ado8gCfSdWkKqGEdIV7ixT8KaWPvD101eNn-iXQ4yW5HQpnvvUkg-1qioVbV9WuNtv4&_nc_zt=23&_nc_ht=scontent.fjnb1-1.fna&_nc_gid=gX6OhMdeKpQKG58QUIGDrg&_nc_ss=7b2a8&oh=00_Af2oCN8ohLzTqOCIls2uYiGwwd26W_VieK9DhIg1yI8HNw&oe=69F6D0DE" alt="Paint roller on a beige wall" class="ra-card-image">
                 </div>
                 <div class="ra-card-content">
                     <div class="ra-card-meta">
@@ -2967,7 +2970,7 @@
         */
 
         :root {
-            --ra-font-family: 'Source Sans Pro', sans-serif;
+            --ra-font-family: 'Google Sans', 'Roboto', sans-serif;
             --ra-color-text-main: #111111;
             --ra-color-text-secondary: #666666;
             --ra-color-bg-tag: #dedede;
@@ -3189,7 +3192,7 @@
     .kw-footer-container {
         background-color: #050533;
         color: #ffffff;
-        font-family: 'Source Sans Pro', sans-serif;
+        font-family: 'Google Sans', 'Roboto', sans-serif;
         width: 100%;
     }
     .kw-footer-container * { box-sizing: border-box; margin: 0; padding: 0; }
