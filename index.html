@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Maluti TVET College</title>
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
-
 <script src="main.js"></script>
+
 
 <style>
   body { margin: 0; background: #f0f0f4; }
@@ -14,6 +14,16 @@
   font-family: sans-serif;
   color: #333; }
 </style>
+
+<style>
+    @font-face { font-family:'Circular Std'; src:url('fonts/CircularStd-Book.woff2') format('woff2'),url('fonts/CircularStd-Book.woff') format('woff'); font-weight:400; font-style:normal; font-display:swap; }
+  @font-face { font-family:'Circular Std'; src:url('fonts/CircularStd-BookItalic.woff2') format('woff2'),url('fonts/CircularStd-BookItalic.woff') format('woff'); font-weight:400; font-style:italic; font-display:swap; }
+  @font-face { font-family:'Circular Std'; src:url('fonts/CircularStd-Medium.woff2') format('woff2'),url('fonts/CircularStd-Medium.woff') format('woff'); font-weight:500; font-style:normal; font-display:swap; }
+  @font-face { font-family:'Circular Std'; src:url('fonts/CircularStd-Bold.woff2') format('woff2'),url('fonts/CircularStd-Bold.woff') format('woff'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'Circular Std'; src:url('fonts/CircularStd-Bold.woff2') format('woff2'),url('fonts/CircularStd-Bold.woff') format('woff'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'Circular Std'; src:url('fonts/CircularStd-Black.woff2') format('woff2'),url('fonts/CircularStd-Black.woff') format('woff'); font-weight:800; font-style:normal; font-display:swap; }
+  @font-face { font-family:'Circular Std'; src:url('fonts/CircularStd-Black.woff2') format('woff2'),url('fonts/CircularStd-Black.woff') format('woff'); font-weight:900; font-style:normal; font-display:swap; }
+    </style>
 </head>
 <body>
 
@@ -27,7 +37,7 @@
   const style = document.createElement('style');
   style.textContent = `
     
-    * { box-sizing: border-box; font-family: 'Source Sans Pro', sans-serif; line-height: 1.2; }
+    * { box-sizing: border-box; font-family: 'Circular Std', sans-serif; line-height: 1.2; }
 
     :host {
         --hyperion-color-header-bg: #0a0a3c;
@@ -95,7 +105,7 @@
     .hyperion-custom-nav-link {
         text-decoration: none;
         color: var(--hyperion-color-text-light);
-        font-weight: 500; padding: 10px 0;
+        font-weight: 400; padding: 10px 0;
         display: flex; font-size: 14px; align-items: center;
         transition: color 0.2s; letter-spacing: 0.02em;
     }
@@ -113,7 +123,7 @@
     .hyperion-header-action-btn {
         background: var(--hyperion-color-accent); color: var(--hyperion-color-text-light);
         border: none; padding: 9px 18px; border-radius: 50px;
-        font-weight: 500; font-size: 14px; cursor: pointer;
+        font-weight: 400; font-size: 14px; cursor: pointer;
         transition: background-color 0.2s ease;
         text-decoration: none; font-family: inherit; letter-spacing: 0.02em;
     }
@@ -123,7 +133,7 @@
     .hyperion-header-secondary-btn {
         background-color: transparent; color: var(--hyperion-color-text-light);
         border: 1px solid rgba(255,255,255,0.2); padding: 9px 17px; border-radius: 50px;
-        font-weight: 500; font-size: 14px; cursor: pointer; letter-spacing: 0.02em;
+        font-weight: 400; font-size: 14px; cursor: pointer; letter-spacing: 0.02em;
         transition: background-color 0.2s ease, border-color 0.2s ease;
         text-decoration: none; font-family: inherit;
     }
@@ -201,7 +211,7 @@
     }
 
     .hyperion-menu-group-tagline {
-        font-size: 14px; font-weight: 500;
+        font-size: 14px; font-weight: 400;
         color: var(--hyperion-color-text-muted); margin-top: 4px; display: block;
     }
 
@@ -328,12 +338,12 @@
                                     <div class="hyperion-menu-group-card">
                                         <h3>
                                             <img src="images/engineering.png" alt="Dev Icon" class="hyperion-menu-group-img-icon">
-                                            <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 500; font-size: 15px; line-height: 1;">
+                                            <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 400; font-size: 15px; line-height: 1.1;">
                                                 Faculty of Engineering Studies
                                                 <span class="hyperion-menu-group-tagline">Pioneers of Infrastructure</span>
                                             </span>
                                         </h3>
-                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 500; font-size: 15px; cursor:pointer;">
+                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 400; font-size: 15px; cursor:pointer;">
                                             <a style="text-decoration: none; border-bottom: none; color: #fff;" href="faculty-of-engineering.html">Learn about this faculty</a>
                                         </button>
                                         <ul class="hyperion-mega-menu-group-list">
@@ -347,12 +357,12 @@
                                     <div class="hyperion-menu-group-card">
                                         <h3>
                                             <img src="images/it.png" alt="IT Icon" class="hyperion-menu-group-img-icon">
-                                            <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 500; font-size: 15px; line-height: 1;">
+                                            <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 400; font-size: 15px; line-height: 1.1;">
                                                 Faculty of Business Management
                                                 <span class="hyperion-menu-group-tagline">Architects of Commerce</span>
                                             </span>
                                         </h3>
-                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 500; font-size: 15px; cursor:pointer;">
+                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 400; font-size: 15px; cursor:pointer;">
                                             <a style="text-decoration: none; border-bottom: none; color: #fff; border-radius: 50px;" href="faculty-of-business.html">Learn about this faculty</a>
                                         </button>
                                          <ul class="hyperion-mega-menu-group-list">
@@ -367,12 +377,12 @@
                                     <div class="hyperion-menu-group-card">
                                         <h3>
                                             <img src="images/hosp.png" alt="Hospitality Icon" class="hyperion-menu-group-img-icon">
-                                            <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 500; font-size: 15px; line-height: 1;">
+                                            <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 400; font-size: 15px; line-height: 1.1;">
                                                 Faculty of Humanities & Social Services
                                                 <span class="hyperion-menu-group-tagline">Champions of Community</span>
                                             </span>
                                         </h3>
-                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 500; font-size: 15px; cursor:pointer;">
+                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 400; font-size: 15px; cursor:pointer;">
                                             <a style="text-decoration: none; border-bottom: none; color: #fff;" href="faculty-of-humanities.html">Learn about this faculty</a>
                                         </button>
                                         <ul class="hyperion-mega-menu-group-list">
@@ -386,12 +396,12 @@
                                     <div class="hyperion-menu-group-card">
                                         <h3>
                                             <img src="images/business.png" alt="Business Icon" class="hyperion-menu-group-img-icon">
-                                            <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 500; font-size: 15px; line-height: 1;">
+                                            <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 400; font-size: 15px; line-height: 1.1;">
                                                 Faculty of Agriculture
                                                 <span class="hyperion-menu-group-tagline">Stewards of Sustainability</span>
                                             </span>
                                         </h3>
-                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 500; font-size: 15px; cursor:pointer;">
+                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight:4500; font-size: 15px; cursor:pointer;">
                                             <a style="text-decoration: none; border-bottom: none; color: #fff;" href="faculty-of-agriculture.html">Learn about this faculty</a>
                                         </button>
                                         <ul class="hyperion-mega-menu-group-list">
@@ -401,12 +411,12 @@
                                     </div>
                                     <div class="hyperion-menu-group-card">
                                         <h3>
-                                            <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 500; font-size: 15px; line-height: 1;">
+                                            <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 400; font-size: 15px; line-height: 1.1;">
                                                Skills & Occupational Faculty
                                                 <span class="hyperion-menu-group-tagline">Masters of Craft</span>
                                             </span>
                                         </h3>
-                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 500; font-size: 15px; cursor:pointer;">
+                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 400; font-size: 15px; cursor:pointer;">
                                             <a style="text-decoration: none; border-bottom: none; color: #fff;" href="index.html">Learn about skills programs</a>
                                         </button>
                                         <ul class="hyperion-mega-menu-group-list">
@@ -745,7 +755,7 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Source Sans Pro', sans-serif;
+            font-family: 'Circular Std', sans-serif;
         }
 
         /* ── SCROLLBAR ── */
@@ -758,7 +768,7 @@
         .maluti-chat-trigger {
             position: fixed;
             bottom: 30px;
-            right: 30px;
+            right: 20px;
             padding: 6px 16px 6px 6px;
             background-color: white;
             border-radius: 50px;
@@ -993,6 +1003,11 @@
                 top: 0 !important;
                 border-radius: 0 !important;
                 animation: none !important;
+            }
+
+            .maluti-chat-trigger {
+                right: 10px;
+                bottom: 10px;
             }
 
             .maluti-chat-header { padding-top: calc(15px + env(safe-area-inset-top)); }
@@ -1296,7 +1311,7 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: 'Source Sans Pro', sans-serif;
+        font-family: 'Circular Std', sans-serif;
         display: flex;
         align-items: center;
         justify-content: flex-start;
@@ -1320,7 +1335,7 @@
     .it-hero-headline {
         font-size: 3.5rem;
         line-height: 1.1;
-        font-weight: 500;
+        font-weight: 400;
         margin-bottom: 1.8rem;
                                            
     }
@@ -1443,13 +1458,13 @@
 
     .info-text {
         /* Using a Serif font stack for that academic look */
-        font-family: 'Source Sans Pro', sans-serif;
+        font-family: 'Circular Std', sans-serif;
         color: #000051; /* Deep navy blue */
         font-size: 2rem;
         line-height: 1.4;
         max-width: 600px;
         margin: 0 auto;
-        font-weight: 500;
+        font-weight: 400;
     }
 
     /* Responsive adjustment for mobile */
@@ -1567,7 +1582,7 @@
     .it-scroll-wrapper {
         background-color: var(--it-bg);
         color: var(--it-text-main);
-        font-family: 'Source Sans Pro', sans-serif;
+        font-family: 'Circular Std', sans-serif;
         margin: 0;
         padding: 0;
         box-sizing: border-box;
@@ -1956,7 +1971,7 @@
             --itsvc-text-muted: #CBD5E1; 
             --itsvc-accent: #0077CC; 
             --itsvc-border: #E2E8F0;
-            --itsvc-font: 'Source Sans Pro', sans-serif;
+            --itsvc-font: 'Circular Std', sans-serif;
             --itsvc-anim-speed: 5s;
         }
 
@@ -2405,7 +2420,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Circular Std', sans-serif;
   }
 
   .kw-special-container {
@@ -2688,7 +2703,7 @@
            ========================================= */
 
         :root {
-            --ft-font-family: 'Source Sans Pro', sans-serif;
+            --ft-font-family: 'Circular Std', sans-serif;
             --ft-color-bg: #020035; /* Deep Navy Blue matching the screenshot */
             --ft-color-text: #ffffff;
             --ft-color-border: #ffffff;
@@ -2966,7 +2981,7 @@
         */
 
         :root {
-            --ra-font-family: 'Source Sans Pro', sans-serif;
+            --ra-font-family: 'Circular Std', sans-serif;
             --ra-color-text-main: #111111;
             --ra-color-text-secondary: #666666;
             --ra-color-bg-tag: #dedede;
@@ -3188,7 +3203,7 @@
     .kw-footer-container {
         background-color: #050533;
         color: #ffffff;
-        font-family: 'Source Sans Pro', sans-serif;
+        font-family: 'Circular Std', sans-serif;
         width: 100%;
     }
     .kw-footer-container * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -3218,7 +3233,7 @@
     .kw-footer-social-icon svg { width: 18px; height: 18px; fill: currentColor; }
     .kw-footer-social-icon:hover { opacity: 0.7; }
     .kw-footer-link-list li { margin-bottom: 18px; }
-    .kw-footer-link-list a { font-size: 19px; font-weight: 600; }
+    .kw-footer-link-list a { font-size: 19px; font-weight: 500; color: #e9ecef; }
     .kw-footer-link-list a:hover { opacity: 0.7; }
     .kw-footer-bottom { text-align: right; }
     .kw-footer-designer { font-size: 14px; font-weight: 400; }
