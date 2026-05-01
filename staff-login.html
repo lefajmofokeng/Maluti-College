@@ -1,17 +1,39 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avid Portal - Access</title>
+<!-- Start Maluti TVET Portal Component -->
+<div id="mtvet-system-container" class="mtvet-wrapper">
     <style>
-        /* Scoped to avoid global conflicts */
-        .avid-signin-root * {
+        /* Scoped Font Imports */
+        @font-face {
+            font-family: 'Circular Std';
+            src: local('Circular Std Book'), local('CircularStd-Book');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Circular Std';
+            src: local('Circular Std Medium'), local('CircularStd-Medium');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Circular Std';
+            src: local('Circular Std Bold'), local('CircularStd-Bold');
+            font-weight: bold;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* Strict CSS Reset & Scoping inside the container */
+        #mtvet-system-container {
+            all: initial;
+            display: flex;
+            min-height: 100vh;
+            width: 100%;
+            background-color: #fbfbfb;
+            font-family: 'Circular Std', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            color: #1A1A1A;
             box-sizing: border-box;
-            font-family: "Circular Std", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            margin: 0;
-            padding: 0;
         }
 
         * {
@@ -20,263 +42,657 @@
             box-sizing: border-box;
         }
 
-        .avid-signin-root {
-            display: flex;
-            min-height: 100vh;
-            width: 100%;
-            background-color: #ffffff;
+        #mtvet-system-container *,
+        #mtvet-system-container *::before,
+        #mtvet-system-container *::after {
+            box-sizing: inherit;
         }
 
-        /* --- Left Section (Form) --- */
-        .avid-signin-left {
-            flex: 1;
+        /* --- Sidebar --- */
+        .mtvet-sidebar {
+            width: 320px;
+            background-color: #f4f6fa;
+            border-right: 1px solid #E6E8ED;
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            overflow-y: hidden; /* Ensures the left panel is strictly not scrollable */
+            flex-shrink: 0;
+        }
+
+        .mtvet-logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #101828;
+            margin-bottom: 70px;
+            text-align: center;
+        }
+
+        .mtvet-steps {
+            list-style: none;
+            flex-grow: 1;
+            padding: 0;
+            margin: 0;
+        }
+
+        .mtvet-step-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .mtvet-step-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 40px;
+            height: calc(100% - 10px);
+            width: 2px;
+            background-color: #E6E8ED;
+            z-index: 1;
+        }
+
+        .mtvet-step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid #E6E8ED;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 40px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #b3b9c9;
+            background-color: #f4f6fa;
+            margin-right: 18px;
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
         }
 
-        .avid-signin-card {
-            width: 100%;
-            max-width: 400px;
+        .mtvet-step-item.mtvet-active .mtvet-step-number {
+            background-color: #101828;
+            border-color: #101828;
+            color: #ffffff;
         }
 
-        .avid-signin-card h1 {
-            font-size: 32px;
-            font-weight: 700;
-            color: #111827;
-            margin-bottom: 8px;
+        .mtvet-step-item.mtvet-completed .mtvet-step-number {
+            background-color: #e6f0ff;
+            border-color: #e6f0ff;
+            color: #175cd3;
         }
 
-        .avid-signin-card p.avid-subtitle {
-            font-size: 14px;
-            color: #6B7280;
-            margin-bottom: 32px;
-        }
-
-        .avid-signin-card p.avid-subtitle span {
-            color: #D61A3C; /* Avid Red */
-            font-weight: 500;
-            cursor: pointer;
-            text-decoration: underline;
-        }
-
-        /* Social Buttons */
-        .avid-social-group {
+        .mtvet-step-content {
             display: flex;
             flex-direction: column;
+            margin-top: 2px;
+        }
+
+        .mtvet-step-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #b3b9c9;
+            margin-bottom: 4px;
+        }
+
+        .mtvet-step-item.mtvet-active .mtvet-step-title,
+        .mtvet-step-item.mtvet-completed .mtvet-step-title {
+            color: #101828;
+        }
+
+        .mtvet-step-desc {
+            font-size: 12px;
+            color: #b3b9c9;
+        }
+
+        .mtvet-step-item.mtvet-active .mtvet-step-desc {
+            color: #475467;
+        }
+
+        /* --- Main Content Area --- */
+        .mtvet-main {
+            flex: 1;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            overflow-y: auto;
+        }
+
+        .mtvet-pagination {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 60px;
+        }
+
+        .mtvet-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #E6E8ED;
+            transition: background-color 0.3s ease;
+        }
+
+        .mtvet-dot.mtvet-active {
+            background-color: #101828;
+        }
+
+        /* Account Type Switcher */
+        .mtvet-type-switcher {
+            width: 100%;
+            max-width: 440px;
+            display: flex;
+            background-color: #f2f4f7;
+            border-radius: 8px;
+            margin-bottom: 32px;
+            overflow: hidden;
+            padding: 4px;
+        }
+
+        .mtvet-type-btn {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            color: #667085;
+            cursor: pointer;
+            border: none;
+            background: none;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .mtvet-type-btn.mtvet-active {
+            color: #101828;
+            background-color: #ffffff;
+            box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1);
+        }
+
+        /* Panels */
+        .mtvet-panel {
+            width: 100%;
+            max-width: 440px;
+            display: none;
+            animation: mtvetFadeIn 0.4s ease forwards;
+        }
+
+        .mtvet-panel.mtvet-active {
+            display: block;
+        }
+
+        @keyframes mtvetFadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .mtvet-icon-header {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 24px;
+            color: #175cd3;
+            background: #f0f6ff;
+            border-radius: 12px;
+            padding: 10px;
+        }
+
+        .mtvet-icon-header.mtvet-success {
+            color: #10b981;
+            background: #ecfdf5;
+        }
+
+        .mtvet-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #101828;
+            margin: 0 0 12px 0;
+            line-height: 1.2;
+        }
+
+        .mtvet-subtitle {
+            font-size: 15px;
+            color: #667085;
+            margin: 0 0 32px 0;
+            line-height: 1.5;
+        }
+
+        /* Social Sign On Options */
+        .mtvet-sso-group {
+            display: flex;
             gap: 12px;
             margin-bottom: 24px;
         }
 
-        .avid-social-btn {
+        .mtvet-sso-btn {
+            flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #E5E7EB;
+            gap: 8px;
+            height: 44px;
+            border: 1px solid #D0D5DD;
             border-radius: 8px;
-            background: white;
+            background-color: #ffffff;
+            color: #344054;
             font-size: 14px;
-            font-weight: 500;
-            color: #374151;
+            font-weight: 600;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
         }
 
-        .avid-social-btn:hover { background-color: #F9FAFB; }
+        .mtvet-sso-btn:hover {
+            background-color: #f9fafb;
+            border-color: #98A2B3;
+        }
 
-        .avid-social-icon { width: 18px; height: 18px; }
+        .mtvet-sso-icon {
+            width: 20px;
+            height: 20px;
+        }
 
-        /* Divider */
-        .avid-signin-divider {
+        .mtvet-divider {
             display: flex;
             align-items: center;
-            margin: 24px 0;
-            color: #D1D5DB;
-            font-size: 14px;
-        }
-
-        .avid-signin-divider::before, .avid-signin-divider::after {
-            content: "";
-            flex: 1;
-            height: 1px;
-            background: #E5E7EB;
-        }
-
-        .avid-signin-divider span { padding: 0 16px; }
-
-        /* Form Inputs */
-        .avid-input-label {
-            display: block;
-            font-size: 14px;
-            font-weight: 500;
-            color: #374151;
-            margin-bottom: 8px;
-        }
-
-        .avid-text-input {
-            width: 100%;
-            padding: 12px 16px;
-            border: 2px solid #D1D5DB;
-            border-radius: 8px;
-            font-size: 15px;
+            text-align: center;
             margin-bottom: 24px;
-            outline: none;
-        }
-
-        .avid-submit-btn {
-            width: 100%;
-            padding: 14px;
-            background-color: #D61A3C; /* Avid Red */
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
+            color: #98A2B3;
+            font-size: 12px;
             font-weight: 500;
-            cursor: pointer;
         }
 
-        /* --- Right Section (Portal Terms & Info) --- */
-        .avid-signin-right {
+        .mtvet-divider::before,
+        .mtvet-divider::after {
+            content: '';
             flex: 1;
-            background: #111827;
-            color: #ffffff;
-            padding: 60px 80px;
+            border-bottom: 1px solid #E6E8ED;
+        }
+
+        .mtvet-divider span {
+            padding: 0 12px;
+        }
+
+        /* Forms */
+        .mtvet-input-group {
+            margin-bottom: 20px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
         }
 
-        .avid-portal-info h2 {
-            font-size: 28px;
-            margin-bottom: 16px;
-            color: #F9FAFB;
+        .mtvet-input-label {
+            font-size: 13px;
+            font-weight: 500;
+            color: #344054;
+            margin-bottom: 6px;
         }
 
-        .avid-portal-info p.avid-portal-desc {
-            font-size: 16px;
-            color: #9CA3AF;
-            margin-bottom: 40px;
-            line-height: 1.6;
-        }
-
-        .avid-terms-box {
-            background: rgba(255, 255, 255, 0.03);
-            border-left: 4px solid #D61A3C;
-            padding: 30px;
-            border-radius: 0 12px 12px 0;
-        }
-
-        .avid-terms-box h3 {
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #D61A3C;
-            margin-bottom: 20px;
-        }
-
-        .avid-terms-list {
-            list-style: none;
-        }
-
-        .avid-terms-list li {
-            font-size: 14px;
-            color: #E5E7EB;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: flex-start;
-            line-height: 1.4;
-        }
-
-        .avid-terms-list li::before {
-            content: "✓";
-            color: #D61A3C;
-            margin-right: 12px;
-            font-weight: bold;
-        }
-
-        .avid-quote-card {
-            margin-top: 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 24px;
-        }
-
-        .avid-quote-text {
-            font-style: italic;
-            color: #D1D5DB;
+        .mtvet-input {
+            width: 100%;
+            height: 48px;
+            padding: 0 16px;
+            border: 1px solid #D0D5DD;
+            border-radius: 8px;
             font-size: 15px;
-            line-height: 1.6;
+            color: #101828;
+            transition: all 0.2s ease;
+            background-color: #fff;
         }
 
-        /* Responsive */
-        @media (max-width: 992px) {
-            .avid-signin-right { display: none; }
+        .mtvet-input:focus {
+            outline: none;
+            border-color: #84CAFF;
+            box-shadow: 0 0 0 4px #F4EBFF;
+        }
+
+        /* Buttons */
+        .mtvet-btn {
+            width: 100%;
+            height: 48px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .mtvet-btn-primary {
+            background-color: #101828;
+            color: #ffffff;
+        }
+
+        .mtvet-btn-primary:hover {
+            background-color: #1D2939;
+        }
+
+        .mtvet-btn-secondary {
+            background-color: #ffffff;
+            color: #344054;
+            border: 1px solid #D0D5DD;
+            margin-top: 0;
+            margin-bottom: 12px;
+        }
+
+        .mtvet-btn-secondary:hover {
+            background-color: #f9fafb;
+        }
+
+        /* Footer / Legal Links */
+        .mtvet-footer {
+            margin-top: auto;
+            padding-top: 60px;
+            width: 100%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .mtvet-legal-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+        }
+
+        .mtvet-legal-links a {
+            color: #667085;
+            font-size: 13px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .mtvet-legal-links a:hover {
+            color: #101828;
+        }
+
+        .mtvet-copyright {
+            color: #98A2B3;
+            font-size: 12px;
+        }
+
+        /* Mobile Responsive Overrides */
+        @media (max-width: 768px) {
+            #mtvet-system-container {
+                flex-direction: column;
+            }
+            .mtvet-sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #E6E8ED;
+                padding: 24px;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                flex-shrink: 0;
+            }
+            .mtvet-logo {
+                margin-bottom: 0;
+                font-size: 18px;
+            }
+            .mtvet-steps {
+                display: flex;
+                gap: 12px;
+                justify-content: flex-end;
+            }
+            .mtvet-step-item {
+                margin-bottom: 0;
+            }
+            .mtvet-step-number {
+                margin-right: 0;
+                width: 32px;
+                height: 32px;
+                font-size: 14px;
+            }
+            .mtvet-step-content { display: none; }
+            .mtvet-step-item::after { display: none; }
+            .mtvet-main {
+                padding: 32px 20px;
+            }
+            .mtvet-type-switcher {
+                flex-direction: column;
+            }
+            .mtvet-sso-group {
+                flex-direction: column;
+            }
+            .mtvet-footer {
+                padding-top: 40px;
+            }
         }
     </style>
-</head>
-<body>
 
-<div class="avid-signin-root">
-    
-    <!-- Form Side -->
-    <section class="avid-signin-left">
-        <div class="avid-signin-card">
-            <h1>Sign in to your account</h1>
-            <p class="avid-subtitle">Don't have an account? <span onclick="window.location.reload()">Sign Up</span></p>
+    <!-- Sidebar Section -->
+    <aside class="mtvet-sidebar">
+        <div class="mtvet-logo">Maluti TVET</div>
+        <ul class="mtvet-steps">
+            <li id="mtvet-step-1" class="mtvet-step-item mtvet-active">
+                <div class="mtvet-step-number">1</div>
+                <div class="mtvet-step-content">
+                    <span class="mtvet-step-title">Your Details</span>
+                    <span class="mtvet-step-desc">Provide your information</span>
+                </div>
+            </li>
+            <li id="mtvet-step-2" class="mtvet-step-item">
+                <div class="mtvet-step-number">2</div>
+                <div class="mtvet-step-content">
+                    <span class="mtvet-step-title">Security</span>
+                    <span class="mtvet-step-desc">Create a password</span>
+                </div>
+            </li>
+            <li id="mtvet-step-3" class="mtvet-step-item">
+                <div class="mtvet-step-number">3</div>
+                <div class="mtvet-step-content">
+                    <span class="mtvet-step-title">Access</span>
+                    <span class="mtvet-step-desc">Account status</span>
+                </div>
+            </li>
+        </ul>
+    </aside>
 
-            <div class="avid-social-group">
-                <button class="avid-social-btn">
-                    <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="" class="avid-social-icon">
-                    Continue with Google
+    <!-- Main Content Section -->
+    <main class="mtvet-main">
+        
+        <!-- Pagination Indicator -->
+        <div class="mtvet-pagination">
+            <div id="mtvet-dot-1" class="mtvet-dot mtvet-active"></div>
+            <div id="mtvet-dot-2" class="mtvet-dot"></div>
+            <div id="mtvet-dot-3" class="mtvet-dot"></div>
+        </div>
+
+        <!-- PANEL 1: Identity & Role -->
+        <div id="mtvet-panel-1" class="mtvet-panel mtvet-active">
+            <svg class="mtvet-icon-header" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <h2 class="mtvet-title">Create an account</h2>
+            <p class="mtvet-subtitle">Select your role and provide your official details to proceed.</p>
+            
+            <!-- Mandatory Role Switcher -->
+            <div class="mtvet-type-switcher">
+                <button class="mtvet-type-btn mtvet-active" onclick="mtvetSetRole(this, 'staff')">Official Staff & Faculty</button>
+                <button class="mtvet-type-btn" onclick="mtvetSetRole(this, 'intern')">Intern</button>
+            </div>
+
+            <!-- Social Sign On -->
+            <div class="mtvet-sso-group">
+                <button type="button" class="mtvet-sso-btn" onclick="mtvetSimulateSSO('google')">
+                    <svg class="mtvet-sso-icon" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                    Google
                 </button>
-                <button class="avid-social-btn">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="" class="avid-social-icon">
-                    Continue with Microsoft
+                <button type="button" class="mtvet-sso-btn" onclick="mtvetSimulateSSO('microsoft')">
+                    <svg class="mtvet-sso-icon" viewBox="0 0 21 21"><path d="M10 0H0v10h10V0z" fill="#f25022"/><path d="M21 0H11v10h10V0z" fill="#7fba00"/><path d="M10 11H0v10h10V11z" fill="#00a4ef"/><path d="M21 11H11v10h10V11z" fill="#ffb900"/></svg>
+                    Microsoft
+                </button>
+                <button type="button" class="mtvet-sso-btn" onclick="mtvetSimulateSSO('apple')">
+                    <svg class="mtvet-sso-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M16.365 1.43c-1.475.06-3.325.99-4.24 2.08-.81.97-1.58 2.34-1.39 3.73 1.64.13 3.325-.86 4.275-2.02.825-1.02 1.5-2.45 1.355-3.79zm3.565 14.5c-.715 2.04-3.23 6.07-5.49 6.07-1.12 0-1.855-.66-3.315-.66-1.45 0-2.26.69-3.26.69-2.26 0-5.18-4.59-5.83-6.85-.9-3.13-.35-6.66 1.83-8.31 1.09-.83 2.5-1.28 3.78-1.28 1.4 0 2.5.54 3.38.54.89 0 2.21-.69 3.82-.69 1.42 0 2.76.44 3.78 1.19-1.89 1.1-2.23 3.69-.57 5.04.14.11.29.21.46.29-.39 1.25-.89 2.59-1.59 3.97z"/></svg>
+                    Apple
                 </button>
             </div>
 
-            <div class="avid-signin-divider"><span>or</span></div>
+            <div class="mtvet-divider">
+                <span>OR REGISTER WITH EMAIL</span>
+            </div>
 
-            <form>
-                <label class="avid-input-label">Work email</label>
-                <input type="email" class="avid-text-input" placeholder="name@company.com" required>
-                <button type="submit" class="avid-submit-btn">Send code</button>
+            <form onsubmit="event.preventDefault(); mtvetGoToStep2();">
+                <div class="mtvet-input-group">
+                    <label class="mtvet-input-label">First Name</label>
+                    <input type="text" id="mtvet-fname" class="mtvet-input" placeholder="e.g. Karabo" required>
+                </div>
+                <div class="mtvet-input-group">
+                    <label class="mtvet-input-label">Last Name</label>
+                    <input type="text" id="mtvet-lname" class="mtvet-input" placeholder="e.g. Mokoena" required>
+                </div>
+                <div class="mtvet-input-group">
+                    <label class="mtvet-input-label">Email Address</label>
+                    <input type="email" id="mtvet-email" class="mtvet-input" placeholder="name@malutitvet.co.za or personal" required>
+                </div>
+                <button type="submit" class="mtvet-btn mtvet-btn-primary">Continue to Password</button>
             </form>
         </div>
-    </section>
 
-    <!-- Content Side -->
-    <section class="avid-signin-right">
-        <div class="avid-portal-info">
-            <h2>Unified Access Portal</h2>
-            <p class="avid-portal-desc">
-                This central gateway provides secure access to Avid's internal ecosystem. This portal is open to all authorized personnel, including staff, faculty, and interns, facilitating a universal entry point for collaborative resources.
-            </p>
+        <!-- PANEL 2: Password Setup -->
+        <div id="mtvet-panel-2" class="mtvet-panel">
+            <svg class="mtvet-icon-header" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <h2 class="mtvet-title">Secure your account</h2>
+            <p class="mtvet-subtitle">Choose a strong password to protect your institutional data.</p>
             
-            <div class="avid-terms-box">
-                <h3>Access Terms & Expectations</h3>
-                <ul class="avid-terms-list">
-                    <li>Strict adherence to data privacy and confidentiality protocols.</li>
-                    <li>Authorized use only: Accounts are non-transferable and personal.</li>
-                    <li>Compliance with the Acceptable Use Policy for all digital assets.</li>
-                    <li>Mandatory two-factor authentication for sensitive internal modules.</li>
-                    <li>Real-time auditing of login activity for security maintenance.</li>
-                </ul>
-            </div>
+            <form onsubmit="event.preventDefault(); mtvetFinalize();">
+                <div class="mtvet-input-group">
+                    <label class="mtvet-input-label">Create Password</label>
+                    <input type="password" id="mtvet-pass" class="mtvet-input" placeholder="At least 8 characters" required>
+                </div>
+                <div class="mtvet-input-group">
+                    <label class="mtvet-input-label">Confirm Password</label>
+                    <input type="password" id="mtvet-pass-confirm" class="mtvet-input" placeholder="Repeat password" required>
+                </div>
+                <button type="submit" class="mtvet-btn mtvet-btn-primary">Complete Registration</button>
+                <button type="button" class="mtvet-btn mtvet-btn-secondary" onclick="mtvetGoBackToStep1()">Back</button>
+            </form>
+        </div>
 
-            <div class="avid-quote-card">
-                <p class="avid-quote-text">
-                    "[Panjaya] not only preserved the quality of our content but also saved us significant time and resources."
-                </p>
-                <p style="font-size: 13px; color: #9CA3AF; margin-top: 8px;">- Helena Batt, Director of Localization, TED</p>
+        <!-- PANEL 3A: Instant Access (Maluti TVET Email) -->
+        <div id="mtvet-panel-success" class="mtvet-panel">
+            <svg class="mtvet-icon-header mtvet-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <h2 class="mtvet-title">Account Verified!</h2>
+            <p class="mtvet-subtitle">We recognized your <strong>@malutitvet.co.za</strong> address. Your profile has been automatically verified and you have instant access to the portal.</p>
+            <button type="button" class="mtvet-btn mtvet-btn-primary">Go to Dashboard</button>
+        </div>
+
+        <!-- PANEL 3B: Pending Access (External Email / SSO) -->
+        <div id="mtvet-panel-pending" class="mtvet-panel">
+            <svg class="mtvet-icon-header" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <h2 class="mtvet-title">Setup Under Review</h2>
+            <p class="mtvet-subtitle">Because you registered with a non-institutional or generic email provider, your account requires administrator approval. We will notify you once your access is granted.</p>
+            <button type="button" class="mtvet-btn mtvet-btn-secondary">Check Status</button>
+            <button type="button" class="mtvet-btn mtvet-btn-primary">Return Home</button>
+        </div>
+
+        <!-- Footer / Legal Elements -->
+        <div class="mtvet-footer">
+            <div class="mtvet-legal-links">
+                <a href="#">Terms of Service</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+            <div class="mtvet-copyright">
+                &copy; 2026 Maluti TVET College. All rights reserved.
             </div>
         </div>
-    </section>
 
+    </main>
 </div>
 
-</body>
-</html>
+<script>
+    // System Variables
+    let mtvetCurrentRole = 'staff';
+    const mtvetDomain = '@malutitvet.co.za';
+
+    // Role Selection Logic
+    function mtvetSetRole(btn, role) {
+        document.querySelectorAll('.mtvet-type-btn').forEach(b => b.classList.remove('mtvet-active'));
+        btn.classList.add('mtvet-active');
+        mtvetCurrentRole = role;
+    }
+
+    // SSO Simulation Logic
+    function mtvetSimulateSSO(provider) {
+        let dummyEmail = "";
+        if(provider === 'google') dummyEmail = "user@gmail.com";
+        if(provider === 'microsoft') dummyEmail = "user@outlook.com";
+        if(provider === 'apple') dummyEmail = "user@icloud.com";
+
+        // Auto-fill standard form fields to pass validation
+        document.getElementById('mtvet-fname').value = "Guest";
+        document.getElementById('mtvet-lname').value = "User";
+        document.getElementById('mtvet-email').value = dummyEmail;
+
+        // Push user through the process to generate the password and wait for access
+        mtvetGoToStep2();
+    }
+
+    // Navigation: Step 1 -> Step 2
+    function mtvetGoToStep2() {
+        const email = document.getElementById('mtvet-email').value;
+        if(!email) return;
+
+        document.getElementById('mtvet-panel-1').classList.remove('mtvet-active');
+        document.getElementById('mtvet-panel-2').classList.add('mtvet-active');
+
+        document.getElementById('mtvet-step-1').classList.remove('mtvet-active');
+        document.getElementById('mtvet-step-1').classList.add('mtvet-completed');
+        document.getElementById('mtvet-step-2').classList.add('mtvet-active');
+
+        document.getElementById('mtvet-dot-1').classList.remove('mtvet-active');
+        document.getElementById('mtvet-dot-2').classList.add('mtvet-active');
+    }
+
+    // Navigation: Step 2 -> Step 1 (Back)
+    function mtvetGoBackToStep1() {
+        document.getElementById('mtvet-panel-2').classList.remove('mtvet-active');
+        document.getElementById('mtvet-panel-1').classList.add('mtvet-active');
+
+        document.getElementById('mtvet-step-2').classList.remove('mtvet-active');
+        document.getElementById('mtvet-step-1').classList.add('mtvet-active');
+        document.getElementById('mtvet-step-1').classList.remove('mtvet-completed');
+
+        document.getElementById('mtvet-dot-2').classList.remove('mtvet-active');
+        document.getElementById('mtvet-dot-1').classList.add('mtvet-active');
+    }
+
+    // Finalize Registration & Evaluate Domain Logic
+    function mtvetFinalize() {
+        const pass1 = document.getElementById('mtvet-pass').value;
+        const pass2 = document.getElementById('mtvet-pass-confirm').value;
+
+        if (pass1 !== pass2) {
+            alert("Passwords do not match. Please try again.");
+            return;
+        }
+
+        const email = document.getElementById('mtvet-email').value.toLowerCase().trim();
+
+        // Hide Step 2
+        document.getElementById('mtvet-panel-2').classList.remove('mtvet-active');
+
+        // Update Steppers
+        document.getElementById('mtvet-step-2').classList.remove('mtvet-active');
+        document.getElementById('mtvet-step-2').classList.add('mtvet-completed');
+        document.getElementById('mtvet-step-3').classList.add('mtvet-active');
+        
+        document.getElementById('mtvet-dot-2').classList.remove('mtvet-active');
+        document.getElementById('mtvet-dot-3').classList.add('mtvet-active');
+
+        // Execute Domain Logic constraints based on Maluti TVET rules
+        if (email.endsWith(mtvetDomain)) {
+            // Instant Access Route
+            document.getElementById('mtvet-panel-success').classList.add('mtvet-active');
+        } else {
+            // Pending Approval Route (Gmail, Yahoo, iCloud, generic domains, etc.)
+            document.getElementById('mtvet-panel-pending').classList.add('mtvet-active');
+        }
+    }
+</script>
+<!-- End Maluti TVET Portal Component -->

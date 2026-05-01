@@ -69,7 +69,7 @@
     .sp-nav-logo-mark {
       width: 32px;
       height: 32px;
-      background: linear-gradient(135deg, #1a73e8, #0d47a1);
+      background: linear-gradient(135deg, #0065ad, #0d47a1);
       border-radius: 8px;
       display: flex;
       align-items: center;
@@ -85,7 +85,7 @@
     .sp-nav-logo-text {
       font-size: 21px;
       font-weight: 700;
-      color: #1a73e8;
+      color: #0065ad;
       letter-spacing: -0.4px;
     }
 
@@ -97,7 +97,7 @@
       color: #444;
     }
 
-    .sp-nav-right a        { color: #1a73e8; text-decoration: none; font-weight: 600; }
+    .sp-nav-right a        { color: #0065ad; text-decoration: none; font-weight: 500; }
     .sp-nav-right a:hover  { text-decoration: underline; }
     .sp-nav-sep            { color: #bbb; margin: 0 6px; }
 
@@ -115,7 +115,7 @@
     /* Grey left panel */
     .sp-left {
       flex: 0 0 45%;
-      background: #f0f0f0;
+      background: #f8f8f8;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -131,7 +131,7 @@
       align-items: center;
       justify-content: center;
       padding: 40px 40px 40px 48px;
-      box-shadow: -4px 0 24px rgba(0,0,0,0.06);
+    
       position: relative;
       z-index: 2;
     }
@@ -142,22 +142,21 @@
     ============================================= */
     .sp-card {
       width: 100%;
-      max-width: 520px;
-      border-radius: 4px;
+      max-width: 600px;
+      border-radius: 3px;
       overflow: hidden;
       position: relative;
-      min-height: 480px;
+      min-height: 480px; left: 150px;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      box-shadow: 0 12px 48px rgba(0,0,0,0.18);
+      justify-content: flex-end; z-index: 999;
     }
 
     /* The background image fills the card */
     .sp-card-bg {
       position: absolute;
       inset: 0;
-      background-image: url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=1170&auto=format&fit=crop');
+      background-image: url('https://images.pexels.com/photos/28428584/pexels-photo-28428584.jpeg');
       background-size: cover;
       background-position: center;
       z-index: 0;
@@ -169,9 +168,9 @@
       inset: 0;
       background: linear-gradient(
         to bottom,
-        rgba(10, 40, 120, 0.45) 0%,
-        rgba(10, 30, 100, 0.75) 55%,
-        rgba(5, 15, 60, 0.92) 100%
+        rgba(10, 69, 120, 0.45) 0%,
+        rgba(10, 61, 100, 0.147) 55%,
+        rgba(5, 23, 60, 0.353) 100%
       );
       z-index: 1;
     }
@@ -183,26 +182,18 @@
       color: #fff;
     }
 
-    .sp-card-brand {
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 0.03em;
-      color: rgba(255,255,255,0.85);
-      margin-bottom: 14px;
-    }
-
     .sp-card-title {
       font-size: 34px;
-      font-weight: 700;
+      font-weight: 500;
       line-height: 1.12;
       letter-spacing: -0.03em;
       margin-bottom: 8px;
     }
 
     .sp-card-date {
-      font-size: 13px;
-      font-weight: 600;
-      color: #64ffda;
+      font-size: 15px;
+      font-weight: 400;
+      color: #f4f4f4;
       margin-bottom: 8px;
     }
 
@@ -215,10 +206,10 @@
 
     .sp-card-btn {
       display: inline-block;
-      background: #00bcd4;
+      background: #0065ad;
       color: #fff;
-      font-size: 13.5px;
-      font-weight: 600;
+      font-size: 15px;
+      font-weight: 500;
       border: none;
       border-radius: 50px;
       padding: 11px 26px;
@@ -249,16 +240,16 @@
     /* ── Floating label field ── */
     .sp-field {
       position: relative;
-      margin-bottom: 13px;
+      margin-bottom: 16px;
     }
 
     .sp-field-label {
       position: absolute;
-      top: 8px;
+      top: -8px;
       left: 13px;
-      font-size: 11px;
+      font-size: 15px;
       font-weight: 500;
-      color: #777;
+      color: #777; background-color: #fff; padding: 0 5px;
       pointer-events: none;
     }
 
@@ -275,7 +266,7 @@
     }
 
     .sp-field-input:focus {
-      border-color: #1a73e8;
+      border-color: #0065ad;
       box-shadow: 0 0 0 3px rgba(26,115,232,0.12);
     }
 
@@ -302,7 +293,7 @@
       margin-bottom: 14px;
     }
 
-    .sp-link       { font-size: 13.5px; color: #1a73e8; text-decoration: none; font-weight: 500; }
+    .sp-link       { font-size: 13.5px; color: #0065ad; text-decoration: none; font-weight: 500; }
     .sp-link:hover { text-decoration: underline; }
 
     .sp-help-link {
@@ -310,12 +301,12 @@
       align-items: center;
       gap: 3px;
       font-size: 13.5px;
-      color: #1a73e8;
+      color: #0065ad;
       font-weight: 500;
       text-decoration: none;
     }
 
-    .sp-help-link svg       { width: 13px; height: 13px; fill: #1a73e8; }
+    .sp-help-link svg       { width: 13px; height: 13px; fill: #0065ad; }
     .sp-help-link:hover     { text-decoration: underline; }
 
     /* ── Error alert — hidden by default ── */
@@ -332,25 +323,25 @@
     }
 
     .sp-alert.sp-visible { display: block; }
-    .sp-alert a          { color: #1a73e8; font-weight: 500; text-decoration: none; }
+    .sp-alert a          { color: #0065ad; font-weight: 500; text-decoration: none; }
     .sp-alert a:hover    { text-decoration: underline; }
 
     /* ── Sign In button ── */
     .sp-btn {
       width: 100%;
-      background: #d6d6d6;
-      color: #999;
+      background: #0065ad;
+      color: #ffffff;
       border: none;
       border-radius: 7px;
       padding: 13px;
       font-size: 15px;
       font-weight: 600;
       cursor: pointer;
-      margin-bottom: 13px;
+      margin-bottom: 13px; font-family: 'Circular Std', sans-serif;
       transition: background 0.2s, color 0.2s;
     }
 
-    .sp-btn.sp-btn-ready       { background: #1a73e8; color: #fff; cursor: pointer; }
+    .sp-btn.sp-btn-ready       { background: #0065ad; color: #fff; cursor: pointer; }
     .sp-btn.sp-btn-ready:hover { background: #1558c0; }
 
     /* ── Terms ── */
@@ -361,7 +352,7 @@
       margin-bottom: 16px;
     }
 
-    .sp-terms a       { color: #1a73e8; text-decoration: none; font-weight: 500; }
+    .sp-terms a       { color: #0065ad; text-decoration: none; font-weight: 500; }
     .sp-terms a:hover { text-decoration: underline; }
 
     /* ── Stay signed in ── */
@@ -375,7 +366,7 @@
     .sp-check-row input[type="checkbox"] {
       width: 17px;
       height: 17px;
-      accent-color: #1a73e8;
+      accent-color: #0065ad;
       cursor: pointer;
       flex-shrink: 0;
     }
@@ -436,7 +427,7 @@
       padding-top: 16px;
     }
 
-    .sp-footer-note a       { color: #1a73e8; text-decoration: none; }
+    .sp-footer-note a       { color: #0065ad; text-decoration: none; }
     .sp-footer-note a:hover { text-decoration: underline; }
 
     /* =============================================
@@ -452,7 +443,7 @@
         min-height: 0;
       }
 
-      .sp-card { max-width: 100%; min-height: 280px; }
+      .sp-card { max-width: 100%; min-height: 280px; left: 0; }
 
       .sp-right {
         flex: none;
@@ -506,8 +497,7 @@
         <div class="sp-card-bg"></div>
         <div class="sp-card-overlay"></div>
         <div class="sp-card-body">
-          <p class="sp-card-brand">Maluti Portal</p>
-          <h2 class="sp-card-title">Academic<br>Excellence<br>Hub</h2>
+          <h2 class="sp-card-title">Academic Excellence<br>Hub</h2>
           <p class="sp-card-date">Spring Semester · 2025</p>
           <p class="sp-card-desc">Your gateway to courses, grades, timetables &amp; campus resources — all in one place.</p>
           <a class="sp-card-btn" href="#">Explore Campus</a>

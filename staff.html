@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avid Account</title>
+    <title>Squarespace • Log In</title>
+    <!-- Squarespace uses fonts similar to Roboto and Clarkson, 
+         we will use a clean sans-serif stack for this approximation. -->
     <style>
-        @font-face {
+         @font-face {
             font-family: 'Circular Std';
             src: url('fonts/CircularStd-Book.woff2') format('woff2'),
                  url('fonts/CircularStd-Book.woff2') format('woff');
@@ -28,562 +30,435 @@
             font-weight: bold;
             font-style: normal;
         }
-
-        /* --- Avid Account Scoped Styles --- */
-        .avid-account-container * {
-            box-sizing: border-box;
-            font-family: 'Circular Std', sans-serif;
-            margin: 0;
-            padding: 0;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+        /* --- Root and Reset --- */
+        :root {
+            --sqsp-text-main: #000000;
+            --sqsp-text-sub: #757575;
+            --sqsp-border-color: #E0E0E0;
+            --sqsp-button-text: #272727;
+            --sqsp-font-family: 'Circular Std',-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
         }
 
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
 
-        .avid-account-container {
+        body {
+            font-family: var(--sqsp-font-family);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-color: #FFFFFF;
+            color: var(--sqsp-text-main);
+            height: 100vh;
             display: flex;
-            min-height: 100vh;
-            color: #1A1A1A;
-            background-color: #fff;
+            flex-direction: column;
         }
 
-        /* Image Side */
-        .avid-account-image-panel {
-            flex: 1;
-            background-image: url('https://images.pexels.com/photos/12810660/pexels-photo-12810660.jpeg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            position: relative;
-            padding: 24px;
+        /* --- Global Elements --- */
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: opacity 0.2s;
         }
 
-        .avid-account-logo {
+        a:hover {
+            opacity: 0.8;
+        }
+
+        /* --- Header --- */
+        header {
+            width: 100%;
+            padding: 24px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             position: absolute;
-            top: 24px;
-            left: 30px;
-            width: 50px;
-            height: auto;
+            top: 0;
+            left: 0;
         }
 
-        /* Form Side */
-        .avid-account-form-panel {
-            flex: 1;
+        .logo-container {
             display: flex;
             align-items: center;
-            justify-content: center;
-            padding: 40px 60px;
         }
 
-        .avid-account-form-panel .avid-form-wrapper {
-            width: 100%;
-            max-width: 440px;
+        .logo-icon {
+            height: 24px;
+            width: auto;
         }
 
-        /* Utility classes hidden for toggle */
-        .avid-account-form-panel .hidden {
-            display: none !important;
+        .create-account-link {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 500;
         }
 
-        /* Headings & Text */
-        .avid-account-form-panel h2 {
-            font-weight: bold;
-            font-size: 28px;
-            color: #000;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .avid-account-form-panel p {
-            font-size: 14px;
-            line-height: 20px;
-            color: #666;
-            text-align: center;
-        }
-
-        /* Tab Switcher */
-        .avid-type-switcher {
+        /* --- Main Login Container --- */
+        main {
+            flex: 1;
             display: flex;
-            border: 2px solid #E0E0E0;
-            border-radius: 8px;
-            overflow: hidden;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            padding-top: 100px; /* To avoid header overlap */
+        }
+
+        .login-heading {
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 50px;
+            letter-spacing: -0.01em;
+        }
+
+        .login-grid {
+            display: grid;
+            grid-template-columns: 1fr 1px 1fr;
+            width: 100%;
+            max-width: 680px;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        /* --- Vertical Divider (The 'OR') --- */
+        .divider {
+            height: 100%;
+            background-color: var(--sqsp-border-color);
+            position: relative;
+        }
+
+        .or-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #FFFFFF;
+            color: #C0C0C0;
+            font-size: 11px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 8px 0;
+        }
+
+        /* --- Standard Form Section (Left Side) --- */
+        .form-section {
+            padding-right: 50px;
+        }
+
+        .input-group {
             margin-bottom: 24px;
         }
 
-        .avid-type-btn {
-            flex: 1;
-            padding: 12px;
-            background: none;
-            border: none;
-            font-size: 14px;
-            color: #666;
-            cursor: pointer;
-            text-align: center;
-            font-weight: 500;
-            transition: background-color 0.2s, color 0.2s;
-        }
-
-        .avid-type-btn.active {
-            background-color: #F5F5F5;
-            color: #000;
-        }
-
-        /* Form Fields */
-        .avid-input-group {
-            margin-bottom: 20px;
-        }
-
-        .avid-input-label {
+        .input-label {
             display: block;
-            font-size: 13px;
-            color: #1A1A1A;
-            margin-bottom: 8px;
-            font-weight: normal;
+            color: var(--sqsp-text-sub);
+            font-size: 15px;
+            font-weight: 400;
+            margin-bottom: 6px;
         }
 
-        .avid-required-star {
-            color: #D61A3C; /* Avid red */
-        }
-
-        .avid-form-input {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #E0E0E0;
-            border-radius: 8px;
-            font-size: 14px;
-            color: #1A1A1A;
-            transition: border-color 0.2s;
-        }
-
-        .avid-form-input::placeholder {
-            color: #A0A0A0;
-        }
-
-        .avid-form-input:focus {
-            outline: none;
-            border-color: #A0A0A0;
-        }
-
-        /* Select field with caret */
-        .avid-select-wrapper {
+        .input-wrapper {
             position: relative;
-        }
-
-        .avid-form-select {
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            cursor: pointer;
-        }
-
-        .avid-select-caret {
-            position: absolute;
-            right: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 16px;
-            height: 16px;
-            pointer-events: none;
-        }
-
-        /* Password field with eye */
-        .avid-password-wrapper {
-            position: relative;
-        }
-
-        .avid-password-toggle {
-            position: absolute;
-            right: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 20px;
-            height: 20px;
-            cursor: pointer;
-            border: none;
-            background: none;
-        }
-
-        /* Buttons */
-        .avid-btn-primary {
-            width: 100%;
-            padding: 14px;
-            background-color: #006bbd; /* Avid red */
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            margin-bottom: 15px;
-            transition: background-color 0.2s;
-        }
-
-        .avid-btn-primary:hover {
-            background-color: #006bbdbd;
-        }
-
-        /* OAuth Buttons */
-        .avid-oauth-row {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .avid-btn-oauth {
-            flex: 1;
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 12px;
-            background: #fff;
-            border: 2px solid #E0E0E0;
-            border-radius: 8px;
+            border-bottom: 1px solid var(--sqsp-border-color);
+            padding-bottom: 8px;
+        }
+
+        .sqsp-input {
+            width: 100%;
+            border: none;
+            outline: none;
             font-size: 14px;
-            color: #1A1A1A;
+            color: var(--sqsp-text-main);
+            font-family: inherit;
+        }
+
+        .sqsp-input::placeholder {
+            color: var(--sqsp-text-sub);
+            opacity: 0.6;
+        }
+
+        .password-toggle {
             cursor: pointer;
-            transition: border-color 0.2s;
+            margin-left: 10px;
+            display: flex;
         }
 
-        .avid-btn-oauth:hover {
-            border-color: #A0A0A0;
-        }
-
-        .avid-oauth-icon {
+        .password-toggle svg {
             width: 18px;
             height: 18px;
+            fill: #9E9E9E;
         }
 
-        /* Divider */
-        .avid-divider-row {
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: #A0A0A0;
-            font-size: 14px;
-            margin: 20px 0;
+        .login-btn {
+            width: 100%;
+            height: 48px;
+            background-color: #0065b4; /* Grey/disabled color in screenshot */
+            border: none;
+            border-radius: 6px;
+            color: #ffffff; /* White/disabled color in screenshot */
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 10px; font-family: inherit;
         }
 
-        .avid-divider-line {
-            flex-grow: 1;
-            height: 1px;
-            background-color: #E0E0E0;
-        }
-
-        .avid-divider-text {
-            padding: 0 10px;
-        }
-
-        /* Footer links */
-        .avid-form-footer {
-            margin-top: 20px;
-            font-size: 13px;
-        }
-
-        .avid-form-link {
-            color: #666;
-            text-decoration: underline;
+        /* If input were valid, the button would look like this:
+        .login-btn-active {
+            background-color: #000000;
+            color: #FFFFFF;
             cursor: pointer;
         }
+        */
 
-        .avid-form-link:hover {
-            color: #000;
+        /* --- Social Buttons Section (Right Side) --- */
+        .social-section {
+            padding-left: 50px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
         }
 
-        /* Media Queries for Mobile Responsiveness */
-        @media (max-width: 991px) {
-            .avid-account-image-panel {
-                display: none; /* Hide image panel on smaller devices */
+        .social-btn {
+            width: 100%;
+            height: 54px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 2px solid var(--sqsp-border-color);
+            padding: 0 20px;
+            cursor: pointer; border-radius: 6px; font-family: inherit;
+            transition: border-color 0.2s, background-color 0.2s;
+        }
+
+        .social-btn:hover {
+            border-color: #C0C0C0;
+            background-color: #FAFAFA;
+        }
+
+        .social-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .social-icon-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 20px;
+        }
+
+        .social-btn-text {
+            font-size: 15px;
+            font-weight: 400;
+            color: var(--sqsp-button-text);
+            text-align: center;
+        }
+
+        /* Adjustments for icons to ensure consistent sizing */
+        .social-icon-wrapper svg,
+        .social-icon-wrapper img {
+            max-height: 18px;
+            max-width: 18px;
+        }
+
+        /* --- Main Page Footer (Can't Log In) --- */
+        .footer-links-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .cant-log-in {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 500;
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .recaptcha-notice {
+            color: var(--sqsp-text-sub);
+            font-size: 13px;
+            line-height: 1.6;
+            max-width: 320px;
+            margin: 0 auto;
+        }
+
+        .recaptcha-link {
+            text-decoration: underline; color: #0065b4; font-weight: 500;
+        }
+
+        /* --- Mobile Responsive (Breakpoints) --- */
+        @media screen and (max-width: 720px) {
+            .login-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto;
+                max-width: 400px;
             }
-            .avid-account-form-panel {
-                padding: 40px 20px;
+
+            .form-section {
+                padding-right: 0;
+                margin-bottom: 50px;
+            }
+
+            .divider {
+                height: 1px;
+                width: 100%;
+                margin-bottom: 50px;
+            }
+
+            .or-label {
+                padding: 0 10px;
+            }
+
+            .social-section {
+                padding-left: 0;
             }
         }
 
-        @media (max-width: 480px) {
-            .avid-account-form-panel h2 {
-                font-size: 24px;
+        @media screen and (max-width: 480px) {
+            header {
+                padding: 20px;
             }
-            .avid-type-btn {
-                font-size: 13px;
-                padding: 10px;
+            main {
+                padding-top: 80px;
+            }
+            .login-heading {
+                margin-bottom: 30px;
             }
         }
     </style>
 </head>
-<div class="avid-account-container">
+<body>
 
-    <!-- Left Image Panel (Hidden on Mobile) -->
-    <div class="avid-account-image-panel">
-        <img src="images/logo.png" alt="Avid Logo" class="avid-account-logo">
-        <!-- The background image of the people high-fiving is handled via CSS in a real application -->
-    </div>
-
-    <!-- Right Form Panel -->
-    <div class="avid-account-form-panel">
-        <div class="avid-form-wrapper">
-            
-            <!-- Mobile Logo (Shown only on small screens) -->
-            <img src="https://example.com/avid-logo-red.svg" alt="Avid Logo" class="avid-account-logo avid-mobile-logo hidden">
-
-            <!-- "Create an account" View -->
-            <div id="avidSignupView">
-                <h2>Create an account</h2>
-
-                <!-- User Type Switcher (Faculty vs Intern) -->
-                <div class="avid-type-switcher">
-                    <button class="avid-type-btn active" onclick="switchType('faculty', this)">Staff & Faculty</button>
-                    <button class="avid-type-btn" onclick="switchType('intern', this)">Intern</button>
-                </div>
-
-                <form id="avidSignupForm">
-                    <!-- Faculty Specific Field -->
-                    <div class="avid-input-group" id="avidFacultyField">
-                        <label class="avid-input-label">Institution / Organization Name <span class="avid-required-star">*</span></label>
-                        <div class="avid-select-wrapper">
-                            <select class="avid-form-input avid-form-select" required>
-                                <option value="" disabled selected>Type to Search or Select</option>
-                                <option value="inst1">Institution One</option>
-                                <option value="inst2">Institution Two</option>
-                            </select>
-                            <svg class="avid-select-caret" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-                        </div>
-                    </div>
-
-                    <!-- OAuth Buttons -->
-                    <div class="avid-oauth-row">
-                        <button type="button" class="avid-btn-oauth">
-                            <img src="https://example.com/google-icon.svg" alt="Google" class="avid-oauth-icon">
-                            Sign up with Google
-                        </button>
-                        <button type="button" class="avid-btn-oauth">
-                            <img src="https://example.com/microsoft-icon.svg" alt="Microsoft" class="avid-oauth-icon">
-                            Sign up with Microsoft
-                        </button>
-                    </div>
-
-                    <div class="avid-divider-row">
-                        <span class="avid-divider-line"></span>
-                        <span class="avid-divider-text">or</span>
-                        <span class="avid-divider-line"></span>
-                    </div>
-
-                    <!-- Common Fields -->
-                    <div class="avid-input-row" style="display: flex; gap: 15px;">
-                        <div class="avid-input-group" style="flex: 1;">
-                            <label class="avid-input-label">First Name</label>
-                            <input type="text" class="avid-form-input" placeholder="John" required>
-                        </div>
-                        <div class="avid-input-group" style="flex: 1;">
-                            <label class="avid-input-label">Last Name</label>
-                            <input type="text" class="avid-form-input" placeholder="Smith" required>
-                        </div>
-                    </div>
-
-                    <div class="avid-input-group">
-                        <label class="avid-input-label">Email</label>
-                        <input type="email" class="avid-form-input" placeholder="olivia@avid.com" required>
-                    </div>
-
-                    <div class="avid-input-group">
-                        <label class="avid-input-label">Password</label>
-                        <div class="avid-password-wrapper">
-                            <input type="password" class="avid-form-input" id="avidSignupPassword" required>
-                            <button type="button" class="avid-password-toggle" onclick="togglePassword('avidSignupPassword')">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
-                            </button>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="avid-btn-primary">Create an account</button>
-                </form>
-
-                <div class="avid-form-footer">
-                    <p>By signing up, I agree to Avid's <a href="#" class="avid-form-link">Privacy policy</a> and <a href="#" class="avid-form-link">Terms of service</a></p>
-                    <p style="margin-top: 15px;">Already have one? <span class="avid-form-link" onclick="toggleView()">Log in</span></p>
-                </div>
-            </div>
-
-            <!-- "Log in" View -->
-            <div id="avidLoginView" class="hidden">
-                <h2>Log in</h2>
-
-                <!-- OAuth Buttons -->
-                <div class="avid-oauth-row">
-                    <button type="button" class="avid-btn-oauth">
-                        <img src="https://example.com/google-icon.svg" alt="Google" class="avid-oauth-icon">
-                        Log in with Google
-                    </button>
-                    <button type="button" class="avid-btn-oauth">
-                        <img src="https://example.com/microsoft-icon.svg" alt="Microsoft" class="avid-oauth-icon">
-                        Log in with Microsoft
-                    </button>
-                </div>
-
-                <div class="avid-divider-row">
-                    <span class="avid-divider-line"></span>
-                    <span class="avid-divider-text">or</span>
-                    <span class="avid-divider-line"></span>
-                </div>
-
-                <form id="avidLoginForm">
-                    <div class="avid-input-group">
-                        <label class="avid-input-label">Email</label>
-                        <input type="email" class="avid-form-input" placeholder="olivia@avid.com" required>
-                    </div>
-
-                    <div class="avid-input-group">
-                        <label class="avid-input-label">Password</label>
-                        <div class="avid-password-wrapper">
-                            <input type="password" class="avid-form-input" id="avidLoginPassword" required>
-                            <button type="button" class="avid-password-toggle" onclick="togglePassword('avidLoginPassword')">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
-                            </button>
-                        </div>
-                    </div>
-
-                    <a href="staff-login.html" type="submit" class="avid-btn-primary">Log in</a>
-                </form>
-
-                <div class="avid-form-footer">
-                    <p>Don't have an account? <span class="avid-form-link" onclick="toggleView()">Create an account</span></p>
-                </div>
-            </div>
-
+    <!-- Header Section -->
+    <header>
+        <div class="logo-container">
+            <!-- Squarespace Logo SVG Approximation -->
+            <svg class="logo-icon" viewBox="0 0 45.4 45.4" xmlns="[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)">
+                <path d="M45.4,22.7A22.7,22.7,0,1,1,22.7,0,22.7,22.7,0,0,1,45.4,22.7Z"/>
+                <path fill="#fff" d="M12.9,33.1H9.8V12.3h14c3,0,5.4,2.2,5.4,5s-2.4,5-5.4,5H12.9v10.8Zm0-15.6v10.8h11.2c1.7,0,3.1-1.2,3.1-2.9s-1.4-2.9-3.1-2.9H12.9Zm16.8,15.6H26.6V12.3h14c3,0,5.4,2.2,5.4,5s-2.4,5-5.4,5H29.7v10.8Zm0-15.6v10.8h11.2c1.7,0,3.1-1.2,3.1-2.9s-1.4-2.9-3.1-2.9H29.7Z" transform="translate(-4 -4.8)"/>
+            </svg>
         </div>
-    </div>
-</div>
+        <a href="#" class="create-account-link">Create Account</a>
+    </header>
 
-<script>
-    // Scoped variable to track current user type
-    let currentUserType = 'faculty';
+    <!-- Main Content Section -->
+    <main>
+        <h1 class="login-heading">Log into Maluti Workspace</h1>
 
-    // Function to handle switching between Staff and Intern
-    function switchType(type, buttonElement) {
-        currentUserType = type;
-        
-        // Update button states
-        const buttons = document.querySelectorAll('.avid-type-btn');
-        buttons.forEach(btn => btn.classList.remove('active'));
-        buttonElement.classList.add('active');
+        <div class="login-grid">
+            <!-- Left Side: Form -->
+            <div class="form-section">
+                <form>
+                    <div class="input-group">
+                        <label class="input-label" for="email">Email Address</label>
+                        <div class="input-wrapper">
+                            <input type="email" id="email" class="sqsp-input" placeholder="name@example.com" required>
+                        </div>
+                    </div>
 
-        // Show/hide specific fields
-        const facultyField = document.getElementById('avidFacultyField');
-        if (type === 'faculty') {
-            facultyField.classList.remove('hidden');
-        } else {
-            facultyField.classList.add('hidden');
-        }
-    }
+                    <div class="input-group">
+                        <label class="input-label" for="password">Password</label>
+                        <div class="input-wrapper">
+                            <input type="password" id="password" class="sqsp-input" placeholder="Password" required>
+                            <!-- Password Eye Icon Approximation -->
+                            <div class="password-toggle">
+                                <svg viewBox="0 0 24 24" xmlns="[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)">
+                                    <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
 
-    // Function to toggle password visibility
-    function togglePassword(inputId) {
-        const input = document.getElementById(inputId);
-        if (input.type === "password") {
-            input.type = "text";
-        } else {
-            input.type = "password";
-        }
-    }
+                    <button type="submit" class="login-btn">Log In</button>
+                </form>
+            </div>
 
-    // Function to toggle between Signup and Login views
-    function toggleView() {
-        const signupView = document.getElementById('avidSignupView');
-        const loginView = document.getElementById('avidLoginView');
-        
-        if (signupView.classList.contains('hidden')) {
-            signupView.classList.remove('hidden');
-            loginView.classList.add('hidden');
-        } else {
-            signupView.classList.add('hidden');
-            loginView.classList.remove('hidden');
-        }
-    }
-</script>
+            <!-- Divider with OR Label -->
+            <div class="divider">
+                <span class="or-label">OR</span>
+            </div>
+
+            <!-- Right Side: Social Buttons (Google replaced with Microsoft) -->
+            <div class="social-section">
+                
+                <!-- MOVED & MODIFIED: Microsoft Button replacing Google -->
+                <button class="social-btn">
+                    <div class="social-content">
+                        <div class="social-icon-wrapper">
+                            <!-- Official Microsoft Logo Icon -->
+                            <svg xmlns="[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)" width="16" height="16" viewBox="0 0 21 21">
+                                <title>Microsoft Logo</title>
+                                <rect x="1" y="1" width="9" height="9" fill="#f25022"/>
+                                <rect x="11" y="1" width="9" height="9" fill="#7fba00"/>
+                                <rect x="1" y="11" width="9" height="9" fill="#00a4ef"/>
+                                <rect x="11" y="11" width="9" height="9" fill="#ffb900"/>
+                            </svg>
+                        </div>
+                        <span class="social-btn-text">Continue with Microsoft</span>
+                    </div>
+                </button>
+
+                <!-- Apple Button (Retained) -->
+                <button class="social-btn">
+                    <div class="social-content">
+                        <div class="social-icon-wrapper">
+                            <!-- Simple Apple Icon -->
+                            <svg version="1.1" id="apple-logo" xmlns="[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)" xmlns:xlink="[http://www.w3.org/1999/xlink](http://www.w3.org/1999/xlink)" x="0px" y="0px"
+                                viewBox="0 0 170 170" enable-background="new 0 0 170 170" xml:space="preserve" fill="#000000">
+                                <g>
+                                    <path d="M150.37,130.25c-2.45,3.66-5.31,7.19-8.55,10.51c-3.58,3.66-7.4,7.01-11.46,10.01c-9.92,7.28-21.67,12.82-35.25,16.61c-6.1,1.71-12.82,2.56-20.19,2.56c-11.83,0-23.74-2.31-35.73-6.93c-11.99-4.62-21.05-8.15-27.18-10.59
+                                        c-6.84-2.73-12.82-5.71-17.95-8.91c-2.11-1.32-4.14-2.61-6.1-3.86l0.31-0.62c-2.43-1.61-4.71-3.11-6.84-4.5
+                                        c-31.1-23.32-44.15-56.12-39.11-98.39c2.31-19.34,10.43-35.43,24.36-48.27C41.1,15.3,55.08,8.88,68.99,8.88
+                                        c6.1,0,11.93,1.21,17.51,3.63c5.58,2.41,9.8,3.95,12.66,4.61c5.22,1.2,11.13,1.8,17.72,1.8c7.32,0,13.62-0.6,18.9-1.8
+                                        c2.86-0.66,7.12-2.22,12.78-4.66c5.67-2.44,11.23-3.66,16.69-3.66c12.2,0,23.11,3.42,32.74,10.25c9.62,6.83,16.89,15.34,21.82,25.55
+                                        c-16.71,9.15-25.07,23.36-25.07,42.61c0,16.14,6.72,29.13,20.17,38.97c3.54,2.57,8.04,5.2,13.49,7.9l1.3,0.64
+                                        C152.01,127.35,151.2,128.9,150.37,130.25z M119.11,7.24C119.11,25.6,105.1,39.69,89.05,39.69c-0.26,0-0.53,0-0.79-0.01
+                                        C87.6,21.2,101.49,6.51,118.42,6.51C118.66,6.51,118.89,6.51,119.11,7.24z"/>
+                                </g>
+                            </svg>
+                        </div>
+                        <span class="social-btn-text">Continue with Apple</span>
+                    </div>
+                </button>
+
+                <!-- Facebook Button (Retained) -->
+                <button class="social-btn">
+                    <div class="social-content">
+                        <div class="social-icon-wrapper">
+                            <!-- Official Facebook Icon -->
+                            <svg xmlns="[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)" viewBox="0 0 512 512">
+                                <path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z" fill="#1877f2"/>
+                            </svg>
+                        </div>
+                        <span class="social-btn-text">Continue with Facebook</span>
+                    </div>
+                </button>
+
+            </div>
+        </div>
+
+        <!-- Footer Links Container -->
+        <div class="footer-links-container">
+            <a href="#" class="cant-log-in">Can't Log In?</a>
+            
+            <p class="recaptcha-notice">
+                Secure Login with reCAPTCHA subject to Google<br>
+                <a href="#" class="recaptcha-link">Terms</a> & <a href="#" class="recaptcha-link">Privacy</a>
+            </p>
+        </div>
+    </main>
+
+</body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
