@@ -1,0 +1,282 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avid Portal - Access</title>
+    <style>
+        /* Scoped to avoid global conflicts */
+        .avid-signin-root * {
+            box-sizing: border-box;
+            font-family: "Circular Std", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .avid-signin-root {
+            display: flex;
+            min-height: 100vh;
+            width: 100%;
+            background-color: #ffffff;
+        }
+
+        /* --- Left Section (Form) --- */
+        .avid-signin-left {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .avid-signin-card {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .avid-signin-card h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 8px;
+        }
+
+        .avid-signin-card p.avid-subtitle {
+            font-size: 14px;
+            color: #6B7280;
+            margin-bottom: 32px;
+        }
+
+        .avid-signin-card p.avid-subtitle span {
+            color: #D61A3C; /* Avid Red */
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        /* Social Buttons */
+        .avid-social-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .avid-social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #E5E7EB;
+            border-radius: 8px;
+            background: white;
+            font-size: 14px;
+            font-weight: 500;
+            color: #374151;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .avid-social-btn:hover { background-color: #F9FAFB; }
+
+        .avid-social-icon { width: 18px; height: 18px; }
+
+        /* Divider */
+        .avid-signin-divider {
+            display: flex;
+            align-items: center;
+            margin: 24px 0;
+            color: #D1D5DB;
+            font-size: 14px;
+        }
+
+        .avid-signin-divider::before, .avid-signin-divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #E5E7EB;
+        }
+
+        .avid-signin-divider span { padding: 0 16px; }
+
+        /* Form Inputs */
+        .avid-input-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 8px;
+        }
+
+        .avid-text-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #D1D5DB;
+            border-radius: 8px;
+            font-size: 15px;
+            margin-bottom: 24px;
+            outline: none;
+        }
+
+        .avid-submit-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: #D61A3C; /* Avid Red */
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        /* --- Right Section (Portal Terms & Info) --- */
+        .avid-signin-right {
+            flex: 1;
+            background: #111827;
+            color: #ffffff;
+            padding: 60px 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .avid-portal-info h2 {
+            font-size: 28px;
+            margin-bottom: 16px;
+            color: #F9FAFB;
+        }
+
+        .avid-portal-info p.avid-portal-desc {
+            font-size: 16px;
+            color: #9CA3AF;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .avid-terms-box {
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 4px solid #D61A3C;
+            padding: 30px;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .avid-terms-box h3 {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #D61A3C;
+            margin-bottom: 20px;
+        }
+
+        .avid-terms-list {
+            list-style: none;
+        }
+
+        .avid-terms-list li {
+            font-size: 14px;
+            color: #E5E7EB;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            line-height: 1.4;
+        }
+
+        .avid-terms-list li::before {
+            content: "✓";
+            color: #D61A3C;
+            margin-right: 12px;
+            font-weight: bold;
+        }
+
+        .avid-quote-card {
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 24px;
+        }
+
+        .avid-quote-text {
+            font-style: italic;
+            color: #D1D5DB;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .avid-signin-right { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="avid-signin-root">
+    
+    <!-- Form Side -->
+    <section class="avid-signin-left">
+        <div class="avid-signin-card">
+            <h1>Sign in to your account</h1>
+            <p class="avid-subtitle">Don't have an account? <span onclick="window.location.reload()">Sign Up</span></p>
+
+            <div class="avid-social-group">
+                <button class="avid-social-btn">
+                    <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="" class="avid-social-icon">
+                    Continue with Google
+                </button>
+                <button class="avid-social-btn">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="" class="avid-social-icon">
+                    Continue with Microsoft
+                </button>
+            </div>
+
+            <div class="avid-signin-divider"><span>or</span></div>
+
+            <form>
+                <label class="avid-input-label">Work email</label>
+                <input type="email" class="avid-text-input" placeholder="name@company.com" required>
+                <button type="submit" class="avid-submit-btn">Send code</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Content Side -->
+    <section class="avid-signin-right">
+        <div class="avid-portal-info">
+            <h2>Unified Access Portal</h2>
+            <p class="avid-portal-desc">
+                This central gateway provides secure access to Avid's internal ecosystem. This portal is open to all authorized personnel, including staff, faculty, and interns, facilitating a universal entry point for collaborative resources.
+            </p>
+            
+            <div class="avid-terms-box">
+                <h3>Access Terms & Expectations</h3>
+                <ul class="avid-terms-list">
+                    <li>Strict adherence to data privacy and confidentiality protocols.</li>
+                    <li>Authorized use only: Accounts are non-transferable and personal.</li>
+                    <li>Compliance with the Acceptable Use Policy for all digital assets.</li>
+                    <li>Mandatory two-factor authentication for sensitive internal modules.</li>
+                    <li>Real-time auditing of login activity for security maintenance.</li>
+                </ul>
+            </div>
+
+            <div class="avid-quote-card">
+                <p class="avid-quote-text">
+                    "[Panjaya] not only preserved the quality of our content but also saved us significant time and resources."
+                </p>
+                <p style="font-size: 13px; color: #9CA3AF; margin-top: 8px;">- Helena Batt, Director of Localization, TED</p>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+</body>
+</html>

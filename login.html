@@ -1,536 +1,672 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Login | Hyperion</title>
-    <style>
-        /* =============================================
-            HYPERION - PREMIUM STUDENT PORTAL STYLES
-           ============================================= */
-        @font-face {
-            font-family: 'Alvarado';
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Portal – Sign In</title>
+ 
+  <style>
+
+  @font-face {
+            font-family: 'Circular Std';
+            src: url('fonts/CircularStd-Book.woff2') format('woff2'),
+                 url('fonts/CircularStd-Book.woff2') format('woff');
+            font-weight: normal;
             font-style: normal;
-            font-weight: 300;
-            src: url('fonts/Alvarado-Light.otf') format('opentype'),
-                 url('fonts/Alvarado-Light.woff') format('woff');
         }
+
         @font-face {
-            font-family: 'Alvarado';
+            font-family: 'Circular Std';
+            src: url('fonts/CircularStd-Medium.woff2') format('woff2'),
+                 url('fonts/CircularStd-Medium.woff') format('woff');
+            font-weight: 500;
             font-style: normal;
-            font-weight: 400;
-            src: url('fonts/Alvarado-Regular.otf') format('opentype'),
-                 url('fonts/Alvarado-Regular.woff') format('woff');
         }
+
         @font-face {
-            font-family: 'Alvarado';
+            font-family: 'Circular Std';
+            src: url('fonts/CircularStd-Bold.woff2') format('woff2'),
+                 url('fonts/CircularStd-Bold.woff') format('woff');
+            font-weight: bold;
             font-style: normal;
-            font-weight: 500;
-            src: url('fonts/Alvarado-Medium.otf') format('opentype'),
-                 url('fonts/Alvarado-Medium.woff') format('woff');
         }
-        @font-face {
-            font-family: 'Alvarado';
-            font-style: normal;
-            font-weight: 600;
-            src: url('fonts/Alvarado-Bold.otf') format('opentype'),
-                 url('fonts/Alvarado-Bold.woff') format('woff');
-        }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        :root {
-            --bg-dark: #0a0a3c;
-            --accent: #0077cc;
-            --text-main: #1e293b;
-            --text-white: #ffffff;
-            --text-muted: #64748b;
-            --form-bg: #ffffff;
-            --input-bg: #f8fafc;
-            --input-border: #e2e8f0;
-            --radius: 50px; /* Sophisticated modern radius */
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+    /* ── Root ── */
+    .sp-root {
+      font-family: 'Circular Std', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      color: #1a1a1a;
+      -webkit-font-smoothing: antialiased;
+    }
 
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            line-height: 1.5;
-        }
+    /* =============================================
+       NAV
+    ============================================= */
+    .sp-nav {
+      width: 100%;
+      background: #ffffff;
+      border-bottom: 1px solid #e6e6e6;
+      padding: 0 28px;
+      height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 20;
+    }
 
-        /* Explicitly enumerate every element type that the browser UA stylesheet
-           may assign its own font-family to (headings in particular get overridden
-           even when * sets font-family, because UA rules have higher specificity
-           for certain elements in some browsers). */
-        html, body,
-        h1, h2, h3, h4, h5, h6,
-        p, a, span, label, input, button,
-        select, textarea, div, li, ul, ol {
-            font-family: 'Alvarado', sans-serif;
-        }
+    .sp-nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
 
-        body {
-            background-color: var(--bg-dark);
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
+    .sp-nav-logo-mark {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #1a73e8, #0d47a1);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-        .login-container {
-            display: flex;
-            width: 100%;
-            height: 100%;
-            background: var(--form-bg);
-            position: relative;
-        }
+    .sp-nav-logo-mark svg {
+      width: 18px;
+      height: 18px;
+      fill: #fff;
+    }
 
-        /* --- Back to Home Button --- */
-        .back-home-btn {
-            position: absolute;
-            top: 40px;
-            left: 80px;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--text-white);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            opacity: 0.8;
-            transition: var(--transition);
-        }
+    .sp-nav-logo-text {
+      font-size: 21px;
+      font-weight: 700;
+      color: #1a73e8;
+      letter-spacing: -0.4px;
+    }
 
-        .back-home-btn:hover {
-            opacity: 1;
-            transform: translateX(-4px);
-        }
+    .sp-nav-right {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 14px;
+      color: #444;
+    }
 
-        /* --- Visual Side --- */
-        .login-visual {
-            flex: 1.2;
-            position: relative;
-            /* Premium academic/library imagery */
-            background: url('https://images.unsplash.com/photo-1687817990057-2a8c0fec99c4?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover no-repeat;
-            display: flex;
-            align-items: flex-end;
-            padding: 80px;
-            color: var(--text-white);
-        }
+    .sp-nav-right a        { color: #1a73e8; text-decoration: none; font-weight: 600; }
+    .sp-nav-right a:hover  { text-decoration: underline; }
+    .sp-nav-sep            { color: #bbb; margin: 0 6px; }
 
-        .visual-overlay {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(180deg, rgba(10, 10, 60, 0.1) 0%, rgba(10, 10, 60, 0.85) 100%);
-        }
+    /* =============================================
+       BODY — two-column
+       KEY: left grey takes ~45%, white right takes ~55%
+       The card floats inside the grey, centred
+    ============================================= */
+    .sp-body {
+      flex: 1;
+      display: flex;
+      min-height: 0;
+    }
 
-        .visual-content {
-            position: relative;
-            z-index: 2;
-            max-width: 540px;
-        }
+    /* Grey left panel */
+    .sp-left {
+      flex: 0 0 45%;
+      background: #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 32px;
+      position: relative;
+    }
 
-        .login-logo {
-            height: 48px;
-            margin-bottom: 48px;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
-        }
+    /* White right panel — has a subtle left shadow to show it sits ON TOP */
+    .sp-right {
+      flex: 1;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 40px 40px 48px;
+      box-shadow: -4px 0 24px rgba(0,0,0,0.06);
+      position: relative;
+      z-index: 2;
+    }
 
-        .visual-content h1 {
-            font-size: 48px;
-            font-weight: 500;
-            margin-bottom: 16px;
-            letter-spacing: -0.5px;
-            line-height: 1.1;
-        }
+    /* =============================================
+       PROMO CARD
+       — floats in grey, has a real photo background
+    ============================================= */
+    .sp-card {
+      width: 100%;
+      max-width: 520px;
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+      min-height: 480px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      box-shadow: 0 12px 48px rgba(0,0,0,0.18);
+    }
 
-        .visual-content p {
-            font-size: 18px;
-            font-weight: 300;
-            color: rgba(255, 255, 255, 0.85);
-            line-height: 1.6;
-            max-width: 90%;
-        }
+    /* The background image fills the card */
+    .sp-card-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=1170&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      z-index: 0;
+    }
 
-        /* --- Form Side --- */
-        .login-form-side {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 40px;
-            background: var(--form-bg);
-        }
+    /* Dark gradient overlay so text reads */
+    .sp-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(10, 40, 120, 0.45) 0%,
+        rgba(10, 30, 100, 0.75) 55%,
+        rgba(5, 15, 60, 0.92) 100%
+      );
+      z-index: 1;
+    }
 
-        .form-wrapper {
-            width: 100%;
-            max-width: 350px;
-        }
+    .sp-card-body {
+      position: relative;
+      z-index: 2;
+      padding: 32px 28px 28px;
+      color: #fff;
+    }
 
-        .mobile-logo {
-            display: none;
-            height: 36px;
-            margin-bottom: 32px;
-        }
+    .sp-card-brand {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 14px;
+    }
 
-        .form-header {
-            margin-bottom: 40px;
-        }
+    .sp-card-title {
+      font-size: 34px;
+      font-weight: 700;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+    }
 
-        .form-header h2 {
-            font-size: 32px;
-            font-weight: 500;
-            color: var(--bg-dark);
-            margin-bottom: 8px;
-            letter-spacing: -0.5px;
-        }
+    .sp-card-date {
+      font-size: 13px;
+      font-weight: 600;
+      color: #64ffda;
+      margin-bottom: 8px;
+    }
 
-        .form-header p {
-            font-size: 15px;
-            color: var(--text-muted);
-        }
+    .sp-card-desc {
+      font-size: 13.5px;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
 
-        .login-form {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
+    .sp-card-btn {
+      display: inline-block;
+      background: #00bcd4;
+      color: #fff;
+      font-size: 13.5px;
+      font-weight: 600;
+      border: none;
+      border-radius: 50px;
+      padding: 11px 26px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
 
-        .input-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
+    .sp-card-btn:hover { background: #0097a7; }
 
-        .label-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    /* =============================================
+       SIGN IN FORM
+    ============================================= */
+    .sp-form-wrap {
+      width: 100%;
+      max-width: 360px;
+    }
 
-        .input-group label {
-            font-size: 15px;
-            font-weight: 500;
-            color: var(--text-main);
-        }
+    .sp-form-title {
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      text-align: center;
+      color: #111;
+      margin-bottom: 26px;
+    }
 
-        .input-group input {
-            padding: 8px 16px;
-            background-color: var(--input-bg);
-            border: 2px solid var(--input-border);
-            border-radius: var(--radius);
-            font-size: 15px;
-            color: var(--text-main);
-            transition: var(--transition);
-            outline: none;
-        }
+    /* ── Floating label field ── */
+    .sp-field {
+      position: relative;
+      margin-bottom: 13px;
+    }
 
-        .input-group input::placeholder {
-            color: #94a3b8;
-            font-weight: 300;
-        }
+    .sp-field-label {
+      position: absolute;
+      top: 8px;
+      left: 13px;
+      font-size: 11px;
+      font-weight: 500;
+      color: #777;
+      pointer-events: none;
+    }
 
-        .input-group input:hover {
-            background-color: #fff;
-            border-color: #cbd5e1;
-        }
+    .sp-field-input {
+      width: 100%;
+      border: 2px solid #c8c8c8;
+      border-radius: 7px;
+      padding: 22px 13px 7px;
+      font-size: 15px;
+      color: #111;
+      background: #fff;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
 
-        .input-group input:focus {
-            background-color: #fff;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 4px rgba(0, 119, 204, 0.1);
-        }
+    .sp-field-input:focus {
+      border-color: #1a73e8;
+      box-shadow: 0 0 0 3px rgba(26,115,232,0.12);
+    }
 
-        .password-wrapper {
-            position: relative;
-            display: flex;
-        }
+    .sp-pw-toggle {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+    }
 
-        .password-wrapper input {
-            width: 100%;
-            padding-right: 48px;
-        }
+    .sp-pw-toggle svg { width: 18px; height: 18px; fill: #888; }
 
-        .toggle-btn {
-            position: absolute;
-            right: 16px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            color: #94a3b8;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+    /* ── Forgot / Help ── */
+    .sp-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
 
-        .toggle-btn:hover {
-            color: var(--bg-dark);
-        }
+    .sp-link       { font-size: 13.5px; color: #1a73e8; text-decoration: none; font-weight: 500; }
+    .sp-link:hover { text-decoration: underline; }
 
-        .forgot-link, .form-footer a {
-            font-size: 13px;
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-        }
+    .sp-help-link {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      font-size: 13.5px;
+      color: #1a73e8;
+      font-weight: 500;
+      text-decoration: none;
+    }
 
-        .forgot-link:hover, .form-footer a:hover { 
-            color: var(--bg-dark);
-        }
+    .sp-help-link svg       { width: 13px; height: 13px; fill: #1a73e8; }
+    .sp-help-link:hover     { text-decoration: underline; }
 
-        .options-row {
-            margin-top: -4px;
-        }
+    /* ── Error alert — hidden by default ── */
+    .sp-alert {
+      display: none;
+      background: #fff0f0;
+      border: 1px solid #ffc9c9;
+      border-radius: 7px;
+      padding: 12px 14px;
+      font-size: 13.5px;
+      color: #333;
+      line-height: 1.55;
+      margin-bottom: 14px;
+    }
 
-        /* Premium custom checkbox */
-        .checkbox-container {
-            display: flex;
-            align-items: center;
-            font-size: 14px;
-            color: var(--text-muted);
-            cursor: pointer;
-            user-select: none;
-            position: relative;
-            padding-left: 28px;
-        }
+    .sp-alert.sp-visible { display: block; }
+    .sp-alert a          { color: #1a73e8; font-weight: 500; text-decoration: none; }
+    .sp-alert a:hover    { text-decoration: underline; }
 
-        .checkbox-container input {
-            position: absolute;
-            opacity: 0;
-            cursor: pointer;
-            height: 0;
-            width: 0;
-        }
+    /* ── Sign In button ── */
+    .sp-btn {
+      width: 100%;
+      background: #d6d6d6;
+      color: #999;
+      border: none;
+      border-radius: 7px;
+      padding: 13px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-bottom: 13px;
+      transition: background 0.2s, color 0.2s;
+    }
 
-        .checkmark {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            transform: translateY(-50%);
-            height: 18px;
-            width: 18px;
-            background-color: var(--input-bg);
-            border: 2px solid var(--input-border);
-            border-radius: 50px;
-            transition: var(--transition);
-        }
+    .sp-btn.sp-btn-ready       { background: #1a73e8; color: #fff; cursor: pointer; }
+    .sp-btn.sp-btn-ready:hover { background: #1558c0; }
 
-        .checkbox-container:hover input ~ .checkmark {
-            border-color: var(--accent);
-        }
+    /* ── Terms ── */
+    .sp-terms {
+      font-size: 12.5px;
+      color: #555;
+      line-height: 1.55;
+      margin-bottom: 16px;
+    }
 
-        .checkbox-container input:checked ~ .checkmark {
-            background-color: var(--accent);
-            border-color: var(--accent);
-        }
+    .sp-terms a       { color: #1a73e8; text-decoration: none; font-weight: 500; }
+    .sp-terms a:hover { text-decoration: underline; }
 
-        .checkmark:after {
-            content: "";
-            position: absolute;
-            display: none;
-            left: 6px;
-            top: 2px;
-            width: 4px;
-            height: 10px;
-            border: solid white;
-            border-width: 0 2px 2px 0;
-            transform: rotate(45deg);
-        }
+    /* ── Stay signed in ── */
+    .sp-check-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 22px;
+    }
 
-        .checkbox-container input:checked ~ .checkmark:after {
-            display: block;
-        }
+    .sp-check-row input[type="checkbox"] {
+      width: 17px;
+      height: 17px;
+      accent-color: #1a73e8;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
 
-        .submit-btn {
-            background: var(--bg-dark);
-            color: #fff;
-            padding: 16px;
-            border: none;
-            border-radius: var(--radius);
-            font-size: 15px;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-            cursor: pointer;
-            transition: var(--transition);
-            margin-top: 8px;
-        }
+    .sp-check-row label { font-size: 14px; color: #333; cursor: pointer; }
 
-        .submit-btn:hover {
-            background: var(--accent);
-        }
-        
-        .submit-btn:active {
-            transform: translateY(0);
-        }
+    /* ── Divider ── */
+    .sp-divider {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
 
-        .form-footer {
-            margin-top: 48px;
-            text-align: center;
-        }
+    .sp-divider-line { flex: 1; height: 1px; background: #e2e2e2; }
+    .sp-divider-text { font-size: 13px; color: #999; white-space: nowrap; }
 
-        .form-footer p {
-            font-size: 14px;
-            color: var(--text-muted);
-            margin-bottom: 24px;
-        }
+    /* ── Social buttons ── */
+    .sp-social {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      margin-bottom: 26px;
+    }
 
-        .support-links {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 16px;
-            font-size: 13px;
-        }
+    .sp-social-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
 
-        .support-links a {
-            color: var(--text-muted);
-            font-weight: 400;
-        }
-        
-        .support-links a:hover {
-            color: var(--accent);
-        }
+    .sp-social-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #f2f2f2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
 
-        .sep { 
-            color: #cbd5e1; 
-            font-size: 10px;
-        }
+    .sp-social-item:hover .sp-social-icon { background: #e4e4e4; }
+    .sp-social-icon svg                   { width: 22px; height: 22px; }
+    .sp-social-name                       { font-size: 12px; color: #555; font-weight: 500; }
 
-        /* --- Responsiveness --- */
-        @media (max-width: 1024px) {
-            .login-visual { display: none; }
-            .mobile-logo { display: block; }
-            .login-form-side { padding: 40px 24px; }
-            .form-wrapper { max-width: 100%; padding: 0 16px; }
-            
-            /* Adapt back button color for mobile white background */
-            .back-home-btn {
-                color: var(--bg-dark);
-                top: 24px;
-                left: 24px;
-            }
-        }
-    </style>
+    /* ── Footer ── */
+    .sp-footer-note {
+      font-size: 12px;
+      color: #999;
+      line-height: 1.6;
+      border-top: 1px solid #ececec;
+      padding-top: 16px;
+    }
+
+    .sp-footer-note a       { color: #1a73e8; text-decoration: none; }
+    .sp-footer-note a:hover { text-decoration: underline; }
+
+    /* =============================================
+       RESPONSIVE
+    ============================================= */
+    @media (max-width: 820px) {
+      .sp-body    { flex-direction: column; }
+
+      .sp-left {
+        flex: none;
+        width: 100%;
+        padding: 28px 20px;
+        min-height: 0;
+      }
+
+      .sp-card { max-width: 100%; min-height: 280px; }
+
+      .sp-right {
+        flex: none;
+        width: 100%;
+        padding: 36px 24px 48px;
+        box-shadow: none;
+        border-top: 1px solid #e8e8e8;
+      }
+
+      .sp-form-wrap { max-width: 100%; }
+    }
+
+    @media (max-width: 480px) {
+      .sp-nav              { padding: 0 16px; }
+      .sp-nav-logo-text    { font-size: 18px; }
+      .sp-nav-right        { font-size: 12.5px; }
+      .sp-card-title       { font-size: 26px; }
+      .sp-card-body        { padding: 24px 22px 22px; }
+      .sp-right            { padding: 28px 16px 40px; }
+      .sp-form-title       { font-size: 25px; }
+      .sp-social           { gap: 16px; }
+    }
+
+  </style>
 </head>
 <body>
-    <div class="login-container">
-        
-        <!-- --- Back to Home Button --- -->
-        <a href="index.html" class="back-home-btn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M19 12H5"></path>
-                <polyline points="12 19 5 12 12 5"></polyline>
-            </svg>
-            Back to Home
-        </a>
+<div class="sp-root">
 
-        <div class="login-visual">
-            <div class="visual-overlay"></div>
-            <div class="visual-content">
-                <img src="images/logo-white.png" alt="Hyperion Logo" class="login-logo" onerror="this.style.display='none'">
-                <h1>Secure Student Access</h1>
-                <p>Access your academic dashboard, institutional resources, and personalized collegiate workspace.</p>
-            </div>
+  <!-- NAV -->
+  <nav class="sp-nav">
+    <a class="sp-nav-logo" href="#">
+      <div class="sp-nav-logo-mark">
+        <svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg>
+      </div>
+      <span class="sp-nav-logo-text">Maluti Portal</span>
+    </a>
+    <div class="sp-nav-right">
+      <span>New to Maluti Portal?</span>
+      <a href="#">Register here</a>
+      <span class="sp-nav-sep">|</span>
+      <a href="#">Support</a>
+    </div>
+  </nav>
+
+  <!-- BODY -->
+  <div class="sp-body">
+
+    <!-- LEFT: grey panel with floating photo card -->
+    <div class="sp-left">
+      <div class="sp-card">
+        <div class="sp-card-bg"></div>
+        <div class="sp-card-overlay"></div>
+        <div class="sp-card-body">
+          <p class="sp-card-brand">Maluti Portal</p>
+          <h2 class="sp-card-title">Academic<br>Excellence<br>Hub</h2>
+          <p class="sp-card-date">Spring Semester · 2025</p>
+          <p class="sp-card-desc">Your gateway to courses, grades, timetables &amp; campus resources — all in one place.</p>
+          <a class="sp-card-btn" href="#">Explore Campus</a>
         </div>
-
-        <div class="login-form-side">
-            <div class="form-wrapper">
-                <div class="form-header">
-                    <img src="images/logo.png" alt="Hyperion Logo" class="mobile-logo" onerror="this.style.display='none'">
-                    <h2>Welcome Back</h2>
-                    <p>Enter your institutional credentials to continue.</p>
-                </div>
-
-                <form id="studentLoginForm" class="login-form">
-                    <div class="input-group">
-                        <label for="studentId">Student ID / Email</label>
-                        <input type="text" id="studentId" placeholder="e.g. 2024001" required>
-                    </div>
-
-                    <div class="input-group">
-                        <div class="label-row">
-                            <label for="password">Password</label>
-                            <a href="#" class="forgot-link">Forgot Password?</a>
-                        </div>
-                        <div class="password-wrapper">
-                            <input type="password" id="password" placeholder="••••••••" required>
-                            <button type="button" id="togglePassword" class="toggle-btn" aria-label="Toggle password visibility">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="options-row">
-                        <label class="checkbox-container">
-                            <input type="checkbox">
-                            <span class="checkmark"></span>
-                            Remember my credentials
-                        </label>
-                    </div>
-
-                    <button type="submit" class="submit-btn">Authorize Access</button>
-                </form>
-
-                <div class="form-footer">
-                    <p>New admission? <a href="apply.html">Register here</a></p>
-                    <div class="support-links">
-                        <a href="#">IT Support</a>
-                        <span class="sep">●</span>
-                        <a href="#">Privacy Policy</a>
-                        <span class="sep">●</span>
-                        <a href="#">Terms</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const loginForm = document.getElementById('studentLoginForm');
-            const togglePassword = document.getElementById('togglePassword');
-            const passwordInput = document.getElementById('password');
+    <!-- RIGHT: white panel with sign in form -->
+    <div class="sp-right">
+      <div class="sp-form-wrap">
 
-            // Toggle Password Visibility
-            togglePassword.addEventListener('click', () => {
-                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-                passwordInput.setAttribute('type', type);
-                
-                // Change icon color when active for premium visual feedback
-                togglePassword.style.color = type === 'text' ? 'var(--accent)' : '#94a3b8';
-            });
+        <h1 class="sp-form-title">Sign In</h1>
 
-            // Form Submission Logic
-            loginForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                
-                const submitBtn = loginForm.querySelector('.submit-btn');
-                const originalText = submitBtn.innerText;
-                
-                // Premium Loading State
-                submitBtn.disabled = true;
-                submitBtn.innerText = 'Authenticating...';
-                submitBtn.style.opacity = '0.8';
-                submitBtn.style.cursor = 'wait';
+        <!-- Student email -->
+        <div class="sp-field">
+          <span class="sp-field-label">Student Email / ID</span>
+          <input class="sp-field-input" type="text" id="sp-email" autocomplete="username" placeholder=" " />
+        </div>
 
-                // Simulate API call
-                setTimeout(() => {
-                    alert('Security clearance granted. Redirecting to Student Dashboard...');
-                    // Reset button for demo purposes
-                    submitBtn.disabled = false;
-                    submitBtn.innerText = originalText;
-                    submitBtn.style.opacity = '1';
-                    submitBtn.style.cursor = 'pointer';
-                    // window.location.href = 'portal.html';
-                }, 1500);
-            });
-        });
-    </script>
+        <!-- Password -->
+        <div class="sp-field">
+          <span class="sp-field-label">Password</span>
+          <input class="sp-field-input" type="password" id="sp-password" autocomplete="current-password" placeholder=" " />
+          <button class="sp-pw-toggle" type="button" id="sp-pw-toggle" aria-label="Toggle password">
+            <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 12.5c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+          </button>
+        </div>
+
+        <!-- Forgot / Help -->
+        <div class="sp-meta-row">
+          <a class="sp-link" href="#">Forgot password?</a>
+          <a class="sp-help-link" href="#">
+            Help
+            <svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+          </a>
+        </div>
+
+        <!-- Error alert — only shown on bad credentials -->
+        <div class="sp-alert" id="sp-alert">
+          Incorrect email or password. Enter your sign in information again, or <a href="#">request a reset link</a> to regain access to your account.
+        </div>
+
+        <!-- Sign In button -->
+        <button class="sp-btn" id="sp-submit" type="button">Sign In</button>
+
+        <!-- Terms -->
+        <p class="sp-terms">
+          By signing in, I agree to the <a href="#">Maluti Portal Privacy Statement</a> and <a href="#">Terms of Service</a>.
+        </p>
+
+        <!-- Stay signed in -->
+        <div class="sp-check-row">
+          <input type="checkbox" id="sp-stay" checked />
+          <label for="sp-stay">Stay signed in</label>
+        </div>
+
+        <!-- Divider -->
+        <div class="sp-divider">
+          <div class="sp-divider-line"></div>
+          <span class="sp-divider-text">Or sign in with</span>
+          <div class="sp-divider-line"></div>
+        </div>
+
+        <!-- Social -->
+        <div class="sp-social">
+          <!-- SSO -->
+          <a class="sp-social-item" href="#" aria-label="SSO">
+            <div class="sp-social-icon">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M18 8h-1V6A5 5 0 007 6v2H6a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V10a2 2 0 00-2-2zm-6 9a2 2 0 110-4 2 2 0 010 4zm3.1-9H8.9V6a3.1 3.1 0 016.2 0v2z" fill="#333"/></svg>
+            </div>
+            <span class="sp-social-name">SSO</span>
+          </a>
+          <!-- Apple -->
+          <a class="sp-social-item" href="#" aria-label="Apple">
+            <div class="sp-social-icon">
+              <svg viewBox="0 0 24 24"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.7 9.05 7.4c1.28.07 2.16.63 2.89.65.73.02 2.14-.65 3.27-.56 1.83.14 3.22.93 4.11 2.36-3.77 2.28-3.14 7.26.73 8.43zm-3.16-14.3c-1.2.02-2.44.84-3.22 2.02-.7 1.04-.98 2.14-.86 3.35 1.35.1 2.63-.66 3.38-1.83.76-1.17.99-2.25.7-3.54z" fill="#000"/></svg>
+            </div>
+            <span class="sp-social-name">Apple</span>
+          </a>
+          <!-- Google -->
+          <a class="sp-social-item" href="#" aria-label="Google">
+            <div class="sp-social-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+              </svg>
+            </div>
+            <span class="sp-social-name">Google</span>
+          </a>
+          <!-- Facebook -->
+          <a class="sp-social-item" href="#" aria-label="Facebook">
+            <div class="sp-social-icon">
+              <svg viewBox="0 0 24 24"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047v-2.66c0-3.025 1.791-4.697 4.533-4.697 1.313 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.265h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z" fill="#1877F2"/></svg>
+            </div>
+            <span class="sp-social-name">Facebook</span>
+          </a>
+        </div>
+
+        <!-- Footer -->
+        <p class="sp-footer-note">
+          Maluti Portal is protected by reCAPTCHA and the <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a> apply.
+        </p>
+
+      </div>
+    </div>
+  </div><!-- end sp-body -->
+
+</div><!-- end sp-root -->
+
+<script>
+  (function () {
+    var emailInput  = document.getElementById('sp-email');
+    var passInput   = document.getElementById('sp-password');
+    var submitBtn   = document.getElementById('sp-submit');
+    var alert       = document.getElementById('sp-alert');
+    var pwToggle    = document.getElementById('sp-pw-toggle');
+
+    // Demo valid credentials
+    var VALID_EMAIL = 'student@university.edu';
+    var VALID_PASS  = 'password123';
+
+    // Enable button when both fields have content
+    function checkReady() {
+      var ready = emailInput.value.trim().length > 0 && passInput.value.length > 0;
+      submitBtn.classList.toggle('sp-btn-ready', ready);
+    }
+
+    emailInput.addEventListener('input', checkReady);
+    passInput.addEventListener('input', checkReady);
+
+    // Sign in logic
+    submitBtn.addEventListener('click', function () {
+      if (!submitBtn.classList.contains('sp-btn-ready')) return;
+
+      var email = emailInput.value.trim();
+      var pass  = passInput.value;
+
+      if (email === VALID_EMAIL && pass === VALID_PASS) {
+        // Success — hide error, could redirect
+        alert.classList.remove('sp-visible');
+        submitBtn.textContent = 'Signing in…';
+      } else {
+        // Wrong credentials — show error
+        alert.classList.add('sp-visible');
+      }
+    });
+
+    // Clear error when user starts retyping
+    emailInput.addEventListener('input', function () { alert.classList.remove('sp-visible'); });
+    passInput.addEventListener('input',  function () { alert.classList.remove('sp-visible'); });
+
+    // Password toggle
+    pwToggle.addEventListener('click', function () {
+      passInput.type = passInput.type === 'password' ? 'text' : 'password';
+    });
+  })();
+</script>
+
 </body>
 </html>
