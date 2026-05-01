@@ -51,7 +51,7 @@
             -moz-osx-font-smoothing: grayscale;
             background-color: #FFFFFF;
             color: var(--sqsp-text-main);
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
@@ -90,11 +90,13 @@
         }
 
         .create-account-link {
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-weight: 500;
+            font-size: 15px;
+            font-weight: 500; color: #0065ad;
+            display: flex;
+            align-items: center; gap: 5px; padding: 10px 15px; border: 2px solid #0065ad; border-radius: 60px;  font-family: inherit;
         }
+
+        .create-account-link svg       { width: 14px; height: 14px; fill: #0065ad; }
 
         /* --- Main Login Container --- */
         main {
@@ -200,7 +202,7 @@
             height: 48px;
             background-color: #0065b4; /* Grey/disabled color in screenshot */
             border: none;
-            border-radius: 6px;
+            border-radius: 4px;
             color: #ffffff; /* White/disabled color in screenshot */
             font-size: 15px;
             font-weight: 500;
@@ -233,7 +235,7 @@
             justify-content: space-between;
             border: 2px solid var(--sqsp-border-color);
             padding: 0 20px;
-            cursor: pointer; border-radius: 6px; font-family: inherit;
+            cursor: pointer; border-radius: 4px; font-family: inherit;
             transition: border-color 0.2s, background-color 0.2s;
         }
 
@@ -337,6 +339,87 @@
                 margin-bottom: 30px;
             }
         }
+
+        /* --- Legal Footer --- */
+        .legal-footer {
+            width: 100%;
+            border-top: 1px solid #E0E0E0;
+            padding: 14px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+            gap: 10px 14px;
+            font-size: 12px;
+            color: #717171;
+            background: #fff;
+        }
+
+        .legal-footer a {
+            color: #717171;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        .legal-footer a:hover {
+            color: #555;
+            opacity: 1;
+        }
+
+        .legal-footer .legal-sep {
+            color: #717171;
+            font-size: 12px;
+        }
+
+        /* --- Tech Support Link --- */
+        .tech-support-link {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 15px;
+            font-weight: 500;
+            color: #757575;
+            margin-right: 20px;
+            transition: color 0.2s;
+        }
+
+        .tech-support-link:hover {
+            color: #0065ad;
+            opacity: 1;
+        }
+
+        .tech-support-link svg {
+            width: 15px;
+            height: 15px;
+            fill: currentColor;
+            flex-shrink: 0;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+        }
+
+        @media screen and (max-width: 600px) {
+            .legal-footer {
+                justify-content: center;
+                text-align: center;
+                padding: 12px 16px;
+                gap: 8px 10px;
+            }
+            .legal-footer .legal-sep {
+                display: none;
+            }
+            .legal-footer a,
+            .legal-footer span {
+                display: block;
+                width: 100%;
+                text-align: center;
+            }
+            .tech-support-link span {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
@@ -350,7 +433,18 @@
                 <path fill="#fff" d="M12.9,33.1H9.8V12.3h14c3,0,5.4,2.2,5.4,5s-2.4,5-5.4,5H12.9v10.8Zm0-15.6v10.8h11.2c1.7,0,3.1-1.2,3.1-2.9s-1.4-2.9-3.1-2.9H12.9Zm16.8,15.6H26.6V12.3h14c3,0,5.4,2.2,5.4,5s-2.4,5-5.4,5H29.7v10.8Zm0-15.6v10.8h11.2c1.7,0,3.1-1.2,3.1-2.9s-1.4-2.9-3.1-2.9H29.7Z" transform="translate(-4 -4.8)"/>
             </svg>
         </div>
-        <a href="#" class="create-account-link">Create Account</a>
+        <div class="header-right">
+            <a href="#" class="tech-support-link">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12zm-9-4h2v2h-2zm0-6h2v4h-2z"/>
+                </svg>
+                <span>Get Tech Support</span>
+            </a>
+            <a href="#" class="create-account-link">
+                Create Account
+                <svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+            </a>
+        </div>
     </header>
 
     <!-- Main Content Section -->
@@ -454,11 +548,24 @@
             <a href="#" class="cant-log-in">Can't Log In?</a>
             
             <p class="recaptcha-notice">
-                Secure Login with reCAPTCHA subject to Google<br>
-                <a href="#" class="recaptcha-link">Terms</a> & <a href="#" class="recaptcha-link">Privacy</a>
+                Secure Login with reCAPTCHA subject to Google<br> By using this portal, you agree to our
+                <a href="#" class="recaptcha-link">Terms of Service</a> & <a href="#" class="recaptcha-link">Privacy Policy</a>
             </p>
         </div>
     </main>
+
+    <!-- Legal Footer -->
+    <footer class="legal-footer">
+        <a href="#">Terms of Use</a>
+        <span class="legal-sep">|</span>
+        <a href="#">Privacy Policy</a>
+        <span class="legal-sep">|</span>
+        <a href="#">Consumer Health Policy</a>
+        <span class="legal-sep">|</span>
+        <a href="#">Do not sell or share my information</a>
+        <span class="legal-sep">|</span>
+        <span>Copyright &copy; 2026 Maluti Workspace. All rights reserved.</span>
+    </footer>
 
 </body>
 </html>
