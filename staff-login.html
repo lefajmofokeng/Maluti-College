@@ -1,5 +1,9 @@
-<!-- Start Maluti TVET Portal Component -->
-<div id="mtvet-system-container" class="mtvet-wrapper">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Maluti TVET College - Portal Setup</title>
     <style>
         /* Scoped Font Imports */
         @font-face {
@@ -25,28 +29,24 @@
         }
 
         /* Strict CSS Reset & Scoping inside the container */
-        #mtvet-system-container {
-            all: initial;
-            display: flex;
-            min-height: 100vh;
-            width: 100%;
+        body {
+            margin: 0;
+            padding: 0;
             background-color: #ffffff;
             font-family: 'Circular Std', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             color: #1A1A1A;
-            box-sizing: border-box;
-            align-items: flex-start; /* Required for sticky sidebar to work correctly */
+            -webkit-font-smoothing: antialiased;
         }
 
         * {
-            margin: 0;
-            padding: 0;
             box-sizing: border-box;
         }
 
-        #mtvet-system-container *,
-        #mtvet-system-container *::before,
-        #mtvet-system-container *::after {
-            box-sizing: inherit;
+        #mtvet-system-container {
+            display: flex;
+            min-height: 100vh;
+            width: 100%;
+            align-items: flex-start; /* Required for sticky sidebar */
         }
 
         /* --- Sidebar --- */
@@ -57,11 +57,11 @@
             padding: 60px 40px;
             display: flex;
             flex-direction: column;
-            position: sticky; /* Makes sidebar stick to the top */
+            position: sticky;
             top: 0;
-            height: 100vh; /* Takes full viewport height */
+            height: 100vh;
             flex-shrink: 0;
-            overflow-y: auto; /* Allows sidebar itself to scroll if window is very short */
+            overflow-y: auto;
         }
 
         .mtvet-logo {
@@ -153,27 +153,25 @@
             color: #475467;
         }
 
-        /* Sidebar Advisory Notice */
+        /* Desktop Sidebar Advisory Notice */
         .mtvet-sidebar-info {
-            margin-top: auto; /* Pushes it to the bottom */
-            background-color: #e6f0ff;
-            padding: 20px;
-            border-radius: 8px;
-            border: 1px solid #cce0ff;
+            margin-top: auto;
+            background-color: #f2f5f9;
+            
         }
 
         .mtvet-sidebar-info h4 {
-            font-size: 13px;
+            font-size: 14px;
             color: #0065ad;
-            margin-bottom: 8px;
+            margin: 0 0 8px 0;
             font-weight: bold;
         }
 
         .mtvet-sidebar-info p {
-            font-size: 12px;
+            font-size: 14px;
             color: #344054;
             line-height: 1.5;
-            margin-bottom: 12px;
+            margin: 0 0 12px 0;
         }
 
         .mtvet-sidebar-info a {
@@ -187,23 +185,36 @@
             text-decoration: underline;
         }
 
+        /* Mobile Advisory Notice (Hidden on desktop) */
+        .mtvet-mobile-info {
+            display: none;
+            background-color: #e6f0ff;
+            padding: 16px;
+            border-radius: 8px;
+            border: 1px solid #cce0ff;
+            margin-bottom: 24px;
+            width: 100%;
+            max-width: 440px;
+        }
+
         /* --- Main Content Area --- */
         .mtvet-main {
             flex: 1;
-            padding: 60px;
+            padding: 60px 40px;
             display: flex;
             flex-direction: column;
             align-items: center;
             position: relative;
         }
 
-        /* Fixed the pagination alignment and gap */
+        /* Pagination Alignment & Gap Fix */
         .mtvet-pagination {
             display: flex;
             justify-content: center;
             gap: 12px; 
             margin-bottom: 60px;
             width: 100%;
+            max-width: 440px;
         }
 
         .mtvet-dot {
@@ -224,9 +235,8 @@
             max-width: 440px;
             display: flex;
             background-color: #f4f4f4;
-            border-radius: 4px;
+            border-radius: 6px;
             margin-bottom: 32px;
-            overflow: hidden;
             padding: 4px;
         }
 
@@ -241,12 +251,14 @@
             border: none;
             background: none;
             border-radius: 4px; 
-            font-family: 'Circular Std', sans-serif;
+            font-family: inherit;
+            transition: all 0.2s;
         }
 
         .mtvet-type-btn.mtvet-active {
             color: #101828;
             background-color: #ffffff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
 
         /* Panels */
@@ -310,14 +322,15 @@
             justify-content: center;
             gap: 8px;
             height: 44px;
-            border: none;
-            border-radius: 4px;
-            background-color: #f4f4f4;
+            border: 1px solid #D0D5DD;
+            border-radius: 6px;
+            background-color: #ffffff;
             color: #344054;
             font-size: 14px;
             font-weight: 500;
             cursor: pointer; 
             font-family: inherit;
+            transition: background-color 0.2s;
         }
 
         .mtvet-sso-btn:hover {
@@ -361,33 +374,39 @@
         .mtvet-input-fieldset {
             width: 100%;
             border: 1px solid #ced4da;
-            border-radius: 4px;
+            border-radius: 6px;
             padding: 0;
-            margin: 0;
+            margin: 0 0 16px 0;
             display: flex;
             flex-direction: column;
-            margin-bottom: 15px;
+            background: transparent;
+            transition: border-color 0.2s;
         }
 
         .mtvet-input-legend {
             font-size: 12px;
-            font-weight: 400;
-            color: #344054;
+            font-weight: 500;
+            color: #667085;
             font-family: inherit;
             margin-left: 10px;
-            padding: 0 5px;
+            padding: 0 4px;
         }
 
         .mtvet-input-styled {
-            width: calc(100% - 20px);
-            height: 44px;
-            padding: 0 10px;
+            width: 100%;
+            height: 40px;
+            padding: 0 14px;
             border: none;
-            border-radius: 0 0 4px 4px;
+            border-radius: 0 0 6px 6px;
             font-size: 15px;
             color: #101828;
-            background-color: #fff;
-            margin: 0 10px 10px 10px;
+            background-color: transparent;
+            margin-bottom: 4px;
+            font-family: inherit;
+        }
+
+        .mtvet-input-styled::placeholder {
+            color: #98A2B3;
         }
 
         .mtvet-input-styled:focus {
@@ -395,15 +414,15 @@
         }
 
         .mtvet-input-fieldset:focus-within {
-            border-color: #84CAFF;
-            box-shadow: 0 0 0 4px #F4EBFF;
+            border-color: #0065ad;
+            box-shadow: 0 0 0 3px rgba(0, 101, 173, 0.1);
         }
 
         /* Buttons */
         .mtvet-btn {
             width: 100%;
             height: 48px;
-            border-radius: 4px;
+            border-radius: 6px;
             font-size: 15px;
             font-weight: 500;
             border: none;
@@ -413,6 +432,7 @@
             align-items: center;
             justify-content: center;
             margin-top: 10px;
+            transition: background-color 0.2s;
         }
 
         .mtvet-btn-primary {
@@ -421,13 +441,13 @@
         }
 
         .mtvet-btn-primary:hover {
-            background-color: #1D2939;
+            background-color: #004d85;
         }
 
         .mtvet-btn-secondary {
             background-color: #ffffff;
             color: #344054;
-            border: 2px solid #D0D5DD;
+            border: 1px solid #D0D5DD;
             margin-top: 0;
             margin-bottom: 12px;
         }
@@ -469,38 +489,40 @@
             font-size: 12px;
         }
 
-        /* Mobile Responsive Overrides */
+        /* =========================================
+           MOBILE RESPONSIVE OVERRIDES
+           ========================================= */
         @media (max-width: 768px) {
             #mtvet-system-container {
                 flex-direction: column;
             }
+
             .mtvet-sidebar {
-                position: relative; /* Remove sticky on mobile to allow normal flow */
+                position: relative; /* Removes sticky behavior for mobile */
                 width: 100%;
                 height: auto;
                 border-right: none;
                 border-bottom: 1px solid #E6E8ED;
-                padding: 24px;
-                display: block; /* Switch off flex to layout grid properly */
+                padding: 16px 20px;
+                display: block; 
+                z-index: 10;
             }
             
-            /* Reorganize top section for mobile */
             .mtvet-mobile-header-wrapper {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                margin-bottom: 24px;
             }
 
             .mtvet-logo {
                 margin-bottom: 0;
-                font-size: 18px;
+                font-size: 20px;
                 text-align: left;
             }
 
             .mtvet-steps {
                 display: flex;
-                gap: 12px;
+                gap: 8px;
                 justify-content: flex-end;
             }
 
@@ -512,43 +534,68 @@
                 margin-right: 0;
                 width: 32px;
                 height: 32px;
-                font-size: 14px;
+                font-size: 13px;
             }
 
             .mtvet-step-content { display: none; }
             .mtvet-step-item::after { display: none; }
             
+            /* Hide desktop info box, show mobile one inside main container */
             .mtvet-sidebar-info {
-                margin-top: 0;
+                display: none; 
+            }
+            .mtvet-mobile-info {
+                display: block; 
             }
 
             .mtvet-main {
                 padding: 32px 20px;
+                width: 100%;
             }
 
+            .mtvet-title {
+                font-size: 24px;
+            }
+
+            .mtvet-pagination {
+                margin-bottom: 32px;
+            }
+
+            /* Stack elements for better thumb-reachability */
             .mtvet-type-switcher {
                 flex-direction: column;
-                margin-bottom: 20px;
+                padding: 4px;
             }
 
             .mtvet-type-btn {
                 width: 100%;
-                margin-bottom: 5px;
+                padding: 12px;
             }
 
             .mtvet-sso-group {
                 flex-direction: column;
             }
 
+            .mtvet-sso-btn {
+                width: 100%;
+                height: 48px;
+            }
+
             .mtvet-footer {
                 padding-top: 40px;
+                padding-bottom: 20px;
             }
         }
     </style>
+</head>
+<body>
+
+<!-- Start Maluti TVET Portal Component -->
+<div id="mtvet-system-container">
 
     <!-- Sidebar Section -->
     <aside class="mtvet-sidebar">
-        <!-- Added a wrapper for mobile flex-alignment -->
+        <!-- Flex wrapper for mobile top-nav conversion -->
         <div class="mtvet-mobile-header-wrapper">
             <div class="mtvet-logo">Maluti TVET</div>
             <ul class="mtvet-steps">
@@ -576,7 +623,7 @@
             </ul>
         </div>
 
-        <!-- Advisory Notice -->
+        <!-- Desktop Advisory Notice (Stays at bottom of sidebar on large screens) -->
         <div class="mtvet-sidebar-info">
             <h4>Email Recommendation</h4>
             <p>For immediate access, we highly recommend registering with your official <strong>@malutitvet.co.za</strong> email address. Accounts created using generic providers (like Gmail or Outlook) require administrator review and approval.</p>
@@ -592,6 +639,12 @@
             <div id="mtvet-dot-1" class="mtvet-dot mtvet-active"></div>
             <div id="mtvet-dot-2" class="mtvet-dot"></div>
             <div id="mtvet-dot-3" class="mtvet-dot"></div>
+        </div>
+
+        <!-- Mobile Advisory Notice (Only shows on mobile, placed above form so it doesn't block UI) -->
+        <div class="mtvet-mobile-info" id="mtvet-mobile-advisory">
+            <h4 style="font-size:13px; color:#0065ad; margin:0 0 4px 0; font-weight:bold;">Email Recommendation</h4>
+            <p style="font-size:12px; color:#344054; margin:0; line-height:1.4;">Use your <strong>@malutitvet.co.za</strong> address for instant access. Generic emails require admin approval.</p>
         </div>
 
         <!-- PANEL 1: Identity & Role -->
@@ -626,7 +679,7 @@
                 <span>OR REGISTER WITH EMAIL</span>
             </div>
 
-            <!-- Normal Email Registration Form (Requires Password) -->
+            <!-- Normal Email Registration Form -->
             <form onsubmit="event.preventDefault(); mtvetGoToStep2();">
                 <fieldset class="mtvet-input-fieldset">
                     <legend class="mtvet-input-legend">First Name</legend>
@@ -644,7 +697,7 @@
             </form>
         </div>
 
-        <!-- PANEL 2: Password Setup (Required for Form Registration) -->
+        <!-- PANEL 2: Password Setup -->
         <div id="mtvet-panel-2" class="mtvet-panel">
             <svg class="mtvet-icon-header" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
             <h2 class="mtvet-title">Secure your account</h2>
@@ -664,7 +717,7 @@
             </form>
         </div>
 
-        <!-- PANEL 3A: Instant Access (Maluti TVET Email Detected) -->
+        <!-- PANEL 3A: Instant Access -->
         <div id="mtvet-panel-success" class="mtvet-panel">
             <svg class="mtvet-icon-header mtvet-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
             <h2 class="mtvet-title">Account Verified!</h2>
@@ -672,7 +725,7 @@
             <button type="button" class="mtvet-btn mtvet-btn-primary">Go to Dashboard</button>
         </div>
 
-        <!-- PANEL 3B: Pending Access (External Email or SSO generic domain) -->
+        <!-- PANEL 3B: Pending Access -->
         <div id="mtvet-panel-pending" class="mtvet-panel">
             <svg class="mtvet-icon-header" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
             <h2 class="mtvet-title">Setup Under Review</h2>
@@ -700,7 +753,7 @@
     let mtvetCurrentRole = 'staff';
     const mtvetDomain = '@malutitvet.co.za';
 
-    // Helper: Clear form inputs on initial load to guarantee no pre-filling
+    // Helper: Clear form inputs on initial load
     function mtvetClearForms() {
         const formInputs = document.querySelectorAll('.mtvet-input-styled');
         formInputs.forEach(input => input.value = "");
@@ -714,33 +767,27 @@
         mtvetCurrentRole = role;
     }
 
-    /**
-     * SSO Logic: Clicking Google/Microsoft/Apple grants access immediately,
-     * bypassing the password step.
-     */
+    // SSO Simulation
     function mtvetSimulateSSO(provider) {
-        // We do *not* pre-fill the Step 1 form. That form is ignored for SSO.
-
-        // Simulate an SSO provider granting access by deciding on a representative dummy email.
         let simulatedEmail = "";
         if(provider === 'google') simulatedEmail = "user@gmail.com";
         if(provider === 'microsoft') simulatedEmail = "user@outlook.com";
         if(provider === 'apple') simulatedEmail = "user@icloud.com";
 
-        // Hide Panel 1
         document.getElementById('mtvet-panel-1').classList.remove('mtvet-active');
+        document.getElementById('mtvet-mobile-advisory').style.display = 'none'; // hide mobile banner on success/pending
 
-        // Execute Access Evaluation based on simulated domain
         mtvetEvaluateAccessAndFinalize(simulatedEmail);
     }
 
-    // Navigation: Step 1 -> Step 2 (Required for password-based email registration)
+    // Navigation: Step 1 -> Step 2
     function mtvetGoToStep2() {
         const emailInput = document.getElementById('mtvet-email');
         if(!emailInput.checkValidity()) return; 
 
         document.getElementById('mtvet-panel-1').classList.remove('mtvet-active');
         document.getElementById('mtvet-panel-2').classList.add('mtvet-active');
+        document.getElementById('mtvet-mobile-advisory').style.display = 'none'; // hide mobile banner on step 2
 
         document.getElementById('mtvet-step-1').classList.remove('mtvet-active');
         document.getElementById('mtvet-step-1').classList.add('mtvet-completed');
@@ -754,6 +801,11 @@
     function mtvetGoBackToStep1() {
         document.getElementById('mtvet-panel-2').classList.remove('mtvet-active');
         document.getElementById('mtvet-panel-1').classList.add('mtvet-active');
+        
+        // re-show mobile banner if on small screen
+        if(window.innerWidth <= 768) {
+            document.getElementById('mtvet-mobile-advisory').style.display = 'block';
+        }
 
         document.getElementById('mtvet-step-2').classList.remove('mtvet-active');
         document.getElementById('mtvet-step-1').classList.add('mtvet-active');
@@ -763,10 +815,7 @@
         document.getElementById('mtvet-dot-1').classList.add('mtvet-active');
     }
 
-    /**
-     * Finalize Registration: For password-based registration, validate passwords
-     * before evaluating domain access rules.
-     */
+    // Finalize Registration
     function mtvetFinalizePasswordBased() {
         const pass1 = document.getElementById('mtvet-pass').value;
         const pass2 = document.getElementById('mtvet-pass-confirm').value;
@@ -776,25 +825,16 @@
             return;
         }
 
-        // Hide Step 2
         document.getElementById('mtvet-panel-2').classList.remove('mtvet-active');
-
-        // Capture Email from Form for normal flow
         const email = document.getElementById('mtvet-email').value.toLowerCase().trim();
 
-        // Evaluate access rules
         mtvetEvaluateAccessAndFinalize(email);
     }
 
-    /**
-     * Reusable Domain Rules Engine: Decides visual success/pending panel,
-     * updates steppers and dots to complete state.
-     */
+    // Domain Evaluation Logic
     function mtvetEvaluateAccessAndFinalize(email) {
-        // Update Steppers & Dots to complete (Step 3 active)
         document.getElementById('mtvet-step-2').classList.remove('mtvet-active');
         document.getElementById('mtvet-step-2').classList.add('mtvet-completed');
-        
         document.getElementById('mtvet-step-1').classList.remove('mtvet-active');
         document.getElementById('mtvet-step-1').classList.add('mtvet-completed');
 
@@ -804,7 +844,6 @@
         document.getElementById('mtvet-dot-2').classList.remove('mtvet-active');
         document.getElementById('mtvet-dot-3').classList.add('mtvet-active');
 
-        // Execute Domain Rules constraints
         document.getElementById('mtvet-panel-success').classList.remove('mtvet-active');
         document.getElementById('mtvet-panel-pending').classList.remove('mtvet-active');
 
@@ -815,4 +854,6 @@
         }
     }
 </script>
-<!-- End Maluti TVET Portal Component -->
+
+</body>
+</html>
