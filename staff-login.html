@@ -30,10 +30,11 @@
             display: flex;
             min-height: 100vh;
             width: 100%;
-            background-color: #fbfbfb;
+            background-color: #ffffff;
             font-family: 'Circular Std', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             color: #1A1A1A;
             box-sizing: border-box;
+            align-items: flex-start; /* Required for sticky sidebar to work correctly */
         }
 
         * {
@@ -56,8 +57,11 @@
             padding: 60px 40px;
             display: flex;
             flex-direction: column;
-            overflow-y: hidden; /* Ensures the left panel is strictly not scrollable */
+            position: sticky; /* Makes sidebar stick to the top */
+            top: 0;
+            height: 100vh; /* Takes full viewport height */
             flex-shrink: 0;
+            overflow-y: auto; /* Allows sidebar itself to scroll if window is very short */
         }
 
         .mtvet-logo {
@@ -70,7 +74,6 @@
 
         .mtvet-steps {
             list-style: none;
-            flex-grow: 1;
             padding: 0;
             margin: 0;
         }
@@ -112,8 +115,8 @@
         }
 
         .mtvet-step-item.mtvet-active .mtvet-step-number {
-            background-color: #101828;
-            border-color: #101828;
+            background-color: #0065ad;
+            border-color: #0065ad;
             color: #ffffff;
         }
 
@@ -131,7 +134,7 @@
 
         .mtvet-step-title {
             font-size: 14px;
-            font-weight: 600;
+            font-weight: 500;
             color: #b3b9c9;
             margin-bottom: 4px;
         }
@@ -150,6 +153,40 @@
             color: #475467;
         }
 
+        /* Sidebar Advisory Notice */
+        .mtvet-sidebar-info {
+            margin-top: auto; /* Pushes it to the bottom */
+            background-color: #e6f0ff;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #cce0ff;
+        }
+
+        .mtvet-sidebar-info h4 {
+            font-size: 13px;
+            color: #0065ad;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .mtvet-sidebar-info p {
+            font-size: 12px;
+            color: #344054;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .mtvet-sidebar-info a {
+            font-size: 12px;
+            color: #175cd3;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .mtvet-sidebar-info a:hover {
+            text-decoration: underline;
+        }
+
         /* --- Main Content Area --- */
         .mtvet-main {
             flex: 1;
@@ -158,14 +195,15 @@
             flex-direction: column;
             align-items: center;
             position: relative;
-            overflow-y: auto;
         }
 
+        /* Fixed the pagination alignment and gap */
         .mtvet-pagination {
             display: flex;
             justify-content: center;
-            gap: 12px;
+            gap: 12px; 
             margin-bottom: 60px;
+            width: 100%;
         }
 
         .mtvet-dot {
@@ -185,8 +223,8 @@
             width: 100%;
             max-width: 440px;
             display: flex;
-            background-color: #f2f4f7;
-            border-radius: 8px;
+            background-color: #f4f4f4;
+            border-radius: 4px;
             margin-bottom: 32px;
             overflow: hidden;
             padding: 4px;
@@ -197,19 +235,18 @@
             padding: 10px;
             text-align: center;
             font-size: 14px;
-            font-weight: 600;
+            font-weight: 500;
             color: #667085;
             cursor: pointer;
             border: none;
             background: none;
-            border-radius: 6px;
-            transition: all 0.2s ease;
+            border-radius: 4px; 
+            font-family: 'Circular Std', sans-serif;
         }
 
         .mtvet-type-btn.mtvet-active {
             color: #101828;
             background-color: #ffffff;
-            box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1);
         }
 
         /* Panels */
@@ -246,7 +283,7 @@
 
         .mtvet-title {
             font-size: 28px;
-            font-weight: bold;
+            font-weight: 500;
             color: #101828;
             margin: 0 0 12px 0;
             line-height: 1.2;
@@ -273,14 +310,14 @@
             justify-content: center;
             gap: 8px;
             height: 44px;
-            border: 1px solid #D0D5DD;
-            border-radius: 8px;
-            background-color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            background-color: #f4f4f4;
             color: #344054;
             font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.2s ease, border-color 0.2s ease;
+            font-weight: 500;
+            cursor: pointer; 
+            font-family: inherit;
         }
 
         .mtvet-sso-btn:hover {
@@ -300,7 +337,7 @@
             margin-bottom: 24px;
             color: #98A2B3;
             font-size: 12px;
-            font-weight: 500;
+            font-weight: 400;
         }
 
         .mtvet-divider::before,
@@ -314,34 +351,50 @@
             padding: 0 12px;
         }
 
-        /* Forms */
+        /* Forms with Over-the-Border Fieldset Style */
         .mtvet-input-group {
             margin-bottom: 20px;
             display: flex;
             flex-direction: column;
         }
 
-        .mtvet-input-label {
-            font-size: 13px;
-            font-weight: 500;
-            color: #344054;
-            margin-bottom: 6px;
+        .mtvet-input-fieldset {
+            width: 100%;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
         }
 
-        .mtvet-input {
-            width: 100%;
-            height: 48px;
-            padding: 0 16px;
-            border: 1px solid #D0D5DD;
-            border-radius: 8px;
+        .mtvet-input-legend {
+            font-size: 12px;
+            font-weight: 400;
+            color: #344054;
+            font-family: inherit;
+            margin-left: 10px;
+            padding: 0 5px;
+        }
+
+        .mtvet-input-styled {
+            width: calc(100% - 20px);
+            height: 44px;
+            padding: 0 10px;
+            border: none;
+            border-radius: 0 0 4px 4px;
             font-size: 15px;
             color: #101828;
-            transition: all 0.2s ease;
             background-color: #fff;
+            margin: 0 10px 10px 10px;
         }
 
-        .mtvet-input:focus {
+        .mtvet-input-styled:focus {
             outline: none;
+        }
+
+        .mtvet-input-fieldset:focus-within {
             border-color: #84CAFF;
             box-shadow: 0 0 0 4px #F4EBFF;
         }
@@ -350,12 +403,12 @@
         .mtvet-btn {
             width: 100%;
             height: 48px;
-            border-radius: 8px;
+            border-radius: 4px;
             font-size: 15px;
-            font-weight: 600;
+            font-weight: 500;
             border: none;
             cursor: pointer;
-            transition: background-color 0.2s ease;
+            font-family: inherit;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -363,7 +416,7 @@
         }
 
         .mtvet-btn-primary {
-            background-color: #101828;
+            background-color: #0065ad;
             color: #ffffff;
         }
 
@@ -374,7 +427,7 @@
         .mtvet-btn-secondary {
             background-color: #ffffff;
             color: #344054;
-            border: 1px solid #D0D5DD;
+            border: 2px solid #D0D5DD;
             margin-top: 0;
             margin-bottom: 12px;
         }
@@ -405,7 +458,6 @@
             font-size: 13px;
             font-weight: 500;
             text-decoration: none;
-            transition: color 0.2s ease;
         }
 
         .mtvet-legal-links a:hover {
@@ -423,44 +475,71 @@
                 flex-direction: column;
             }
             .mtvet-sidebar {
+                position: relative; /* Remove sticky on mobile to allow normal flow */
                 width: 100%;
+                height: auto;
                 border-right: none;
                 border-bottom: 1px solid #E6E8ED;
                 padding: 24px;
-                flex-direction: row;
+                display: block; /* Switch off flex to layout grid properly */
+            }
+            
+            /* Reorganize top section for mobile */
+            .mtvet-mobile-header-wrapper {
+                display: flex;
                 align-items: center;
                 justify-content: space-between;
-                flex-shrink: 0;
+                margin-bottom: 24px;
             }
+
             .mtvet-logo {
                 margin-bottom: 0;
                 font-size: 18px;
+                text-align: left;
             }
+
             .mtvet-steps {
                 display: flex;
                 gap: 12px;
                 justify-content: flex-end;
             }
+
             .mtvet-step-item {
                 margin-bottom: 0;
             }
+
             .mtvet-step-number {
                 margin-right: 0;
                 width: 32px;
                 height: 32px;
                 font-size: 14px;
             }
+
             .mtvet-step-content { display: none; }
             .mtvet-step-item::after { display: none; }
+            
+            .mtvet-sidebar-info {
+                margin-top: 0;
+            }
+
             .mtvet-main {
                 padding: 32px 20px;
             }
+
             .mtvet-type-switcher {
                 flex-direction: column;
+                margin-bottom: 20px;
             }
+
+            .mtvet-type-btn {
+                width: 100%;
+                margin-bottom: 5px;
+            }
+
             .mtvet-sso-group {
                 flex-direction: column;
             }
+
             .mtvet-footer {
                 padding-top: 40px;
             }
@@ -469,30 +548,40 @@
 
     <!-- Sidebar Section -->
     <aside class="mtvet-sidebar">
-        <div class="mtvet-logo">Maluti TVET</div>
-        <ul class="mtvet-steps">
-            <li id="mtvet-step-1" class="mtvet-step-item mtvet-active">
-                <div class="mtvet-step-number">1</div>
-                <div class="mtvet-step-content">
-                    <span class="mtvet-step-title">Your Details</span>
-                    <span class="mtvet-step-desc">Provide your information</span>
-                </div>
-            </li>
-            <li id="mtvet-step-2" class="mtvet-step-item">
-                <div class="mtvet-step-number">2</div>
-                <div class="mtvet-step-content">
-                    <span class="mtvet-step-title">Security</span>
-                    <span class="mtvet-step-desc">Create a password</span>
-                </div>
-            </li>
-            <li id="mtvet-step-3" class="mtvet-step-item">
-                <div class="mtvet-step-number">3</div>
-                <div class="mtvet-step-content">
-                    <span class="mtvet-step-title">Access</span>
-                    <span class="mtvet-step-desc">Account status</span>
-                </div>
-            </li>
-        </ul>
+        <!-- Added a wrapper for mobile flex-alignment -->
+        <div class="mtvet-mobile-header-wrapper">
+            <div class="mtvet-logo">Maluti TVET</div>
+            <ul class="mtvet-steps">
+                <li id="mtvet-step-1" class="mtvet-step-item mtvet-active">
+                    <div class="mtvet-step-number">1</div>
+                    <div class="mtvet-step-content">
+                        <span class="mtvet-step-title">Your Details</span>
+                        <span class="mtvet-step-desc">Provide your information</span>
+                    </div>
+                </li>
+                <li id="mtvet-step-2" class="mtvet-step-item">
+                    <div class="mtvet-step-number">2</div>
+                    <div class="mtvet-step-content">
+                        <span class="mtvet-step-title">Security</span>
+                        <span class="mtvet-step-desc">Create a password</span>
+                    </div>
+                </li>
+                <li id="mtvet-step-3" class="mtvet-step-item">
+                    <div class="mtvet-step-number">3</div>
+                    <div class="mtvet-step-content">
+                        <span class="mtvet-step-title">Access</span>
+                        <span class="mtvet-step-desc">Account status</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Advisory Notice -->
+        <div class="mtvet-sidebar-info">
+            <h4>Email Recommendation</h4>
+            <p>For immediate access, we highly recommend registering with your official <strong>@malutitvet.co.za</strong> email address. Accounts created using generic providers (like Gmail or Outlook) require administrator review and approval.</p>
+            <a href="#" class="mtvet-learn-more">Learn more</a>
+        </div>
     </aside>
 
     <!-- Main Content Section -->
@@ -517,7 +606,7 @@
                 <button class="mtvet-type-btn" onclick="mtvetSetRole(this, 'intern')">Intern</button>
             </div>
 
-            <!-- Social Sign On -->
+            <!-- Social Sign On (Implicitly Grants Access, Skips Password) -->
             <div class="mtvet-sso-group">
                 <button type="button" class="mtvet-sso-btn" onclick="mtvetSimulateSSO('google')">
                     <svg class="mtvet-sso-icon" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
@@ -537,44 +626,45 @@
                 <span>OR REGISTER WITH EMAIL</span>
             </div>
 
+            <!-- Normal Email Registration Form (Requires Password) -->
             <form onsubmit="event.preventDefault(); mtvetGoToStep2();">
-                <div class="mtvet-input-group">
-                    <label class="mtvet-input-label">First Name</label>
-                    <input type="text" id="mtvet-fname" class="mtvet-input" placeholder="e.g. Karabo" required>
-                </div>
-                <div class="mtvet-input-group">
-                    <label class="mtvet-input-label">Last Name</label>
-                    <input type="text" id="mtvet-lname" class="mtvet-input" placeholder="e.g. Mokoena" required>
-                </div>
-                <div class="mtvet-input-group">
-                    <label class="mtvet-input-label">Email Address</label>
-                    <input type="email" id="mtvet-email" class="mtvet-input" placeholder="name@malutitvet.co.za or personal" required>
-                </div>
+                <fieldset class="mtvet-input-fieldset">
+                    <legend class="mtvet-input-legend">First Name</legend>
+                    <input type="text" id="mtvet-fname" class="mtvet-input-styled" placeholder="e.g. Karabo" required autocomplete="off">
+                </fieldset>
+                <fieldset class="mtvet-input-fieldset">
+                    <legend class="mtvet-input-legend">Last Name</legend>
+                    <input type="text" id="mtvet-lname" class="mtvet-input-styled" placeholder="e.g. Mokoena" required autocomplete="off">
+                </fieldset>
+                <fieldset class="mtvet-input-fieldset">
+                    <legend class="mtvet-input-legend">Email Address</legend>
+                    <input type="email" id="mtvet-email" class="mtvet-input-styled" placeholder="name@malutitvet.co.za or personal" required autocomplete="off">
+                </fieldset>
                 <button type="submit" class="mtvet-btn mtvet-btn-primary">Continue to Password</button>
             </form>
         </div>
 
-        <!-- PANEL 2: Password Setup -->
+        <!-- PANEL 2: Password Setup (Required for Form Registration) -->
         <div id="mtvet-panel-2" class="mtvet-panel">
             <svg class="mtvet-icon-header" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
             <h2 class="mtvet-title">Secure your account</h2>
             <p class="mtvet-subtitle">Choose a strong password to protect your institutional data.</p>
             
-            <form onsubmit="event.preventDefault(); mtvetFinalize();">
-                <div class="mtvet-input-group">
-                    <label class="mtvet-input-label">Create Password</label>
-                    <input type="password" id="mtvet-pass" class="mtvet-input" placeholder="At least 8 characters" required>
-                </div>
-                <div class="mtvet-input-group">
-                    <label class="mtvet-input-label">Confirm Password</label>
-                    <input type="password" id="mtvet-pass-confirm" class="mtvet-input" placeholder="Repeat password" required>
-                </div>
+            <form onsubmit="event.preventDefault(); mtvetFinalizePasswordBased();">
+                <fieldset class="mtvet-input-fieldset">
+                    <legend class="mtvet-input-legend">Create Password</legend>
+                    <input type="password" id="mtvet-pass" class="mtvet-input-styled" placeholder="At least 8 characters" required>
+                </fieldset>
+                <fieldset class="mtvet-input-fieldset">
+                    <legend class="mtvet-input-legend">Confirm Password</legend>
+                    <input type="password" id="mtvet-pass-confirm" class="mtvet-input-styled" placeholder="Repeat password" required>
+                </fieldset>
                 <button type="submit" class="mtvet-btn mtvet-btn-primary">Complete Registration</button>
                 <button type="button" class="mtvet-btn mtvet-btn-secondary" onclick="mtvetGoBackToStep1()">Back</button>
             </form>
         </div>
 
-        <!-- PANEL 3A: Instant Access (Maluti TVET Email) -->
+        <!-- PANEL 3A: Instant Access (Maluti TVET Email Detected) -->
         <div id="mtvet-panel-success" class="mtvet-panel">
             <svg class="mtvet-icon-header mtvet-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
             <h2 class="mtvet-title">Account Verified!</h2>
@@ -582,7 +672,7 @@
             <button type="button" class="mtvet-btn mtvet-btn-primary">Go to Dashboard</button>
         </div>
 
-        <!-- PANEL 3B: Pending Access (External Email / SSO) -->
+        <!-- PANEL 3B: Pending Access (External Email or SSO generic domain) -->
         <div id="mtvet-panel-pending" class="mtvet-panel">
             <svg class="mtvet-icon-header" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
             <h2 class="mtvet-title">Setup Under Review</h2>
@@ -610,6 +700,13 @@
     let mtvetCurrentRole = 'staff';
     const mtvetDomain = '@malutitvet.co.za';
 
+    // Helper: Clear form inputs on initial load to guarantee no pre-filling
+    function mtvetClearForms() {
+        const formInputs = document.querySelectorAll('.mtvet-input-styled');
+        formInputs.forEach(input => input.value = "");
+    }
+    mtvetClearForms();
+
     // Role Selection Logic
     function mtvetSetRole(btn, role) {
         document.querySelectorAll('.mtvet-type-btn').forEach(b => b.classList.remove('mtvet-active'));
@@ -617,26 +714,30 @@
         mtvetCurrentRole = role;
     }
 
-    // SSO Simulation Logic
+    /**
+     * SSO Logic: Clicking Google/Microsoft/Apple grants access immediately,
+     * bypassing the password step.
+     */
     function mtvetSimulateSSO(provider) {
-        let dummyEmail = "";
-        if(provider === 'google') dummyEmail = "user@gmail.com";
-        if(provider === 'microsoft') dummyEmail = "user@outlook.com";
-        if(provider === 'apple') dummyEmail = "user@icloud.com";
+        // We do *not* pre-fill the Step 1 form. That form is ignored for SSO.
 
-        // Auto-fill standard form fields to pass validation
-        document.getElementById('mtvet-fname').value = "Guest";
-        document.getElementById('mtvet-lname').value = "User";
-        document.getElementById('mtvet-email').value = dummyEmail;
+        // Simulate an SSO provider granting access by deciding on a representative dummy email.
+        let simulatedEmail = "";
+        if(provider === 'google') simulatedEmail = "user@gmail.com";
+        if(provider === 'microsoft') simulatedEmail = "user@outlook.com";
+        if(provider === 'apple') simulatedEmail = "user@icloud.com";
 
-        // Push user through the process to generate the password and wait for access
-        mtvetGoToStep2();
+        // Hide Panel 1
+        document.getElementById('mtvet-panel-1').classList.remove('mtvet-active');
+
+        // Execute Access Evaluation based on simulated domain
+        mtvetEvaluateAccessAndFinalize(simulatedEmail);
     }
 
-    // Navigation: Step 1 -> Step 2
+    // Navigation: Step 1 -> Step 2 (Required for password-based email registration)
     function mtvetGoToStep2() {
-        const email = document.getElementById('mtvet-email').value;
-        if(!email) return;
+        const emailInput = document.getElementById('mtvet-email');
+        if(!emailInput.checkValidity()) return; 
 
         document.getElementById('mtvet-panel-1').classList.remove('mtvet-active');
         document.getElementById('mtvet-panel-2').classList.add('mtvet-active');
@@ -662,8 +763,11 @@
         document.getElementById('mtvet-dot-1').classList.add('mtvet-active');
     }
 
-    // Finalize Registration & Evaluate Domain Logic
-    function mtvetFinalize() {
+    /**
+     * Finalize Registration: For password-based registration, validate passwords
+     * before evaluating domain access rules.
+     */
+    function mtvetFinalizePasswordBased() {
         const pass1 = document.getElementById('mtvet-pass').value;
         const pass2 = document.getElementById('mtvet-pass-confirm').value;
 
@@ -672,25 +776,41 @@
             return;
         }
 
-        const email = document.getElementById('mtvet-email').value.toLowerCase().trim();
-
         // Hide Step 2
         document.getElementById('mtvet-panel-2').classList.remove('mtvet-active');
 
-        // Update Steppers
+        // Capture Email from Form for normal flow
+        const email = document.getElementById('mtvet-email').value.toLowerCase().trim();
+
+        // Evaluate access rules
+        mtvetEvaluateAccessAndFinalize(email);
+    }
+
+    /**
+     * Reusable Domain Rules Engine: Decides visual success/pending panel,
+     * updates steppers and dots to complete state.
+     */
+    function mtvetEvaluateAccessAndFinalize(email) {
+        // Update Steppers & Dots to complete (Step 3 active)
         document.getElementById('mtvet-step-2').classList.remove('mtvet-active');
         document.getElementById('mtvet-step-2').classList.add('mtvet-completed');
+        
+        document.getElementById('mtvet-step-1').classList.remove('mtvet-active');
+        document.getElementById('mtvet-step-1').classList.add('mtvet-completed');
+
         document.getElementById('mtvet-step-3').classList.add('mtvet-active');
         
+        document.getElementById('mtvet-dot-1').classList.remove('mtvet-active');
         document.getElementById('mtvet-dot-2').classList.remove('mtvet-active');
         document.getElementById('mtvet-dot-3').classList.add('mtvet-active');
 
-        // Execute Domain Logic constraints based on Maluti TVET rules
+        // Execute Domain Rules constraints
+        document.getElementById('mtvet-panel-success').classList.remove('mtvet-active');
+        document.getElementById('mtvet-panel-pending').classList.remove('mtvet-active');
+
         if (email.endsWith(mtvetDomain)) {
-            // Instant Access Route
             document.getElementById('mtvet-panel-success').classList.add('mtvet-active');
         } else {
-            // Pending Approval Route (Gmail, Yahoo, iCloud, generic domains, etc.)
             document.getElementById('mtvet-panel-pending').classList.add('mtvet-active');
         }
     }
