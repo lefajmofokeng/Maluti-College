@@ -4,9 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Maluti TVET College</title>
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
-<script src="main.js"></script>
-
 
 <style>
   body { margin: 0; background: #f0f0f4; }
@@ -16,13 +13,10 @@
 </style>
 
 <style>
-    @font-face { font-family:'Circular Std'; src:url('fonts/CircularStd-Book.woff2') format('woff2'),url('fonts/CircularStd-Book.woff') format('woff'); font-weight:400; font-style:normal; font-display:swap; }
-  @font-face { font-family:'Circular Std'; src:url('fonts/CircularStd-BookItalic.woff2') format('woff2'),url('fonts/CircularStd-BookItalic.woff') format('woff'); font-weight:400; font-style:italic; font-display:swap; }
-  @font-face { font-family:'Circular Std'; src:url('fonts/CircularStd-Medium.woff2') format('woff2'),url('fonts/CircularStd-Medium.woff') format('woff'); font-weight:500; font-style:normal; font-display:swap; }
-  @font-face { font-family:'Circular Std'; src:url('fonts/CircularStd-Bold.woff2') format('woff2'),url('fonts/CircularStd-Bold.woff') format('woff'); font-weight:600; font-style:normal; font-display:swap; }
-  @font-face { font-family:'Circular Std'; src:url('fonts/CircularStd-Bold.woff2') format('woff2'),url('fonts/CircularStd-Bold.woff') format('woff'); font-weight:700; font-style:normal; font-display:swap; }
-  @font-face { font-family:'Circular Std'; src:url('fonts/CircularStd-Black.woff2') format('woff2'),url('fonts/CircularStd-Black.woff') format('woff'); font-weight:800; font-style:normal; font-display:swap; }
-  @font-face { font-family:'Circular Std'; src:url('fonts/CircularStd-Black.woff2') format('woff2'),url('fonts/CircularStd-Black.woff') format('woff'); font-weight:900; font-style:normal; font-display:swap; }
+
+@font-face{font-family:'Sodo Sans';src:url('fonts/SoDoSans-Regular.ttf') format('truetype');font-weight:400}
+@font-face{font-family:'Sodo Sans';src:url('fonts/SoDoSans-SemiBold.woff') format('woff');font-weight:500}
+@font-face{font-family:'Sodo Sans';src:url('fonts/SoDoSans-Bold.ttf') format('truetype');font-weight:700}
     </style>
 </head>
 <body>
@@ -37,15 +31,15 @@
   const style = document.createElement('style');
   style.textContent = `
     
-    * { box-sizing: border-box; font-family: 'Circular Std', sans-serif; line-height: 1.2; }
+    * { box-sizing: border-box; font-family: 'Sodo Sans', sans-serif; line-height: 1.2; }
 
     :host {
         --hyperion-color-header-bg: #0a0a3c;
         --hyperion-color-accent: #0077cc;
         --hyperion-color-text-light: #fff;
         --hyperion-color-background-dark: #000;
-        --hyperion-color-off-white: #f4f4f4;
-        --hyperion-color-text-muted: #A0A9BE;
+        --hyperion-color-off-white: #fff;
+        --hyperion-color-text-muted: #fff;
         --hyperion-color-menu-bg: #0a0a3c;
         --hyperion-color-menu-border: rgba(0, 145, 255, 0.2);
         --hyperion-color-qr-dropdown-bg: #06273e;
@@ -104,7 +98,7 @@
 
     .hyperion-custom-nav-link {
         text-decoration: none;
-        color: var(--hyperion-color-text-light);
+        color: #fff;
         font-weight: 400; padding: 10px 0;
         display: flex; font-size: 14px; align-items: center;
         transition: color 0.2s; letter-spacing: 0.02em;
@@ -121,7 +115,7 @@
     .hyperion-header-action-buttons { display: flex; align-items: center; gap: 12px; }
 
     .hyperion-header-action-btn {
-        background: var(--hyperion-color-accent); color: var(--hyperion-color-text-light);
+        background: var(--hyperion-color-accent); color: #fff;
         border: none; padding: 9px 18px; border-radius: 50px;
         font-weight: 400; font-size: 14px; cursor: pointer;
         transition: background-color 0.2s ease;
@@ -132,7 +126,7 @@
 
     .hyperion-header-secondary-btn {
         background-color: transparent; color: var(--hyperion-color-text-light);
-        border: 1px solid rgba(255,255,255,0.2); padding: 9px 17px; border-radius: 50px;
+        border: 1px solid #fff; padding: 9px 17px; border-radius: 50px;
         font-weight: 400; font-size: 14px; cursor: pointer; letter-spacing: 0.02em;
         transition: background-color 0.2s ease, border-color 0.2s ease;
         text-decoration: none; font-family: inherit;
@@ -221,7 +215,7 @@
         display: block; border-radius: 0; transition: color 0.2s;
         position: relative; margin: 7px 0; padding: 4px 0;
         font-size: 19px; font-weight: 400;
-        color: #f1f1f1; text-decoration: none; border-bottom: none;
+        color: #fff; text-decoration: none; border-bottom: none;
     }
     .hyperion-mega-menu-link-title { font-size: inherit; font-weight: inherit; color: inherit; margin-bottom: 0; }
     .hyperion-mega-menu-group-list a:hover { color: #a0aadd; background-color: transparent; }
@@ -318,19 +312,45 @@
             </div>
             <nav class="hyperion-custom-main-nav">
                 <ul class="hyperion-custom-nav-list">
-                    <li>
-                        <a href="page.html" class="hyperion-custom-nav-link">Articles</a>
-                    </li>
-                    <li>
-                        <a href="pricing.html" class="hyperion-custom-nav-link">Calendar</a>
-                    </li>
-                    <li>
-                        <a href="page.html" class="hyperion-custom-nav-link">News & Events</a>
+                    <li class="hyperion-custom-nav-item--has-megamenu">
+                        <a href="#" class="hyperion-custom-nav-link" data-hyperion-megamenu-trigger="media">
+                            Media
+                            <svg class="hyperion-mobile-dropdown-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                        <div class="hyperion-mega-menu-container">
+                            <div class="hyperion-mega-menu-panel" data-hyperion-megamenu-panel="media">
+                                <div class="hyperion-megamenu-3-column-grid">
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>Keeping Up</h3>
+                                        <ul class="hyperion-mega-menu-group-list">
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">News</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Events</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Articles</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Announcements</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Noticeboard</span></a></li>
+                                            <li><a href="careers.html"><span class="hyperion-mega-menu-link-title">Gallery</span></a></li>
+                                            <li><a href="merchandise.html"><span class="hyperion-mega-menu-link-title">Maluti Spotlights</span></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>Connect</h3>
+                                        <ul class="hyperion-mega-menu-group-list">
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">X</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Facebook</span></a></li>
+                                            <li><a href="#"><span class="hyperion-mega-menu-link-title">LinkedIn</span></a></li>
+                                            <li><a href="#"><span class="hyperion-mega-menu-link-title">Youtube</span></a></li>
+                                            <li><a href="#"><span class="hyperion-mega-menu-link-title">Instagram</span></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </li>
                     <li class="hyperion-custom-nav-item--has-megamenu">
                         <a href="page.html" class="hyperion-custom-nav-link" data-hyperion-megamenu-trigger="services">
                             Programs of Study
-                            <svg class="hyperion-desktop-link-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><polyline points="4 6 8 10 12 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
                             <svg class="hyperion-mobile-dropdown-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                                 <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
@@ -341,12 +361,12 @@
                                     <div class="hyperion-menu-group-card">
                                         <h3>
                                             <img src="images/engineering.png" alt="Dev Icon" class="hyperion-menu-group-img-icon">
-                                            <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 400; font-size: 15px; line-height: 1.1;">
+                                            <span class="hyperion-menu-group-text-container" style="color: #fff; font-weight: 400; font-size: 15px; line-height: 1.5;">
                                                 Faculty of Engineering Studies
-                                                <span class="hyperion-menu-group-tagline">Pioneers of Infrastructure</span>
+                                               
                                             </span>
                                         </h3>
-                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 400; font-size: 15px; cursor:pointer;">
+                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid #fff; padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 400; font-size: 15px; cursor:pointer;">
                                             <a style="text-decoration: none; border-bottom: none; color: #fff;" href="faculty-of-engineering.html">Learn about this faculty</a>
                                         </button>
                                         <ul class="hyperion-mega-menu-group-list">
@@ -360,12 +380,11 @@
                                     <div class="hyperion-menu-group-card">
                                         <h3>
                                             <img src="images/it.png" alt="IT Icon" class="hyperion-menu-group-img-icon">
-                                            <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 400; font-size: 15px; line-height: 1.1;">
+                                            <span class="hyperion-menu-group-text-container" style="color: #fff; font-weight: 400; font-size: 15px; line-height: 1.5;">
                                                 Faculty of Business Management
-                                                <span class="hyperion-menu-group-tagline">Architects of Commerce</span>
                                             </span>
                                         </h3>
-                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 400; font-size: 15px; cursor:pointer;">
+                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid #fff; padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 400; font-size: 15px; cursor:pointer;">
                                             <a style="text-decoration: none; border-bottom: none; color: #fff; border-radius: 50px;" href="faculty-of-business.html">Learn about this faculty</a>
                                         </button>
                                          <ul class="hyperion-mega-menu-group-list">
@@ -380,12 +399,11 @@
                                     <div class="hyperion-menu-group-card">
                                         <h3>
                                             <img src="images/hosp.png" alt="Hospitality Icon" class="hyperion-menu-group-img-icon">
-                                            <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 400; font-size: 15px; line-height: 1.1;">
+                                            <span class="hyperion-menu-group-text-container" style="color: #fff; font-weight: 400; font-size: 15px; line-height: 1.5;">
                                                 Faculty of Humanities & Social Services
-                                                <span class="hyperion-menu-group-tagline">Champions of Community</span>
                                             </span>
                                         </h3>
-                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 400; font-size: 15px; cursor:pointer;">
+                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid #fff; padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 400; font-size: 15px; cursor:pointer;">
                                             <a style="text-decoration: none; border-bottom: none; color: #fff;" href="faculty-of-humanities.html">Learn about this faculty</a>
                                         </button>
                                         <ul class="hyperion-mega-menu-group-list">
@@ -399,12 +417,11 @@
                                     <div class="hyperion-menu-group-card">
                                         <h3>
                                             <img src="images/business.png" alt="Business Icon" class="hyperion-menu-group-img-icon">
-                                            <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 400; font-size: 15px; line-height: 1.1;">
+                                            <span class="hyperion-menu-group-text-container" style="color: #fff; font-weight: 400; font-size: 15px; line-height: 1.5;">
                                                 Faculty of Agriculture
-                                                <span class="hyperion-menu-group-tagline">Stewards of Sustainability</span>
                                             </span>
                                         </h3>
-                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight:4500; font-size: 15px; cursor:pointer;">
+                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid #fff; padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight:4500; font-size: 15px; cursor:pointer;">
                                             <a style="text-decoration: none; border-bottom: none; color: #fff;" href="faculty-of-agriculture.html">Learn about this faculty</a>
                                         </button>
                                         <ul class="hyperion-mega-menu-group-list">
@@ -414,12 +431,11 @@
                                     </div>
                                     <div class="hyperion-menu-group-card">
                                         <h3>
-                                            <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 400; font-size: 15px; line-height: 1.1;">
+                                            <span class="hyperion-menu-group-text-container" style="color: #fff; font-weight: 400; font-size: 15px; line-height: 1.5;">
                                                Skills & Occupational Faculty
-                                                <span class="hyperion-menu-group-tagline">Masters of Craft</span>
                                             </span>
                                         </h3>
-                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid rgba(255,255,255,0.22); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 400; font-size: 15px; cursor:pointer;">
+                                        <button class="hyperion-menu-group-button" style="color: white; background-color: transparent; border: 1px solid #fff; padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 400; font-size: 15px; cursor:pointer;">
                                             <a style="text-decoration: none; border-bottom: none; color: #fff;" href="index.html">Learn about skills programs</a>
                                         </button>
                                         <ul class="hyperion-mega-menu-group-list">
@@ -441,7 +457,6 @@
                     <li class="hyperion-custom-nav-item--has-megamenu">
                         <a href="#" class="hyperion-custom-nav-link" data-hyperion-megamenu-trigger="campus">
                             Study @ Maluti
-                            <svg class="hyperion-desktop-link-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><polyline points="4 6 8 10 12 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
                             <svg class="hyperion-mobile-dropdown-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                                 <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
@@ -450,12 +465,11 @@
                             <div class="hyperion-mega-menu-panel" data-hyperion-megamenu-panel="campus">
                                 <div class="hyperion-megamenu-3-column-grid">
                                     <div class="hyperion-menu-group-card">
-                                        <h3>Student Resources</h3>
+                                        <h3>Resources</h3>
                                         <ul class="hyperion-mega-menu-group-list">
-                                            <li><a href="portal.html"><span class="hyperion-mega-menu-link-title">Student Portal</span></a></li>
-                                            <li><a href="housing.html"><span class="hyperion-mega-menu-link-title">Noticeboard</span></a></li>
                                             <li><a href="https://lefajmofokeng.github.io/Ebooks"><span class="hyperion-mega-menu-link-title">Digital Library</span></a></li>
-                                            <li><a href="exams.html"><span class="hyperion-mega-menu-link-title">Exam Schedules</span></a></li>
+                                            <li><a href="exams.html"><span class="hyperion-mega-menu-link-title">Notes</span></a></li>
+                                            <li><a href="exams.html"><span class="hyperion-mega-menu-link-title">Forms & Downloads</span></a></li>
                                         </ul>
                                     </div>
                                     <div class="hyperion-menu-group-card">
@@ -469,7 +483,6 @@
                                             <li><a href="research.html"><span class="hyperion-mega-menu-link-title">Financial Aid</span></a></li>
                                             <li><a href="research.html"><span class="hyperion-mega-menu-link-title">Late Enquiries</span></a></li>
                                             <li><a href="research.html"><span class="hyperion-mega-menu-link-title">Check your status</span></a></li>
-                                            <li><a href="research.html"><span class="hyperion-mega-menu-link-title">Timetables</span></a></li>
                                         </ul>
                                     </div>
                                     <div class="hyperion-menu-group-card">
@@ -482,6 +495,15 @@
                                             <li><a href="apply.html"><span class="hyperion-mega-menu-link-title">Sports & Recreation</span></a></li>
                                             <li><a href="visit.html"><span class="hyperion-mega-menu-link-title">Clubs & Societies</span></a></li>
                                             <li><a href="visit.html"><span class="hyperion-mega-menu-link-title">SRC</span></a></li>
+                                        </ul>
+                                    </div>
+                                     <div class="hyperion-menu-group-card">
+                                        <h3>Calendar</h3>
+                                        <ul class="hyperion-mega-menu-group-list">
+                                            <li><a href="prospectus.html"><span class="hyperion-mega-menu-link-title">Academic Year</span></a></li>
+                                            <li><a href="requirements.html"><span class="hyperion-mega-menu-link-title">Sports Calendar</span></a></li>
+                                            <li><a href="scholarships.html"><span class="hyperion-mega-menu-link-title">Class Timetables</span></a></li>
+                                            <li><a href="scholarships.html"><span class="hyperion-mega-menu-link-title">Exam Timetable</span></a></li>
                                         </ul>
                                     </div>
                                     <div class="hyperion-menu-group-card">
@@ -502,7 +524,6 @@
                     <li class="hyperion-custom-nav-item--has-megamenu">
                         <a href="#" class="hyperion-custom-nav-link" data-hyperion-megamenu-trigger="discover">
                             Discover
-                            <svg class="hyperion-desktop-link-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><polyline points="4 6 8 10 12 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
                             <svg class="hyperion-mobile-dropdown-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                                 <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
@@ -514,31 +535,35 @@
                                         <h3>Maluti</h3>
                                         <ul class="hyperion-mega-menu-group-list">
                                             <li><a href="page.html"><span class="hyperion-mega-menu-link-title">About Us</span></a></li>
-                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Roadmap</span></a></li>
-                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Innovations</span></a></li>
-                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Events</span></a></li>
-                                            <li><a href="careers.html"><span class="hyperion-mega-menu-link-title">Job Opportunities</span></a></li>
-                                            <li><a href="merchandise.html"><span class="hyperion-mega-menu-link-title">Maluti Merchandise</span></a></li>
                                             <li><a href="licenses-and-registrations.html"><span class="hyperion-mega-menu-link-title">Executive Leadership</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Roadmap</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Vision 2030</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Awards & Achievements</span></a></li>
+                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Office & Department Directory</span></a></li>
+                                            <li><a href="careers.html"><span class="hyperion-mega-menu-link-title">Careers: Jobs, Internships & Learnerships</span></a></li>
+                                            <li><a href="merchandise.html"><span class="hyperion-mega-menu-link-title">Official Maluti Merchandise</span></a></li>
                                         </ul>
                                     </div>
                                     <div class="hyperion-menu-group-card">
                                         <h3>Staff & Faculty</h3>
                                         <ul class="hyperion-mega-menu-group-list">
                                             <li><a href="staff.html"><span class="hyperion-mega-menu-link-title">QMS</span></a></li>
-                                          
-                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Webinars</span></a></li>
-                                            
                                         </ul>
                                     </div>
                                     <div class="hyperion-menu-group-card">
-                                        <h3>Connect</h3>
+                                        <h3>Partnerships</h3>
                                         <ul class="hyperion-mega-menu-group-list">
-                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">X</span></a></li>
-                                            <li><a href="page.html"><span class="hyperion-mega-menu-link-title">Facebook</span></a></li>
-                                            <li><a href="#"><span class="hyperion-mega-menu-link-title">LinkedIn</span></a></li>
-                                            <li><a href="#"><span class="hyperion-mega-menu-link-title">Youtube</span></a></li>
-                                            <li><a href="#"><span class="hyperion-mega-menu-link-title">Instagram</span></a></li>
+                                            <li><a href="staff.html"><span class="hyperion-mega-menu-link-title">Industry Partners</span></a></li>
+                                            <li><a href="staff.html"><span class="hyperion-mega-menu-link-title">Work-integrated Learning Partners</span></a></li>
+                                            <li><a href="staff.html"><span class="hyperion-mega-menu-link-title">Articulation Agreements/Universities</span></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>Governance & Compliance</h3>
+                                        <ul class="hyperion-mega-menu-group-list">
+                                            <li><a href="staff.html"><span class="hyperion-mega-menu-link-title">Council</span></a></li>
+                                            <li><a href="staff.html"><span class="hyperion-mega-menu-link-title">Policies</span></a></li>
+                                            <li><a href="staff.html"><span class="hyperion-mega-menu-link-title">Annual Reports</span></a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -758,7 +783,7 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Circular Std', sans-serif;
+            font-family: 'Sodo Sans', sans-serif;
         }
 
         /* ── SCROLLBAR ── */
@@ -1314,7 +1339,7 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: 'Circular Std', sans-serif;
+        font-family: 'Sodo Sans', sans-serif;
         display: flex;
         align-items: center;
         justify-content: flex-start;
@@ -1356,7 +1381,7 @@
         padding: 0.7rem 1.5rem;
         border-radius: 60px;
         font-size: 1rem;
-        font-weight: 600;
+        font-weight: 500;
         cursor: pointer;
         text-decoration: none;
         white-space: nowrap;
@@ -1366,7 +1391,7 @@
     /* Primary — Enroll Now */
     .it-btn-primary {
         background: #ffffff;
-        color: #000000; 
+        color: #000000;
     }
     .it-btn-primary:hover {
         background: #e8e8e8;
@@ -1375,7 +1400,7 @@
     /* Secondary — Download Prospectus */
     .it-btn-secondary {
         background: transparent;
-        color: #ffffff; font-weight: 600;
+        color: #ffffff; font-weight: 500;
         border: 1px solid rgb(255, 255, 255);
     }
     .it-btn-secondary:hover {
@@ -1461,7 +1486,7 @@
 
     .info-text {
         /* Using a Serif font stack for that academic look */
-        font-family: 'Circular Std', sans-serif;
+        font-family: 'Sodo Sans', sans-serif;
         color: #000051; /* Deep navy blue */
         font-size: 2rem;
         line-height: 1.4;
@@ -1585,7 +1610,7 @@
     .it-scroll-wrapper {
         background-color: var(--it-bg);
         color: var(--it-text-main);
-        font-family: 'Circular Std', sans-serif;
+        font-family: 'Sodo Sans', sans-serif;
         margin: 0;
         padding: 0;
         box-sizing: border-box;
@@ -1651,7 +1676,7 @@
 
     .it-step-title {
         font-size: 35px;
-        font-weight: 600;
+        font-weight: 500;
         line-height: 1.1;
         margin-bottom: 1.5rem;
 
@@ -1714,7 +1739,7 @@
     .it-step-number {
         color: var(--it-accent);
         font-size: 1.9rem;
-        font-weight: 600;
+        font-weight: 500;
         display: block;
         letter-spacing: 1px;
     }
@@ -1749,7 +1774,7 @@
     .my-it-comp-cta-text {
         color: var(--ft-color-bg);
         font-size: 18px;
-        font-weight: 600;
+        font-weight: 500;
     }
 </style>
 
@@ -1974,7 +1999,7 @@
             --itsvc-text-muted: #CBD5E1; 
             --itsvc-accent: #0077CC; 
             --itsvc-border: #E2E8F0;
-            --itsvc-font: 'Circular Std', sans-serif;
+            --itsvc-font: 'Sodo Sans', sans-serif;
             --itsvc-anim-speed: 5s;
         }
 
@@ -2010,7 +2035,7 @@
         .itsvc-h1 {
             font-size: 35px;
             line-height: 1.1;
-            font-weight: 600;
+            font-weight: 500;
             color: var(--itsvc-text-dark);
             margin-bottom: 30px; letter-spacing: -0.02em;
         }
@@ -2423,7 +2448,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Circular Std', sans-serif;
+    font-family: 'Sodo Sans', sans-serif;
   }
 
   .kw-special-container {
@@ -3194,619 +3219,56 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kentwood Academy Footer Recreation</title>
-<style>
+    <meta charset="UTF-8">
+    <link href="https://fonts.cdnfonts.com/css/circular-std" rel="stylesheet">
+    <title>My Website</title>
+    
+    <script src="header.js" defer></script> 
+    <script src="footer.js" defer></script>
 
-    /* ── Footer (unchanged) ── */
-    .kw-footer-container {
-        background-color: #050533;
-        color: #ffffff;
-        font-family: 'Circular Std', sans-serif;
-        width: 100%;
-    }
-    .kw-footer-container * { box-sizing: border-box; margin: 0; padding: 0; }
-    .kw-footer-content-wrapper { max-width: 1450px; margin: 0 auto; padding: 0 20px; }
-    .kw-footer-container a { text-decoration: none; color: inherit; transition: opacity 0.3s, background-color 0.3s, color 0.3s; }
-    .kw-footer-container ul { list-style: none; }
-    .kw-footer-top-bar { padding: 35px 0; border-bottom: 1px solid rgba(255,255,255,0.15); }
-    .kw-footer-top-flex { display: flex; justify-content: space-between; align-items: center; }
-    .kw-footer-cta-text { font-size: 26px; font-weight: 400; letter-spacing: -0.5px; }
-    .kw-footer-cta-buttons { display: flex; gap: 20px; }
-    .kw-footer-btn-outline {
-        display: inline-block; padding: 8px 32px;
-        background-color: transparent; color: #ffffff;
-        border: 1px solid #ffffff; border-radius: 50px;
-        font-weight: 600; font-size: 15px; text-align: center; white-space: nowrap;
-    }
-    .kw-footer-btn-outline:hover { background-color: #ffffff; color: #050533; }
-    .kw-footer-main { padding: 70px 0 30px; }
-    .kw-footer-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 80px; align-items: start; }
-    .kw-footer-logo-block { display: flex; flex-direction: column; align-items: flex-start; margin-bottom: 30px; }
-    .kw-footer-crest { width: 55px; height: auto; margin-bottom: 15px; filter: brightness(0) invert(1); }
-    .kw-footer-logo-text { font-size: 22px; font-weight: 400; }
-    .kw-footer-address { font-style: normal; line-height: 1.5; margin-bottom: 30px; font-size: 16px; }
-    .kw-footer-directions-btn { padding: 12px 40px; margin-bottom: 35px; }
-    .kw-footer-socials { display: flex; gap: 20px; align-items: center; }
-    .kw-footer-social-icon { display: flex; align-items: center; justify-content: center; }
-    .kw-footer-social-icon svg { width: 18px; height: 18px; fill: currentColor; }
-    .kw-footer-social-icon:hover { opacity: 0.7; }
-    .kw-footer-link-list li { margin-bottom: 18px; }
-    .kw-footer-link-list a { font-size: 19px; font-weight: 400; color: #e9ecef; }
-    .kw-footer-link-list a:hover { opacity: 0.7; }
-    .kw-footer-bottom { text-align: right; }
-    .kw-footer-designer { font-size: 14px; font-weight: 400; }
-    @media (max-width: 1024px) {
-        .kw-footer-grid { grid-template-columns: 1fr 1fr; gap: 50px 30px; }
-        .kw-footer-col-info { grid-column: 1 / -1; }
-    }
-    @media (max-width: 768px) {
-        .kw-footer-top-flex { flex-direction: column; text-align: center; gap: 25px; }
-        .kw-footer-cta-text { font-size: 22px; }
-        .kw-footer-bottom { text-align: center; }
-    }
-    @media (max-width: 550px) {
-        .kw-footer-grid { grid-template-columns: 1fr; text-align: center; gap: 40px; }
-        .kw-footer-logo-block { align-items: center; }
-        .kw-footer-socials { justify-content: center; }
-        .kw-footer-cta-buttons { flex-direction: column; width: 100%; }
-        .kw-footer-btn-outline { width: 100%; }
-    }
+    <style>
+          
+        @font-face { font-family:'Circular Std'; src:url('fonts/CircularStd-Book.woff2') format('woff2'),url('fonts/CircularStd-Book.woff') format('woff'); font-weight:400; font-style:normal; font-display:swap; }
+        @font-face { font-family:'Circular Std'; src:url('fonts/CircularStd-BookItalic.woff2') format('woff2'),url('fonts/CircularStd-BookItalic.woff') format('woff'); font-weight:400; font-style:italic; font-display:swap; }
+        @font-face { font-family:'Circular Std'; src:url('fonts/CircularStd-Medium.woff2') format('woff2'),url('fonts/CircularStd-Medium.woff') format('woff'); font-weight:500; font-style:normal; font-display:swap; }
+        @font-face { font-family:'Circular Std'; src:url('fonts/CircularStd-Bold.woff2') format('woff2'),url('fonts/CircularStd-Bold.woff') format('woff'); font-weight:600; font-style:normal; font-display:swap; }
+        @font-face { font-family:'Circular Std'; src:url('fonts/CircularStd-Black.woff2') format('woff2'),url('fonts/CircularStd-Black.woff') format('woff'); font-weight:800; font-style:normal; font-display:swap; }
 
-    /* ── Visit Modal ── */
-
-    /* Sharp text rendering — fix blur from transform/filter */
-    .vm-overlay,
-    .vm-modal,
-    .vm-modal * {
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        text-rendering: optimizeLegibility;
-        /* prevent subpixel blur from translateY animations */
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-    }
-
-    .vm-overlay {
-        display: none;
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 9999;
-        align-items: center;
-        justify-content: center;
-        padding: 24px;
-        /* no backdrop-filter — causes font blur */
-    }
-    .vm-overlay.vm-open { display: flex; }
-
-    .vm-modal {
-        background: #fff;
-        border-radius: 16px;
-        width: 100%;
-        max-width: 1080px;
-        height: 90vh;
-        max-height: 720px;
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-      
-        font-family: 'Source Sans Pro', sans-serif;
-        /* Use opacity-only animation — no transform to avoid subpixel blur */
-        animation: vm-fadein .18s ease;
-        /* Promote to own compositor layer cleanly */
-        will-change: auto;
-        transform: translateZ(0);
-    }
-    @keyframes vm-fadein {
-        from { opacity: 0; }
-        to   { opacity: 1; }
-    }
-
-    /* Header */
-    .vm-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 18px 24px 0;
-        flex-shrink: 0;
-    }
-    .vm-header-text h2 {
-        font-size: 15px;
-        font-weight: 600;
-        color: #111;
-        letter-spacing: -0.1px;
-        /* prevent any inherited blurriness */
-        transform: none;
-    }
-    .vm-header-text p {
-        font-size: 14px; font-weight: 500;
-        color: #999;
-        margin-top: 2px;
-    }
-    .vm-close {
-        width: 28px;
-        height: 28px;
-        border-radius: 50%;
-        border: none;
-        background: #f0f0f0;
-        color: #555;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-        font-family: inherit;
-        /* no transition — keeps text crisp */
-    }
-    .vm-close:hover { background: #e4e4e4; color: #111; }
-
-    .footer-heading {
-        font-size: 15px;
-        color: #939ca2;
-        font-weight: 600;
-        margin-bottom: 20px;
-    }
-
-    /* Tab nav row */
-    .vm-nav {
-        display: flex;
-        align-items: center;
-        gap: 2px;
-        padding: 14px 24px 0;
-        flex-shrink: 0;
-        flex-wrap: wrap;
-        row-gap: 6px;
-    }
-
-    .vm-nav-sep {
-        font-size: 10px;
-        font-weight: 600;
-        letter-spacing: .09em;
-        text-transform: uppercase;
-        color: #ccc;
-        padding: 4px 8px 4px 6px;
-        white-space: nowrap;
-        user-select: none;
-    }
-    /* small divider line between groups */
-    .vm-nav-divider {
-        width: 1px;
-        height: 16px;
-        background: #e8e8e8;
-        margin: 0 6px;
-        flex-shrink: 0;
-    }
-
-    .vm-tab {
-        background: none;
-        border: none;
-        padding: 9px 15px;
-        border-radius: 60px;
-        font-size: 14px;
-        font-weight: 600;
-        color: #555;
-        cursor: pointer;
-        font-family: 'Source Sans Pro', sans-serif;
-        white-space: nowrap;
-        /* no transition on color — avoids subpixel repaint blur */
-    }
-    .vm-tab:hover { background: #f5f5f5; color: #111; }
-    .vm-tab.vm-active {
-        background: #050533;
-        color: #fff;
-        font-weight: 500;
-    }
-
-    /* Divider between nav and map */
-    .vm-divider {
-        height: 1px;
-        background: #ececec;
-        margin: 14px 0 0;
-        flex-shrink: 0;
-    }
-
-    /* Map wrapper — inset with padding and border-radius */
-    .vm-map-wrap {
-        flex: 1;
-        overflow: hidden;
-        padding: 16px;
-        min-height: 0;
-        display: flex;
-        flex-direction: column;
-    }
-
-    /* The rounded container that holds the map */
-    .vm-map-inner {
-        flex: 1;
-        border-radius: 20px;
-        overflow: hidden;
-        position: relative;
-        min-height: 0;
-        background: #f2f2f2;
-    }
-
-    /* Empty state */
-    .vm-empty {
-        position: absolute;
-        inset: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        pointer-events: none;
-    }
-    .vm-empty-ring {
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        border: 1px solid #ddd;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #ccc;
-        font-size: 16px;
-    }
-    .vm-empty p {
-        font-size: 13px;
-        color: #bbb;
-        text-align: center;
-        line-height: 1.5;
-    }
-
-    /* Spinner */
-    .vm-spinner-wrap {
-        display: none;
-        position: absolute;
-        inset: 0;
-        align-items: center;
-        justify-content: center;
-        background: #f2f2f2;
-        border-radius: 20px;
-    }
-    .vm-spinner-wrap.show { display: flex; }
-    .vm-spin {
-        width: 22px;
-        height: 22px;
-        border: 2px solid #e0e0e0;
-        border-top-color: #050533;
-        border-radius: 50%;
-        animation: vm-spin .65s linear infinite;
-    }
-    @keyframes vm-spin { to { transform: rotate(360deg); } }
-
-    /* Location label inside map, bottom-left */
-    .vm-map-label {
-        display: none;
-        position: absolute;
-        bottom: 12px;
-        left: 12px;
-        z-index: 2;
-        background: rgba(255, 255, 255, 0.94);
-        border-radius: 8px;
-        padding: 8px 12px;
-        box-shadow: 0 2px 12px rgba(0,0,0,0.12);
-        pointer-events: none;
-    }
-    .vm-map-label.show { display: block; }
-    .vm-map-label h3 {
-        font-size: 12.5px;
-        font-weight: 400;
-        color: #111;
-        white-space: nowrap;
-    }
-    .vm-map-label p {
-        font-size: 11px;
-        color: #777;
-        margin-top: 1px;
-        white-space: nowrap;
-    }
-
-    /* iframe fills map inner */
-    .vm-iframe-box {
-        display: none;
-        position: absolute;
-        inset: 0;
-    }
-    .vm-iframe-box.show { display: block; }
-    .vm-iframe-box iframe {
-        width: 100%;
-        height: 100%;
-        border: none;
-        display: block;
-    }
-
-    /* ── Mobile ── */
-    @media (max-width: 640px) {
-        .vm-overlay { padding: 0; align-items: flex-end; }
-        .vm-modal {
-            max-width: 100%;
-            height: 92vh;
-            max-height: none;
-            border-radius: 16px 16px 0 0;
-        }
-        .vm-nav { padding: 12px 16px 0; gap: 4px; }
-        .vm-nav-sep { display: none; }
-        .vm-nav-divider { display: none; }
-        .vm-tab { font-size: 12.5px; padding: 5px 11px; border-radius: 50px; border: 1px solid #e8e8e8; background: #f7f7f7; }
-        .vm-tab.vm-active { background: #050533; border-color: #050533; color: #fff; }
-        .vm-map-wrap { padding: 12px; }
-        .vm-header { padding: 16px 16px 0; }
-    }
-</style>
+    </style>
 </head>
 <body>
 
-<footer class="kw-footer-container">
-    <div class="kw-footer-top-bar">
-        <div class="kw-footer-content-wrapper kw-footer-top-flex">
-            <h2 class="kw-footer-cta-text">We look forward to welcoming you to Maluti College.</h2>
-            <div class="kw-footer-cta-buttons">
-                <a href="#" class="kw-footer-btn-outline" id="kw-visit-btn">Visit</a>
-                <a href="#" class="kw-footer-btn-outline">Enquire</a>
-                <a href="#" class="kw-footer-btn-outline">Apply</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="kw-footer-main">
-        <div class="kw-footer-content-wrapper kw-footer-grid">
-            
-            <div class="kw-footer-col-links">
-                <h1 class="footer-heading">Legal</h1>
-                <ul class="kw-footer-link-list">
-                    <li><a href="#">Responsible Disclosure Policy</a></li>
-                    <li><a href="#">Cookie Policy</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Use</a></li>
-                    <li><a href="#">Proof of Reserve</a></li>
-                </ul>
-            </div>
-            <div class="kw-footer-col-links">
-                <h1 class="footer-heading">Admissions & Aid</h1>
-                <ul class="kw-footer-link-list">
-                    <li><a href="#">How to apply</a></li>
-                    <li><a href="#">Admissions Requirements</a></li>
-                    <li><a href="#">Tuition, Fees & Payments</a></li>
-                    <li><a href="#">Registration</a></li>
-                    <li><a href="#">Assessments</a></li>
-                    <li><a href="#">Financial Aid</a></li>
-                    <li><a href="#">Late Enquiries</a></li>
-                    <li><a href="#">Check your status</a></li>
-                    <li><a href="#">Timetables</a></li>
-                </ul>
-            </div>
-            <div class="kw-footer-col-links">
-                <h1 class="footer-heading">Campus Life</h1>
-                <ul class="kw-footer-link-list">
-                    <li><a href="#">Campus Support</a></li>
-                    <li><a href="#">Campus Facilities</a></li>
-                    <li><a href="#">Residence Life</a></li>
-                    <li><a href="#">Student Activities</a></li>
-                    <li><a href="#">Sports & Recreation</a></li>
-                    <li><a href="#">Clubs & Societies</a></li>
-                    <li><a href="#">SRC</a></li>
-                </ul>
-            </div>
-            <div class="kw-footer-col-links">
-                <h1 class="footer-heading">Calender</h1>
-                <ul class="kw-footer-link-list">
-                    <li><a href="#">Academic Year</a></li>
-                    <li><a href="#">Term Dates</a></li>
-                    <li><a href="#">Sports Calender</a></li>
-                    <li><a href="#">Exam Timetable</a></li>
-                </ul>
-            </div>
-            <div class="kw-footer-col-links">
-                <h1 class="footer-heading">Maluti</h1>
-                <ul class="kw-footer-link-list">
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Executive Leadership</a></li>
-                    <li><a href="#">Roadmap</a></li>
-                    <li><a href="#">Innovations</a></li>
-                    <li><a href="#">News & Events</a></li>
-                    <li><a href="#">Vision 2030</a></li>
-                    <li><a href="#">Office & Department Directory</a></li>
-                    <li><a href="#">Awards & Achievements</a></li>
-                    <li><a href="#">Job Opportunities</a></li>
-                    <li><a href="#">Maluti Merchandise</a></li>
-                </ul>
-            </div>
-            <div class="kw-footer-col-links">
-                <h1 class="footer-heading">Students</h1>
-                <ul class="kw-footer-link-list">
-                    <li><a href="#">Alumni & Friends</a></li>
-                    <li><a href="#">Digital Library</a></li>
-                    <li><a href="#">Noticeboard</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="kw-footer-content-wrapper kw-footer-bottom">
-            <span class="kw-footer-designer">Copyright &copy; 2026 Maluti TVET College. All rights reserved.</span>
-        </div>
-    </div>
-</footer>
-
-<!-- ── Visit Modal ── -->
-<div class="vm-overlay" id="vm-overlay" role="dialog" aria-modal="true" aria-label="Our Locations">
-    <div class="vm-modal">
-
-        <!-- Header -->
-        <div class="vm-header">
-            <div class="vm-header-text">
-                <h2>Our Locations</h2>
-                <p>Select a campus or office to view on the map</p>
-            </div>
-            <button class="vm-close" id="vm-close" aria-label="Close">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-                </svg>
-            </button>
-        </div>
-
-        <!-- Tab nav -->
-        <div class="vm-nav" id="vm-nav">
-            <span class="vm-nav-sep">Campuses</span>
-            <button class="vm-tab" data-key="main">Main Campus</button>
-            <button class="vm-tab" data-key="lere">Lere La Tshepe</button>
-            <button class="vm-tab" data-key="sefikeng">Sefikeng</button>
-            <button class="vm-tab" data-key="bonamelo">Bonamelo</button>
-            <button class="vm-tab" data-key="harrismith">Harrismith</button>
-            <button class="vm-tab" data-key="bethlehem">Bethlehem</button>
-            <button class="vm-tab" data-key="kwetlisong">Kwetlisong</button>
-            <button class="vm-tab" data-key="itemoheleng">Itemoheleng</button>
-            <div class="vm-nav-divider"></div>
-            <span class="vm-nav-sep">Offices</span>
-            <button class="vm-tab" data-key="central">Central Office</button>
-            <button class="vm-tab" data-key="corporate">Corporate Office</button>
-        </div>
-
-        <div class="vm-divider"></div>
-
-        <!-- Map -->
-        <div class="vm-map-wrap">
-            <div class="vm-map-inner">
-
-                <!-- Empty state -->
-                <div class="vm-empty" id="vm-empty">
-                    <div class="vm-empty-ring">◎</div>
-                    <p>Select a location above</p>
-                </div>
-
-                <!-- Spinner -->
-                <div class="vm-spinner-wrap" id="vm-spinner">
-                    <div class="vm-spin"></div>
-                </div>
-
-                <!-- iframe -->
-                <div class="vm-iframe-box" id="vm-iframe-box">
-                    <iframe id="vm-iframe" src="" allowfullscreen title="Campus map"></iframe>
-                </div>
-
-                <!-- Floating label -->
-                <div class="vm-map-label" id="vm-map-label">
-                    <h3 id="vm-label-name"></h3>
-                    <p id="vm-label-addr"></p>
-                </div>
-
-            </div>
-        </div>
-
-    </div>
-</div>
-
-<script>
-(function () {
-    var DATA = {
-        main:        { name: 'Main Campus',        addr: 'Phuthaditjhaba, QwaQwa, Free State',      lat: -28.5333, lng: 28.9333 },
-        lere:        { name: 'Lere La Tshepe',      addr: 'Phuthaditjhaba, QwaQwa, Free State',      lat: -28.5360, lng: 28.9300 },
-        sefikeng:    { name: 'Sefikeng Campus',     addr: 'Phuthaditjhaba, Free State',              lat: -28.5290, lng: 28.9380 },
-        bonamelo:    { name: 'Bonamelo Campus',     addr: 'Bonamelo, Free State',                    lat: -28.3700, lng: 27.4800 },
-        harrismith:  { name: 'Harrismith Campus',   addr: 'Harrismith, Free State',                  lat: -28.2742, lng: 29.1225 },
-        bethlehem:   { name: 'Bethlehem Campus',    addr: 'Bethlehem, Free State',                   lat: -28.2292, lng: 28.3081 },
-        kwetlisong:  { name: 'Kwetlisong Campus',   addr: 'Phuthaditjhaba, Free State',              lat: -28.5410, lng: 28.9260 },
-        itemoheleng: { name: 'Itemoheleng Campus',  addr: 'Witsieshoek, QwaQwa, Free State',         lat: -28.5700, lng: 28.8900 },
-        central:     { name: 'Central Office',      addr: 'Phuthaditjhaba, Free State',              lat: -28.5310, lng: 28.9355 },
-        corporate:   { name: 'Corporate Office',    addr: 'Wessels Street, Bethlehem, Free State',   lat: -28.2305, lng: 28.3095 }
-    };
-
-    var overlay    = document.getElementById('vm-overlay');
-    var closeBtn   = document.getElementById('vm-close');
-    var visitBtn   = document.getElementById('kw-visit-btn');
-    var tabs       = document.querySelectorAll('.vm-tab');
-    var empty      = document.getElementById('vm-empty');
-    var spinner    = document.getElementById('vm-spinner');
-    var iframeBox  = document.getElementById('vm-iframe-box');
-    var iframe     = document.getElementById('vm-iframe');
-    var mapLabel   = document.getElementById('vm-map-label');
-    var labelName  = document.getElementById('vm-label-name');
-    var labelAddr  = document.getElementById('vm-label-addr');
-    var fallbackTimer;
-
-    function openModal()  { overlay.classList.add('vm-open');    document.body.style.overflow = 'hidden'; }
-    function closeModal() { overlay.classList.remove('vm-open'); document.body.style.overflow = ''; }
-
-    visitBtn.addEventListener('click', function (e) { e.preventDefault(); openModal(); });
-    closeBtn.addEventListener('click', closeModal);
-    overlay.addEventListener('click', function (e) { if (e.target === overlay) closeModal(); });
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
-
-    function showMap() {
-        clearTimeout(fallbackTimer);
-        spinner.classList.remove('show');
-        iframeBox.classList.add('show');
-        mapLabel.classList.add('show');
-    }
-
-    tabs.forEach(function (tab) {
-        tab.addEventListener('click', function () {
-            tabs.forEach(function (t) { t.classList.remove('vm-active'); });
-            tab.classList.add('vm-active');
-
-            var d = DATA[tab.dataset.key];
-            if (!d) return;
-
-            empty.style.display = 'none';
-            iframeBox.classList.remove('show');
-            mapLabel.classList.remove('show');
-            spinner.classList.add('show');
-
-            labelName.textContent = d.name;
-            labelAddr.textContent = d.addr;
-
-            var pad = 0.012;
-            var src = 'https://www.openstreetmap.org/export/embed.html'
-                    + '?bbox='   + (d.lng - pad)         + '%2C' + (d.lat - pad * 0.75)
-                    + '%2C'      + (d.lng + pad)         + '%2C' + (d.lat + pad * 0.75)
-                    + '&layer=mapnik'
-                    + '&marker=' + d.lat + '%2C' + d.lng;
-
-            iframe.onload = showMap;
-            clearTimeout(fallbackTimer);
-            fallbackTimer = setTimeout(showMap, 5000);
-
-            iframe.src = src;
-        });
-    });
-})();
-</script>
+    <cronos-header></cronos-header>
 
 </body>
 </html>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<cronos-footer></cronos-footer>

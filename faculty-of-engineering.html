@@ -24,8 +24,11 @@
 
   const style = document.createElement('style');
   style.textContent = `
-    
-    * { box-sizing: border-box; font-family: 'Source Sans Pro', sans-serif; line-height: 1.2; }
+    @font-face{font-family:'Sodo Sans';src:url('fonts/SoDoSans-Regular.ttf') format('truetype');font-weight:400}
+    @font-face{font-family:'Sodo Sans';src:url('fonts/SoDoSans-SemiBold.woff') format('woff');font-weight:500}
+    @font-face{font-family:'Sodo Sans';src:url('fonts/SoDoSans-Bold.ttf') format('truetype');font-weight:700}
+
+    * { box-sizing: border-box; font-family: 'Sodo Sans', sans-serif; line-height: 1.2; }
 
     :host {
         --hyperion-color-header-bg: #0a0a3c;
@@ -710,10 +713,10 @@
     <title>Faculty of Engineering Studies | Maluti TVET</title>
     <style>
         /* --- GLOBAL STYLES --- */
-        @font-face {
-            font-family: 'Circular Std';
-            src: local('Circular Std'), local('Helvetica Neue'), sans-serif; 
-        }
+
+        @font-face{font-family:'Sodo Sans';src:url('fonts/SoDoSans-Regular.ttf') format('truetype');font-weight:400}
+@font-face{font-family:'Sodo Sans';src:url('fonts/SoDoSans-SemiBold.woff') format('woff');font-weight:500}
+@font-face{font-family:'Sodo Sans';src:url('fonts/SoDoSans-Bold.ttf') format('truetype');font-weight:700}
 
         :root {
             --bg-main: #ffffff;
@@ -725,7 +728,7 @@
             --brand-blue-light: #e8f0fe; 
             --border-light: #dadce0;
             --radius: 15px;
-            --font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-family: 'Sodo Sans', -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
         * {
@@ -1305,7 +1308,7 @@
     .kw-footer-container {
         background-color: #050533;
         color: #ffffff;
-        font-family: 'Source Sans Pro', sans-serif;
+        font-family: 'Sodo Sans', sans-serif;
         width: 100%;
     }
     .kw-footer-container * { box-sizing: border-box; margin: 0; padding: 0; }

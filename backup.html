@@ -1,0 +1,968 @@
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kentwood Academy Footer Recreation</title>
+<style>
+
+    /* ── Footer (unchanged) ── */
+    .kw-footer-container {
+        background-color: #050533;
+        color: #ffffff;
+        font-family: 'Circular Std', sans-serif;
+        width: 100%;
+    }
+    .kw-footer-container * { box-sizing: border-box; margin: 0; padding: 0; }
+    .kw-footer-content-wrapper { max-width: 1450px; margin: 0 auto; padding: 0 20px; }
+    .kw-footer-container a { text-decoration: none; color: inherit; transition: opacity 0.3s, background-color 0.3s, color 0.3s; }
+    .kw-footer-container ul { list-style: none; }
+    .kw-footer-top-bar { padding: 35px 0; border-bottom: 1px solid rgba(255,255,255,0.15); }
+    .kw-footer-top-flex { display: flex; justify-content: space-between; align-items: center; }
+    .kw-footer-cta-text { font-size: 26px; font-weight: 400; letter-spacing: -0.5px; }
+    .kw-footer-cta-buttons { display: flex; gap: 20px; }
+    .kw-footer-btn-outline {
+        display: inline-block; padding: 8px 32px;
+        background-color: transparent; color: #ffffff;
+        border: 1px solid #ffffff; border-radius: 50px;
+        font-weight: 600; font-size: 15px; text-align: center; white-space: nowrap;
+    }
+    .kw-footer-btn-outline:hover { background-color: #ffffff; color: #050533; }
+    .kw-footer-main { padding: 70px 0 30px; }
+    .kw-footer-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 80px; align-items: start; }
+    .kw-footer-logo-block { display: flex; flex-direction: column; align-items: flex-start; margin-bottom: 30px; }
+    .kw-footer-crest { width: 55px; height: auto; margin-bottom: 15px; filter: brightness(0) invert(1); }
+    .kw-footer-logo-text { font-size: 22px; font-weight: 400; }
+    .kw-footer-address { font-style: normal; line-height: 1.5; margin-bottom: 30px; font-size: 16px; }
+    .kw-footer-directions-btn { padding: 12px 40px; margin-bottom: 35px; }
+    .kw-footer-socials { display: flex; gap: 20px; align-items: center; }
+    .kw-footer-social-icon { display: flex; align-items: center; justify-content: center; }
+    .kw-footer-social-icon svg { width: 18px; height: 18px; fill: currentColor; }
+    .kw-footer-social-icon:hover { opacity: 0.7; }
+    .kw-footer-link-list li { margin-bottom: 18px; }
+    .kw-footer-link-list a { font-size: 19px; font-weight: 400; color: #e9ecef; }
+    .kw-footer-link-list a:hover { opacity: 0.7; }
+    .kw-footer-bottom { text-align: right; }
+    .kw-footer-designer { font-size: 14px; font-weight: 400; }
+    @media (max-width: 1024px) {
+        .kw-footer-grid { grid-template-columns: 1fr 1fr; gap: 50px 30px; }
+        .kw-footer-col-info { grid-column: 1 / -1; }
+    }
+    @media (max-width: 768px) {
+        .kw-footer-top-flex { flex-direction: column; text-align: center; gap: 25px; }
+        .kw-footer-cta-text { font-size: 22px; }
+        .kw-footer-bottom { text-align: center; }
+    }
+    @media (max-width: 550px) {
+        .kw-footer-grid { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+        .kw-footer-logo-block { align-items: center; }
+        .kw-footer-socials { justify-content: center; }
+        .kw-footer-cta-buttons { flex-direction: column; width: 100%; }
+        .kw-footer-btn-outline { width: 100%; }
+    }
+
+    /* ── Visit Modal ── */
+
+    /* Sharp text rendering — fix blur from transform/filter */
+    .vm-overlay,
+    .vm-modal,
+    .vm-modal * {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+        /* prevent subpixel blur from translateY animations */
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+
+    .vm-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        /* no backdrop-filter — causes font blur */
+    }
+    .vm-overlay.vm-open { display: flex; }
+
+    .vm-modal {
+        background: #fff;
+        border-radius: 16px;
+        width: 100%;
+        max-width: 1080px;
+        height: 90vh;
+        max-height: 720px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      
+        font-family: 'Source Sans Pro', sans-serif;
+        /* Use opacity-only animation — no transform to avoid subpixel blur */
+        animation: vm-fadein .18s ease;
+        /* Promote to own compositor layer cleanly */
+        will-change: auto;
+        transform: translateZ(0);
+    }
+    @keyframes vm-fadein {
+        from { opacity: 0; }
+        to   { opacity: 1; }
+    }
+
+    /* Header */
+    .vm-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 24px 0;
+        flex-shrink: 0;
+    }
+    .vm-header-text h2 {
+        font-size: 15px;
+        font-weight: 600;
+        color: #111;
+        letter-spacing: -0.1px;
+        /* prevent any inherited blurriness */
+        transform: none;
+    }
+    .vm-header-text p {
+        font-size: 14px; font-weight: 500;
+        color: #999;
+        margin-top: 2px;
+    }
+    .vm-close {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        border: none;
+        background: #f0f0f0;
+        color: #555;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        font-family: inherit;
+        /* no transition — keeps text crisp */
+    }
+    .vm-close:hover { background: #e4e4e4; color: #111; }
+
+    .footer-heading {
+        font-size: 15px;
+        color: #939ca2;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+
+    /* Tab nav row */
+    .vm-nav {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        padding: 14px 24px 0;
+        flex-shrink: 0;
+        flex-wrap: wrap;
+        row-gap: 6px;
+    }
+
+    .vm-nav-sep {
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: .09em;
+        text-transform: uppercase;
+        color: #ccc;
+        padding: 4px 8px 4px 6px;
+        white-space: nowrap;
+        user-select: none;
+    }
+    /* small divider line between groups */
+    .vm-nav-divider {
+        width: 1px;
+        height: 16px;
+        background: #e8e8e8;
+        margin: 0 6px;
+        flex-shrink: 0;
+    }
+
+    .vm-tab {
+        background: none;
+        border: none;
+        padding: 9px 15px;
+        border-radius: 60px;
+        font-size: 14px;
+        font-weight: 600;
+        color: #555;
+        cursor: pointer;
+        font-family: 'Source Sans Pro', sans-serif;
+        white-space: nowrap;
+        /* no transition on color — avoids subpixel repaint blur */
+    }
+    .vm-tab:hover { background: #f5f5f5; color: #111; }
+    .vm-tab.vm-active {
+        background: #050533;
+        color: #fff;
+        font-weight: 500;
+    }
+
+    /* Divider between nav and map */
+    .vm-divider {
+        height: 1px;
+        background: #ececec;
+        margin: 14px 0 0;
+        flex-shrink: 0;
+    }
+
+    /* Map wrapper — inset with padding and border-radius */
+    .vm-map-wrap {
+        flex: 1;
+        overflow: hidden;
+        padding: 16px;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* The rounded container that holds the map */
+    .vm-map-inner {
+        flex: 1;
+        border-radius: 20px;
+        overflow: hidden;
+        position: relative;
+        min-height: 0;
+        background: #f2f2f2;
+    }
+
+    /* Empty state */
+    .vm-empty {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        pointer-events: none;
+    }
+    .vm-empty-ring {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: 1px solid #ddd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ccc;
+        font-size: 16px;
+    }
+    .vm-empty p {
+        font-size: 13px;
+        color: #bbb;
+        text-align: center;
+        line-height: 1.5;
+    }
+
+    /* Spinner */
+    .vm-spinner-wrap {
+        display: none;
+        position: absolute;
+        inset: 0;
+        align-items: center;
+        justify-content: center;
+        background: #f2f2f2;
+        border-radius: 20px;
+    }
+    .vm-spinner-wrap.show { display: flex; }
+    .vm-spin {
+        width: 22px;
+        height: 22px;
+        border: 2px solid #e0e0e0;
+        border-top-color: #050533;
+        border-radius: 50%;
+        animation: vm-spin .65s linear infinite;
+    }
+    @keyframes vm-spin { to { transform: rotate(360deg); } }
+
+    /* Location label inside map, bottom-left */
+    .vm-map-label {
+        display: none;
+        position: absolute;
+        bottom: 12px;
+        left: 12px;
+        z-index: 2;
+        background: rgba(255, 255, 255, 0.94);
+        border-radius: 8px;
+        padding: 8px 12px;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+        pointer-events: none;
+    }
+    .vm-map-label.show { display: block; }
+    .vm-map-label h3 {
+        font-size: 12.5px;
+        font-weight: 400;
+        color: #111;
+        white-space: nowrap;
+    }
+    .vm-map-label p {
+        font-size: 11px;
+        color: #777;
+        margin-top: 1px;
+        white-space: nowrap;
+    }
+
+    /* iframe fills map inner */
+    .vm-iframe-box {
+        display: none;
+        position: absolute;
+        inset: 0;
+    }
+    .vm-iframe-box.show { display: block; }
+    .vm-iframe-box iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        display: block;
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 640px) {
+        .vm-overlay { padding: 0; align-items: flex-end; }
+        .vm-modal {
+            max-width: 100%;
+            height: 92vh;
+            max-height: none;
+            border-radius: 16px 16px 0 0;
+        }
+        .vm-nav { padding: 12px 16px 0; gap: 4px; }
+        .vm-nav-sep { display: none; }
+        .vm-nav-divider { display: none; }
+        .vm-tab { font-size: 12.5px; padding: 5px 11px; border-radius: 50px; border: 1px solid #e8e8e8; background: #f7f7f7; }
+        .vm-tab.vm-active { background: #050533; border-color: #050533; color: #fff; }
+        .vm-map-wrap { padding: 12px; }
+        .vm-header { padding: 16px 16px 0; }
+    }
+</style>
+</head>
+<body>
+
+<footer class="kw-footer-container">
+    <div class="kw-footer-top-bar">
+        <div class="kw-footer-content-wrapper kw-footer-top-flex">
+            <h2 class="kw-footer-cta-text">We look forward to welcoming you to Maluti College.</h2>
+            <div class="kw-footer-cta-buttons">
+                <a href="#" class="kw-footer-btn-outline" id="kw-visit-btn">Visit</a>
+                <a href="#" class="kw-footer-btn-outline">Enquire</a>
+                <a href="#" class="kw-footer-btn-outline">Apply</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="kw-footer-main">
+        <div class="kw-footer-content-wrapper kw-footer-grid">
+            
+            <div class="kw-footer-col-links">
+                <h1 class="footer-heading">Legal</h1>
+                <ul class="kw-footer-link-list">
+                    <li><a href="#">Responsible Disclosure Policy</a></li>
+                    <li><a href="#">Cookie Policy</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Use</a></li>
+                    <li><a href="#">Proof of Reserve</a></li>
+                </ul>
+            </div>
+            <div class="kw-footer-col-links">
+                <h1 class="footer-heading">Admissions & Aid</h1>
+                <ul class="kw-footer-link-list">
+                    <li><a href="#">How to apply</a></li>
+                    <li><a href="#">Admissions Requirements</a></li>
+                    <li><a href="#">Tuition, Fees & Payments</a></li>
+                    <li><a href="#">Registration</a></li>
+                    <li><a href="#">Assessments</a></li>
+                    <li><a href="#">Financial Aid</a></li>
+                    <li><a href="#">Late Enquiries</a></li>
+                    <li><a href="#">Check your status</a></li>
+                    <li><a href="#">Timetables</a></li>
+                </ul>
+            </div>
+            <div class="kw-footer-col-links">
+                <h1 class="footer-heading">Campus Life</h1>
+                <ul class="kw-footer-link-list">
+                    <li><a href="#">Campus Support</a></li>
+                    <li><a href="#">Campus Facilities</a></li>
+                    <li><a href="#">Residence Life</a></li>
+                    <li><a href="#">Student Activities</a></li>
+                    <li><a href="#">Sports & Recreation</a></li>
+                    <li><a href="#">Clubs & Societies</a></li>
+                    <li><a href="#">SRC</a></li>
+                </ul>
+            </div>
+            <div class="kw-footer-col-links">
+                <h1 class="footer-heading">Calender</h1>
+                <ul class="kw-footer-link-list">
+                    <li><a href="#">Academic Year</a></li>
+                    <li><a href="#">Term Dates</a></li>
+                    <li><a href="#">Sports Calender</a></li>
+                    <li><a href="#">Exam Timetable</a></li>
+                </ul>
+            </div>
+            <div class="kw-footer-col-links">
+                <h1 class="footer-heading">Maluti</h1>
+                <ul class="kw-footer-link-list">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Executive Leadership</a></li>
+                    <li><a href="#">Roadmap</a></li>
+                    <li><a href="#">Innovations</a></li>
+                    <li><a href="#">News & Events</a></li>
+                    <li><a href="#">Vision 2030</a></li>
+                    <li><a href="#">Office & Department Directory</a></li>
+                    <li><a href="#">Awards & Achievements</a></li>
+                    <li><a href="#">Job Opportunities</a></li>
+                    <li><a href="#">Maluti Merchandise</a></li>
+                </ul>
+            </div>
+            <div class="kw-footer-col-links">
+                <h1 class="footer-heading">Students</h1>
+                <ul class="kw-footer-link-list">
+                    <li><a href="#">Alumni & Friends</a></li>
+                    <li><a href="#">Digital Library</a></li>
+                    <li><a href="#">Noticeboard</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="kw-footer-content-wrapper kw-footer-bottom">
+            <span class="kw-footer-designer">Copyright &copy; 2026 Maluti TVET College. All rights reserved.</span>
+        </div>
+    </div>
+</footer>
+
+<!-- ── Visit Modal ── -->
+<div class="vm-overlay" id="vm-overlay" role="dialog" aria-modal="true" aria-label="Our Locations">
+    <div class="vm-modal">
+
+        <!-- Header -->
+        <div class="vm-header">
+            <div class="vm-header-text">
+                <h2>Our Locations</h2>
+                <p>Select a campus or office to view on the map</p>
+            </div>
+            <button class="vm-close" id="vm-close" aria-label="Close">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Tab nav -->
+        <div class="vm-nav" id="vm-nav">
+            <span class="vm-nav-sep">Campuses</span>
+            <button class="vm-tab" data-key="main">Main Campus</button>
+            <button class="vm-tab" data-key="lere">Lere La Tshepe</button>
+            <button class="vm-tab" data-key="sefikeng">Sefikeng</button>
+            <button class="vm-tab" data-key="bonamelo">Bonamelo</button>
+            <button class="vm-tab" data-key="harrismith">Harrismith</button>
+            <button class="vm-tab" data-key="bethlehem">Bethlehem</button>
+            <button class="vm-tab" data-key="kwetlisong">Kwetlisong</button>
+            <button class="vm-tab" data-key="itemoheleng">Itemoheleng</button>
+            <div class="vm-nav-divider"></div>
+            <span class="vm-nav-sep">Offices</span>
+            <button class="vm-tab" data-key="central">Central Office</button>
+            <button class="vm-tab" data-key="corporate">Corporate Office</button>
+        </div>
+
+        <div class="vm-divider"></div>
+
+        <!-- Map -->
+        <div class="vm-map-wrap">
+            <div class="vm-map-inner">
+
+                <!-- Empty state -->
+                <div class="vm-empty" id="vm-empty">
+                    <div class="vm-empty-ring">◎</div>
+                    <p>Select a location above</p>
+                </div>
+
+                <!-- Spinner -->
+                <div class="vm-spinner-wrap" id="vm-spinner">
+                    <div class="vm-spin"></div>
+                </div>
+
+                <!-- iframe -->
+                <div class="vm-iframe-box" id="vm-iframe-box">
+                    <iframe id="vm-iframe" src="" allowfullscreen title="Campus map"></iframe>
+                </div>
+
+                <!-- Floating label -->
+                <div class="vm-map-label" id="vm-map-label">
+                    <h3 id="vm-label-name"></h3>
+                    <p id="vm-label-addr"></p>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+(function () {
+    var DATA = {
+        main:        { name: 'Main Campus',        addr: 'Phuthaditjhaba, QwaQwa, Free State',      lat: -28.5333, lng: 28.9333 },
+        lere:        { name: 'Lere La Tshepe',      addr: 'Phuthaditjhaba, QwaQwa, Free State',      lat: -28.5360, lng: 28.9300 },
+        sefikeng:    { name: 'Sefikeng Campus',     addr: 'Phuthaditjhaba, Free State',              lat: -28.5290, lng: 28.9380 },
+        bonamelo:    { name: 'Bonamelo Campus',     addr: 'Bonamelo, Free State',                    lat: -28.3700, lng: 27.4800 },
+        harrismith:  { name: 'Harrismith Campus',   addr: 'Harrismith, Free State',                  lat: -28.2742, lng: 29.1225 },
+        bethlehem:   { name: 'Bethlehem Campus',    addr: 'Bethlehem, Free State',                   lat: -28.2292, lng: 28.3081 },
+        kwetlisong:  { name: 'Kwetlisong Campus',   addr: 'Phuthaditjhaba, Free State',              lat: -28.5410, lng: 28.9260 },
+        itemoheleng: { name: 'Itemoheleng Campus',  addr: 'Witsieshoek, QwaQwa, Free State',         lat: -28.5700, lng: 28.8900 },
+        central:     { name: 'Central Office',      addr: 'Phuthaditjhaba, Free State',              lat: -28.5310, lng: 28.9355 },
+        corporate:   { name: 'Corporate Office',    addr: 'Wessels Street, Bethlehem, Free State',   lat: -28.2305, lng: 28.3095 }
+    };
+
+    var overlay    = document.getElementById('vm-overlay');
+    var closeBtn   = document.getElementById('vm-close');
+    var visitBtn   = document.getElementById('kw-visit-btn');
+    var tabs       = document.querySelectorAll('.vm-tab');
+    var empty      = document.getElementById('vm-empty');
+    var spinner    = document.getElementById('vm-spinner');
+    var iframeBox  = document.getElementById('vm-iframe-box');
+    var iframe     = document.getElementById('vm-iframe');
+    var mapLabel   = document.getElementById('vm-map-label');
+    var labelName  = document.getElementById('vm-label-name');
+    var labelAddr  = document.getElementById('vm-label-addr');
+    var fallbackTimer;
+
+    function openModal()  { overlay.classList.add('vm-open');    document.body.style.overflow = 'hidden'; }
+    function closeModal() { overlay.classList.remove('vm-open'); document.body.style.overflow = ''; }
+
+    visitBtn.addEventListener('click', function (e) { e.preventDefault(); openModal(); });
+    closeBtn.addEventListener('click', closeModal);
+    overlay.addEventListener('click', function (e) { if (e.target === overlay) closeModal(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
+
+    function showMap() {
+        clearTimeout(fallbackTimer);
+        spinner.classList.remove('show');
+        iframeBox.classList.add('show');
+        mapLabel.classList.add('show');
+    }
+
+    tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+            tabs.forEach(function (t) { t.classList.remove('vm-active'); });
+            tab.classList.add('vm-active');
+
+            var d = DATA[tab.dataset.key];
+            if (!d) return;
+
+            empty.style.display = 'none';
+            iframeBox.classList.remove('show');
+            mapLabel.classList.remove('show');
+            spinner.classList.add('show');
+
+            labelName.textContent = d.name;
+            labelAddr.textContent = d.addr;
+
+            var pad = 0.012;
+            var src = 'https://www.openstreetmap.org/export/embed.html'
+                    + '?bbox='   + (d.lng - pad)         + '%2C' + (d.lat - pad * 0.75)
+                    + '%2C'      + (d.lng + pad)         + '%2C' + (d.lat + pad * 0.75)
+                    + '&layer=mapnik'
+                    + '&marker=' + d.lat + '%2C' + d.lng;
+
+            iframe.onload = showMap;
+            clearTimeout(fallbackTimer);
+            fallbackTimer = setTimeout(showMap, 5000);
+
+            iframe.src = src;
+        });
+    });
+})();
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT Company Footer</title>
+  <style>
+    /* All classes prefixed with 'it-company-footer-' 
+       to prevent CSS collisions. 
+    */
+    .it-company-footer-wrapper {
+      background-color: #0b0e11;
+      color: #8b94a3;
+      /* Falling back to sans-serif if Circular Std is not locally installed */
+      font-family: "Circular Std", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      padding: 60px 20px 20px 20px;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .it-company-footer-wrapper * {
+      box-sizing: border-box;
+    }
+
+    .it-company-footer-container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* Grid Layout - 7 Columns exactly like the reference */
+    .it-company-footer-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 20px;
+      margin-bottom: 60px;
+    }
+
+    .it-company-footer-column {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .it-company-footer-heading {
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 24px;
+    }
+
+    .it-company-footer-link {
+      color: #8b94a3;
+      text-decoration: none;
+      margin-bottom: 12px;
+      transition: color 0.2s ease-in-out;
+      font-weight: 400;
+      width: fit-content; font-size: 18px;
+    }
+
+    .it-company-footer-link:hover {
+      color: #ffffff;
+    }
+
+    /* Connect Section Specifics */
+    .it-company-footer-connect {
+      align-items: flex-start;
+      grid-column: span 1;
+    }
+
+    .it-company-footer-app-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 24px;
+      width: 100%;
+    }
+
+    .it-company-footer-app-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #000000;
+      color: #ffffff;
+      border: 1px solid #2d333a;
+      border-radius: 6px;
+      padding: 8px 12px;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: bold;
+      transition: background-color 0.2s;
+      text-align: center;
+    }
+
+    .it-company-footer-app-btn:hover {
+      background-color: #1a1e24;
+    }
+
+    .it-company-footer-socials {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .it-company-footer-icon {
+      color: #8b94a3;
+      text-decoration: none;
+      font-size: 18px;
+      transition: color 0.2s;
+    }
+
+    .it-company-footer-icon:hover {
+      color: #ffffff;
+    }
+
+    .it-company-footer-language {
+      width: 100%;
+    }
+
+    .it-company-footer-lang-btn {
+      background-color: transparent;
+      color: #ffffff;
+      border: 1px solid #2d333a;
+      border-radius: 4px;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 14px;
+      width: 100%;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Disclaimer Section */
+    .it-company-footer-disclaimer-row {
+      margin-top: 200px;
+      padding: 40px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 40px;
+    }
+
+    .it-company-footer-disclaimer-text {
+      font-size: 14px;
+      color: #5c6570;
+      max-width: 850px;
+      line-height: 1.6;
+    }
+
+    .it-company-footer-disclaimer-text a {
+      color: #1199fa;
+      text-decoration: none;
+    }
+
+    .it-company-footer-compliance {
+      display: flex;
+      gap: 75px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    /* Circle badge styling for compliance logos */
+    .it-company-footer-badge {
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8px;
+      font-weight: bold;
+      color: #5c6570;
+      text-align: center;
+    }
+
+    /* Bottom Copyright Bar */
+    .it-company-footer-bottom {
+      border-top: 1px solid #353b44;
+      padding-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+    }
+
+    .it-company-footer-legal-links {
+      display: flex;
+      align-items:center;
+      gap: 15px;
+    }
+
+    .it-company-footer-legal-link {
+      color: #8b94a3;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .it-company-footer-legal-link:hover {
+      color: #ffffff;
+    }
+
+    .it-company-footer-version {
+      color: #474d57;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1200px) {
+      .it-company-footer-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .it-company-footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .it-company-footer-disclaimer-row {
+        flex-direction: column;
+      }
+      .it-company-footer-compliance {
+        justify-content: flex-start;
+      }
+      .it-company-footer-bottom {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="it-company-footer-wrapper">
+  <div class="it-company-footer-container">
+    
+    <div class="it-company-footer-grid">
+      
+      <div class="it-company-footer-column">
+        <div class="it-company-footer-heading">Legal</div>
+        <a href="#" class="it-company-footer-link">Responsible Disclosure Policy</a>
+        <a href="#" class="it-company-footer-link">Privacy Policy</a>
+        <a href="#" class="it-company-footer-link">Terms od Use</a>
+        <a href="#" class="it-company-footer-link">Proof of Reserve</a>
+      </div>
+
+      <div class="it-company-footer-column">
+        <div class="it-company-footer-heading">Admissions & Aid</div>
+        <a href="#" class="it-company-footer-link">How to Apply</a>
+        <a href="#" class="it-company-footer-link">Admissions Requirements</a>
+        <a href="#" class="it-company-footer-link">Tuition, Fees & Payments</a>
+        <a href="#" class="it-company-footer-link">Registration</a>
+        <a href="#" class="it-company-footer-link">Assessments</a>
+        <a href="#" class="it-company-footer-link">Financial Aid</a>
+        <a href="#" class="it-company-footer-link">Late Enquiries</a>
+        <a href="#" class="it-company-footer-link">Check your status</a>
+        <a href="#" class="it-company-footer-link">Timetables</a>
+      </div>
+
+      <div class="it-company-footer-column">
+        <div class="it-company-footer-heading">Students</div>
+        <a href="#" class="it-company-footer-link">Alumni & Friends</a>
+        <a href="#" class="it-company-footer-link">Digital Library</a>
+        <a href="#" class="it-company-footer-link">Noticeboard</a>
+      </div>
+
+      <div class="it-company-footer-column">
+        <div class="it-company-footer-heading">Campus Life</div>
+        <a href="#" class="it-company-footer-link">Campus Support</a>
+        <a href="#" class="it-company-footer-link">Campus Facilities</a>
+        <a href="#" class="it-company-footer-link">Residence Life</a>
+        <a href="#" class="it-company-footer-link">Student Activities</a>
+        <a href="#" class="it-company-footer-link">Sports & Recreation</a>
+        <a href="#" class="it-company-footer-link">Clubs & Socities</a>
+        <a href="#" class="it-company-footer-link">SRC</a>
+      </div>
+
+      <div class="it-company-footer-column">
+        <div class="it-company-footer-heading">Calender</div>
+        <a href="#" class="it-company-footer-link">Academic Year</a>
+        <a href="#" class="it-company-footer-link">Terms Dates</a>
+        <a href="#" class="it-company-footer-link">Sports Calender</a>
+        <a href="#" class="it-company-footer-link">EXam Timetable</a>
+      </div>
+
+      <div class="it-company-footer-column">
+        <div class="it-company-footer-heading">Maluti</div>
+        <a href="#" class="it-company-footer-link">About Us</a>
+        <a href="#" class="it-company-footer-link">Executive Leadership</a>
+        <a href="#" class="it-company-footer-link">Roadmap</a>
+        <a href="#" class="it-company-footer-link">Innovations</a>
+        <a href="#" class="it-company-footer-link">News & Events</a>
+        <a href="#" class="it-company-footer-link">Vision 2013</a>
+        <a href="#" class="it-company-footer-link">Office & Department Directory</a>
+        <a href="#" class="it-company-footer-link">Awards & Achievements</a>
+        <a href="#" class="it-company-footer-link">Job Opportunities</a>
+        <a href="#" class="it-company-footer-link">Official Maluti Merchandise</a>
+        <a href="#" class="it-company-footer-link">Verify</a>
+      </div>
+
+     
+
+    </div>
+
+    <div class="it-company-footer-disclaimer-row">
+      <div class="it-company-footer-disclaimer-text">
+        <p>Proudly part of the Department of Higher Education and Training. Committed to providing quality technical and vocational education that empowers students for the workplace and entrepreneurship.</p>
+        <p>Serving the Free State community with accessible, practical learning since our establishment. Visit our campuses for courses in engineering, business, hospitality, and more. For admissions, programs, and campus contacts, use the links above.</p>
+      </div>
+      
+      <div class="it-company-footer-compliance">
+        <div class="it-company-footer-badge">
+          <img src="images/education.jpg" style="height: 50px;"/>
+        </div>
+        <div class="it-company-footer-badge">
+          <img src="images/logo.png" style="height: 50px;"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="it-company-footer-bottom">
+      <div class="it-company-footer-copyright">
+        Copyright © 2018 - 2026 Crypture. All rights reserved.
+      </div>
+      <div class="it-company-footer-legal-links">
+        <a href="#" class="it-company-footer-legal-link">Privacy Notice</a>
+        <a href="#" class="it-company-footer-legal-link">Status</a>
+        <a href="#" class="it-company-footer-legal-link">Cookie Preferences</a>
+      </div>
+      
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
