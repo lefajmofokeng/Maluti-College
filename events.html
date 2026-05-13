@@ -759,846 +759,383 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>What's On – Maluti TVET College</title>
-  <style>
-    /* ═══════════════════════════════════════════════
-       SCOPE PREFIX: .mtc-wo__
-       All rules scoped — safe to embed anywhere.
-    ═══════════════════════════════════════════════ */
-
-    .mtc-wo__root *,
-    .mtc-wo__root *::before,
-    .mtc-wo__root *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    .mtc-wo__root {
-      --mtc-font: 'Sodo Sans', sans-serif;
-      --mtc-black: #000000;
-      --mtc-white: #ffffff;
-      --mtc-orange: #e84e1b;
-      --mtc-gray-f5: #f5f5f5;
-      --mtc-gray-meta: #555555;
-      --mtc-border: 2px solid #000000;
-      --mtc-max: 1300px;
-
-      font-family: var(--mtc-font);
-      color: var(--mtc-black);
-      background: var(--mtc-white);
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* ─── INNER WIDTH WRAPPER ─────────────────── */
-    .mtc-wo__inner {
-      max-width: var(--mtc-max);
-      margin: 0 auto;
-      padding: 0 40px;
-    }
-
-    /* ─── HERO ────────────────────────────────── */
-    .mtc-wo__hero {
-      background: var(--mtc-black);
-      color: var(--mtc-white);
-      width: 100%;
-    }
-
-    .mtc-wo__hero-inner {
-      max-width: var(--mtc-max);
-      margin: 0 auto;
-      padding: 130px 40px 60px;
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
-
-    .mtc-wo__breadcrumb {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.83rem;
-      color: rgba(255,255,255,0.65);
-    }
-
-    .mtc-wo__breadcrumb a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .mtc-wo__breadcrumb a:hover { color: var(--mtc-white); }
-
-    .mtc-wo__hero-heading {
-      font-size: clamp(2.6rem, 6vw, 4.2rem);
-      font-weight: 900;
-      letter-spacing: -0.025em;
-      line-height: 1.02;
-      color: var(--mtc-white);
-      font-family: 'Canela', serif;
-    }
-
-    .mtc-wo__hero-desc {
-      font-size: 1rem;
-      color: rgba(255,255,255,0.88);
-      max-width: 640px;
-      line-height: 1.65;
-    }
-
-    .mtc-wo__hero-signup {
-      font-size: 0.92rem;
-      color: rgba(255,255,255,0.7);
-      max-width: 560px;
-      line-height: 1.6;
-    }
-
-    .mtc-wo__hero-signup a {
-      color: var(--mtc-white);
-      text-underline-offset: 3px;
-    }
-
-    /* ─── SECTION TITLE ───────────────────────── */
-    .mtc-wo__section-title {
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      font-weight: 900;
-      letter-spacing: -0.025em;
-      color: var(--mtc-black);
-      padding: 60px 0 36px;
-      font-family: 'Canela', serif;
-    }
-
-    /* ─── FILTERS ─────────────────────────────── */
-    .mtc-wo__filters {
-      display: flex;
-      flex-direction: column;
-      gap: 22px;
-      padding-bottom: 44px;
-    }
-
-    .mtc-wo__filter-label {
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: var(--mtc-black);
-      margin-bottom: 7px;
-    }
-
-    /* Search */
-    .mtc-wo__search-row {
-      display: flex;
-    }
-
-    .mtc-wo__search-input {
-      flex: 1;
-      
-      border: none;
-      padding: 13px 16px;
-      border-bottom: 2px solid var(--mtc-black);
-      font-family: var(--mtc-font);
-      font-size: 0.95rem;
-      outline: none;
-      background: var(--mtc-white);
-      color: var(--mtc-black);
-    }
-
-    .mtc-wo__search-input::placeholder { color: #999; }
-    .mtc-wo__search-input:focus { background: #fafafa; }
-
-    .mtc-wo__search-btn {
-      border: var(--mtc-border);
-      background: var(--mtc-white);
-      width: 52px;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: background 0.15s; 
-      border-radius: 60px;   }
-
-    .mtc-wo__search-btn:hover { background: var(--mtc-gray-f5); }
-
-    .mtc-wo__search-btn svg {
-      width: 18px; height: 18px;
-      stroke: var(--mtc-black);
-    }
-
-    /* Dropdowns row */
-    .mtc-wo__dropdowns-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 20px;
-    }
-
-    .mtc-wo__filter-group {
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* ─── CUSTOM DROPDOWN ─────────────────────── */
-    .mtc-wo__dropdown {
-      position: relative;
-      user-select: none;
-    }
-
-    .mtc-wo__dropdown-trigger {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border: var(--mtc-border);
-      padding: 12px 14px;
-      cursor: pointer;
-      background: var(--mtc-white);
-      font-family: var(--mtc-font);
-      font-size: 0.9rem;
-      color: #666;
-      gap: 10px;
-      transition: background 0.15s;
-    }
-
-    .mtc-wo__dropdown-trigger:hover { background: var(--mtc-gray-f5); }
-
-    .mtc-wo__dropdown-trigger-text {
-      flex: 1;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .mtc-wo__dropdown-trigger--selected {
-      color: var(--mtc-black);
-      font-weight: 600;
-    }
-
-    .mtc-wo__dropdown-arrow {
-      width: 28px; height: 28px;
-      background: var(--mtc-orange);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .mtc-wo__dropdown-arrow svg {
-      width: 13px; height: 13px;
-      stroke: var(--mtc-white);
-      transition: transform 0.22s ease;
-    }
-
-    .mtc-wo__dropdown--open .mtc-wo__dropdown-arrow svg {
-      transform: rotate(180deg);
-    }
-
-    .mtc-wo__dropdown-menu {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: -2px;
-      right: -2px;
-      background: var(--mtc-white);
-      border: var(--mtc-border);
-      border-top: none;
-      z-index: 200;
-      max-height: 260px;
-      overflow-y: auto;
-    }
-
-    .mtc-wo__dropdown--open .mtc-wo__dropdown-menu {
-      display: block;
-    }
-
-    .mtc-wo__dropdown-option {
-      padding: 12px 14px;
-      font-family: var(--mtc-font);
-      font-size: 0.88rem;
-      cursor: pointer;
-      color: var(--mtc-black);
-      border-bottom: 1px solid #ebebeb;
-      transition: background 0.1s;
-    }
-
-    .mtc-wo__dropdown-option:last-child { border-bottom: none; }
-
-    .mtc-wo__dropdown-option:hover { background: var(--mtc-gray-f5); }
-
-    .mtc-wo__dropdown-option--selected {
-      background: var(--mtc-gray-f5);
-      font-weight: 700;
-    }
-
-    /* Date input */
-    .mtc-wo__date-wrap {
-      position: relative;
-    }
-
-    .mtc-wo__date-input {
-      width: 100%;
-      border: var(--mtc-border);
-      padding: 12px 44px 12px 14px;
-      font-family: var(--mtc-font);
-      font-size: 0.9rem;
-      color: var(--mtc-black);
-      background: var(--mtc-white);
-      outline: none; border-radius: 6px;
-    }
-
-    .mtc-wo__date-input::placeholder { color: #999; }
-    .mtc-wo__date-input:focus { background: #fafafa; }
-
-    .mtc-wo__date-icon {
-      position: absolute;
-      right: 13px;
-      top: 50%;
-      transform: translateY(-50%);
-      pointer-events: none;
-    }
-
-    .mtc-wo__date-icon svg {
-      width: 18px; height: 18px;
-      stroke: #888;
-    }
-
-    /* ─── RULE ────────────────────────────────── */
-    .mtc-wo__rule {
-      border: none;
-    }
-
-    /* ─── EVENTS GRID ─────────────────────────── */
-    .mtc-wo__grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 52px 32px;
-      padding: 52px 0 72px;
-    }
-
-    /* ─── CARD ────────────────────────────────── */
-    .mtc-wo__card {
-      display: flex;
-      flex-direction: column;
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .mtc-wo__card-img {
-      width: 100%;
-      aspect-ratio: 4 / 3;
-      overflow: hidden;
-      background: var(--mtc-gray-f5);
-      margin-bottom: 15px;
-    }
-
-    .mtc-wo__card-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.42s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    .mtc-wo__card:hover .mtc-wo__card-img img {
-      transform: scale(1.05);
-    }
-
-    .mtc-wo__card-meta {
-      font-size: 0.77rem;
-      color: var(--mtc-gray-meta);
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 5px;
-      margin-bottom: 7px;
-    }
-
-    .mtc-wo__card-pipe { color: #ccc; }
-
-    .mtc-wo__card-cat {
-      font-weight: 700;
-      color: var(--mtc-black);
-    }
-
-    .mtc-wo__card-title {
-      font-size: 1.12rem;
-      font-weight: 900;
-      line-height: 1.24;
-      letter-spacing: -0.01em;
-      color: var(--mtc-black);
-      margin-bottom: 10px;
-      font-family: 'Canela', serif;
-    }
-
-    .mtc-wo__card:hover .mtc-wo__card-title {
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-
-    .mtc-wo__card-desc {
-      font-size: 0.84rem;
-      color: var(--mtc-gray-meta);
-      line-height: 1.65;
-    }
-
-    /* ─── PAGINATION ──────────────────────────── */
-    .mtc-wo__pagination {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      padding-bottom: 80px;
-    }
-
-    .mtc-wo__page-btn {
-      width: 40px; height: 40px;
-      border: 1.5px solid #ccc;
-      background: var(--mtc-white);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--mtc-font);
-      font-size: 0.88rem;
-      font-weight: 700;
-      text-decoration: none;
-      color: var(--mtc-black);
-      cursor: pointer;
-      transition: background 0.15s, color 0.15s, border-color 0.15s;
-    }
-
-    .mtc-wo__page-btn:hover,
-    .mtc-wo__page-btn--active {
-      background: var(--mtc-black);
-      color: var(--mtc-white);
-      border-color: var(--mtc-black);
-    }
-
-    .mtc-wo__page-arrow {
-      width: 40px; height: 40px;
-      border: 1.5px solid #ccc;
-      background: var(--mtc-white);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      cursor: pointer;
-      transition: background 0.15s;
-    }
-
-    .mtc-wo__page-arrow:hover { background: var(--mtc-gray-f5); }
-
-    .mtc-wo__page-arrow svg {
-      width: 15px; height: 15px;
-      stroke: var(--mtc-black);
-    }
-
-    /* ─── RESPONSIVE ──────────────────────────── */
-    @media (max-width: 1060px) {
-      .mtc-wo__grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 760px) {
-      .mtc-wo__inner,
-      .mtc-wo__hero-inner {
-        padding-left: 24px;
-        padding-right: 24px;
-      }
-
-      .mtc-wo__hero-inner {
-        padding-top: 40px;
-        padding-bottom: 48px;
-      }
-
-      .mtc-wo__dropdowns-row {
-        grid-template-columns: 1fr;
-        gap: 16px;
-      }
-
-      .mtc-wo__section-title {
-        padding-top: 44px;
-        padding-bottom: 28px;
-      }
-
-      .mtc-wo__grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 36px 20px;
-      }
-    }
-
-    @media (max-width: 520px) {
-      .mtc-wo__inner,
-      .mtc-wo__hero-inner {
-        padding-left: 16px;
-        padding-right: 16px;
-      }
-
-      .mtc-wo__grid {
-        grid-template-columns: 1fr;
-        gap: 40px 0;
-      }
-
-      .mtc-wo__hero-heading {
-        font-size: 2.2rem;
-      }
-    }
-  </style>
-</head>
-<body>
-
-<div class="mtc-wo__root">
-
-  <!-- ══ HERO ══════════════════════════════════ -->
-  <section class="mtc-wo__hero">
-    <div class="mtc-wo__hero-inner">
-
-      <nav class="mtc-wo__breadcrumb" aria-label="Breadcrumb">
-        <a href="#">Home</a>
-        <span>›</span>
-      </nav>
-
-      <h1 class="mtc-wo__hero-heading">News</h1>
-
-      <p class="mtc-wo__hero-desc">
-        We host hundreds of public events every year — open days, skills showcases,
-        career expos, community outreach programmes, academic seminars, and graduation
-        ceremonies. The majority of our events are free of charge to attend.
-      </p>
-
-      <p class="mtc-wo__hero-signup">
-        <a href="#">Sign up to our events mailing list</a> to hear about upcoming events,
-        broadcasts, and exclusive opportunities from across the College.
-      </p>
-
-    </div>
-  </section>
-
-  <!-- ══ BODY ═══════════════════════════════════ -->
-  <div class="mtc-wo__inner">
-
-    <h2 class="mtc-wo__section-title">What's on at Maluti</h2>
-
-    <!-- FILTERS -->
-    <div class="mtc-wo__filters">
-
-      <!-- Keyword search -->
-      <div>
-        <div class="mtc-wo__filter-label">Keyword search</div>
-        <div class="mtc-wo__search-row">
-          <input class="mtc-wo__search-input" type="text" placeholder="Enter search" aria-label="Keyword search" />
-          <button class="mtc-wo__search-btn" aria-label="Search">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="11" cy="11" r="7"/>
-              <line x1="16.5" y1="16.5" x2="22" y2="22"/>
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      <!-- Dropdowns -->
-      <div class="mtc-wo__dropdowns-row">
-
-        <!-- Event Category -->
-        <div class="mtc-wo__filter-group">
-          <div class="mtc-wo__filter-label">Event category</div>
-          <div class="mtc-wo__dropdown" data-mtc-dd>
-            <div class="mtc-wo__dropdown-trigger" tabindex="0" role="button" aria-haspopup="listbox" aria-expanded="false">
-              <span class="mtc-wo__dropdown-trigger-text">Select Event category</span>
-              <span class="mtc-wo__dropdown-arrow">
-                <svg viewBox="0 0 24 24" fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="6 9 12 15 18 9"/>
-                </svg>
-              </span>
+<!-- Maluti TVET College: Extended Data Events Dashboard -->
+<section class="mtc-unified-wrapper">
+    <!-- Hero Section -->
+    <header class="mtc-hero-block">
+        <div class="mtc-main-container">
+            <div class="mtc-hero-inner">
+                <span class="mtc-reveal mtc-sub-label">Academic Calendar 2026</span>
+                <h1 class="mtc-reveal mtc-main-title">Institutional Events</h1>
+                <p class="mtc-reveal mtc-main-desc">A comprehensive guide to upcoming college gatherings and formal sessions.</p>
             </div>
-            <ul class="mtc-wo__dropdown-menu" role="listbox">
-              <li class="mtc-wo__dropdown-option" role="option">Open Day</li>
-              <li class="mtc-wo__dropdown-option" role="option">Graduation Ceremony</li>
-              <li class="mtc-wo__dropdown-option" role="option">Career Expo</li>
-              <li class="mtc-wo__dropdown-option" role="option">Academic Seminar</li>
-              <li class="mtc-wo__dropdown-option" role="option">Community Outreach</li>
-              <li class="mtc-wo__dropdown-option" role="option">Exhibition</li>
-              <li class="mtc-wo__dropdown-option" role="option">Sport &amp; Recreation</li>
-            </ul>
-          </div>
+        </div>
+    </header>
+
+    <!-- Content Body -->
+    <main class="mtc-main-container mtc-body-padding">
+        <div class="mtc-grid-header mtc-reveal">
+            <span class="mtc-col-time">Schedule</span>
+            <span class="mtc-col-info">Event & Logistics</span>
+            <span class="mtc-col-venue">Campus / Venue</span>
+            <span class="mtc-col-status">Status</span>
         </div>
 
-        <!-- Event Type -->
-        <div class="mtc-wo__filter-group">
-          <div class="mtc-wo__filter-label">Event type</div>
-          <div class="mtc-wo__dropdown" data-mtc-dd>
-            <div class="mtc-wo__dropdown-trigger" tabindex="0" role="button" aria-haspopup="listbox" aria-expanded="false">
-              <span class="mtc-wo__dropdown-trigger-text">Select Event type</span>
-              <span class="mtc-wo__dropdown-arrow">
-                <svg viewBox="0 0 24 24" fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="6 9 12 15 18 9"/>
-                </svg>
-              </span>
+        <div class="mtc-feed">
+            <!-- Event Item 01: Formal Graduation -->
+            <div class="mtc-row mtc-reveal">
+                <div class="mtc-col-time">
+                    <div class="mtc-date-display">
+                        <span class="mtc-day-num">24</span>
+                        <div class="mtc-date-meta">
+                            <span class="mtc-month-label">MAY</span>
+                            <span class="mtc-time-label">09:00 AM</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mtc-col-info">
+                    <span class="mtc-category-tag">Ceremonial</span>
+                    <h3 class="mtc-event-title">Annual Graduation & Certification Ceremony</h3>
+                    <p class="mtc-event-excerpt">The formal conferring of qualifications for the 2025 academic cohort across all faculties.</p>
+                    
+                    <!-- New Logistics Section -->
+                    <div class="mtc-logistics-grid">
+                        <div class="mtc-log-item"><strong>Target:</strong> Graduates & Faculty</div>
+                        <div class="mtc-log-item"><strong>Attire:</strong> Academic Dress / Formal</div>
+                        <div class="mtc-log-item"><strong>Catering:</strong> Light Refreshments</div>
+                        <div class="mtc-log-item"><strong>Plus-One:</strong> Max 2 Guests per Graduate</div>
+                    </div>
+                </div>
+                <div class="mtc-col-venue">
+                    <span class="mtc-venue-primary">Bethlehem Campus</span>
+                    <span class="mtc-venue-secondary">Main Assembly Hall</span>
+                </div>
+                <div class="mtc-col-status">
+                    <span class="mtc-status-outline">Confirmed</span>
+                </div>
             </div>
-            <ul class="mtc-wo__dropdown-menu" role="listbox">
-              <li class="mtc-wo__dropdown-option" role="option">In-person</li>
-              <li class="mtc-wo__dropdown-option" role="option">Online</li>
-              <li class="mtc-wo__dropdown-option" role="option">Hybrid</li>
-            </ul>
-          </div>
+
+            <!-- Event Item 02: Tech Symposium -->
+            <div class="mtc-row mtc-reveal">
+                <div class="mtc-col-time">
+                    <div class="mtc-date-display">
+                        <span class="mtc-day-num">02</span>
+                        <div class="mtc-date-meta">
+                            <span class="mtc-month-label">JUN</span>
+                            <span class="mtc-time-label">10:30 AM</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mtc-col-info">
+                    <span class="mtc-category-tag">Technology</span>
+                    <h3 class="mtc-event-title">Industry 4.0 & Web Development Symposium</h3>
+                    <p class="mtc-event-excerpt">A technical deep-dive into cloud-native architectures and modern JavaScript frameworks.</p>
+                    
+                    <div class="mtc-logistics-grid">
+                        <div class="mtc-log-item"><strong>Target:</strong> IT Students & Pros</div>
+                        <div class="mtc-log-item"><strong>Attire:</strong> Smart Casual</div>
+                        <div class="mtc-log-item"><strong>Catering:</strong> Full Lunch Provided</div>
+                        <div class="mtc-log-item"><strong>Plus-One:</strong> No (Strictly registered)</div>
+                    </div>
+                </div>
+                <div class="mtc-col-venue">
+                    <span class="mtc-venue-primary">Phuthaditjhaba Campus</span>
+                    <span class="mtc-venue-secondary">Innovation Hub</span>
+                </div>
+                <div class="mtc-col-status">
+                    <span class="mtc-status-outline">Open</span>
+                </div>
+            </div>
+
+            <!-- Event Item 03: Sports Day -->
+            <div class="mtc-row mtc-reveal">
+                <div class="mtc-col-time">
+                    <div class="mtc-date-display">
+                        <span class="mtc-day-num">15</span>
+                        <div class="mtc-date-meta">
+                            <span class="mtc-month-label">JUN</span>
+                            <span class="mtc-time-label">08:00 AM</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mtc-col-info">
+                    <span class="mtc-category-tag">Student Life</span>
+                    <h3 class="mtc-event-title">Inter-Campus Athletics Tournament</h3>
+                    <p class="mtc-event-excerpt">A day of competitive sports and community building between all college branches.</p>
+                    
+                    <div class="mtc-logistics-grid">
+                        <div class="mtc-log-item"><strong>Target:</strong> All Students & Staff</div>
+                        <div class="mtc-log-item"><strong>Attire:</strong> Sportswear / Casual</div>
+                        <div class="mtc-log-item"><strong>Catering:</strong> Concession Stands Available</div>
+                        <div class="mtc-log-item"><strong>Plus-One:</strong> Family Welcome</div>
+                    </div>
+                </div>
+                <div class="mtc-col-venue">
+                    <span class="mtc-venue-primary">Harrismith Campus</span>
+                    <span class="mtc-venue-secondary">Sports Fields</span>
+                </div>
+                <div class="mtc-col-status">
+                    <span class="mtc-status-outline">Confirmed</span>
+                </div>
+            </div>
+
+            <!-- Event Item 04: SRC Meeting -->
+            <div class="mtc-row mtc-reveal">
+                <div class="mtc-col-time">
+                    <div class="mtc-date-display">
+                        <span class="mtc-day-num">20</span>
+                        <div class="mtc-date-meta">
+                            <span class="mtc-month-label">JUN</span>
+                            <span class="mtc-time-label">14:00 PM</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mtc-col-info">
+                    <span class="mtc-category-tag">Governance</span>
+                    <h3 class="mtc-event-title">SRC Quarterly Council Meeting</h3>
+                    <p class="mtc-event-excerpt">Discussion on student welfare, facility upgrades, and the upcoming exam schedule.</p>
+                    
+                    <div class="mtc-logistics-grid">
+                        <div class="mtc-log-item"><strong>Target:</strong> SRC Members Only</div>
+                        <div class="mtc-log-item"><strong>Attire:</strong> Business Casual</div>
+                        <div class="mtc-log-item"><strong>Catering:</strong> Coffee & Snacks</div>
+                        <div class="mtc-log-item"><strong>Plus-One:</strong> Not Permitted</div>
+                    </div>
+                </div>
+                <div class="mtc-col-venue">
+                    <span class="mtc-venue-primary">Corporate Office</span>
+                    <span class="mtc-venue-secondary">Council Chambers</span>
+                </div>
+                <div class="mtc-col-status">
+                    <span class="mtc-status-outline">Invite Only</span>
+                </div>
+            </div>
         </div>
 
-        <!-- Date -->
-        <div class="mtc-wo__filter-group">
-          <div class="mtc-wo__filter-label">Date (DD/MM/YYYY)</div>
-          <div class="mtc-wo__date-wrap">
-            <input class="mtc-wo__date-input" type="text" placeholder="Enter a date" aria-label="Filter by date" />
-            <span class="mtc-wo__date-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="4" width="18" height="18" rx="2"/>
-                <line x1="16" y1="2" x2="16" y2="6"/>
-                <line x1="8" y1="2" x2="8" y2="6"/>
-                <line x1="3" y1="10" x2="21" y2="10"/>
-              </svg>
-            </span>
-          </div>
+        <!-- Pagination -->
+        <div class="mtc-pagination-area mtc-reveal">
+            <div class="mtc-count-info">Displaying 1-4 of 12 Records</div>
+            <nav class="mtc-button-group">
+                <button class="mtc-nav-btn mtc-disabled">Previous</button>
+                <div class="mtc-numbers">
+                    <button class="mtc-num-btn mtc-active">1</button>
+                    <button class="mtc-num-btn">2</button>
+                    <button class="mtc-num-btn">3</button>
+                </div>
+                <button class="mtc-nav-btn">Next</button>
+            </nav>
         </div>
+    </main>
+</section>
 
-      </div>
-    </div>
+<style>
+/* 
+   MALUTI TVET COLLEGE - ADVANCED EVENTS STYLES
+   Scoped Prefix: mtc- 
+*/
+.mtc-unified-wrapper {
+    --mtc-max-width: 1200px;
+    --mtc-black: #000000;
+    --mtc-gray-mid: #64748b;
+    --mtc-border-color: #000000;
+    background: #ffffff;
+    overflow-x: hidden;
+    color: var(--mtc-black);
+}
 
-    <hr class="mtc-wo__rule" />
+.mtc-main-container {
+    max-width: var(--mtc-max-width);
+    margin: 0 auto;
+    padding: 0 24px; font-family: 'Sodo Sans', sans-serif;
+}
 
-    <!-- EVENTS GRID -->
-    <div class="mtc-wo__grid">
+/* Scroll Reveal States */
+.mtc-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
 
-      <a class="mtc-wo__card" href="#">
-        <div class="mtc-wo__card-img"><img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=700&q=80" alt="Engineering Open Day" loading="lazy" /></div>
-        <div class="mtc-wo__card-meta">
-          <span>From Mon 11 May 2026</span><span class="mtc-wo__card-pipe">|</span>
-          <span class="mtc-wo__card-cat">Open Day</span><span class="mtc-wo__card-pipe">|</span>
-          <span class="mtc-wo__card-cat">Engineering</span>
-        </div>
-        <div class="mtc-wo__card-title">Open Day – Engineering &amp; Technology Faculty</div>
-        <p class="mtc-wo__card-desc">A guided campus tour and programme overview for prospective students and parents exploring our engineering, electrical, and civil programmes.</p>
-      </a>
+.mtc-reveal.mtc-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
 
-      <a class="mtc-wo__card" href="#">
-        <div class="mtc-wo__card-img"><img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?w=700&q=80" alt="Skills Showcase" loading="lazy" /></div>
-        <div class="mtc-wo__card-meta">
-          <span>Wed 13 May 2026</span><span class="mtc-wo__card-pipe">|</span>
-          <span class="mtc-wo__card-cat">Exhibition</span><span class="mtc-wo__card-pipe">|</span>
-          <span class="mtc-wo__card-cat">Vocational</span>
-        </div>
-        <div class="mtc-wo__card-title">Maluti Skills Showcase featuring Student Innovators</div>
-        <p class="mtc-wo__card-desc">An inspiring display of hands-on creativity and vocational excellence from Maluti's brightest students across all departments, with live project demonstrations.</p>
-      </a>
+/* Hero Section */
+.mtc-hero-block {
+    background: var(--mtc-black);
+    height: 180px; 
+    padding-top: 120px;
+    align-items: center; 
+}
 
-      <a class="mtc-wo__card" href="#">
-        <div class="mtc-wo__card-img"><img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=700&q=80" alt="Digital Futures Workshop" loading="lazy" /></div>
-        <div class="mtc-wo__card-meta">
-          <span>Wed 13 May 2026</span><span class="mtc-wo__card-pipe">|</span>
-          <span class="mtc-wo__card-cat">Digital Skills</span>
-        </div>
-        <div class="mtc-wo__card-title">Digital Futures Community Workshop</div>
-        <p class="mtc-wo__card-desc">An evening of five-minute talks and live demos on digital access, ICT literacy, and technology for development — created by ICT students with the local community.</p>
-      </a>
+.mtc-sub-label {
+    display: block;
+    color: #3b82f6; 
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+}
 
-      <a class="mtc-wo__card" href="#">
-        <div class="mtc-wo__card-img"><img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=700&q=80" alt="Awards Ceremony" loading="lazy" /></div>
-        <div class="mtc-wo__card-meta">
-          <span>Thu 14 May 2026</span><span class="mtc-wo__card-pipe">|</span>
-          <span class="mtc-wo__card-cat">Graduation</span>
-        </div>
-        <div class="mtc-wo__card-title">Certificate &amp; Diploma Awards Ceremony</div>
-        <p class="mtc-wo__card-desc">Students from all departments gather for the annual awards ceremony celebrating the completion of NCV and NATED qualifications across the college.</p>
-      </a>
+.mtc-main-title {
+    color: #ffffff;
+    font-size: 3rem;
+    font-weight: 500;
+    margin: 0;
+    font-family: 'Canela', sans-serif;
+}
 
-      <a class="mtc-wo__card" href="#">
-        <div class="mtc-wo__card-img"><img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=700&q=80" alt="Business Innovation Award" loading="lazy" /></div>
-        <div class="mtc-wo__card-meta">
-          <span>Thu 14 May 2026</span><span class="mtc-wo__card-pipe">|</span>
-          <span class="mtc-wo__card-cat">Business</span><span class="mtc-wo__card-pipe">|</span>
-          <span class="mtc-wo__card-cat">Competition</span>
-        </div>
-        <div class="mtc-wo__card-title">The Maluti Business Innovation Award</div>
-        <p class="mtc-wo__card-desc">An award for the best entrepreneurial business plan from a current student, presented in partnership with the Bethlehem Chamber of Commerce.</p>
-      </a>
+.mtc-main-desc {
+    color: #94a3b8;
+    margin: 8px 0 0 0;
+    font-size: 1rem;
+}
 
-      <a class="mtc-wo__card" href="#">
-        <div class="mtc-wo__card-img"><img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=700&q=80" alt="Lab Night" loading="lazy" /></div>
-        <div class="mtc-wo__card-meta">
-          <span>Fri 15 May 2026</span><span class="mtc-wo__card-pipe">|</span>
-          <span class="mtc-wo__card-cat">Research</span><span class="mtc-wo__card-pipe">|</span>
-          <span class="mtc-wo__card-cat">Discussion</span>
-        </div>
-        <div class="mtc-wo__card-title">Practice-as-Research Network: Lab Night</div>
-        <p class="mtc-wo__card-desc">Join student researchers sharing works-in-progress in an open, supportive space for experimentation and academic dialogue.</p>
-      </a>
+/* Grid Headers */
+.mtc-body-padding { padding-top: 60px; padding-bottom: 80px; }
 
-      <a class="mtc-wo__card" href="#">
-        <div class="mtc-wo__card-img"><img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=700&q=80" alt="Writing Workshop" loading="lazy" /></div>
-        <div class="mtc-wo__card-meta">
-          <span>Fri 15 May 2026</span><span class="mtc-wo__card-pipe">|</span>
-          <span class="mtc-wo__card-cat">Communication</span>
-        </div>
-        <div class="mtc-wo__card-title">Wordsmiths at Six: New, Borrowed &amp; Blue Writing Project with Thabo Molefe</div>
-        <p class="mtc-wo__card-desc">Thabo Molefe leads a project exploring writing across genres, with over a month of free, drop-in workshops at the Maluti Learning Centre.</p>
-      </a>
+.mtc-grid-header {
+    display: flex;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--mtc-black);
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
 
-      <a class="mtc-wo__card" href="#">
-        <div class="mtc-wo__card-img"><img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?w=700&q=80" alt="Drama Production" loading="lazy" /></div>
-        <div class="mtc-wo__card-meta">
-          <span>Sat 16 May 2026</span><span class="mtc-wo__card-pipe">|</span>
-          <span class="mtc-wo__card-cat">Drama</span><span class="mtc-wo__card-pipe">|</span>
-          <span class="mtc-wo__card-cat">Performing Arts</span>
-        </div>
-        <div class="mtc-wo__card-title">Voices of Maluti</div>
-        <p class="mtc-wo__card-desc">Experience the first live performance of this acclaimed student-produced drama, written and directed entirely by Performing Arts students at the college.</p>
-      </a>
+/* Row Architecture */
+.mtc-row {
+    display: flex;
+    align-items: flex-start;
+    padding: 45px 0;
+    border-bottom: 2px solid var(--mtc-border-color);
+}
 
-      <a class="mtc-wo__card" href="#">
-        <div class="mtc-wo__card-img"><img src="https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=700&q=80" alt="Junior Ensembles" loading="lazy" /></div>
-        <div class="mtc-wo__card-meta">
-          <span>Sat 16 May 2026</span><span class="mtc-wo__card-pipe">|</span>
-          <span class="mtc-wo__card-cat">Young Achievers</span><span class="mtc-wo__card-pipe">|</span>
-          <span class="mtc-wo__card-cat">Performing Arts</span>
-        </div>
-        <div class="mtc-wo__card-title">Junior Maluti Big Band &amp; Ensembles</div>
-        <p class="mtc-wo__card-desc">Maluti's young performers present an evening of vibrant music and dance, showcasing the energy of the College's outstanding youth programmes.</p>
-      </a>
+/* Columns */
+.mtc-col-time { width: 15%; min-width: 140px; }
+.mtc-col-info { width: 50%; padding-right: 40px; }
+.mtc-col-venue { width: 20%; }
+.mtc-col-status { width: 15%; text-align: right; }
 
-      <a class="mtc-wo__card" href="#">
-        <div class="mtc-wo__card-img"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=700&q=80" alt="Final Assessments" loading="lazy" /></div>
-        <div class="mtc-wo__card-meta">
-          <span>From Mon 18 May 2026</span><span class="mtc-wo__card-pipe">|</span>
-          <span class="mtc-wo__card-cat">Academic</span><span class="mtc-wo__card-pipe">|</span>
-          <span class="mtc-wo__card-cat">Jazz</span>
-        </div>
-        <div class="mtc-wo__card-title">Final Assessments &amp; Exhibitions 2026</div>
-        <p class="mtc-wo__card-desc">Final assessment season at Maluti TVET College — over a month of free, open exhibitions by undergraduate and postgraduate students across all campus venues.</p>
-      </a>
+/* Date Components */
+.mtc-date-display { display: flex; align-items: center; gap: 15px; }
+.mtc-day-num { font-size: 2.6rem; font-weight: 900; line-height: 1; }
+.mtc-month-label { display: block; font-size: 0.85rem; font-weight: 800; }
+.mtc-time-label { font-size: 0.75rem; color: var(--mtc-gray-mid); }
 
-      <a class="mtc-wo__card" href="#">
-        <div class="mtc-wo__card-img"><img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=700&q=80" alt="Technology at Eight" loading="lazy" /></div>
-        <div class="mtc-wo__card-meta">
-          <span>Tue 19 May 2026</span><span class="mtc-wo__card-pipe">|</span>
-          <span class="mtc-wo__card-cat">Technology</span>
-        </div>
-        <div class="mtc-wo__card-title">Technology at Eight</div>
-        <p class="mtc-wo__card-desc">Maluti Engineering &amp; Technology students present a programme of varied project demonstrations as part of our popular 'at eight' evening showcase series.</p>
-      </a>
+/* Info Components */
+.mtc-category-tag {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--mtc-gray-mid);
+    border: 1px solid var(--mtc-border-color);
+    padding: 2px 8px;
+    border-radius: 3px;
+}
 
-      <a class="mtc-wo__card" href="#">
-        <div class="mtc-wo__card-img"><img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=700&q=80" alt="Community Arts Night" loading="lazy" /></div>
-        <div class="mtc-wo__card-meta">
-          <span>Thu 21 May 2026</span><span class="mtc-wo__card-pipe">|</span>
-          <span class="mtc-wo__card-cat">Community</span>
-        </div>
-        <div class="mtc-wo__card-title">Charge: Bongiwe's Jewellery, Ikologis &amp; Genia Collective</div>
-        <p class="mtc-wo__card-desc">Charge returns to Bethlehem Town Hall for a night of live performance, artisan craft, and creative expression from Maluti's Applied Arts &amp; Design students.</p>
-      </a>
+.mtc-event-title {
+    font-size: 2rem;
+    font-weight: 800;
+    margin: 15px 0 10px 0;
+    letter-spacing: -0.5px;font-family: 'Canela', sans-serif;
+}
 
-    </div>
+.mtc-event-excerpt {
+    font-size: 0.95rem;
+    color: var(--mtc-gray-mid);
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
 
-    <!-- PAGINATION -->
-    <nav class="mtc-wo__pagination" aria-label="Page navigation">
-      <a class="mtc-wo__page-arrow" href="#" aria-label="Previous page">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-      </a>
-      <a class="mtc-wo__page-btn mtc-wo__page-btn--active" href="#" aria-current="page">1</a>
-      <a class="mtc-wo__page-btn" href="#">2</a>
-      <a class="mtc-wo__page-btn" href="#">3</a>
-      <a class="mtc-wo__page-btn" href="#">4</a>
-      <a class="mtc-wo__page-arrow" href="#" aria-label="Next page">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-      </a>
-    </nav>
+/* Logistics Section */
+.mtc-logistics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 15px;
+    background: #fafafa;
+    border-radius: 4px;
+}
 
-  </div><!-- /inner -->
-</div><!-- /root -->
+.mtc-log-item {
+    font-size: 0.8rem;
+    color: #334155;
+}
+
+.mtc-log-item strong {
+    color: var(--mtc-black);
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    margin-right: 5px;
+}
+
+/* Venue & Status */
+.mtc-venue-primary { display: block; font-weight: 800; font-size: 1rem; margin-bottom: 2px; }
+.mtc-venue-secondary { font-size: 0.85rem; color: var(--mtc-gray-mid); }
+
+.mtc-status-outline {
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    border: 2px solid var(--mtc-black);
+    padding: 6px 14px;
+    letter-spacing: 1px;
+}
+
+/* Pagination */
+.mtc-pagination-area {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.mtc-count-info { font-size: 0.85rem; color: var(--mtc-gray-mid); font-weight: 600; }
+.mtc-nav-btn, .mtc-num-btn {
+    border: 1px solid var(--mtc-border-color);
+    background: #fff;
+    padding: 10px 18px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.mtc-active { background: var(--mtc-black); color: #fff; border-color: var(--mtc-black); }
+.mtc-disabled { opacity: 0.3; cursor: not-allowed; }
+
+/* Responsive Styling */
+@media (max-width: 992px) {
+    .mtc-grid-header { display: none; }
+    .mtc-row { flex-direction: column; gap: 20px; }
+    .mtc-col-time, .mtc-col-info, .mtc-col-venue, .mtc-col-status { width: 100%; text-align: left; padding: 0; }
+    .mtc-logistics-grid { grid-template-columns: 1fr; }
+    .mtc-main-title { font-size: 1.8rem; }
+}
+</style>
 
 <script>
-(function () {
-  var allDDs = document.querySelectorAll('[data-mtc-dd]');
+    (function() {
+        /**
+         * Reveal Observer for Back-and-Forth Animation
+         */
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('mtc-visible');
+                } else {
+                    entry.target.classList.remove('mtc-visible');
+                }
+            });
+        }, { threshold: 0.1 });
 
-  function closeAll(except) {
-    allDDs.forEach(function (dd) {
-      if (dd === except) return;
-      dd.classList.remove('mtc-wo__dropdown--open');
-      dd.querySelector('.mtc-wo__dropdown-trigger').setAttribute('aria-expanded', 'false');
-    });
-  }
-
-  allDDs.forEach(function (dd) {
-    var trigger = dd.querySelector('.mtc-wo__dropdown-trigger');
-    var label   = dd.querySelector('.mtc-wo__dropdown-trigger-text');
-    var options = dd.querySelectorAll('.mtc-wo__dropdown-option');
-
-    function toggle(e) {
-      e.stopPropagation();
-      var open = dd.classList.contains('mtc-wo__dropdown--open');
-      closeAll(dd);
-      if (!open) {
-        dd.classList.add('mtc-wo__dropdown--open');
-        trigger.setAttribute('aria-expanded', 'true');
-      } else {
-        dd.classList.remove('mtc-wo__dropdown--open');
-        trigger.setAttribute('aria-expanded', 'false');
-      }
-    }
-
-    trigger.addEventListener('click', toggle);
-    trigger.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(e); }
-    });
-
-    options.forEach(function (opt) {
-      opt.addEventListener('click', function () {
-        options.forEach(function (o) { o.classList.remove('mtc-wo__dropdown-option--selected'); });
-        opt.classList.add('mtc-wo__dropdown-option--selected');
-        label.textContent = opt.textContent;
-        label.parentElement.classList.add('mtc-wo__dropdown-trigger--selected');
-        dd.classList.remove('mtc-wo__dropdown--open');
-        trigger.setAttribute('aria-expanded', 'false');
-      });
-    });
-  });
-
-  document.addEventListener('click', function () { closeAll(null); });
-})();
+        document.querySelectorAll('.mtc-reveal').forEach(el => revealObserver.observe(el));
+    })();
 </script>
-
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1625,15 +1162,6 @@
     <script src="header.js" defer></script> 
     <script src="footer.js" defer></script>
 
-    <style>
-          
-        @font-face { font-family:'Circular Std'; src:url('fonts/CircularStd-Book.woff2') format('woff2'),url('fonts/CircularStd-Book.woff') format('woff'); font-weight:400; font-style:normal; font-display:swap; }
-        @font-face { font-family:'Circular Std'; src:url('fonts/CircularStd-BookItalic.woff2') format('woff2'),url('fonts/CircularStd-BookItalic.woff') format('woff'); font-weight:400; font-style:italic; font-display:swap; }
-        @font-face { font-family:'Circular Std'; src:url('fonts/CircularStd-Medium.woff2') format('woff2'),url('fonts/CircularStd-Medium.woff') format('woff'); font-weight:500; font-style:normal; font-display:swap; }
-        @font-face { font-family:'Circular Std'; src:url('fonts/CircularStd-Bold.woff2') format('woff2'),url('fonts/CircularStd-Bold.woff') format('woff'); font-weight:600; font-style:normal; font-display:swap; }
-        @font-face { font-family:'Circular Std'; src:url('fonts/CircularStd-Black.woff2') format('woff2'),url('fonts/CircularStd-Black.woff') format('woff'); font-weight:800; font-style:normal; font-display:swap; }
-
-    </style>
 </head>
 <body>
 
