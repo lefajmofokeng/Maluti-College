@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +17,7 @@
   }
 
   .hmw-wrapper {
-    font-family: 'Circular Std', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Sodo Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     position: fixed;
     bottom: 24px;
     right: 24px;
@@ -36,15 +37,15 @@
   /* Main Chat Window & Animations */
   .hmw-chat-modal {
     width: 380px;
-    height: 600px;
+    height: 580px;
     max-height: calc(100vh - 100px);
     background: #FFFFFF;
-    border-radius: 12px;
+    border-radius: 8px;
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15), 0 2px 8px rgba(0, 0, 0, 0.05);
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    border: 1px solid #E5E7EB;
+    border: 1px solid #c4c5c6;
     
     /* Animation defaults */
     opacity: 0;
@@ -68,6 +69,7 @@
     background: linear-gradient(135deg, #7C66FF 0%, #4D8AF0 100%);
     padding: 24px 24px 20px;
     position: relative;
+    border-radius: 0 0 20px 20px;
     color: #FFFFFF;
     flex-shrink: 0;
     transition: padding 0.3s ease;
@@ -77,10 +79,17 @@
     padding: 16px 24px;
   }
 
-  .hmw-minimize-btn {
+  /* Header top row for menu + minimize */
+  .hmw-header-actions {
     position: absolute;
     top: 16px;
     right: 16px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .hmw-minimize-btn {
     background: transparent;
     border: none;
     cursor: pointer;
@@ -93,6 +102,176 @@
 
   .hmw-minimize-btn:hover {
     opacity: 0.7;
+  }
+
+  /* Menu Button (top-left of header) */
+  .hmw-menu-btn {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 6px;
+    cursor: pointer;
+    padding: 5px 8px;
+    display: none; /* only shown in chat view */
+    align-items: center;
+    gap: 5px;
+    transition: background 0.2s;
+    color: #fff;
+    font-size: 12px;
+    font-family: inherit;
+    font-weight: 500;
+  }
+
+  .hmw-menu-btn:hover {
+    background: rgba(255,255,255,0.25);
+  }
+
+  .hmw-menu-btn.hmw-visible {
+    display: flex;
+  }
+
+  /* Dropdown Menu */
+  .hmw-dropdown {
+    position: absolute;
+    top: 44px;
+    left: 16px;
+    background: #FFFFFF;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    border: 1px solid #E5E7EB;
+    overflow: hidden;
+    z-index: 10;
+    min-width: 180px;
+    opacity: 0;
+    transform: translateY(-6px) scale(0.97);
+    pointer-events: none;
+    transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-origin: top left;
+  }
+
+  .hmw-dropdown.hmw-open {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: all;
+  }
+
+  .hmw-dropdown-item {
+    width: 100%;
+    padding: 11px 16px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    color: #374151;
+    background: transparent;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.15s;
+  }
+
+  .hmw-dropdown-item:hover {
+    background: #F9FAFB;
+  }
+
+  .hmw-dropdown-item.hmw-danger {
+    color: #DC2626;
+  }
+
+  .hmw-dropdown-item.hmw-danger:hover {
+    background: #FEF2F2;
+  }
+
+  /* Confirmation Dialog */
+  .hmw-confirm-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    border-radius: 6px;
+  }
+
+  .hmw-confirm-overlay.hmw-open {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .hmw-confirm-box {
+    background: #FFFFFF;
+    border-radius: 6px;
+    padding: 24px 20px 20px;
+    width: 280px;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.2);
+    transform: scale(0.94);
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .hmw-confirm-overlay.hmw-open .hmw-confirm-box {
+    transform: scale(1);
+  }
+
+  .hmw-confirm-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: #111827;
+    margin-bottom: 6px;
+  }
+
+  .hmw-confirm-text {
+    font-size: 13px;
+    color: #6B7280;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+
+  .hmw-confirm-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+  }
+
+  .hmw-confirm-cancel {
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: 1px solid #E5E7EB;
+    background: #FFFFFF;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    color: #374151;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .hmw-confirm-cancel:hover {
+    background: #F9FAFB;
+  }
+
+  .hmw-confirm-clear {
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: none;
+    background: #DC2626;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    color: #FFFFFF;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .hmw-confirm-clear:hover {
+    background: #B91C1C;
   }
 
   .hmw-brand-row {
@@ -159,7 +338,7 @@
     border: none;
     width: 28px;
     height: 28px;
-    border-radius: 50%;
+    border-radius: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -204,7 +383,7 @@
 
   .hmw-body-title {
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 500;
     color: #111827;
     margin-bottom: 8px;
   }
@@ -225,7 +404,7 @@
     text-align: left;
     padding: 12px 16px;
     border-radius: 8px;
-    background: linear-gradient(90deg, #F0F7FF 0%, #F9F3FF 100%);
+    background: linear-gradient(90deg, #dbecff 0%, #e5caff 100%);
     border: 1px solid #D9CFFF;
     font-family: inherit;
     font-size: 14px;
@@ -260,13 +439,29 @@
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 4px;
+  }
+
+  /* Message group wrapper */
+  .hmw-msg-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: 12px;
+  }
+
+  .hmw-msg-group.hmw-group-user {
+    align-items: flex-end;
+  }
+
+  .hmw-msg-group.hmw-group-bot {
+    align-items: flex-start;
   }
 
   .hmw-message {
     max-width: 85%;
     padding: 12px 16px;
-    border-radius: 12px;
+    border-radius: 6px;
     font-size: 14px;
     line-height: 1.5;
     animation: hmw-fade-up 0.3s ease forwards;
@@ -291,20 +486,36 @@
     border-bottom-left-radius: 4px;
   }
 
+  /* Timestamp */
+  .hmw-timestamp {
+    font-size: 11px;
+    color: #9CA3AF;
+    padding: 0 4px;
+    animation: hmw-fade-up 0.3s ease forwards;
+  }
+
+  .hmw-group-user .hmw-timestamp {
+    text-align: right;
+  }
+
+  .hmw-group-bot .hmw-timestamp {
+    text-align: left;
+  }
+
   /* Chat Input Area */
   .hmw-chat-input-area {
     padding: 16px;
-    border-top: 1px solid #E5E7EB;
+    border-top: 2px solid #E5E7EB;
     background: #FFFFFF;
     display: flex;
-    gap: 12px;
+    gap: 10px;
   }
 
   .hmw-chat-input-field {
     flex: 1;
     padding: 10px 16px;
-    border: 1px solid #E5E7EB;
-    border-radius: 20px;
+    border: 2px solid #E5E7EB;
+    border-radius: 6px;
     font-family: inherit;
     font-size: 14px;
     outline: none;
@@ -321,7 +532,7 @@
     border: none;
     width: 40px;
     height: 40px;
-    border-radius: 50%;
+    border-radius: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -357,7 +568,7 @@
     height: 60px;
     background: linear-gradient(135deg, #7C66FF 0%, #4D8AF0 100%);
     border: none;
-    border-radius: 12px;
+    border-radius: 8px;
     box-shadow: 0 4px 12px rgba(77, 138, 240, 0.3);
     cursor: pointer;
     display: flex;
@@ -371,10 +582,14 @@
     box-shadow: 0 6px 16px rgba(77, 138, 240, 0.4);
   }
 
-  .hmw-fab.hmw-is-hidden {
-    transform: scale(0);
-    opacity: 0;
-    pointer-events: none;
+  /* Desktop: FAB never hides */
+  /* Mobile only: FAB hides when chat is open */
+  @media (max-width: 600px) {
+    .hmw-fab.hmw-is-hidden {
+      transform: scale(0);
+      opacity: 0;
+      pointer-events: none;
+    }
   }
 
   /* Typing Indicator */
@@ -387,6 +602,7 @@
     border-bottom-left-radius: 4px;
     align-self: flex-start;
     width: fit-content;
+    margin-bottom: 12px;
   }
 
   .hmw-dot {
@@ -404,6 +620,56 @@
     0%, 80%, 100% { transform: scale(0); }
     40% { transform: scale(1); }
   }
+
+  /* =====================================================
+     MOBILE FULLSCREEN OVERRIDES (≤600px)
+     ===================================================== */
+  @media (max-width: 600px) {
+    .hmw-wrapper {
+      bottom: 16px;
+      right: 16px;
+    }
+
+    .hmw-chat-modal {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      max-height: 100%;
+      border-radius: 0;
+      border: none;
+      bottom: auto;
+      right: auto;
+      transform-origin: bottom center;
+    }
+
+    /* When open on mobile, fill entire screen */
+    .hmw-chat-modal.hmw-is-open {
+      transform: translateY(0) scale(1);
+    }
+
+    /* Hide/show with slide-up animation on mobile */
+    .hmw-chat-modal:not(.hmw-is-open) {
+      transform: translateY(100%);
+      opacity: 1; /* Keep opacity, use translate for native feel */
+    }
+
+    /* Full height body on mobile */
+    .hmw-body-container {
+      flex: 1;
+      overflow: hidden;
+    }
+
+    /* Safe area bottom padding for notched phones */
+    .hmw-chat-input-area {
+      padding-bottom: max(16px, env(safe-area-inset-bottom));
+    }
+
+    /* Slightly larger touch targets */
+    .hmw-chat-input-field {
+      font-size: 16px; /* Prevents iOS zoom on focus */
+    }
+  }
 </style>
 </head>
 <body>
@@ -412,12 +678,52 @@
   
   <!-- Main Modal Window -->
   <div class="hmw-chat-modal" id="hmwModal">
+
+    <!-- Confirm Clear Dialog (overlay inside modal) -->
+    <div class="hmw-confirm-overlay" id="hmwConfirmOverlay">
+      <div class="hmw-confirm-box">
+        <p class="hmw-confirm-title">Clear conversation?</p>
+        <p class="hmw-confirm-text">This will permanently delete all messages in this chat. You can't undo this action.</p>
+        <div class="hmw-confirm-actions">
+          <button class="hmw-confirm-cancel" id="hmwConfirmCancel">Cancel</button>
+          <button class="hmw-confirm-clear" id="hmwConfirmClear">Clear</button>
+        </div>
+      </div>
+    </div>
+
     <div class="hmw-header" id="hmwHeader">
-      <button class="hmw-minimize-btn" id="hmwMinimizeBtn" aria-label="Minimize">
-        <svg width="12" height="2" viewBox="0 0 12 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M1 1H11" stroke="white" stroke-width="2" stroke-linecap="round"/>
+
+      <!-- Top-left menu button (shown in chat view) -->
+      <button class="hmw-menu-btn" id="hmwMenuBtn" aria-label="Options">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="5" r="1" fill="currentColor" stroke="none"/>
+          <circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/>
+          <circle cx="12" cy="19" r="1" fill="currentColor" stroke="none"/>
         </svg>
       </button>
+
+      <!-- Dropdown Menu -->
+      <div class="hmw-dropdown" id="hmwDropdown">
+        <button class="hmw-dropdown-item hmw-danger" id="hmwClearBtn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="3 6 5 6 21 6"></polyline>
+            <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path>
+            <path d="M10 11v6"></path>
+            <path d="M14 11v6"></path>
+            <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"></path>
+          </svg>
+          Clear conversation
+        </button>
+      </div>
+
+      <!-- Top-right: minimize button -->
+      <div class="hmw-header-actions">
+        <button class="hmw-minimize-btn" id="hmwMinimizeBtn" aria-label="Minimize">
+          <svg width="12" height="2" viewBox="0 0 12 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1H11" stroke="white" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
       
       <div class="hmw-brand-row">
         <h2 class="hmw-brand-title">Ask Maluti</h2>
@@ -507,6 +813,12 @@
   const fab = document.getElementById('hmwFab');
   const modal = document.getElementById('hmwModal');
   const minimizeBtn = document.getElementById('hmwMinimizeBtn');
+  const menuBtn = document.getElementById('hmwMenuBtn');
+  const dropdown = document.getElementById('hmwDropdown');
+  const clearBtn = document.getElementById('hmwClearBtn');
+  const confirmOverlay = document.getElementById('hmwConfirmOverlay');
+  const confirmCancel = document.getElementById('hmwConfirmCancel');
+  const confirmClear = document.getElementById('hmwConfirmClear');
   
   const header = document.getElementById('hmwHeader');
   const headerDesc = document.getElementById('hmwHeaderDesc');
@@ -524,17 +836,37 @@
   const optionBtns = document.querySelectorAll('.hmw-option-btn');
 
   let isChatActive = false;
+  let isDropdownOpen = false;
+
+  // --- Helpers ---
+
+  function isMobile() {
+    return window.innerWidth <= 600;
+  }
+
+  function getTimestamp() {
+    const now = new Date();
+    let hours = now.getHours();
+    const mins = String(now.getMinutes()).padStart(2, '0');
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12 || 12;
+    return `${hours}:${mins} ${ampm}`;
+  }
 
   // --- UI Toggle Functions ---
 
   function openWidget() {
     modal.classList.add('hmw-is-open');
-    fab.classList.add('hmw-is-hidden');
+    // On mobile, hide the FAB; on desktop, keep it visible
+    if (isMobile()) {
+      fab.classList.add('hmw-is-hidden');
+    }
   }
 
   function closeWidget() {
     modal.classList.remove('hmw-is-open');
     fab.classList.remove('hmw-is-hidden');
+    closeDropdown();
   }
 
   function transitionToChat(initialQuery) {
@@ -546,6 +878,7 @@
     searchContainer.style.display = 'none';
     header.classList.add('hmw-compact');
     footer.style.display = 'none';
+    menuBtn.classList.add('hmw-visible');
     
     welcomeView.classList.add('hmw-hidden');
     chatView.classList.add('hmw-active');
@@ -557,14 +890,68 @@
     }
   }
 
+  // --- Dropdown / Menu ---
+
+  function openDropdown() {
+    isDropdownOpen = true;
+    dropdown.classList.add('hmw-open');
+  }
+
+  function closeDropdown() {
+    isDropdownOpen = false;
+    dropdown.classList.remove('hmw-open');
+  }
+
+  function toggleDropdown() {
+    if (isDropdownOpen) {
+      closeDropdown();
+    } else {
+      openDropdown();
+    }
+  }
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', (e) => {
+    if (isDropdownOpen && !menuBtn.contains(e.target) && !dropdown.contains(e.target)) {
+      closeDropdown();
+    }
+  });
+
+  // --- Confirm Dialog ---
+
+  function showConfirm() {
+    closeDropdown();
+    confirmOverlay.classList.add('hmw-open');
+  }
+
+  function hideConfirm() {
+    confirmOverlay.classList.remove('hmw-open');
+  }
+
+  function clearConversation() {
+    chatHistory.innerHTML = '';
+    hideConfirm();
+  }
+
   // --- Chat Logic Functions ---
 
   function appendMessage(text, sender) {
+    const group = document.createElement('div');
+    group.classList.add('hmw-msg-group');
+    group.classList.add(sender === 'user' ? 'hmw-group-user' : 'hmw-group-bot');
+
     const msgDiv = document.createElement('div');
     msgDiv.classList.add('hmw-message');
     msgDiv.classList.add(sender === 'user' ? 'hmw-msg-user' : 'hmw-msg-bot');
     msgDiv.textContent = text;
-    chatHistory.appendChild(msgDiv);
+
+    const tsDiv = document.createElement('div');
+    tsDiv.classList.add('hmw-timestamp');
+    tsDiv.textContent = getTimestamp();
+
+    group.appendChild(msgDiv);
+    group.appendChild(tsDiv);
+    chatHistory.appendChild(group);
     scrollToBottom();
   }
 
@@ -589,7 +976,6 @@
   function simulateBotResponse(query) {
     showTypingIndicator();
     
-    // Simple simulated response logic based on Maluti TVET context
     setTimeout(() => {
       removeTypingIndicator();
       let response = "I'm a virtual assistant for Maluti TVET College. I can help you with applications, NSFAS, and campus details. Could you provide a bit more specific detail?";
@@ -632,6 +1018,15 @@
 
   fab.addEventListener('click', openWidget);
   minimizeBtn.addEventListener('click', closeWidget);
+  menuBtn.addEventListener('click', (e) => { e.stopPropagation(); toggleDropdown(); });
+  clearBtn.addEventListener('click', showConfirm);
+  confirmCancel.addEventListener('click', hideConfirm);
+  confirmClear.addEventListener('click', clearConversation);
+
+  // Close confirm on overlay backdrop click
+  confirmOverlay.addEventListener('click', (e) => {
+    if (e.target === confirmOverlay) hideConfirm();
+  });
 
   // Top Input (Welcome View)
   topSubmit.addEventListener('click', handleTopSubmit);
@@ -653,8 +1048,22 @@
     });
   });
 
+  // Handle resize: ensure FAB visibility is correct if window is resized
+  window.addEventListener('resize', () => {
+    if (!isMobile()) {
+      // On desktop, FAB always visible
+      fab.classList.remove('hmw-is-hidden');
+    } else if (modal.classList.contains('hmw-is-open')) {
+      // On mobile with chat open, keep FAB hidden
+      fab.classList.add('hmw-is-hidden');
+    }
+  });
+
 })();
 </script>
 
 </body>
 </html>
+
+
+

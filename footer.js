@@ -164,7 +164,7 @@
       padding: 64px 60px 56px;
       display: grid;
       grid-template-columns: repeat(6, 1fr);
-      gap: 32px;
+      gap: 32px; border-radius: 50px 50px 0 0
     }
 
     .col-heading {

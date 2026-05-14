@@ -14,8 +14,8 @@
 
 
 <style>
-@font-face{font-family:'Gotham';src:url('fonts/Gotham\ Black.otf') format('truetype');font-weight:500}
-@font-face{font-family:'Gotham';src:url('fonts/Gotham\ Light.otf') format('truetype');font-weight:400}
+@font-face{font-family:'Instrument';src:url('fonts/InstrumentSans[wdth\,wght].ttf') format('truetype');font-weight:500}
+@font-face{font-family:'Infra';src:url('fonts/InfraRegular.otf') format('truetype');font-weight:400}
 
 @font-face{font-family:'Sodo Sans';src:url('fonts/SoDoSans-Regular.ttf') format('truetype');font-weight:400}
 @font-face{font-family:'Sodo Sans';src:url('fonts/SoDoSans-SemiBold.woff') format('woff');font-weight:500}
@@ -39,7 +39,7 @@
   const style = document.createElement('style');
   style.textContent = `
     
-    * { box-sizing: border-box; font-family: 'Sodo Sans', sans-serif; line-height: 1.2; }
+    * { box-sizing: border-box; font-family: 'Infra', sans-serif; line-height: 1.2; }
 
     :host {
         --hyperion-color-header-bg: #0a0a3c;
@@ -746,8 +746,6 @@
 
 
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -755,8 +753,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Maluti AI Chat Widget - Functional</title>
 <style>
-  /* 
-   * NAMESPACED COMPONENT: .hmw- (Hyperion Maluti Widget)
+  /* * NAMESPACED COMPONENT: .hmw- (Hyperion Maluti Widget)
    * Strictly encapsulated to prevent CSS conflicts.
    */
 
@@ -766,7 +763,7 @@
   }
 
   .hmw-wrapper {
-    font-family: 'Circular Std', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Infra', -apple-system, BlinkMacSystemFont, sans-serif;
     position: fixed;
     bottom: 24px;
     right: 24px;
@@ -786,15 +783,15 @@
   /* Main Chat Window & Animations */
   .hmw-chat-modal {
     width: 380px;
-    height: 560px;
+    height: 580px;
     max-height: calc(100vh - 100px);
     background: #FFFFFF;
-    border-radius: 12px;
+    border-radius: 8px;
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15), 0 2px 8px rgba(0, 0, 0, 0.05);
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    border: 1px solid #E5E7EB;
+    border: 1px solid #c4c5c6;
     
     /* Animation defaults */
     opacity: 0;
@@ -818,6 +815,7 @@
     background: linear-gradient(135deg, #7C66FF 0%, #4D8AF0 100%);
     padding: 24px 24px 20px;
     position: relative;
+    border-radius: 0 0 20px 20px;
     color: #FFFFFF;
     flex-shrink: 0;
     transition: padding 0.3s ease;
@@ -946,7 +944,7 @@
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.2s ease;
-    border-radius: 12px;
+    border-radius: 6px;
   }
 
   .hmw-confirm-overlay.hmw-open {
@@ -956,7 +954,7 @@
 
   .hmw-confirm-box {
     background: #FFFFFF;
-    border-radius: 10px;
+    border-radius: 6px;
     padding: 24px 20px 20px;
     width: 280px;
     box-shadow: 0 16px 40px rgba(0,0,0,0.2);
@@ -970,7 +968,7 @@
 
   .hmw-confirm-title {
     font-size: 15px;
-    font-weight: 700;
+    font-weight: 500;
     color: #111827;
     margin-bottom: 6px;
   }
@@ -1025,6 +1023,8 @@
   .hmw-brand-row {
     display: flex;
     align-items: center;
+    justify-content: center;
+    width: 100%;
     gap: 12px;
     margin-bottom: 16px;
   }
@@ -1086,7 +1086,7 @@
     border: none;
     width: 28px;
     height: 28px;
-    border-radius: 50%;
+    border-radius: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1131,7 +1131,7 @@
 
   .hmw-body-title {
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 500;
     color: #111827;
     margin-bottom: 8px;
   }
@@ -1152,7 +1152,7 @@
     text-align: left;
     padding: 12px 16px;
     border-radius: 8px;
-    background: linear-gradient(90deg, #F0F7FF 0%, #F9F3FF 100%);
+    background: linear-gradient(90deg, #dbecff 0%, #e5caff 100%);
     border: 1px solid #D9CFFF;
     font-family: inherit;
     font-size: 14px;
@@ -1209,9 +1209,10 @@
   .hmw-message {
     max-width: 85%;
     padding: 12px 16px;
-    border-radius: 12px;
+    border-radius: 6px;
     font-size: 14px;
     line-height: 1.5;
+    white-space: pre-wrap; /* Allows formatting list output cleanly */
     animation: hmw-fade-up 0.3s ease forwards;
   }
 
@@ -1253,17 +1254,17 @@
   /* Chat Input Area */
   .hmw-chat-input-area {
     padding: 16px;
-    border-top: 1px solid #E5E7EB;
+    border-top: 2px solid #E5E7EB;
     background: #FFFFFF;
     display: flex;
-    gap: 12px;
+    gap: 10px;
   }
 
   .hmw-chat-input-field {
     flex: 1;
     padding: 10px 16px;
-    border: 1px solid #E5E7EB;
-    border-radius: 20px;
+    border: 2px solid #E5E7EB;
+    border-radius: 6px;
     font-family: inherit;
     font-size: 14px;
     outline: none;
@@ -1280,7 +1281,7 @@
     border: none;
     width: 40px;
     height: 40px;
-    border-radius: 50%;
+    border-radius: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1316,7 +1317,7 @@
     height: 60px;
     background: linear-gradient(135deg, #7C66FF 0%, #4D8AF0 100%);
     border: none;
-    border-radius: 12px;
+    border-radius: 8px;
     box-shadow: 0 4px 12px rgba(77, 138, 240, 0.3);
     cursor: pointer;
     display: flex;
@@ -1424,10 +1425,8 @@
 
 <div class="hmw-wrapper">
   
-  <!-- Main Modal Window -->
   <div class="hmw-chat-modal" id="hmwModal">
 
-    <!-- Confirm Clear Dialog (overlay inside modal) -->
     <div class="hmw-confirm-overlay" id="hmwConfirmOverlay">
       <div class="hmw-confirm-box">
         <p class="hmw-confirm-title">Clear conversation?</p>
@@ -1441,18 +1440,21 @@
 
     <div class="hmw-header" id="hmwHeader">
 
-      <!-- Top-left menu button (shown in chat view) -->
       <button class="hmw-menu-btn" id="hmwMenuBtn" aria-label="Options">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="5" r="1" fill="currentColor" stroke="none"/>
           <circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/>
           <circle cx="12" cy="19" r="1" fill="currentColor" stroke="none"/>
         </svg>
-        Options
       </button>
 
-      <!-- Dropdown Menu -->
       <div class="hmw-dropdown" id="hmwDropdown">
+        <button class="hmw-dropdown-item" id="hmwContactBtn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+          </svg>
+          Contact campus
+        </button>
         <button class="hmw-dropdown-item hmw-danger" id="hmwClearBtn">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="3 6 5 6 21 6"></polyline>
@@ -1465,7 +1467,6 @@
         </button>
       </div>
 
-      <!-- Top-right: minimize button -->
       <div class="hmw-header-actions">
         <button class="hmw-minimize-btn" id="hmwMinimizeBtn" aria-label="Minimize">
           <svg width="12" height="2" viewBox="0 0 12 2" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1502,7 +1503,6 @@
 
     <div class="hmw-body-container">
       
-      <!-- View 1: Welcome Menu -->
       <div class="hmw-view hmw-welcome-view" id="hmwWelcomeView">
         <h3 class="hmw-body-title">Want help getting started?</h3>
         <p class="hmw-body-subtitle">Tell us a little bit about what you're looking for.</p>
@@ -1520,11 +1520,9 @@
         </div>
       </div>
 
-      <!-- View 2: Active Chat Interface -->
       <div class="hmw-view hmw-chat-view" id="hmwChatView">
         <div class="hmw-chat-history" id="hmwChatHistory">
-          <!-- Messages inject here -->
-        </div>
+          </div>
         <div class="hmw-chat-input-area">
           <input type="text" class="hmw-chat-input-field" id="hmwBottomInput" placeholder="Type your message...">
           <button class="hmw-chat-send-btn" id="hmwBottomSubmit">
@@ -1543,7 +1541,6 @@
     </div>
   </div>
 
-  <!-- Trigger Button -->
   <button class="hmw-fab" id="hmwFab" aria-label="Open Chat">
     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M21 11.5C21 16.1944 16.9706 20 12 20C10.6128 20 9.2995 19.6896 8.14088 19.1415L3.5 20.5L4.8585 15.8591C4.31043 14.7005 4 13.3872 4 12C4 7.30558 8.02944 3.5 13 3.5C17.9706 3.5 22 7.30558 22 12V11.5Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1564,6 +1561,7 @@
   const minimizeBtn = document.getElementById('hmwMinimizeBtn');
   const menuBtn = document.getElementById('hmwMenuBtn');
   const dropdown = document.getElementById('hmwDropdown');
+  const contactBtn = document.getElementById('hmwContactBtn');
   const clearBtn = document.getElementById('hmwClearBtn');
   const confirmOverlay = document.getElementById('hmwConfirmOverlay');
   const confirmCancel = document.getElementById('hmwConfirmCancel');
@@ -1626,7 +1624,6 @@
     headerDesc.style.display = 'none';
     searchContainer.style.display = 'none';
     header.classList.add('hmw-compact');
-    footer.style.display = 'none';
     menuBtn.classList.add('hmw-visible');
     
     welcomeView.classList.add('hmw-hidden');
@@ -1637,6 +1634,19 @@
       appendMessage(initialQuery, 'user');
       simulateBotResponse(initialQuery);
     }
+  }
+
+  function resetToWelcomeView() {
+    isChatActive = false;
+    
+    // Reset UI transitions
+    headerDesc.style.display = 'block';
+    searchContainer.style.display = 'flex';
+    header.classList.remove('hmw-compact');
+    menuBtn.classList.remove('hmw-visible');
+    
+    chatView.classList.remove('hmw-active');
+    welcomeView.classList.remove('hmw-hidden');
   }
 
   // --- Dropdown / Menu ---
@@ -1680,6 +1690,7 @@
   function clearConversation() {
     chatHistory.innerHTML = '';
     hideConfirm();
+    resetToWelcomeView();
   }
 
   // --- Chat Logic Functions ---
@@ -1771,6 +1782,19 @@
   clearBtn.addEventListener('click', showConfirm);
   confirmCancel.addEventListener('click', hideConfirm);
   confirmClear.addEventListener('click', clearConversation);
+
+  // Contact Campus Action from Menu
+  contactBtn.addEventListener('click', () => {
+    closeDropdown();
+    appendMessage("Contact campus", 'user');
+    showTypingIndicator();
+    
+    setTimeout(() => {
+      removeTypingIndicator();
+      const contactResponse = "Here are the contact details for Maluti TVET College campuses:\n\n• Bethlehem: 058 303 3369 | bethlehem@malutitvet.co.za\n• Bonamelo: 058 713 1391 | bonamelo@malutitvet.co.za\n• Harrismith: 058 621 3439 | harrismith@malutitvet.co.za\n• Itemoheleng: 058 713 0206 | itemoheleng@malutitvet.co.za\n• Kwetlisong: 058 713 2341 | kwetlisong@malutitvet.co.za\n• Lere la Tshepe: 058 713 0612 | lerelatshepe@malutitvet.co.za\n• Sefikeng: 058 713 4004 | sefikeng@malutitvet.co.za\n• Corporate Office: 058 713 6100 | info@malutitvet.co.za";
+      appendMessage(contactResponse, 'bot');
+    }, 1500);
+  });
 
   // Close confirm on overlay backdrop click
   confirmOverlay.addEventListener('click', (e) => {
@@ -1888,7 +1912,6 @@
 
 
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1904,7 +1927,7 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: 'Sodo Sans', sans-serif;
+        font-family: 'Infra', sans-serif;
         display: flex;
         align-items: center;
         justify-content: flex-start;
@@ -2051,7 +2074,7 @@
 
     .info-text {
         /* Using a Serif font stack for that academic look */
-        font-family: 'Sodo Sans', sans-serif;
+        font-family: 'Infra', sans-serif;
         color: #000051; /* Deep navy blue */
         font-size: 2rem;
         line-height: 1.4;
@@ -2107,10 +2130,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>IT Company – Case Studies Carousel</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
-
+  
   <style>
     /* ═══════════════════════════════════════════════════════════
        PREFIX: .itco-cs__  |  IDs: itco-cs-*
@@ -2137,16 +2157,16 @@
 
     /* ─── ROOT ───────────────────────────────────────────────── */
     .itco-cs__root {
-      --itco-font:    'Circular Std', 'DM Sans', 'Helvetica Neue', sans-serif;
+      --itco-font:    'Infra', 'Helvetica Neue', sans-serif;
       --itco-bg:      #ffffff;
       --itco-white:   #ffffff;
-      --itco-text:    #0f1b2d;
+      --itco-text:    #000000;
       --itco-muted:   #4a5568;
       --itco-link:    #0073bb;
-      --itco-radius:  18px;
+      --itco-radius:  28px;
       --itco-gap:     5px;
       --itco-ease:    650ms cubic-bezier(0.42, 0, 0.18, 1);
-      --itco-peek:    150px;
+      --itco-peek:    120px;
       --itco-max:     1200px;
 
       font-family: var(--itco-font);
@@ -2180,7 +2200,7 @@
 
     .itco-cs__header-title {
       font-size: clamp(1.45rem, 2.8vw, 3.2rem);
-      font-weight: 500;
+      font-weight: 600;
       line-height: 1.25;
       letter-spacing: -0.02em;
       color: var(--itco-text);
@@ -2380,8 +2400,8 @@
 
     /* ─── HEADLINE ───────────────────────────────────────────── */
     .itco-cs__headline {
-      font-size: clamp(1.1rem, 2.2vw, 1.7rem);
-      font-weight: 700;
+      font-size: clamp(1.1rem, 2.2vw, 2.5rem);
+      font-weight: 500;
       line-height: 1.3;
       color: var(--itco-white);
       max-width: 560px;
@@ -2475,10 +2495,10 @@
     /* Mobile */
     @media (max-width: 600px) {
       .itco-cs__root {
-        --itco-peek:   36px;
-        --itco-gap:    12px;
+        --itco-peek:   10px;
+        --itco-gap:    1px;
         --itco-radius: 14px;
-        padding: 28px 0 36px;
+        padding: 28px 20px 36px;
       }
       .itco-cs__header {
         padding: 0 20px 24px;
@@ -2488,7 +2508,7 @@
         font-size: 1.25rem;
       }
       .itco-cs__slide-body {
-        aspect-ratio: 4 / 3;
+        aspect-ratio: 1.5 / 3;
         padding: 18px 18px 22px;
       }
       .itco-cs__badge { margin-bottom: 10px; gap: 7px; }
@@ -2497,7 +2517,7 @@
       .itco-cs__badge-name { font-size: .82rem; }
       .itco-cs__badge-pill { font-size: .58rem; padding: 2px 8px; }
       .itco-cs__headline {
-        font-size: clamp(.92rem, 4vw, 1.15rem);
+        font-size: clamp(1.5rem, 4vw, 1.15rem);
         margin-bottom: 12px;
         display: -webkit-box;
         -webkit-line-clamp: 3;
@@ -2903,7 +2923,7 @@
     .it-scroll-wrapper {
         background-color: var(--it-bg);
         color: var(--it-text-main);
-        font-family: 'Sodo Sans', sans-serif;
+        font-family: 'Infra', sans-serif;
         margin: 0;
         padding: 0;
         box-sizing: border-box;
@@ -2980,7 +3000,7 @@
         line-height: 1.6;
         color: var(--it-text-main);
         max-width: 450px;
-        font-weight: 400;
+        font-weight: 600;
     }
 
     /* --- MOBILE IMAGE (Hidden on Desktop) --- */
