@@ -1,713 +1,660 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <style>
-        :root {
-            --bot-navy: #000c2d;
-            --bot-blue: #0077cc;
-            --bot-radius: 12px;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maluti AI Chat Widget - Functional</title>
+<style>
+  /* 
+   * NAMESPACED COMPONENT: .hmw- (Hyperion Maluti Widget)
+   * Strictly encapsulated to prevent CSS conflicts.
+   */
 
-        * { box-sizing: border-box; }
+  @font-face {
+    font-family: 'Circular Std';
+    src: local('Circular Std Book'), local('CircularStd-Book');
+  }
 
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Alvarado', sans-serif;
-        }
+  .hmw-wrapper {
+    font-family: 'Circular Std', -apple-system, BlinkMacSystemFont, sans-serif;
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 16px;
+    z-index: 99999;
+  }
 
-        /* ── SCROLLBAR ── */
-        .maluti-chat-body::-webkit-scrollbar { width: 6px; }
-        .maluti-chat-body::-webkit-scrollbar-track { background: #f1f1f1; }
-        .maluti-chat-body::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }
-        .maluti-chat-body::-webkit-scrollbar-thumb:hover { background: var(--bot-blue); }
+  .hmw-wrapper * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 
-        /* ── TRIGGER PILL (desktop + mobile) ── */
-        .maluti-chat-trigger {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            padding: 6px 16px 6px 6px;
-            background-color: white;
-            border-radius: 50px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: #020035;
-            box-shadow: 0 10px 25px rgba(8, 0, 97, 0.3);
-            cursor: pointer;
-            z-index: 10001;
-            transition: transform 0.2s ease;
-        }
-        .maluti-chat-trigger:hover { transform: scale(1.05); }
+  /* Main Chat Window & Animations */
+  .hmw-chat-modal {
+    width: 380px;
+    height: 600px;
+    max-height: calc(100vh - 100px);
+    background: #FFFFFF;
+    border-radius: 12px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15), 0 2px 8px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #E5E7EB;
+    
+    /* Animation defaults */
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-origin: bottom right;
+    position: absolute;
+    bottom: 80px;
+    right: 0;
+  }
 
-        .maluti-trigger-img {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid var(--bot-blue);
-        }
+  .hmw-chat-modal.hmw-is-open {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: all;
+  }
 
-        .maluti-trigger-text {
-            font-size: 13px;
-            font-weight: 400;
-            max-width: 150px;
-            line-height: 1.2;
-        }
+  /* Gradient Header Section */
+  .hmw-header {
+    background: linear-gradient(135deg, #7C66FF 0%, #4D8AF0 100%);
+    padding: 24px 24px 20px;
+    position: relative;
+    color: #FFFFFF;
+    flex-shrink: 0;
+    transition: padding 0.3s ease;
+  }
 
-        /* ── CHAT WINDOW — DESKTOP DEFAULT ── */
-        .maluti-chat-window {
-            position: fixed;
-            bottom: 100px;
-            right: 30px;
-            width: 380px;
-            height: 600px;
-            max-height: 80vh;
-            background: #ffffff;
-            border-radius: var(--bot-radius);
-            display: none;
-            flex-direction: column;
-            overflow: hidden;
-            z-index: 10000;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
+  .hmw-header.hmw-compact {
+    padding: 16px 24px;
+  }
 
-        .maluti-chat-active { display: flex !important; animation: slideUp 0.3s ease forwards; }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .hmw-minimize-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s;
+  }
 
-        /* ── HEADER ── */
-        .maluti-chat-header {
-            background-color: var(--bot-navy);
-            padding: 15px 20px;
-            color: white;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex-shrink: 0;
-        }
+  .hmw-minimize-btn:hover {
+    opacity: 0.7;
+  }
 
-        .maluti-header-avatar {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid var(--bot-blue);
-            flex-shrink: 0;
-        }
+  .hmw-brand-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
 
-        .maluti-header-info { flex: 1; }
-        .maluti-header-info h4 { margin: 0; font-size: 14px; font-weight: 700; }
-        .maluti-header-info span { font-size: 11px; opacity: 0.75; display: block; margin-top: 3px; }
+  .hmw-header.hmw-compact .hmw-brand-row {
+    margin-bottom: 0;
+  }
 
-        .maluti-online-dot {
-            width: 7px;
-            height: 7px;
-            background: #2ecc71;
-            border-radius: 50%;
-            display: inline-block;
-            margin-right: 5px;
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
+  .hmw-brand-title {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
 
-        .maluti-close-btn {
-            background: rgba(255,255,255,0.12);
-            border: none;
-            color: white;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            font-size: 20px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            line-height: 1;
-            transition: background 0.2s;
-        }
-        .maluti-close-btn:hover { background: rgba(255,255,255,0.25); }
+  .hmw-badge {
+    background: #FFFFFF;
+    color: #333;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  }
 
-        /* ── DISCLAIMER ── */
-        .maluti-bot-disclaimer {
-            background: #fff3cd;
-            color: #856404;
-            font-size: 11px;
-            padding: 7px 15px;
-            text-align: center;
-            border-bottom: 1px solid #ffeeba;
-            flex-shrink: 0;
-        }
+  .hmw-header-desc {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    opacity: 0.95;
+    transition: all 0.3s ease;
+  }
 
-        /* ── QUICK CHIPS ── */
-        .maluti-quick-chips {
-            display: flex;
-            gap: 8px;
-            padding: 10px 15px 6px;
-            overflow-x: auto;
-            flex-shrink: 0;
-            background: #f4f7f9;
-            scrollbar-width: none;
-        }
-        .maluti-quick-chips::-webkit-scrollbar { display: none; }
-        .chip {
-            white-space: nowrap;
-            background: white;
-            border: 1.5px solid var(--bot-blue);
-            color: var(--bot-blue);
-            border-radius: 20px;
-            padding: 5px 13px;
-            font-size: 12px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
-            flex-shrink: 0;
-        }
-        .chip:hover, .chip:active { background: var(--bot-blue); color: white; }
+  /* Search Input Module (Initial View) */
+  .hmw-search-container {
+    background: #FFFFFF;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    padding: 6px 6px 6px 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+  }
 
-        /* ── CHAT BODY ── */
-        .maluti-chat-body {
-            flex: 1;
-            padding: 15px;
-            background-color: #f4f7f9;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            -webkit-overflow-scrolling: touch;
-            overscroll-behavior: contain;
-        }
+  .hmw-search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-family: inherit;
+    font-size: 14px;
+    color: #1A1A1A;
+    background: transparent;
+  }
 
-        /* ── MESSAGES ── */
-        .maluti-chat-msg {
-            max-width: 85%;
-            padding: 12px 16px;
-            border-radius: 16px;
-            font-size: 14px;
-            line-height: 1.6;
-        }
-        .maluti-chat-msg.bot {
-            background: white;
-            color: var(--bot-navy);
-            align-self: flex-start;
-            border-bottom-left-radius: 3px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-        }
-        .maluti-chat-msg.user {
-            background: var(--bot-blue);
-            color: white;
-            align-self: flex-end;
-            border-bottom-right-radius: 3px;
-        }
-        .maluti-chat-msg.bot b {
-            color: var(--bot-navy);
-            display: block;
-            margin-top: 6px;
-            margin-bottom: 2px;
-        }
-        .maluti-chat-msg.bot b:first-child { margin-top: 0; }
-        .maluti-chat-msg.bot ul { margin: 6px 0 4px 0; padding-left: 18px; }
-        .maluti-chat-msg.bot ul li { margin-bottom: 4px; }
+  .hmw-search-submit {
+    background: #B4B9C2;
+    border: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
 
-        .msg-time {
-            font-size: 10px;
-            opacity: 0.5;
-            margin-top: 4px;
-            display: block;
-            text-align: right;
-        }
-        .maluti-chat-msg.bot .msg-time { text-align: left; }
+  .hmw-search-submit:hover {
+    background: #7C66FF;
+  }
 
-        /* ── FOOTER ── */
-        .maluti-chat-footer {
-            padding: 10px 15px;
-            background: white;
-            display: flex;
-            gap: 10px;
-            border-top: 1px solid #eee;
-            flex-shrink: 0;
-            align-items: center;
-        }
-        .maluti-chat-input {
-            flex: 1;
-            border: 2px solid #e0e0e0;
-            padding: 11px 16px;
-            border-radius: 25px;
-            outline: none;
-            font-size: 14px;
-            transition: border-color 0.2s;
-        }
-        .maluti-chat-input:focus { border-color: var(--bot-blue); }
-        .maluti-chat-send {
-            background: var(--bot-navy);
-            color: white;
-            border: none;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            transition: background 0.2s;
-        }
-        .maluti-chat-send:hover { background: var(--bot-blue); }
+  /* Body Sections */
+  .hmw-body-container {
+    flex: 1;
+    background: #FFFFFF;
+    position: relative;
+    overflow: hidden;
+  }
 
-        /* ── TYPING ── */
-        .maluti-typing {
-            display: none;
-            align-items: center;
-            gap: 5px;
-            padding: 12px 16px;
-            background: white;
-            border-radius: 16px;
-            border-bottom-left-radius: 3px;
-            width: fit-content;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-        }
-        .dot { width: 7px; height: 7px; background: #bbb; border-radius: 50%; animation: bounce 1.4s infinite; }
-        .dot:nth-child(2) { animation-delay: 0.2s; }
-        .dot:nth-child(3) { animation-delay: 0.4s; }
-        @keyframes bounce { 0%,80%,100%{transform:scale(0.3);opacity:0.4;} 40%{transform:scale(1);opacity:1;} }
+  .hmw-view {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+  }
 
-        .date-badge { text-align: center; font-size: 11px; color: #999; margin: 4px 0; }
-        .date-badge span { background: #e8edf2; padding: 3px 10px; border-radius: 10px; }
+  /* Welcome View */
+  .hmw-welcome-view {
+    padding: 24px;
+    overflow-y: auto;
+  }
 
-        /* ════════════════════════════════════════════
-           MOBILE OVERRIDES — phones only (≤ 480px)
-           ════════════════════════════════════════════ */
-        @media screen and (max-width: 480px) {
+  .hmw-welcome-view.hmw-hidden {
+    transform: translateX(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
 
-            /* Hide the trigger pill — chat is always open on mobile */
-            .maluti-chat-trigger {
-                display: none !important;
-            }
+  .hmw-body-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 8px;
+  }
 
-            /* Window fills the entire screen */
-            .maluti-chat-window {
-                display: flex !important;   /* always visible */
-                width: 100% !important;
-                height: 100% !important;
-                height: 100dvh !important;
-                max-height: 100% !important;
-                bottom: 0 !important;
-                right: 0 !important;
-                left: 0 !important;
-                top: 0 !important;
-                border-radius: 0 !important;
-                animation: none !important;
-            }
+  .hmw-body-subtitle {
+    font-size: 14px;
+    color: #6B7280;
+    margin-bottom: 20px;
+  }
 
-            /* Safe area — notch & home bar */
-            .maluti-chat-header {
-                padding-top: calc(15px + env(safe-area-inset-top));
-            }
-            .maluti-chat-footer {
-                padding-bottom: calc(10px + env(safe-area-inset-bottom));
-            }
+  .hmw-options-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
 
-            /* Hide close button on mobile (nowhere to go — chat IS the page) */
-            .maluti-close-btn {
-                display: none !important;
-            }
-        }
-    </style>
+  .hmw-option-btn {
+    text-align: left;
+    padding: 12px 16px;
+    border-radius: 8px;
+    background: linear-gradient(90deg, #F0F7FF 0%, #F9F3FF 100%);
+    border: 1px solid #D9CFFF;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    color: #111827;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .hmw-option-btn:hover {
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    transform: translateY(-1px);
+    border-color: #7C66FF;
+  }
+
+  /* Chat View */
+  .hmw-chat-view {
+    transform: translateX(100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .hmw-chat-view.hmw-active {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .hmw-chat-history {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .hmw-message {
+    max-width: 85%;
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-size: 14px;
+    line-height: 1.5;
+    animation: hmw-fade-up 0.3s ease forwards;
+  }
+
+  @keyframes hmw-fade-up {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hmw-msg-user {
+    align-self: flex-end;
+    background: #F3F4F6;
+    color: #111827;
+    border-bottom-right-radius: 4px;
+  }
+
+  .hmw-msg-bot {
+    align-self: flex-start;
+    background: linear-gradient(135deg, #7C66FF 0%, #4D8AF0 100%);
+    color: #FFFFFF;
+    border-bottom-left-radius: 4px;
+  }
+
+  /* Chat Input Area */
+  .hmw-chat-input-area {
+    padding: 16px;
+    border-top: 1px solid #E5E7EB;
+    background: #FFFFFF;
+    display: flex;
+    gap: 12px;
+  }
+
+  .hmw-chat-input-field {
+    flex: 1;
+    padding: 10px 16px;
+    border: 1px solid #E5E7EB;
+    border-radius: 20px;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .hmw-chat-input-field:focus {
+    border-color: #7C66FF;
+  }
+
+  .hmw-chat-send-btn {
+    background: #7C66FF;
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .hmw-chat-send-btn:hover {
+    background: #4D8AF0;
+  }
+
+  /* Footer Section */
+  .hmw-footer {
+    padding: 8px 24px 24px;
+    text-align: center;
+    background: #FFFFFF;
+    transition: opacity 0.3s;
+  }
+
+  .hmw-footer-text {
+    font-size: 12px;
+    color: #6B7280;
+  }
+
+  .hmw-footer-link {
+    color: #2563EB;
+    text-decoration: none;
+  }
+
+  /* Floating Action Button */
+  .hmw-fab {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #7C66FF 0%, #4D8AF0 100%);
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(77, 138, 240, 0.3);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .hmw-fab:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(77, 138, 240, 0.4);
+  }
+
+  .hmw-fab.hmw-is-hidden {
+    transform: scale(0);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Typing Indicator */
+  .hmw-typing {
+    display: flex;
+    gap: 4px;
+    padding: 16px;
+    background: #F3F4F6;
+    border-radius: 12px;
+    border-bottom-left-radius: 4px;
+    align-self: flex-start;
+    width: fit-content;
+  }
+
+  .hmw-dot {
+    width: 6px;
+    height: 6px;
+    background: #9CA3AF;
+    border-radius: 50%;
+    animation: hmw-bounce 1.4s infinite ease-in-out both;
+  }
+
+  .hmw-dot:nth-child(1) { animation-delay: -0.32s; }
+  .hmw-dot:nth-child(2) { animation-delay: -0.16s; }
+
+  @keyframes hmw-bounce {
+    0%, 80%, 100% { transform: scale(0); }
+    40% { transform: scale(1); }
+  }
+</style>
 </head>
 <body>
 
-    <!-- TRIGGER PILL (desktop only) -->
-    <div class="maluti-chat-trigger" id="chatTrigger" onclick="toggleChat()">
-        <img src="https://images.pexels.com/photos/8566472/pexels-photo-8566472.jpeg" alt="Assistant" class="maluti-trigger-img">
-        <span class="maluti-trigger-text">Talk to Maluti digital assistant for quick help</span>
+<div class="hmw-wrapper">
+  
+  <!-- Main Modal Window -->
+  <div class="hmw-chat-modal" id="hmwModal">
+    <div class="hmw-header" id="hmwHeader">
+      <button class="hmw-minimize-btn" id="hmwMinimizeBtn" aria-label="Minimize">
+        <svg width="12" height="2" viewBox="0 0 12 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 1H11" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+      
+      <div class="hmw-brand-row">
+        <h2 class="hmw-brand-title">Ask Maluti</h2>
+        <span class="hmw-badge">
+           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+             <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+             <polyline points="2 17 12 22 22 17"></polyline>
+             <polyline points="2 12 12 17 22 12"></polyline>
+           </svg>
+           built-in
+        </span>
+      </div>
+
+      <p class="hmw-header-desc" id="hmwHeaderDesc">
+        Get helpful guidance and recommendations from Maluti TVET College's AI assistant.
+      </p>
+
+      <div class="hmw-search-container" id="hmwSearchContainer">
+        <input type="text" class="hmw-search-input" id="hmwTopInput" placeholder="Ask a question">
+        <button class="hmw-search-submit" id="hmwTopSubmit" aria-label="Submit">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
     </div>
 
-    <!-- CHAT WINDOW -->
-    <div class="maluti-chat-window" id="malutiChatWindow">
+    <div class="hmw-body-container">
+      
+      <!-- View 1: Welcome Menu -->
+      <div class="hmw-view hmw-welcome-view" id="hmwWelcomeView">
+        <h3 class="hmw-body-title">Want help getting started?</h3>
+        <p class="hmw-body-subtitle">Tell us a little bit about what you're looking for.</p>
 
-        <div class="maluti-chat-header">
-            <img src="https://images.pexels.com/photos/8566472/pexels-photo-8566472.jpeg" alt="Assistant" class="maluti-header-avatar">
-            <div class="maluti-header-info">
-                <h4>Maluti TVET Assistant</h4>
-                <span><span id="realTimeClock">Loading...</span></span>
-            </div>
-            <!-- Close button — visible on desktop only -->
-            <button class="maluti-close-btn" onclick="toggleChat()" title="Close">&times;</button>
+        <div class="hmw-options-list">
+          <button class="hmw-option-btn" data-query="I want to learn about campus locations and courses">
+            I want to learn about campus locations and courses
+          </button>
+          <button class="hmw-option-btn" data-query="I need placement test or application support">
+            I need placement test or application support
+          </button>
+          <button class="hmw-option-btn" data-query="I have an NSFAS funding or registration issue">
+            I have an NSFAS funding or registration issue
+          </button>
         </div>
+      </div>
 
-        <div class="maluti-bot-disclaimer">
-            Responses are automated. Always verify important details directly with the campus.
+      <!-- View 2: Active Chat Interface -->
+      <div class="hmw-view hmw-chat-view" id="hmwChatView">
+        <div class="hmw-chat-history" id="hmwChatHistory">
+          <!-- Messages inject here -->
         </div>
+        <div class="hmw-chat-input-area">
+          <input type="text" class="hmw-chat-input-field" id="hmwBottomInput" placeholder="Type your message...">
+          <button class="hmw-chat-send-btn" id="hmwBottomSubmit">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+          </button>
+        </div>
+      </div>
 
-        <div class="maluti-quick-chips">
-            <div class="chip" onclick="chipSend('Admissions & Applications')">Admissions</div>
-            <div class="chip" onclick="chipSend('NSFAS Funding')">NSFAS</div>
-            <div class="chip" onclick="chipSend('IT & Computer Courses')">IT Courses</div>
-            <div class="chip" onclick="chipSend('Business Studies')">Business</div>
-            <div class="chip" onclick="chipSend('Campus Locations')">Campuses</div>
-            <div class="chip" onclick="chipSend('Engineering Courses')">Engineering</div>
-            <div class="chip" onclick="chipSend('Contact Details')">Contact</div>
-            <div class="chip" onclick="chipSend('Academic Calendar')">Calendar</div>
-            <div class="chip" onclick="chipSend('Entry Requirements')">Requirements</div>
-        </div>
-
-        <div class="maluti-chat-body" id="chatBody">
-            <div class="date-badge"><span id="todayBadge"></span></div>
-            <div class="maluti-chat-msg bot">
-                <b>Welcome to Maluti TVET College!</b>
-                I'm your digital assistant. I can help you with admissions, courses, NSFAS funding, campus info, and more.<br><br>
-                Tap a topic above or type your question below to get started.
-                <span class="msg-time" id="welcomeTime"></span>
-            </div>
-            <div id="typingIndicator" class="maluti-typing">
-                <div class="dot"></div><div class="dot"></div><div class="dot"></div>
-            </div>
-        </div>
-
-        <div class="maluti-chat-footer">
-            <input type="text" id="userInput" class="maluti-chat-input" placeholder="Ask me anything..." onkeypress="if(event.key==='Enter') sendMessage()">
-            <button class="maluti-chat-send" onclick="sendMessage()">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="22" y1="2" x2="11" y2="13"></line>
-                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                </svg>
-            </button>
-        </div>
     </div>
 
-    <script>
-        const knowledgeBase = [
-            {
-                keywords: ["admission", "apply", "register", "enroll", "enrolment", "closing", "application", "portal", "open", "how to apply", "documents", "requirements", "2025", "2026"],
-                response: `<b>Admissions at Maluti TVET College</b>
-Admissions for the 2026 academic year are currently open through our online application portal.
+    <div class="hmw-footer" id="hmwFooter">
+      <p class="hmw-footer-text">By chatting, you agree to this <a href="#" class="hmw-footer-link">disclaimer</a>.</p>
+    </div>
+  </div>
 
-<b>Documents you will need:</b>
-<ul>
-<li>Certified copy of your South African ID</li>
-<li>Certified copy of your latest school results (Grade 9, 11, or Matric depending on the programme)</li>
-<li>Proof of residential address (not older than 3 months)</li>
-<li>Your NSFAS application reference number (if applying for funding)</li>
-</ul>
+  <!-- Trigger Button -->
+  <button class="hmw-fab" id="hmwFab" aria-label="Open Chat">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M21 11.5C21 16.1944 16.9706 20 12 20C10.6128 20 9.2995 19.6896 8.14088 19.1415L3.5 20.5L4.8585 15.8591C4.31043 14.7005 4 13.3872 4 12C4 7.30558 8.02944 3.5 13 3.5C17.9706 3.5 22 7.30558 22 12V11.5Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  
+</div>
 
-<b>How to apply:</b>
-Visit the Maluti TVET College website and go to the Admissions portal to apply online. You can also walk into any campus and apply in person at the Student Services office during office hours (Mon–Fri, 08:00–16:00).
+<script>
+/**
+ * Hyperion Maluti Widget Logic
+ * Encapsulated in an IIFE to prevent global scope pollution.
+ */
+(() => {
+  // DOM Elements
+  const fab = document.getElementById('hmwFab');
+  const modal = document.getElementById('hmwModal');
+  const minimizeBtn = document.getElementById('hmwMinimizeBtn');
+  
+  const header = document.getElementById('hmwHeader');
+  const headerDesc = document.getElementById('hmwHeaderDesc');
+  const searchContainer = document.getElementById('hmwSearchContainer');
+  const footer = document.getElementById('hmwFooter');
+  
+  const welcomeView = document.getElementById('hmwWelcomeView');
+  const chatView = document.getElementById('hmwChatView');
+  const chatHistory = document.getElementById('hmwChatHistory');
+  
+  const topInput = document.getElementById('hmwTopInput');
+  const topSubmit = document.getElementById('hmwTopSubmit');
+  const bottomInput = document.getElementById('hmwBottomInput');
+  const bottomSubmit = document.getElementById('hmwBottomSubmit');
+  const optionBtns = document.querySelectorAll('.hmw-option-btn');
 
-<b>Tip:</b> Apply early — spaces in popular programmes like IT and Business fill up quickly. Make sure all your documents are certified before submitting.`
-            },
-            {
-                keywords: ["it", "computer", "system", "networking", "information technology", "coding", "software", "ncv", "systems development", "network", "hardware", "programming", "it courses"],
-                response: `<b>IT & Computing Programmes</b>
-Maluti TVET College offers the IT NCV (National Certificate Vocational) programme, primarily at Lere La Tshepe Campus.
+  let isChatActive = false;
 
-<b>What you will study:</b>
-<ul>
-<li>Systems Development — coding, databases, and application design</li>
-<li>Network Infrastructure — routers, servers, LAN and WAN networking</li>
-<li>IT Systems — hardware, operating systems, and troubleshooting</li>
-<li>End User Computing — practical computer skills</li>
-</ul>
+  // --- UI Toggle Functions ---
 
-<b>Levels offered:</b> NCV Level 2, 3, and 4 (equivalent to Grade 10, 11, and 12).
+  function openWidget() {
+    modal.classList.add('hmw-is-open');
+    fab.classList.add('hmw-is-hidden');
+  }
 
-<b>Entry requirement:</b> A Grade 9 pass is sufficient to start at Level 2.
+  function closeWidget() {
+    modal.classList.remove('hmw-is-open');
+    fab.classList.remove('hmw-is-hidden');
+  }
 
-<b>Duration:</b> Each level takes one year — completing all three levels takes 3 years in total.
+  function transitionToChat(initialQuery) {
+    if (isChatActive) return;
+    isChatActive = true;
 
-<b>Career paths after graduating:</b> Software Developer, Network Administrator, IT Support Technician, Database Administrator, or Systems Analyst.`
-            },
-            {
-                keywords: ["business", "management", "accounting", "entrepreneurship", "hr", "human resource", "nated", "n4", "n5", "n6", "diploma", "office", "management assistant", "business studies"],
-                response: `<b>Business Studies — NATED Programmes</b>
-The Business Studies NATED programme runs from N4 to N6 and leads to a nationally recognised National Diploma.
+    // UI transitions
+    headerDesc.style.display = 'none';
+    searchContainer.style.display = 'none';
+    header.classList.add('hmw-compact');
+    footer.style.display = 'none';
+    
+    welcomeView.classList.add('hmw-hidden');
+    chatView.classList.add('hmw-active');
 
-<b>Subjects available include:</b>
-<ul>
-<li>Financial Accounting and Management Accounting</li>
-<li>Entrepreneurship and Business Management</li>
-<li>Human Resource Management</li>
-<li>Marketing Management</li>
-<li>Management Assistant (Office Administration)</li>
-</ul>
+    // Handle initial message
+    if (initialQuery) {
+      appendMessage(initialQuery, 'user');
+      simulateBotResponse(initialQuery);
+    }
+  }
 
-<b>How the qualification works:</b>
-<ul>
-<li>N4 to N6: 18 months of theory and coursework at the college</li>
-<li>Followed by 18 months of approved workplace experience (internship or employment)</li>
-<li>Completing both phases earns you a full National Diploma</li>
-</ul>
+  // --- Chat Logic Functions ---
 
-<b>Entry requirement:</b> Matric / Grade 12 certificate.
+  function appendMessage(text, sender) {
+    const msgDiv = document.createElement('div');
+    msgDiv.classList.add('hmw-message');
+    msgDiv.classList.add(sender === 'user' ? 'hmw-msg-user' : 'hmw-msg-bot');
+    msgDiv.textContent = text;
+    chatHistory.appendChild(msgDiv);
+    scrollToBottom();
+  }
 
-<b>Career paths:</b> Accountant, HR Officer, Office Manager, Entrepreneur, Marketing Officer, or Financial Analyst.`
-            },
-            {
-                keywords: ["engineering", "electrical", "civil", "mechanical", "fitting", "turning", "plumbing", "boilermaking", "welding", "motor", "automotive", "ncv engineering", "engineering courses"],
-                response: `<b>Engineering & Technical Programmes</b>
-Maluti TVET College offers both NCV and NATED (N1 to N6) engineering programmes for students interested in technical trades.
+  function showTypingIndicator() {
+    const typingDiv = document.createElement('div');
+    typingDiv.classList.add('hmw-typing');
+    typingDiv.id = 'hmwTypingIndicator';
+    typingDiv.innerHTML = `
+      <div class="hmw-dot"></div>
+      <div class="hmw-dot"></div>
+      <div class="hmw-dot"></div>
+    `;
+    chatHistory.appendChild(typingDiv);
+    scrollToBottom();
+  }
 
-<b>Popular engineering fields offered:</b>
-<ul>
-<li>Electrical Infrastructure Construction</li>
-<li>Civil and Construction Engineering</li>
-<li>Mechanical Engineering — Fitting and Turning, Boilermaking</li>
-<li>Automotive Repair and Maintenance</li>
-<li>Plumbing and Pipefitting</li>
-</ul>
+  function removeTypingIndicator() {
+    const indicator = document.getElementById('hmwTypingIndicator');
+    if (indicator) indicator.remove();
+  }
 
-<b>NATED Engineering (N1–N6):</b> Theory-based programme that leads to a National Diploma after completing N6 plus 18 months of verified work experience.
+  function simulateBotResponse(query) {
+    showTypingIndicator();
+    
+    // Simple simulated response logic based on Maluti TVET context
+    setTimeout(() => {
+      removeTypingIndicator();
+      let response = "I'm a virtual assistant for Maluti TVET College. I can help you with applications, NSFAS, and campus details. Could you provide a bit more specific detail?";
+      
+      const q = query.toLowerCase();
+      if (q.includes('campus') || q.includes('course')) {
+        response = "Maluti TVET College has several campuses including Bethlehem, Bonamelo, Harrismith, Itemoheleng, Kwetlisong, Lere la Tshepe, and Sefikeng. We offer NATED and NC(V) courses in Business and Engineering studies.";
+      } else if (q.includes('placement') || q.includes('application')) {
+        response = "To apply, you first need to complete the compulsory Placement Test. Once done, you can submit your application online through our portal with your certified ID and results.";
+      } else if (q.includes('nsfas') || q.includes('funding')) {
+        response = "If you need funding, ensure you apply directly through the NSFAS portal. Our Student Support Services on your respective campus can assist with registration clearance once funded.";
+      }
 
-<b>NCV Engineering (Level 2–4):</b> Combines practical skills and theory, takes 3 years to complete all three levels.
+      appendMessage(response, 'bot');
+    }, 1500);
+  }
 
-<b>Entry requirements:</b>
-<ul>
-<li>Grade 9 pass for NCV Level 2</li>
-<li>Matric or N3 equivalent for NATED programmes</li>
-</ul>
+  function scrollToBottom() {
+    chatHistory.scrollTop = chatHistory.scrollHeight;
+  }
 
-<b>Note:</b> Specific trades may only be available at certain campuses. Contact the admissions office to confirm current availability.`
-            },
-            {
-                keywords: ["nsfas", "bursary", "funding", "financial aid", "fees", "money", "pay", "allowance", "afford", "cost", "free", "poor", "scholarship", "grant", "sassa", "nsfas funding"],
-                response: `<b>NSFAS Financial Aid</b>
-NSFAS (National Student Financial Aid Scheme) is a government bursary that covers your studies so you can focus on learning, not fees.
+  function handleTopSubmit() {
+    const query = topInput.value.trim();
+    if (query) {
+      topInput.value = '';
+      transitionToChat(query);
+    }
+  }
 
-<b>Who qualifies?</b>
-<ul>
-<li>South African citizens only</li>
-<li>Combined household income of R350,000 or less per year</li>
-<li>SASSA grant recipients qualify automatically</li>
-</ul>
+  function handleBottomSubmit() {
+    const query = bottomInput.value.trim();
+    if (query) {
+      bottomInput.value = '';
+      appendMessage(query, 'user');
+      simulateBotResponse(query);
+    }
+  }
 
-<b>What NSFAS covers for TVET students:</b>
-<ul>
-<li>Full tuition fees — paid directly to the college</li>
-<li>Accommodation allowance (if you live away from home)</li>
-<li>Transport allowance</li>
-<li>Meals allowance</li>
-<li>Learning material allowance (books and stationery)</li>
-</ul>
+  // --- Event Listeners ---
 
-<b>How to apply for NSFAS:</b>
-<ul>
-<li>Go to www.nsfas.org.za and click "Apply"</li>
-<li>Create a myNSFAS student account</li>
-<li>Fill in the online form with your ID and household income details</li>
-<li>Submit supporting documents as requested</li>
-</ul>
+  fab.addEventListener('click', openWidget);
+  minimizeBtn.addEventListener('click', closeWidget);
 
-<b>Important:</b> Apply for NSFAS at the same time as your college application. Late applications may not be processed. You must be registered or accepted at a TVET college to complete the process.`
-            },
-            {
-                keywords: ["location", "where", "campus", "address", "find", "situated", "campuses", "kwetlisong", "lere", "bonamelo", "directions", "map", "which campus", "head office", "campus locations"],
-                response: `<b>Maluti TVET College Campuses</b>
-Maluti TVET College operates multiple campuses across the Free State and Lesotho border region, each offering different programmes.
+  // Top Input (Welcome View)
+  topSubmit.addEventListener('click', handleTopSubmit);
+  topInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') handleTopSubmit();
+  });
 
-<b>Main campuses include:</b>
-<ul>
-<li><b>Lere La Tshepe Campus</b> — IT, Business, and various NCV programmes</li>
-<li><b>Kwetlisong Campus</b> — Engineering and technical programmes</li>
-<li><b>Bonamelo Campus</b> — Mixed programmes including Business and Engineering</li>
-</ul>
+  // Bottom Input (Active Chat View)
+  bottomSubmit.addEventListener('click', handleBottomSubmit);
+  bottomInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') handleBottomSubmit();
+  });
 
-<b>Before you visit:</b> Contact the college first to confirm which campus runs your specific programme. Not all courses are available at every campus.
+  // Option Buttons
+  optionBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const query = e.target.getAttribute('data-query') || e.target.textContent;
+      transitionToChat(query.trim());
+    });
+  });
 
-<b>Getting there:</b> Search "Maluti TVET College [Campus Name]" on Google Maps for directions from your location.
+})();
+</script>
 
-<b>Office hours:</b> Monday to Friday, 08:00 to 16:00. Arrive early to avoid long queues during registration periods.`
-            },
-            {
-                keywords: ["contact", "phone", "email", "call", "reach", "number", "helpdesk", "office", "enquiry", "enquire", "website", "contact details"],
-                response: `<b>Contact Maluti TVET College</b>
-
-<b>General enquiries:</b>
-<ul>
-<li>Official website: <b>www.malutitvet.edu.za</b></li>
-<li>Call the main switchboard at any campus (Mon–Fri, 08:00–16:00)</li>
-<li>Walk into the Student Services office at your nearest campus</li>
-</ul>
-
-<b>Who to contact for specific queries:</b>
-<ul>
-<li><b>Admissions Office</b> — application status, registration, and enrolment</li>
-<li><b>Financial Aid Office</b> — NSFAS, bursaries, and fee payment queries</li>
-<li><b>Academic Department</b> — subject choices, timetables, and academic records</li>
-<li><b>Student Support Services</b> — counselling, disability support, and welfare</li>
-</ul>
-
-<b>Tip:</b> Always have your student number or ID number ready when calling or visiting. This speeds up the process significantly.`
-            },
-            {
-                keywords: ["calendar", "date", "term", "holiday", "semester", "timetable", "exam", "exams", "when", "start", "begin", "reopen", "close", "schedule", "academic calendar"],
-                response: `<b>Academic Calendar</b>
-The South African TVET academic year is divided into four terms and two semesters.
-
-<b>General term structure:</b>
-<ul>
-<li>Term 1 — Late January to late March</li>
-<li>Term 2 — April to late June (mid-year exams in June)</li>
-<li>Term 3 — July to late September</li>
-<li>Term 4 — October to November (final exams in November)</li>
-</ul>
-
-<b>Registration windows:</b>
-<ul>
-<li>Semester 1 registration — typically opens in January</li>
-<li>Semester 2 registration — typically opens in July</li>
-</ul>
-
-<b>Exams:</b> NATED exams are set nationally by DHET (Department of Higher Education and Training). Exam dates are published on the DHET website.
-
-<b>Important:</b> Exact dates change every year. Always confirm the current year's calendar with the campus or download it from the official website.`
-            },
-            {
-                keywords: ["matric", "grade 12", "certificate", "qualify", "requirements", "minimum", "entry", "grade 9", "school", "entry requirements"],
-                response: `<b>Entry Requirements</b>
-
-<b>NCV Programmes (Levels 2 to 4):</b>
-<ul>
-<li>Minimum: Grade 9 pass to enter at Level 2</li>
-<li>Grade 11 pass may allow direct entry into Level 3</li>
-<li>NCV Level 2–4 is equivalent to completing Grade 10–12</li>
-</ul>
-
-<b>NATED Programmes (N4 to N6):</b>
-<ul>
-<li>Minimum: Matric (Grade 12) certificate</li>
-<li>Some engineering NATED programmes may accept N3 as an alternative to Matric</li>
-</ul>
-
-<b>Skills and Short Courses:</b>
-<ul>
-<li>Entry requirements vary — some have no formal academic requirement</li>
-</ul>
-
-<b>Encouragement:</b> Even if you did not pass Matric, the NCV pathway gives you a second chance to earn a recognised national qualification. Many successful professionals started through the TVET route — do not give up on your future.`
-            },
-            {
-                keywords: ["healthcare", "nursing", "educare", "early childhood", "hospitality", "tourism", "hair", "beauty", "cosmetology", "catering"],
-                response: `<b>Health, Community & Lifestyle Programmes</b>
-Beyond IT, Business, and Engineering, Maluti TVET also offers programmes in community services and lifestyle fields.
-
-<b>Programme areas that may be available:</b>
-<ul>
-<li>Early Childhood Development (ECD) and Educare</li>
-<li>Hospitality and Professional Cookery (Catering)</li>
-<li>Tourism</li>
-<li>Beauty Therapy and Cosmetology</li>
-</ul>
-
-These are offered through NCV or NATED qualifications depending on the field.
-
-<b>Important:</b> Programme availability changes from year to year and varies by campus. Contact the admissions office directly to confirm which programmes are currently active.`
-            }
-        ];
-
-        function getResponse(userInput) {
-            const input = userInput.toLowerCase();
-            const words = input.split(/\s+/);
-            let bestMatch = null;
-            let highestScore = 0;
-
-            knowledgeBase.forEach(item => {
-                let score = 0;
-                item.keywords.forEach(kw => {
-                    if (input === kw) score += 10;
-                    else if (input.includes(kw)) score += (kw.length > 4 ? 5 : 2);
-                    else if (words.some(w => w === kw)) score += 4;
-                });
-                if (score > highestScore) { highestScore = score; bestMatch = item.response; }
-            });
-
-            if (highestScore > 0) return bestMatch;
-
-            if (/^(hi|hello|hey|good morning|good afternoon|howzit|hola|sawubona)/i.test(input)) {
-                return `<b>Hello! Welcome to Maluti TVET College.</b><br><br>I can help you with:<br><ul>
-<li>Admissions and how to apply</li>
-<li>NSFAS financial aid and bursaries</li>
-<li>IT, Business, and Engineering courses</li>
-<li>Campus locations and directions</li>
-<li>Entry requirements</li>
-<li>Academic calendar and exam dates</li>
-<li>Contact details</li>
-</ul>What would you like to know today?`;
-            }
-
-            if (/thank|thanks|thx|dankie|ngiyabonga/i.test(input)) {
-                return `You are welcome! If you have any more questions about Maluti TVET College — courses, applications, funding, or anything else — feel free to ask anytime. Good luck with your studies!`;
-            }
-
-            return `I do not have specific information on that just yet. Try asking about:<br><br><ul>
-<li><b>Admissions</b> — how to apply and documents needed</li>
-<li><b>NSFAS</b> — financial aid, bursaries, and allowances</li>
-<li><b>Courses</b> — IT, Business, Engineering, and more</li>
-<li><b>Campuses</b> — locations and which campus offers what</li>
-<li><b>Entry Requirements</b> — what qualifications you need</li>
-<li><b>Contact</b> — how to reach the college directly</li>
-</ul>Or tap one of the quick-topic buttons at the top!`;
-        }
-
-        function toggleChat() {
-            document.getElementById('malutiChatWindow').classList.toggle('maluti-chat-active');
-        }
-
-        function chipSend(text) {
-            document.getElementById('userInput').value = text;
-            sendMessage();
-        }
-
-        function sendMessage() {
-            const inputField = document.getElementById('userInput');
-            const chatBody = document.getElementById('chatBody');
-            const typingIndicator = document.getElementById('typingIndicator');
-            const userText = inputField.value.trim();
-            if (!userText) return;
-
-            const userDiv = document.createElement('div');
-            userDiv.className = 'maluti-chat-msg user';
-            userDiv.innerHTML = userText + `<span class="msg-time">${getTime()}</span>`;
-            chatBody.insertBefore(userDiv, typingIndicator);
-            inputField.value = "";
-            scrollDown();
-
-            typingIndicator.style.display = "flex";
-            scrollDown();
-
-            setTimeout(() => {
-                typingIndicator.style.display = "none";
-                const botDiv = document.createElement('div');
-                botDiv.className = 'maluti-chat-msg bot';
-                botDiv.innerHTML = getResponse(userText) + `<span class="msg-time">${getTime()}</span>`;
-                chatBody.insertBefore(botDiv, typingIndicator);
-                scrollDown();
-            }, 900 + Math.random() * 600);
-        }
-
-        function scrollDown() {
-            const cb = document.getElementById('chatBody');
-            setTimeout(() => { cb.scrollTop = cb.scrollHeight; }, 50);
-        }
-
-        function getTime() {
-            return new Date().toLocaleTimeString('en-ZA', { hour: '2-digit', minute: '2-digit' });
-        }
-
-        function updateTime() {
-            const now = new Date();
-            document.getElementById('realTimeClock').innerText =
-                now.toLocaleDateString('en-ZA', { weekday: 'short', day: 'numeric', month: 'short' }) +
-                ' · ' + now.toLocaleTimeString('en-ZA', { hour: '2-digit', minute: '2-digit' });
-        }
-
-        setInterval(updateTime, 1000);
-        updateTime();
-        document.getElementById('todayBadge').innerText =
-            new Date().toLocaleDateString('en-ZA', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
-        document.getElementById('welcomeTime').innerText = getTime();
-    </script>
 </body>
 </html>
